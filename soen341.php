@@ -7,7 +7,8 @@
 <body>
   <div>
     <?php
-	
+	require 'DBInterface.php';
+
 	// Change to abstract later
 	class Course
 	{
@@ -16,7 +17,7 @@
 		private $start;
 		private $end;
 		private $days;
-		
+
 		public function __construct($name, $section, $start, $end, $days)
 		{
 			$this->name = $name;
@@ -60,10 +61,10 @@
     }
 
 
-		
+
 	}
 
-	class Lecture extends Course 
+	class Lecture extends Course
 	{
 		private $semester;
 		private $preReqs;
@@ -71,8 +72,8 @@
 		private $status;
 		private $engProfReq;
 		private $descendents;
-		
-		public function __construct($name, $section, $start, $end, $days, 
+
+		public function __construct($name, $section, $start, $end, $days,
 									$semester, $preReqs, $coReqs, $engProfReq, $status)
 		{
 			$this->semester = $semester;
@@ -81,15 +82,15 @@
 			$this->start = $start;
 			$this->end = $end;
 			$this->days = $days;
-			
-			
+
+
 			$this->preReqs = $preReqs;
 			$this->coReqs = $coReqs;
 			$this->status = $status;
 			$this->engProfReq = $engProfReq;
 			$this->descendents = 0;
 		}
-		
+
 		public function dispInfo ()
 		{
 			echo "Course name: " . $this->name . " section :" . $this->section  .
@@ -100,7 +101,7 @@
 
 			echo "<br>";
 		}
-		
+
 		public function calNumDescendents ($courses)
 		{
 			deleteCourse($this, $courses);
@@ -139,8 +140,8 @@
 		}
 
 	}
-	
-	class LabTut extends Course 
+
+	class LabTut extends Course
 	{
 		public function __construct($name, $section, $start, $end, $days)
 		{
@@ -149,11 +150,11 @@
 			$this->start = $start;
 			$this->end = $end;
 			$this->days = $days;
-		}		
+		}
 
 	}
-	
-	
+
+
 	function deleteCourse ($course, &$courses)
 	{
 		foreach ($courses as $key=>$c)
@@ -179,7 +180,7 @@
 			echo "$c->name number of descendents' paths is $c->numDescendents <br>";
 		}
 	}
-	
+
 	function conflictExists ($c1, $c2)
 	{
 		// Check first if they have overlapping days
@@ -197,21 +198,76 @@
 		}
 		return false;
 	}
+  
+  function semesterConflictChecker ($tempPermittedCourses)
+  {
+    $numOfCourses = 4;
+    $numOfSections = 2;
+    $numOfTutorials = 2;
+    $numOfLabs = 2;
+
+    //We have how many courses the student wants + the importance of $courses
+    // We pick the ex.  4 most important courses (depth wise)
+    //Most important course is first in the array
+
+      foreach ($numOfCourses as $key1) {
+          //Choose from the array the most important course
+              foreach ($numOfSections as $key2 ) {
+                // Run Conflict checker for lectures
+                    foreach ($numOfTutorials as $key3) {
+                      // Run Conflict Checker for tutorials
+                    }
+                    foreach ($numOfLabs as $key4) {
+                      // Run Conflict Checker for labs
+                    }
+              }
+            }
+          }
+
+  function semesterGenerator($permittedCourses){
+      $courseCounter = $numOfCourses+1;
+      $numReturnedCourses = 0;
+      //Choose the first $numOfCourses to run semesterConflictChecker;
+      $tempPermittedCourses = array_slice($permittedCourses, 0, $numOfCourses);
+
+        $returnedCourses = semesterConflictChecker ($tempPermittedCourses);
+        //Check if numReturnedCourses are less than $numOfCourses
+        $numReturnedCourses = $returnedCourses.length();
+
+          while($numReturnedCourses < $numOfCourses)
+          {
+            //If yes, then change one of the courses in the array and try again.
+            //The change should be based on which course the loop exited at
+            //If returned courses are 2 then the problem is with the 3rd one,
+            //If 3 then the problem is with the 4th one.(check for if one is returned as well).
+            if($tempPermittedCourses[$numReturnedCourses+1] != null && $permittedCourses[$courseCounter] != null)
+              {
+                $tempPermittedCourses [$numReturnedCourses+1]= $permittedCourses[$courseCounter];
+                $courseCounter++;
+              }
+            $returnedCourses = semesterConflictChecker ($tempPermittedCourses);
+            $numReturnedCourses = $returnedCourses.length();
+        }
+        //If returned courses are equal to $numOfCourses then successfuly added all courses.
+  }
+
+
+
 
 		$math203_L1 = new Lecture ("MATH203","A",1000,1115,array("Monday","Wednesday"),
 		array("F","W","S"), null, null, false, false);
-		
+
 		$math204_L1 = new Lecture ("MATH204","B",1100,1200,array("Monday","Wednesday"),
 		array("F","W","S"), null, null, false, false);
-		
-		
+
+
 		if (conflictExists ($math203_L1, $math204_L1))
 		echo "Conflict exists";
-		
+
 		else
 			echo "Conflict does not exist";
 
-		
+
 	// $math203 = new Course ("MATH203", "AA", null, null, 1400, 1515,
                           // array("Monday", "Wednesday"), false);
 	// $math204 = new Course ("MATH204", "BB", null, null, 1600, 1715,
@@ -296,7 +352,7 @@
 
 	// updateAllNumDescendents ($remainingCourses);
 	// dispAllNumDescendents($remainingCourses);
- 
+
   //echo $comp348->getName();
    // echo " \n ----- \n";
 //$test = implode(",", $comp348->getDates());
