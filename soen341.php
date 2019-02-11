@@ -179,10 +179,38 @@
 			echo "$c->name number of descendents' paths is $c->numDescendents <br>";
 		}
 	}
+	
+	function conflictExists ($c1, $c2)
+	{
+		// Check first if they have overlapping days
+		foreach ($c1->days as $c1Day)
+		{
+			foreach ($c2->days as $c2Day)
+			{
+				if ($c1Day == $c2Day)
+				{
+					// Check for overlap in time
+					if ( (($c1->start >= $c2->start) and ($c1->start < $c2->end)) or ( ($c2->start >= $c1->start) and ($c2->start < $c1->end) ))
+						return true;
+				}
+			}
+		}
+		return false;
+	}
 
 		$math203_L1 = new Lecture ("MATH203","A",1000,1115,array("Monday","Wednesday"),
 		array("F","W","S"), null, null, false, false);
 		
+		$math204_L1 = new Lecture ("MATH204","B",1100,1200,array("Monday","Wednesday"),
+		array("F","W","S"), null, null, false, false);
+		
+		
+		if (conflictExists ($math203_L1, $math204_L1))
+		echo "Conflict exists";
+		
+		else
+			echo "Conflict does not exist";
+
 		
 	// $math203 = new Course ("MATH203", "AA", null, null, 1400, 1515,
                           // array("Monday", "Wednesday"), false);
@@ -268,9 +296,7 @@
 
 	// updateAllNumDescendents ($remainingCourses);
 	// dispAllNumDescendents($remainingCourses);
-  echo " \n ----- \n";
-  $math203_L1->dispInfo();
-    echo " \n ----- \n";
+ 
   //echo $comp348->getName();
    // echo " \n ----- \n";
 //$test = implode(",", $comp348->getDates());
