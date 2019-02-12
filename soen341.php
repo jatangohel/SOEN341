@@ -198,31 +198,89 @@
 		}
 		return false;
 	}
-  
+
+
+  //$tempPermittedCourses will be an array of strings which represent course names.
   function semesterConflictChecker ($tempPermittedCourses)
   {
-    $numOfCourses = 4;
-    $numOfSections = 2;
     $numOfTutorials = 2;
     $numOfLabs = 2;
 
+    //This vector will hold vectors, first will be containing all the chosen lectures
+    //then the tutorials then the labs.
+    $addedCourses = new \Ds\Vector();
+    //This will hold all the added lectures after the loops
+    $addedLecs = new \Ds\Vector();
+    //This will hold all the added tutorials after the loops
+    $addedTuts = new \Ds\Vector();
+    //This will hold all the added labs after the loops
+    $addedLabs = new \Ds\Vector();
     //We have how many courses the student wants + the importance of $courses
     // We pick the ex.  4 most important courses (depth wise)
     //Most important course is first in the array
 
-      foreach ($numOfCourses as $key1) {
+      foreach ($tempPermittedCourses as $c)
+      {
           //Choose from the array the most important course
-              foreach ($numOfSections as $key2 ) {
-                // Run Conflict checker for lectures
-                    foreach ($numOfTutorials as $key3) {
-                      // Run Conflict Checker for tutorials
-                    }
-                    foreach ($numOfLabs as $key4) {
-                      // Run Conflict Checker for labs
-                    }
+          $lecSections = getLectureSections($c);
+          foreach ($lecSections as $lecS )
+          {
+              // Run Conflict checker for lectures
+              foreach ($addedCourses as $allC)
+              {
+                foreach ($allC as $sessC)
+                {
+                  if(conflictExists($lecS, $sessC))
+                    continue 3;
+                }
               }
-            }
+              $addedCourses[0]->push($lecS);
+
+              $tutSections = getTutorials($lecS->name, $lecS->section);
+              if($tutSections != null)
+              {
+                foreach ($tutSections as $tutS)
+                {
+                  // Run Conflict Checker for tutorials
+                    foreach ($addedCourses as $allC)
+                    {
+                      foreach ($allC as $sessC)
+                      {
+                        if(conflictExists($tutS, $sessC))
+                          continue 3;
+                      }
+                    }
+                      break;
+                 }
+               }
+              $addedCourses[1]->push($tutS);
+
+              $labSections = getLabs($lecS->name);
+              if($labSections != null)
+              {
+                foreach ($labSections as $labS)
+                {
+                    // Run Conflict Checker for labs
+                    foreach ($addedCourses as $allC)
+                    {
+                      foreach ($allC as $sessC)
+                      {
+                        if(conflictExists($labS, $sessC))
+                          continue 3;
+                      }
+                    }
+                      break;
+                 }
+                  $addedCourses[2]->push($labS);
+
+               }
+
           }
+
+      }
+
+      $addedCourses ->push($addedLecs , $addedTuts , $addedLabs);
+  }
 
   function semesterGenerator($permittedCourses){
       $courseCounter = $numOfCourses+1;

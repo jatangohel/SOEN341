@@ -1,13 +1,15 @@
 <?php
 
 //Returns an array of the sections of a specific given course
-function getLectureSections($course);
+//$course is of type string, it represents the name of the course.
+function getLectureSections($course)
 {
 
 }
 
 //Returns an array of available tutorials for this specific lecture
-function getTutorials($lecture)
+//$lecture and $section are of type string, lecture name and section.
+function getTutorials($lecture, $section)
 {
 
 }
