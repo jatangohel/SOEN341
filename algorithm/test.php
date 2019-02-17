@@ -47,6 +47,11 @@
         $permittedCourses = array("COMP232", "COMP248");
 
         $generatedSemester = semesterGenerator ($permittedCourses );
+
+        foreach ($generatedSemester as $session) {
+          foreach ($session as $key)
+          echo ($key->name . "\n");
+        }
     ?>
   </div>
 </body>

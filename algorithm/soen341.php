@@ -268,7 +268,7 @@ private $subSection;
                     continue 3;
                 }
               }
-              $addedCourses[0]->push($lecS);
+              $addedLecs->push($lecS);
 
               $tutSections = getTutorials($lecS->name, $lecS->section);
               if($tutSections != null)
@@ -284,10 +284,11 @@ private $subSection;
                           continue 3;
                       }
                     }
-                      break;
+                    $addedTuts->push($tutS);
+                    break;
                  }
                }
-              $addedCourses[1]->push($tutS);
+
 
               $labSections = getLabs($lecS->name);
               if($labSections != null)
@@ -303,9 +304,9 @@ private $subSection;
                           continue 3;
                       }
                     }
-                      break;
+                    $addedLabs->push($labS);
+                    break;
                  }
-                  $addedCourses[2]->push($labS);
 
                }
 
@@ -327,7 +328,7 @@ private $subSection;
 
         $returnedCourses = semesterConflictChecker ($tempPermittedCourses);
         //Check if numReturnedCourses are less than $numOfCourses
-        $numReturnedCourses = $returnedCourses.length();
+        $numReturnedCourses = $returnedCourses[0]->count();
 
           while($numReturnedCourses < $numOfCourses)
           {
@@ -341,7 +342,7 @@ private $subSection;
                 $courseCounter++;
               }
             $returnedCourses = semesterConflictChecker ($tempPermittedCourses);
-            $numReturnedCourses = $returnedCourses.length();
+            $numReturnedCourses = $returnedCourses->count();
             }
         //If returned courses are equal to $numOfCourses then successfuly added all courses.
 

@@ -4,21 +4,21 @@
 //$course is of type string, it represents the name of the course.
 function getLectureSections($course)
 {
-  if ($course == "comp232")
+  if ($course == "COMP232")
   {
     $comp232_L2 =   new Lecture (2,"COMP232", "PP", 1745, 2015, array("T"),
-    "F", array($math203, $math204), null, true, false, 3);
+    "F", null, null, true, false, 3);
     $sec = array ($comp232_L2);
     return  $sec;
   }
-  elseif ($course == "comp248")
+  elseif ($course == "COMP248")
   {
     /////////////////////
         $comp248_L1 = new Lecture (3,"COMP248", "EE", 1745, 2015, array("J"),
-        "F", null, array($math204_L1), true, false, 3);
+        "F", null, null, true, false, 3);
     ////////////////////////
         $comp248_L2 = new Lecture (3,"COMP248", "P", 1315, 1430, array("M","W"),
-        "F", null, array($math204_L1), true, false, 3);
+        "F", null, null, true, false, 3);
 
         $sec = array ($comp248_L1, $comp248_L2);
         return  $sec;
