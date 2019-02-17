@@ -38,8 +38,8 @@ function getLabs($lecture)
 
 }
 
-//Returns an array of courses this user can take this semester
-function getPermittedCourses($user, $semester)
+//Returns an array of courses this user can take this semester from the remaining courses array of lectures
+function getPermittedCourses($user, $remainingCourses,  $semester)
 {
 
 }
