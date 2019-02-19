@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>SOEN341-TreeDepth.php</title>
+  <title>SOEN341-Scehdule Generator</title>
 </head>
 <body>
   <div>
     <?php
 
-    require 'soen341.php';
+    require 'ScheduleGen.php';
 
     $math203_L1 = new Session (0,"MATH203","A", null, "F", array("M","W"), 1000,1115, "SGW");
 
@@ -31,16 +31,29 @@
     $comp248_L1 = new Session (3,"COMP248", "EE", null, "F", array("J"), 1745, 2015, "SGW");
 
     ////////////////////////
-    $comp248_L2 = new Session (3,"COMP248", "P", null, "F", array("M","W"), 1315, 1430, "SGW");
+    //$comp248_L2 = new Session (3,"COMP248", "P", null, "F", array("M","W"), 1315, 1430, "SGW");
+    $comp248_L2 = new Session (3,"COMP248", "P", null, "F", array("T","W"), 1745, 2015, "SGW");
 
     $permittedCourses = array("COMP232", "COMP248");
 
     $generatedSemester = semesterGenerator ($permittedCourses );
 
-    foreach ($generatedSemester as $session) {
-      foreach ($session as $key)
-        echo ($key->getCourseName() . "\n");
-    }
+    echo "Chosen Lecture Sections <br>";
+    foreach ($generatedSemester[0] as $lec)
+        echo $lec->dispInfo();
+
+    echo "<br>";
+
+    echo "Chosen Tutorial Sections <br>";
+    foreach ($generatedSemester[1] as $tut)
+        echo $tut->dispInfo();
+
+    echo "<br>";
+
+    echo "Chosen lab Sections <br>";
+    foreach ($generatedSemester[2] as $lab)
+            echo $lab->dispInfo();
+
     ?>
   </div>
 </body>
