@@ -9,55 +9,135 @@
     <?php
 	require __DIR__.'/../DBInterface.php';
 
-	// Change to abstract later
 	class Course
 	{
-		private $name;
-		private $section;
-		private $start;
-		private $end;
-		private $days;
-    private $address;
-    private $ID;
+		private $courseName; // String
+    private $courseID;   // int
+		private $preReqs;    // array of Courses
+		private $coReqs;     // array of Courses
+		private $credits;    // int
+    private $pass;       // bool
+    private $engProfReq; // bool
+    private $priority;   // int
 
-		public function __construct($name, $section, $start, $end, $days,$address,$ID)
+		public function __construct($courseID, $courseName, $preReqs, $coReqs, $credits, $pass, $engProfReq)
 		{
-			$this->name = $name;
-			$this->section = $section;
-			$this->start = $start;
-			$this->end = $end;
-			$this->days = $days;
-      $this->address= $address;
-      $this->ID= $ID;
+      $this->courseID = $courseID;
+			$this->courseName = $courseName;
+			$this->preReqs = $preReqs;
+			$this->coReqs = $coReqs;
+			$this->credits = $credits;
+      $this->pass = $pass;
+      $this->engProfReq = $engProfReq;
+      $this->priority = 0;
 		}
-    public function getName()
+
+    public function getCourseName()
     {
-      return $this->name;
+      return $this->courseName;
     }
-    public function setName($name)
+
+    public function getCourseID()
     {
-      $this->name = $name;
+      return $this->courseID;
     }
-    public function getSection ()
+
+    public function getPreReqs()
     {
-      return $this->section;
+      return $this->preReqs;
     }
-    public function setSection ($section)
+
+    public function getCoReqs()
     {
-      $this->section = $section;
+      return $this->coReqs;
     }
-    public function getDays()
+
+    public function getCredits()
     {
-      return $this->days;
+      return $this->credits;
     }
-    public function getAddress()
+
+    public function getPass()
     {
-      return $this->address;
+      return $this->pass;
     }
-    public function getID()
+
+    public function getEngProfReq()
     {
-      return $this->ID;
+      return $this->engProfReq;
     }
+
+    public function getPriority()
+    {
+      return $this->priority;
+    }
+
+    public function setCourseID($id)
+    {
+      $this->courseID = $id;
+    }
+
+    public function setCourseName($name)
+    {
+      $this->courseName = $name;
+    }
+
+    public function setPriority($priority)
+    {
+      $this->priority = $priority;
+    }
+
+
+    public function calPriority ($courses)
+		{
+			deleteCourse($this, $courses);
+			$this->setPriority(0);
+
+			//echo "Checking $this->name <br>";
+
+			foreach ($courses as $c)
+			{
+				//echo "Checking $c->name <br>";
+				if ($c->getPreReqs() != null)
+				{
+
+					foreach ($c->getPreReqs() as $preReq)
+					{
+						if ($this->getCourseName() == $preReq->getCourseName() )
+						{
+						$this->setPriority(1+($c->calPriority($courses)));
+						//echo "$this->numDescendents <br>";
+						}
+					}
+				}
+				if ($c->getCoReqs() != null)
+				{
+					foreach ($c->getCoReqs() as $coReqs)
+					{
+						if ($this->getCourseName() == $coReqs->getCourseName())
+						{
+						//echo "entered the if <br>";
+            $this->setPriority(1+($c->calPriority($courses)));
+						}
+					}
+				}
+			}
+		return $this->priority;
+		}
+
+    public function updateAllPriority ($courses)
+  	{
+  		foreach ($courses as $c)
+  			$c->calPriority($courses);
+  	}
+
+  	public function dispAllPriority ($courses)
+  	{
+  		foreach ($courses as $c)
+  		{
+  			echo $c->getCourseName() . "number of descendents' paths is $c->numDescendents <br>";
+  		}
+  	}
 //    public function dispLength($course)
 //    {
 //    $str=  (string)($this->coFinish - $this->coStart.);
@@ -66,133 +146,98 @@
 //      echo "".$st." : ";
 //    }
 //    }
-    public function dispTime($course)
-    {
-      echo "Course name: ". $this->name . ", Time is: " . $this->start. " , "
-      . $this->end. " .";
-    }
-
-
 
 	}
 
-	class Lecture extends Course
+	class Session
 	{
-		private $semester;
-		private $preReqs;
-		private $coReqs;
-		private $pass;
-		private $engProfReq;
-		private $priority;
-    private $credit;
+    private $courseID;    // int
+		private $courseName;  // String
+		private $section;     // String
+		private $subSection;  // String
+		private $semester;    // String ("F"or"W"or"S")
+    private $days;        // array of strings ("M","T","W","J","F")
+		private $startTime;   // int
+		private $endTime;     // int
+    private $campus;      // String
 
-		public function __construct($ID, $name, $section, $start, $end, $days,
-									$semester, $preReqs, $coReqs, $engProfReq, $pass,$credit)
+		public function __construct($courseID, $courseName, $section, $subSection,
+                                $semester, $days, $startTime, $endTime, $campus)
 		{
-      $this->$ID = $ID;
-			$this->semester = $semester;
-			$this->name = $name;
+      $this->courseID = $courseID;
+      $this->courseName = $courseName;
 			$this->section = $section;
-			$this->start = $start;
-			$this->end = $end;
-			$this->days = $days;
-
-      $this->credit=$credit;
-			$this->preReqs = $preReqs;
-			$this->coReqs = $coReqs;
-			$this->pass = $pass;
-			$this->engProfReq = $engProfReq;
-			$this->priority = 0;
+			$this->subSection = $subSection;
+			$this->semester = $semester;
+      $this->days = $days;
+			$this->startTime = $startTime;
+			$this->endTime = $endTime;
+      $this->campus = $campus;
 		}
+
+    public function getCourseID()
+    {
+      return $this->courseID;
+    }
+
+    public function getCourseName()
+    {
+      return $this->courseName;
+    }
+
+    public function getSection()
+    {
+      return $this->section;
+    }
+
+    public function getSubSection()
+    {
+      return $this->subSection;
+    }
+
+    public function getSemester()
+    {
+      return $this->semester;
+    }
+
+    public function getDays()
+    {
+      return $this->days;
+    }
+
+    public function getStartTime()
+    {
+      return $this->startTime;
+    }
+
+    public function getEndTime()
+    {
+      return $this->endTime;
+    }
+
+    public function getCampus()
+    {
+      return $this->endTime;
+    }
 
 		public function dispInfo ()
 		{
-			echo "Course name: " . $this->name . " section :" . $this->section  .
-			" time: ". $this->start. " , ". $this->end.
+			echo "Course name: " . $this->getCourseName() . " section :" . $this->getSection()  .
+			" time: ". $this->getStartTime() . " , ". $this->getEndTime() .
 			" Dates: ";
-			foreach($this->days as $d)
+			foreach($this->getDays() as $d)
 				echo $d . ", ";
 
 			echo "<br>";
 		}
-
-		public function calPriority ($courses)
-		{
-			deleteCourse($this, $courses);
-			$this->priority = 0;
-
-			//echo "Checking $this->name <br>";
-
-			foreach ($courses as $c)
-			{
-				//echo "Checking $c->name <br>";
-				if ($c->preReqs != null)
-				{
-
-					foreach ($c->preReqs as $preReq)
-					{
-						if ($this->name == $preReq->name )
-						{
-						$this->priority += 1+($c->calNumDescendents($courses));
-						//echo "$this->numDescendents <br>";
-						}
-					}
-				}
-				if ($c->coReqs != null)
-				{
-					foreach ($c->coReqs as $coReqs)
-					{
-						if ($this->name == $coReqs->name)
-						{
-						//echo "entered the if <br>";
-						$this->priority += 1+($c->calNumDescendents($courses));
-						}
-					}
-				}
-			}
-		return $this->priority;
-		}
-
 	}
-
-	class Lab extends Course
-	{
-		public function __construct($ID, $name, $section, $start, $end, $days)
-		{
-      $this->ID = $ID;
-			$this->name = $name;
-			$this->section = $section;
-			$this->start = $start;
-			$this->end = $end;
-			$this->days = $days;
-		}
-
-	}
-
-  class Tut extends Course
-  {
-private $subSection;
-
-    public function __construct($ID, $name, $section, $start, $end, $days,$subSection)
-    {
-      $this->ID = $ID;
-      $this->name = $name;
-      $this->section = $section;
-      $this->start = $start;
-      $this->end = $end;
-      $this->days = $days;
-
-      $this->subSection = $subSection;
-    }
-
-  }
 
 
 	function deleteCourse ($course, &$courses)
 	{
 		foreach ($courses as $key=>$c)
 		{
-			if ($course->name == $c->name)
+			if ($course->getCourseName() == $c->getCourseName())
 			{
 				unset($courses[$key]);
 				return;
@@ -200,32 +245,18 @@ private $subSection;
 		}
 	}
 
-	function updateAllPriority ($courses)
-	{
-		foreach ($courses as $c)
-			$c->calPriority($courses);
-	}
-
-	function dispAllPriority ($courses)
-	{
-		foreach ($courses as $c)
-		{
-			echo "$c->name number of descendents' paths is $c->numDescendents <br>";
-		}
-	}
-
-// Returns true if conflict exists
+  // Returns true if conflict exists
 	function conflictExists ($c1, $c2)
 	{
 		// Check first if they have overlapping days
-		foreach ($c1->days as $c1Day)
+		foreach ($c1->getDays() as $c1Day)
 		{
-			foreach ($c2->days as $c2Day)
+			foreach ($c2->getDays() as $c2Day)
 			{
 				if ($c1Day == $c2Day)
 				{
 					// Check for overlap in time
-					if ( (($c1->start >= $c2->start) and ($c1->start < $c2->end)) or ( ($c2->start >= $c1->start) and ($c2->start < $c1->end) ))
+					if ( (($c1->getStartTime() >= $c2->getStartTime()) and ($c1->getStartTime() < $c2->getEndTime())) or ( ($c2->getStartTime() >= $c1->getStartTime()) and ($c2->getStartTime() < $c1->getEndTime()) ))
 						return true;
 				}
 			}
@@ -238,8 +269,6 @@ private $subSection;
   //return vector of (vector lectures, vector tutorials, vector labs)
   function semesterConflictChecker ($tempPermittedCourses)
   {
-
-
     //This vector will hold vectors, first will be containing all the chosen lectures
     //then the tutorials then the labs.
     $addedCourses = new \Ds\Vector();
@@ -270,7 +299,7 @@ private $subSection;
               }
               $addedLecs->push($lecS);
 
-              $tutSections = getTutorials($lecS->name, $lecS->section);
+              $tutSections = getTutorials($lecS->getCourseName(), $lecS->getSection());
               if($tutSections != null)
               {
                 foreach ($tutSections as $tutS)
@@ -289,8 +318,7 @@ private $subSection;
                  }
                }
 
-
-              $labSections = getLabs($lecS->name);
+              $labSections = getLabs($lecS->getCourseName());
               if($labSections != null)
               {
                 foreach ($labSections as $labS)
@@ -307,11 +335,8 @@ private $subSection;
                     $addedLabs->push($labS);
                     break;
                  }
-
                }
-
           }
-
       }
 
       $addedCourses ->push($addedLecs , $addedTuts , $addedLabs);
@@ -319,52 +344,39 @@ private $subSection;
       return $addedCourses;
   }
 
-  function semesterGenerator($permittedCourses){
+  function semesterGenerator($permittedCourses)
+  {
       $numOfCourses = 2;
       $courseCounter = $numOfCourses+1;
       $numReturnedCourses = 0;
       //Choose the first $numOfCourses to run semesterConflictChecker;
       $tempPermittedCourses = array_slice($permittedCourses, 0, $numOfCourses);
 
+      $returnedCourses = semesterConflictChecker ($tempPermittedCourses);
+
+      $numReturnedCourses = $returnedCourses[0]->count();
+
+      //Check if numReturnedCourses are less than $numOfCourses
+
+      while($numReturnedCourses < $numOfCourses)
+      {
+        //If yes, then change one of the courses in the array and try again.
+        //The change should be based on which course the loop exited at
+        //If returned courses are 2 then the problem is with the 3rd one,
+        //If 3 then the problem is with the 4th one.(check for if one is returned as well).
+        if($tempPermittedCourses[$numReturnedCourses+1] != null && $permittedCourses[$courseCounter] != null)
+        {
+          $tempPermittedCourses [$numReturnedCourses+1]= $permittedCourses[$courseCounter];
+          $courseCounter++;
+        }
         $returnedCourses = semesterConflictChecker ($tempPermittedCourses);
-        //Check if numReturnedCourses are less than $numOfCourses
-        $numReturnedCourses = $returnedCourses[0]->count();
+        $numReturnedCourses = $returnedCourses->count();
+      }
 
-          while($numReturnedCourses < $numOfCourses)
-          {
-            //If yes, then change one of the courses in the array and try again.
-            //The change should be based on which course the loop exited at
-            //If returned courses are 2 then the problem is with the 3rd one,
-            //If 3 then the problem is with the 4th one.(check for if one is returned as well).
-            if($tempPermittedCourses[$numReturnedCourses+1] != null && $permittedCourses[$courseCounter] != null)
-              {
-                $tempPermittedCourses [$numReturnedCourses+1]= $permittedCourses[$courseCounter];
-                $courseCounter++;
-              }
-            $returnedCourses = semesterConflictChecker ($tempPermittedCourses);
-            $numReturnedCourses = $returnedCourses->count();
-            }
-        //If returned courses are equal to $numOfCourses then successfuly added all courses.
-
-        return $returnedCourses;
+      //If returned courses are equal to $numOfCourses then successfuly added all courses.
+      return $returnedCourses;
   }
 
-
-
-	// $remainingCourses = array ($math203,$math204,$math205,$phys204,$phys205,$ewt,$comp248,$comp249,$comp352,$encs282,
-	// $engr201,$engr202,$engr213,$engr233,$engr301,$engr371,$engr392,$elec275,$soen228,$soen287,$comp232,$comp346,$soen321,
-	// $soen331,$soen341,$soen342,$soen343,$soen344,$soen345,$soen357,$soen384,$soen385,$soen390,$soen490_1,$soen490_2,
-	// $comp335,$comp348);
-
-
-	// updateAllNumDescendents ($remainingCourses);
-	// dispAllNumDescendents($remainingCourses);
-
-  //echo $comp348->getName();
-   // echo " \n ----- \n";
-//$test = implode(",", $comp348->getDates());
-//echo $test;
-//echo " \n ----- \n";
     ?>
   </div>
 </body>
