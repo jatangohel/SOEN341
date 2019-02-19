@@ -127,7 +127,7 @@ function semesterConflictChecker ($tempPermittedCourses)
                   // Run Conflict Checker for labs
                   foreach ($addedCourses as $allC)
                   {
-                    echo $allC[0][0]->dispInfo();
+                    echo $allC[0]->dispInfo();
                     foreach ($allC as $sessC)
                     {
                       // For debugging
