@@ -41,7 +41,7 @@ function getTutorials($course, $section)
     $sec = array ($comp232_T2);
     return  $sec;
   }
-  elseif ($course == "COMP248")
+  elseif ($course == "COMP248" and $section == "EE")
   {
 
     $comp248_T1 = new Session (3,"COMP248", $section, "EA", "F", array("F"), 1745, 2015, "SGW");
@@ -60,7 +60,7 @@ function getLabs($course)
     $comp232_Lab1 = new Session (2,"COMP232", "PQ", null, "F", array("J"), 1745, 2015, "SGW");
     $comp232_Lab2 = new Session (2,"COMP232", "PZ", null, "F", array("W"), 1745, 2015, "SGW");
 
-    $sec = array ($comp232_Lab2, $comp232_Lab1);
+    $sec = array ($comp232_Lab1,$comp232_Lab2);
     return  $sec;
   }
 }

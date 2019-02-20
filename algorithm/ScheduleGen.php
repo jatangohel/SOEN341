@@ -12,7 +12,6 @@
   require 'Course.php';
 
 
-
 function deleteCourse ($course, &$courses)
 {
 	foreach ($courses as $key=>$c)
@@ -44,7 +43,41 @@ function conflictExists ($c1, $c2)
 	return false;
 }
 
+function pc_next_permutation($p, $size) {
+    // slide down the array looking for where we're smaller than the next guy
+    for ($i = $size - 1; $i>=0 and $p[$i] >= $p[$i+1]; --$i) { }
 
+    // if this doesn't occur, we've finished our permutations
+    // the array is reversed: (1, 2, 3, 4) => (4, 3, 2, 1)
+    if ($i == -1) { return false; }
+
+    // slide down the array looking for a bigger number than what we found before
+    for ($j = $size; $p[$j] <= $p[$i]; --$j) { }
+
+    // swap them
+    $tmp = $p[$i]; $p[$i] = $p[$j]; $p[$j] = $tmp;
+
+    // now reverse the elements in between by swapping the ends
+    for (++$i, $j = $size; $i < $j; ++$i, --$j) {
+         $tmp = $p[$i]; $p[$i] = $p[$j]; $p[$j] = $tmp;
+    }
+
+    return $p;
+}
+
+function permutations($elements)
+{
+  $set = $elements;
+  $size = count($set) - 1;
+  $perm = range(0, $size);
+  $j = 0;
+
+  do {
+       foreach ($perm as $i) { $perms[$j][] = $set[$i]; }
+  } while ($perm = pc_next_permutation($perm, $size) and ++$j);
+
+  return $perms;
+}
 //$tempPermittedCourses will be an array of strings which represent course names.
 //return vector of (vector lectures, vector tutorials, vector labs)
 function semesterConflictChecker ($tempPermittedCourses)
@@ -127,15 +160,15 @@ function semesterConflictChecker ($tempPermittedCourses)
                   // Run Conflict Checker for labs
                   foreach ($addedCourses as $allC)
                   {
-                    echo $allC[0][0]->dispInfo();
+
                     foreach ($allC as $sessC)
                     {
                       // For debugging
-                      echo "Comparing";
+                      /*echo "Comparing";
                       $sessC->dispInfo();
                       echo "and ";
                       $labS->dispInfo();
-
+                      */
                       if(conflictExists($labS, $sessC))
                         continue 3;
                     }
@@ -197,8 +230,17 @@ function semesterGenerator($permittedCourses)
 
   $numReturnedCourses = $returnedCourses[0]->count();
 
-  //Check if numReturnedCourses are less than $numOfCourses
+  if ($numReturnedCourses < $coursesPerSem)
+  {
+    $permPermittedCourses = permutations($tempPermittedCourses);
 
+    for ($i=1; $numReturnedCourses < $coursesPerSem and $i<count ($permPermittedCourses); $i++)
+    {
+      $returnedCourses = semesterConflictChecker ($permPermittedCourses[$i]);
+      $numReturnedCourses = $returnedCourses[0]->count();
+    }
+  }
+  //Check if numReturnedCourses are less than $numOfCourses
   while($numReturnedCourses < $coursesPerSem)
   {
     //If yes, then change one of the courses in the array and try again.
