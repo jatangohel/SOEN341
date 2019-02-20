@@ -60,7 +60,7 @@ function getLabs($course)
     $comp232_Lab1 = new Session (2,"COMP232", "PQ", null, "F", array("J"), 1745, 2015, "SGW");
     $comp232_Lab2 = new Session (2,"COMP232", "PZ", null, "F", array("W"), 1745, 2015, "SGW");
 
-    $sec = array ($comp232_Lab2, $comp232_Lab1);
+    $sec = array ($comp232_Lab1,$comp232_Lab2);
     return  $sec;
   }
 }

@@ -34,7 +34,7 @@
     //$comp248_L2 = new Session (3,"COMP248", "P", null, "F", array("M","W"), 1315, 1430, "SGW");
     $comp248_L2 = new Session (3,"COMP248", "P", null, "F", array("T","W"), 1745, 2015, "SGW");
 
-    $permittedCourses = array("COMP232", "COMP248");
+    $permittedCourses = array("COMP248","COMP232");
 
     $generatedSemester = semesterGenerator ($permittedCourses );
 
