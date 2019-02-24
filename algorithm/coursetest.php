@@ -9,6 +9,7 @@
 <?php
 //1.haven't add "require scheduleGen.php';" so it cannot delete courses in calPriority
 //2.in updateAllpriority, it will call calpriority too many times and exceed 30s
+//3.updateAllPriority and  displayAllpriority is in the Course class bracket,which should be outside
 class Course
 {
   private $courseName; // String
