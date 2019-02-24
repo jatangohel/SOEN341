@@ -90,7 +90,7 @@ foreach($allCourses as $key => $value)
 			}
 			else
 			{
-				$new_diff = array_diff_assoc_recursive($value, $user[$key]);
+				$new_diff = getUntakenCourses($value, $user[$key]);
 				if($new_diff != FALSE)
 				{
 					$difference[$key] = $new_diff;
