@@ -99,12 +99,8 @@ foreach($allCourses as $key => $value)
 	return !isset($difference) ? 0 : $difference;
 }
 
-}
-//Returns an array of Courses objects for all the courses that the user did not take yet
-function getUntakenCourses($user)
-{
 
-}
+
 
 //Updates the database by changing the status of the courses recently taken
 function updateTakenCourses($passedCourses)
