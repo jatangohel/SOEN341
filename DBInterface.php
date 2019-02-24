@@ -65,6 +65,12 @@ function getLabs($course)
   }
 }
 
+//Returns an array of Courses objects this user can take this semester from the remaining courses array of courses
+function getPermittedCourses($user, $remainingCourses,  $semester)
+{
+
+}
+
 //Returns an array of Courses objects for all the courses that the user did not take yet
 //allCourses is the all the courses that the student have to take and passed by array
 //$user will pass the course that user has taken by array
