@@ -72,7 +72,9 @@
 
 		}
 	function getLectureSections($course){
+		{
 
+		$stack=array();
 		require('config/db.php');
 
 		//Create query
@@ -118,11 +120,19 @@
 			$endLecTime= $post ['EndLecTime'];
 			$campus = "SGW";
 
-		
+			//This is to label the session name properly
 			$ham = $courseName."_L".checkinglst($courseName);
 			$ham1 = $courseName."_L".checkinglst2($courseName);
 
+			//Making a new session object with the course information
 			$ham =  new Session($courseId,$courseName,$lecInfo,$subSection,$semester,$lecDay,$startLecTime,$endLecTime,$campus);
+
+			 $ham -> dispInfo(); 
+
+			 array_push($stack, $ham);
+
+			 print_r($stack);
+
 	//		echo $ham;
 			echo "Session Name: ".$ham1;
 			echo '<br>';
@@ -138,9 +148,9 @@
 			echo '<br>';
 			echo "startLecTime: ".$startLecTime;
 			echo '<br>';
-			echo "endLecTime: .".$endLecTime;
+			echo "endLecTime: ".$endLecTime;
 			echo '<br>';
-			echo "Campus: .".$campus;
+			echo "Campus: ".$campus;
 			echo '<br>';
 			echo '<br>';
 		/*	$LecInfo = $post['LecInfo'];
@@ -172,8 +182,15 @@
 
 			$ham = $courseName."_L".checkinglst($courseName);
 			$ham1 = $courseName."_L".checkinglst2($courseName);
+			 
 
 			$ham =  new Session($courseId,$courseName,$lecInfo,$subSection,$semester,$lecDay,$startLecTime,$endLecTime,$campus);
+
+			 $ham -> dispInfo();
+
+			 array_push($stack, $ham);
+
+			 print_r($stack);
 	//		echo $ham;
 			echo "Session Name: ".$ham1;
 			echo '<br>';
@@ -189,9 +206,9 @@
 			echo '<br>';
 			echo "startLecTime: ".$startLecTime;
 			echo '<br>';
-			echo "endLecTime: .".$endLecTime;
+			echo "endLecTime: ".$endLecTime;
 			echo '<br>';
-			echo "Campus: .".$campus;
+			echo "Campus: ".$campus;
 			echo '<br>';
 			echo '<br>';
 		/*	$LecInfo = $post['LecInfo'];
@@ -221,24 +238,34 @@
 			$campus = "SGW";
 
 			$ham = $courseName."_L".checkinglst($courseName);
-			echo $ham;
+			$ham1 = $courseName."_L".checkinglst2($courseName);
 
+			$ham =  new Session($courseId,$courseName,$lecInfo,$subSection,$semester,$lecDay,$startLecTime,$endLecTime,$campus);
 
-			echo $courseId;
+			$ham -> dispInfo(); 
+
+			 array_push($stack, $ham);
+
+			 print_r($stack);
+
+	//		echo $ham;
+			echo "Session Name: ".$ham1;
 			echo '<br>';
-			echo $courseName;
+			echo "CourseId: ".$courseId;
 			echo '<br>';
-			echo $lecInfo;
+			echo "CourseName: ".$courseName;
 			echo '<br>';
-			echo $semester;
+			echo "LecInfo: ".$lecInfo;
 			echo '<br>';
-			echo $lecDay;
+			echo "Semester: ".$semester;
 			echo '<br>';
-			echo $startLecTime;
+			echo "lecDay: ".$lecDay;
 			echo '<br>';
-			echo $endLecTime;
+			echo "startLecTime: ".$startLecTime;
 			echo '<br>';
-			echo $campus;
+			echo "endLecTime: ".$endLecTime;
+			echo '<br>';
+			echo "Campus: ".$campus;
 			echo '<br>';
 			echo '<br>';
 		/*	$LecInfo = $post['LecInfo'];
@@ -251,11 +278,15 @@
 			echo $EndLecTime;
 			*/
 	}
+} 
+echo '<h1>This is the array that will be returned</h1>';
+print_r($stack);
+return $stack;
 			//close connection
 			mysqli_close($conn);
 	}
 	getLectureSections('COMP232');
-	getLectureSections('COMP248');
+	//getLectureSections('COMP248');
 	//	checkinglst('COMP232');
 	//	checkinglst('COMP232');
 	//	checkinglst('COMP232');
