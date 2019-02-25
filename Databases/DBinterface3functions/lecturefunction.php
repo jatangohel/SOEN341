@@ -10,23 +10,36 @@
 $stack=array();
 require('config/db.php');
 
-switch ($semester)
-{
-	case 'F':
-		$table = `flec`;
-		break;
-	case 'W':
-		$table = 'wlec';
-		break;
-	case 'S':
-		$table = 'slec';
-		break;
-	default:
+	static $table ;
+
+	switch ($semester)
+	{
+		case 'F':
+		global $table;
+
+			$table = 'flec';
+			break;
+		case 'W':
+		global $table;
+
+			$table = 'wlec';
+			break;
+		case 'S':
+		global $table;
+
+			$table = 'slec';
+			break;
+		default:
+		global $table;
+
 		$table = 'error';
 }
 
 //Create query
 $query = "SELECT * FROM `$table` WHERE `CourseName`='$course'";
+
+var_dump($query);
+
 
 //Get Result
 $result = mysqli_query($conn, $query);
@@ -54,6 +67,7 @@ foreach($posts as $post)
  	array_push($stack, $ham);
 }
 mysqli_close($conn);
+var_dump($stack);
 return $stack;
 
 ?>
