@@ -1,49 +1,18 @@
-	
 
-	<?php 
+
+	<?php
 	include("Session.php");
 
 
-		// This function will properly increment the courses number ex comp232_L1,comp232L2,comp248_L1.
-	static $tf=true;
-	static $x=1;
-	static $new;
-	function checkinglst($courseName){
-		global $tf,$x,$new;
-		if($new==$courseName){
-			$x=$x+1;
-			return $x;
-		}else{
-			$tf=true;
-			$new = $courseName;
-			$x=1;
-			return $x;
-		}
-	}
-	static $tf2=true;
-	static $x2=1;
-	static $new2;
-	function checkinglst2($courseName){
-		global $tf2,$x2,$new2;
 
-		if($new2==$courseName){
-			$x2=$x2+1;
-			return $x2;
-		}else{
-			$tf2=true;
-			$new2 = $courseName;
-			$x2=1;
-			return $x2;
-		}
-	}
-	function getLectureSections($course){
+	function getLectureSections($course, $semester){
 
-		include('lecturefunction.php');	
+		include('lecturefunction.php');
 	}
-	function getTutorialSection($course){
+	function getTutorialSection($course, $semester, $section){
 		include('tutorialfunction.php');
 	}
-	function getLabSection($course){
+	function getLabSection($course, $semester){
 		include ("labfunction.php");
 	}
 	function getPermittedCourses($user, $remainingCourses,  $semester)
@@ -94,9 +63,12 @@
 
 	}
 	//getLectureSections('COMP232');
-	getLectureSections('COMP248');
-	getTutorialSection('COMP232');
-	getLabSection('COMP248');
+	$lecs = getLectureSections('COMP248', 'F');
+
+	foreach ($lecs as $lec)
+		$lec->dispInfo();
+	//getTutorialSection('COMP232');
+	//getLabSection('COMP248');
 	//	checkinglst('COMP232');
 	//	checkinglst('COMP232');
 
