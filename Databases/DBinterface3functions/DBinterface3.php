@@ -15,31 +15,24 @@
 			switch ($semester)
 			{
 				case 'F':
-				global $table;
-
+					global $table;
 					$table = 'flec';
 					break;
 				case 'W':
-				global $table;
-
+					global $table;
 					$table = 'wlec';
 					break;
 				case 'S':
-				global $table;
-
+					global $table;
 					$table = 'slec';
 					break;
 				default:
-				global $table;
-
-				$table = 'error';
+					global $table;
+					$table = 'error';
 		}
 
 		//Create query
 		$query = "SELECT * FROM `$table` WHERE `CourseName`='$course'";
-
-		var_dump($query);
-
 
 		//Get Result
 		$result = mysqli_query($conn, $query);
@@ -70,12 +63,70 @@
 		var_dump($stack);
 		return $stack;
 		}
+
+
 	function getTutorialSection($course, $semester, $section){
 		include('tutorialfunction.php');
 	}
-	function getLabSection($course, $semester){
-		include ("labfunction.php");
+
+
+
+function getLabSection($course, $semester){
+
+	require('config/db.php');
+	$stack=array();
+	static $table;
+	switch ($semester)
+	{
+		case 'F':
+			global $table;
+			$table = 'flab';
+			break;
+		case 'W':
+			global $table;
+			$table = 'wlab';
+			break;
+		case 'S':
+			global $table;
+			$table = 'slab';
+			break;
+		default:
+			global $table;
+			$table = 'error';
 	}
+
+	//Create query
+	$query = "SELECT * FROM `$table` WHERE `CourseName`='$course'";
+
+	//Get Result
+	$result = mysqli_query($conn, $query);
+
+	//Fetch Data
+	$posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+	// Free Result
+	mysqli_free_result($result);
+
+	//Instantiating the Fall semster
+	foreach($posts as $post)
+	{
+		$courseName = $post['CourseName'];
+		$labSection = $post ['LabSection'];
+		$labDay = $post ['LabDay'];
+		$startLabTime= $post ['StartLabTime'];
+		$endLabTime= $post ['EndLabTime'];
+		$campus = "SGW";
+
+		//Making a new session object with the course information
+		$ham =  new Session($courseName,$labSection,null,$semester,$labDay,$startLabTime,$endLabTime,$campus);
+
+		array_push($stack, $ham);
+	}
+
+	mysqli_close($conn);
+	return $stack;
+}
+
 	function getPermittedCourses($user, $remainingCourses,  $semester)
 	{
 
@@ -116,18 +167,13 @@
 	}
 
 
-
-
 //Updates the database by changing the status of the courses recently taken
 	function updateTakenCourses($passedCourses)
 	{
 
 	}
 	//getLectureSections('COMP232');
-	$lecs = getLectureSections('COMP248', 'F');
 
-	foreach ($lecs as $lec)
-		$lec->dispInfo();
 	//getTutorialSection('COMP232');
 	//getLabSection('COMP248');
 	//	checkinglst('COMP232');
