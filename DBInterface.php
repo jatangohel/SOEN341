@@ -1,5 +1,7 @@
 <?php
 
+
+
 //Returns an array of Sessions objects for the sections of a specific given course
 //$course is of type string, it represents the name of the course.
 
@@ -83,6 +85,47 @@ function getLabs($course)
 function getPermittedCourses($user, $remainingCourses,  $semester)
 {
 
+}
+
+function getCourse ($course)
+{
+  if ($course == "COMP346")
+  {
+    $preReqs_str = array ("SOEN228", "COMP352");
+    $preReqs = array ();
+    foreach ($preReqs_str as $p)
+      array_push($preReqs, getCourse($p));
+    return new Course (1, $course, $preReqs, null, 3, false, true);
+  }
+
+  elseif ($course == "SOEN228")
+  {
+    return new Course (1, $course, null, null, 3, false, true);
+  }
+
+  elseif ($course == "COMP352")
+  {
+    $preReqs_str = array ("COMP249");
+    $preReqs = array ();
+    foreach ($preReqs_str as $p)
+      array_push($preReqs, getCourse($p));
+    return new Course (1, $course, $preReqs, null, 3, false, true);
+  }
+  elseif ($course == "COMP249")
+  {
+    $preReqs_str = array ("COMP248");
+    $preReqs = array ();
+    foreach ($preReqs_str as $p)
+      array_push($preReqs, getCourse($p));
+    return new Course (1, $course, $preReqs, null, 3, false, true);
+  }
+  elseif ($course == "COMP248")
+  {
+    return new Course (1, $course, null, null, 3, false, true);
+  }
+
+  elseif ($course == null)
+    return null;
 }
 
 //Returns an array of Courses objects for all the courses that the user did not take yet

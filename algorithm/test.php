@@ -8,7 +8,7 @@
   <div>
     <?php
 
-    require 'Semester.php';
+    require_once 'Semester.php';
 
     $math203_L1 = new Session (0,"MATH203","A", null, "F", array("M","W"), 1000,1115, "SGW");
 
@@ -39,6 +39,7 @@
     $fallSemester = new Semester ("F", "2019",2);
     $fallSemester->semesterGenerator ($permittedCourses);
 
+/*
     echo "Chosen Lecture Sections <br>";
     foreach ($fallSemester->getLecs() as $lec)
         echo $lec->dispInfo();
@@ -54,6 +55,10 @@
     echo "Chosen lab Sections <br>";
     foreach ($fallSemester->getLabs() as $lab)
         echo $lab->dispInfo();
+        */
+        $comp346 = getCourse("COMP346");
+
+        echo (($comp346->getPreReqs())[1]->getPreReqs())[0]->getPreReqs()[0]->getCourseName();
 
     ?>
   </div>

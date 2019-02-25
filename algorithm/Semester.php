@@ -7,9 +7,9 @@
 <body>
   <div>
     <?php
-	require __DIR__.'/../DBInterface.php';
-  require 'Session.php';
-  require 'Course.php';
+	require_once __DIR__.'/../DBInterface.php';
+  require_once 'Session.php';
+  require_once 'Course.php';
 
 
 class Semester

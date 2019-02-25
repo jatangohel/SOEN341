@@ -19,8 +19,12 @@ function genProgramSched ($user)
 
   while (count($sortedCourses) != 0)
   {
+    // Get the permitted courses to be taken this semester
     $permittedCourses = getPermittedCourses ($user, $sortedCourses, $semesters[$currentSemKey]);
 
+    // Sort the array based on their priority
+
+    
     semesterGenerator($permittedCourses);
   }
 }
