@@ -1,4 +1,5 @@
 	<?php 
+	include("Session.php");
 	/*	function checkingls($courseName){
 				$x;
 				if($new==$courseName){
@@ -43,6 +44,29 @@
 					$new = $courseName;
 					$x=1;
 					return $x;
+				}
+		//	}
+
+		}
+		static $tf2=true;
+		static $x2=1;
+		static $new2;
+		function checkinglst2($courseName){
+			global $tf2,$x2,$new2;
+			/*if($tf==true){
+				$new = $courseName;
+				$tf =false;
+				$x=1;
+				echo $x;
+			}else{*/
+				if($new2==$courseName){
+					 $x2=$x2+1;
+					 return $x2;
+				}else{
+					$tf2=true;
+					$new2 = $courseName;
+					$x2=1;
+					return $x2;
 				}
 		//	}
 
@@ -96,23 +120,27 @@
 
 		
 			$ham = $courseName."_L".checkinglst($courseName);
+			$ham1 = $courseName."_L".checkinglst2($courseName);
+
 			$ham =  new Session($courseId,$courseName,$lecInfo,$subSection,$semester,$lecDay,$startLecTime,$endLecTime,$campus);
-			echo $ham;
-			echo $courseId;
+	//		echo $ham;
+			echo "Session Name: ".$ham1;
 			echo '<br>';
-			echo $courseName;
+			echo "CourseId: ".$courseId;
 			echo '<br>';
-			echo $lecInfo;
+			echo "CourseName: ".$courseName;
 			echo '<br>';
-			echo $semester;
+			echo "LecInfo: ".$lecInfo;
 			echo '<br>';
-			echo $lecDay;
+			echo "Semester: ".$semester;
 			echo '<br>';
-			echo $startLecTime;
+			echo "lecDay: ".$lecDay;
 			echo '<br>';
-			echo $endLecTime;
+			echo "startLecTime: ".$startLecTime;
 			echo '<br>';
-			echo $campus;
+			echo "endLecTime: .".$endLecTime;
+			echo '<br>';
+			echo "Campus: .".$campus;
 			echo '<br>';
 			echo '<br>';
 		/*	$LecInfo = $post['LecInfo'];
