@@ -41,8 +41,6 @@ mysqli_free_result($result);
 //Instantiating the Fall semster
 foreach($posts as $post)
 {
-	// WHAT is LABID?????
-	$courseId = $post['LabID'];
 	$courseName = $post['CourseName'];
 	$lecInfo = null;
 	$labSection = $post ['LabSection'];

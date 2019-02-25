@@ -26,7 +26,7 @@ switch ($semester)
 }
 
 //Create query
-$query = "SELECT * FROM $table WHERE `CourseName`='$course'";
+$query = "SELECT * FROM `$table` WHERE `CourseName`='$course'";
 
 //Get Result
 $result = mysqli_query($conn, $query);
