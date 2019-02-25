@@ -67,14 +67,18 @@ class Session
 
   public function getCampus()
   {
-    return $this->endTime;
+    //error here
+    return $this->campus;
   }
+
 
   public function dispInfo ()
   {
     echo "Course name: " . $this->getCourseName() . " section: " . $this->getSection()  .
     " Subsection: " . $this->getSubSection() . " time: ". $this->getStartTime() . " to ". $this->getEndTime() .
-    " Dates: ";
+    " Dates: "
+    //this part is added
+    .$this -> getDays();
   //  foreach($this->getDays() as $d)
   //    echo $d . ", ";
 
