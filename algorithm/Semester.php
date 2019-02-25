@@ -92,17 +92,13 @@ class Semester
   private function semesterScheduling ($tempPermittedCourses)
   {
 
-    //This vector will hold vectors, first will be containing all the chosen lectures
+    //This array will hold arrays, first will be containing all the chosen lectures
     //then the tutorials then the labs.
     $addedCourses = array ();
-    //This will hold all the added lectures after the loops
-    $addedLecs = array ();
-    //This will hold all the added tutorials after the loops
-    $addedTuts = array();
-    //This will hold all the added labs after the loops
-    $addedLabs = array();
 
-    array_push($addedCourses, $addedLecs , $addedTuts , $addedLabs);
+    $addedCourses["Lecs"] = array ();
+    $addedCourses["Tuts"] = array ();
+    $addedCourses["Labs"] = array ();
 
 
     //We have how many courses the student wants + the importance of $courses
@@ -197,8 +193,8 @@ class Semester
             // Push to the schedule if the required lecture and tutorials were chosen
             if ($chosenLecSec != null and $chosentTutSec != null)
             {
-              array_push($addedCourses[0], $chosenLecSec);
-              array_push($addedCourses[1], $chosentTutSec);
+              array_push($addedCourses["Lecs"], $chosenLecSec);
+              array_push($addedCourses["Tuts"], $chosentTutSec);
             }
           }
           // Case that the course has lectures, tutorials, and labs
@@ -207,9 +203,9 @@ class Semester
             // Push to the schedule if the required lecture, tutorial, and lab were chosen
             if ($chosenLecSec != null and $chosentTutSec != null and $chosenLabSec != null)
             {
-              array_push($addedCourses[0], $chosenLecSec);
-              array_push($addedCourses[1], $chosentTutSec);
-              array_push($addedCourses[2], $chosenLabSec);
+              array_push($addedCourses["Lecs"], $chosenLecSec);
+              array_push($addedCourses["Tuts"], $chosentTutSec);
+              array_push($addedCourses["Labs"], $chosenLabSec);
             }
           }
           // Case that the course has lectures only
@@ -218,7 +214,7 @@ class Semester
             // Push to the schedule if the required lecture was chosen
             if ($chosenLecSec != null)
             {
-              array_push($addedCourses[0], $chosenLecSec);
+              array_push($addedCourses["Lecs"], $chosenLecSec);
             }
           }
       }
@@ -235,7 +231,7 @@ class Semester
 
     $returnedCourses = $this->semesterScheduling ($tempPermittedCourses);
 
-    $numReturnedCourses = count($returnedCourses[0]);
+    $numReturnedCourses = count($returnedCourses["Lecs"]);
 
     if ($numReturnedCourses < $this->numCourses)
     {
@@ -244,7 +240,7 @@ class Semester
       for ($i=1; $numReturnedCourses < $this->numCourses and $i<count ($permPermittedCourses); $i++)
       {
         $returnedCourses = $this->semesterScheduling ($permPermittedCourses[$i]);
-        $numReturnedCourses = count($returnedCourses[0]);
+        $numReturnedCourses = count($returnedCourses["Lecs"]);
       }
     }
     //Check if numReturnedCourses are less than $numOfCourses
@@ -264,9 +260,9 @@ class Semester
     }
 
     //If returned courses are equal to $numOfCourses then successfuly added all courses.
-    $this->lecs=$returnedCourses[0];
-    $this->tuts=$returnedCourses[1];
-    $this->labs=$returnedCourses[2];
+    $this->lecs=$returnedCourses["Lecs"];
+    $this->tuts=$returnedCourses["Tuts"];
+    $this->labs=$returnedCourses["Labs"];
   }
 
 }
