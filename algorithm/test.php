@@ -8,7 +8,7 @@
   <div>
     <?php
 
-    require 'ScheduleGen.php';
+    require 'Semester.php';
 
     $math203_L1 = new Session (0,"MATH203","A", null, "F", array("M","W"), 1000,1115, "SGW");
 
@@ -36,23 +36,24 @@
 
     $permittedCourses = array("COMP248","COMP232");
 
-    $generatedSemester = semesterGenerator ($permittedCourses );
+    $fallSemester = new Semester ("F", "2019",2);
+    $fallSemester->semesterGenerator ($permittedCourses);
 
     echo "Chosen Lecture Sections <br>";
-    foreach ($generatedSemester[0] as $lec)
+    foreach ($fallSemester->getLecs() as $lec)
         echo $lec->dispInfo();
 
     echo "<br>";
 
     echo "Chosen Tutorial Sections <br>";
-    foreach ($generatedSemester[1] as $tut)
+    foreach ($fallSemester->getTuts() as $tut)
         echo $tut->dispInfo();
 
     echo "<br>";
 
     echo "Chosen lab Sections <br>";
-    foreach ($generatedSemester[2] as $lab)
-            echo $lab->dispInfo();
+    foreach ($fallSemester->getLabs() as $lab)
+        echo $lab->dispInfo();
 
     ?>
   </div>

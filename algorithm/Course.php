@@ -78,6 +78,17 @@ class Course
     $this->priority = $priority;
   }
 
+  function deleteCourse ($course, &$courses)
+  {
+  	foreach ($courses as $key=>$c)
+  	{
+  		if ($course->getCourseName() == $c->getCourseName())
+  		{
+  			unset($courses[$key]);
+  			return;
+  		}
+  	}
+  }
 
   public function calPriority ($courses)
   {

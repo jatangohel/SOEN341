@@ -81,4 +81,23 @@ class Session
     echo "<br>";
   }
 }
+
+// Returns true if conflict exists
+function conflictExists ($c1, $c2)
+{
+  // Check first if they have overlapping days
+  foreach ($c1->getDays() as $c1Day)
+  {
+    foreach ($c2->getDays() as $c2Day)
+    {
+      if ($c1Day == $c2Day)
+      {
+        // Check for overlap in time
+        if ( (($c1->getStartTime() >= $c2->getStartTime()) and ($c1->getStartTime() < $c2->getEndTime())) or ( ($c2->getStartTime() >= $c1->getStartTime()) and ($c2->getStartTime() < $c1->getEndTime()) ))
+          return true;
+      }
+    }
+  }
+  return false;
+}
 ?>

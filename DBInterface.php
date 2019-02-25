@@ -49,7 +49,7 @@ function getTutorials($course, $section)
   elseif ($course == "COMP248" and $section == "EE")
   {
 
-    $comp248_T1 = new Session (3,"COMP248", $section, "EA", "F", array("F"), 1745, 2015, "SGW");
+    $comp248_T1 = new Session (3,"COMP248", $section, "EA", "F", array("J"), 1745, 2015, "SGW");
     $comp248_T2 = new Session (3,"COMP248", $section, "EB", "F", array("J"), 2030, 2130, "SGW");
 
     $sec = array ($comp248_T1,$comp248_T2);
