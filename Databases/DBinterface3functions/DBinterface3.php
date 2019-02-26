@@ -127,51 +127,71 @@ function getLabSection($course, $semester){
 	return $stack;
 }
 
-	function getPermittedCourses($user, $remainingCourses,  $semester)
-	{
+function getCourse ($course)
+{
 
-	}
+}
+
+function getPermittedCourses($user, $remainingCourses,  $semester)
+{
+
+}
+
+
 
 //Returns an array of Courses objects for all the courses that the user did not take yet
 //allCourses is the all the courses that the student have to take and passed by array
 //$user will pass the course that user has taken by array
-	function getUntakenCourses($allCourses,$user)
+function getUntakenCourses($user)
+{
+	require('config/db.php');
+	$stack=array();
+
+	//Create query
+	// ADD THE WHERE PART !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	$query = "SELECT * FROM `coursesmain` WHERE ";
+
+	//Get Result
+	$result = mysqli_query($conn, $query);
+
+	//Fetch Data
+	$posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+	// Free Result
+	mysqli_free_result($result);
+
+	//Instantiating the Fall semster
+	foreach($posts as $post)
 	{
-		foreach($allCourses as $key => $value)
-		{
-			if(is_array($value))
-			{
-				if(!isset($user[$key]))
-				{
-					$difference[$key] = $value;
-				}
-				elseif(!is_array($user[$key]))
-				{
-					$difference[$key] = $value;
-				}
-				else
-				{
-					$new_diff = getUntakenCourses($value, $user[$key]);
-					if($new_diff != FALSE)
-					{
-						$difference[$key] = $new_diff;
-					}
-				}
-			}
-			elseif(!isset($user[$key]) || $user[$key] != $value)
-			{
-				$difference[$key] = $value;
-			}
-		}
-		return !isset($difference) ? 0 : $difference;
+		$courseName = $post['CourseName'];
+		$credit = $post ['Credit'];
+		$preReqs_str = explode(",", $post ['Prerequisite']);
+		$coReqs_str= explode ("," ,$post ['Corerequisite']);
+
+		$preReqs = array();
+		foreach ($preReqs_str as $pre)
+			array_push($preReqs, getCourse($pre));
+
+		$coReqs = array();
+		foreach ($coReqs_str as $co)
+			array_push($coReqs, getCourse($co));
+
+		//Making a new session object with the course information
+		$ham =  new Course($courseName, $preReqs, $coReqs, $credit, false, false);
+
+		array_push($stack, $ham);
 	}
+
+	mysqli_close($conn);
+	return $stack;
+}
 
 
 //Updates the database by changing the status of the courses recently taken
-	function updateTakenCourses($passedCourses)
-	{
+function updateTakenCourses($passedCourses)
+{
 
-	}
+}
 	//getLectureSections('COMP232');
 
 	//getTutorialSection('COMP232');

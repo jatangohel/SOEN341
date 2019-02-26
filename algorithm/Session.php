@@ -1,7 +1,6 @@
 <?php
 class Session
 {
-  private $courseID;    // int
   private $courseName;  // String
   private $section;     // String
   private $subSection;  // String
@@ -11,10 +10,9 @@ class Session
   private $endTime;     // int
   private $campus;      // String
 
-  public function __construct($courseID, $courseName, $section, $subSection,
+  public function __construct($courseName, $section, $subSection,
                               $semester, $days, $startTime, $endTime, $campus)
   {
-    $this->courseID = $courseID;
     $this->courseName = $courseName;
     $this->section = $section;
     $this->subSection = $subSection;
@@ -23,11 +21,6 @@ class Session
     $this->startTime = $startTime;
     $this->endTime = $endTime;
     $this->campus = $campus;
-  }
-
-  public function getCourseID()
-  {
-    return $this->courseID;
   }
 
   public function getCourseName()
