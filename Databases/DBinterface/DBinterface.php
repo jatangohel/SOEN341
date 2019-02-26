@@ -55,7 +55,7 @@
 			$courseName = $post['CourseName'];
 			$lecInfo = $post ['LecInfo'];
 			$subSection = null;
-			$lecDay = $post ['LecDay'];
+			$lecDay = explode(",",$post ['LecDay']);
 			$startLecTime= $post ['StartLecTime'];
 			$endLecTime= $post ['EndLecTime'];
 			$campus = "SGW";
@@ -66,7 +66,6 @@
 			array_push($stack, $ham);
 		}
 		mysqli_close($conn);
-		var_dump($stack);
 		return $stack;
 	}
 
@@ -117,7 +116,7 @@
 			$courseName = $post['CourseName'];
 			$lecInfo = $post ['LecInfo'];
 			$subSection = $post['TutSection'];
-			$lecDay = $post ['TutDay'];
+			$lecDay = explode(",",$post ['TutDay']);
 			$startLecTime= $post ['StartTutTime'];
 			$endLecTime= $post ['EndTutTime'];
 			$campus = "SGW";
@@ -128,7 +127,6 @@
 			array_push($stack, $ham);
 		}
 		mysqli_close($conn);
-		var_dump($stack);
 		return $stack;
 
 	}
@@ -174,7 +172,7 @@
 		{
 			$courseName = $post['CourseName'];
 			$labSection = $post ['LabSection'];
-			$labDay = $post ['LabDay'];
+			$labDay = explode(",",$post ['LabDay']);
 			$startLabTime= $post ['StartLabTime'];
 			$endLabTime= $post ['EndLabTime'];
 			$campus = "SGW";
@@ -189,44 +187,39 @@
 		return $stack;
 	}
 
+	//Returns an array of Courses objects this user can take this semester from the remaining courses array of courses
+	// DO NOT GENERATE NEW COURSES OBJECTS AND USE THE SAME ELEMENTS FROM $remainingCourses
 	function getPermittedCourses($user, $remainingCourses,  $semester)
 	{
+	  if ($semester=='F')
+	  {
+	    return array_slice($remainingCourses,0,6);
+	  }
+
+	  elseif ($semester=='W')
+	    return $remainingCourses;
 
 	}
 
-//Returns an array of Courses objects for all the courses that the user did not take yet
-//allCourses is the all the courses that the student have to take and passed by array
-//$user will pass the course that user has taken by array
-	function getUntakenCourses($allCourses,$user)
+
+	//Returns an array of Courses objects for all the courses that the user did not take yet
+	//$user will pass the course that user has taken by array
+	function getUntakenCourses($user)
 	{
-		foreach($allCourses as $key => $value)
-		{
-			if(is_array($value))
-			{
-				if(!isset($user[$key]))
-				{
-					$difference[$key] = $value;
-				}
-				elseif(!is_array($user[$key]))
-				{
-					$difference[$key] = $value;
-				}
-				else
-				{
-					$new_diff = getUntakenCourses($value, $user[$key]);
-					if($new_diff != FALSE)
-					{
-						$difference[$key] = $new_diff;
-					}
-				}
-			}
-			elseif(!isset($user[$key]) || $user[$key] != $value)
-			{
-				$difference[$key] = $value;
-			}
-		}
-		return !isset($difference) ? 0 : $difference;
+	  if ($user == 'Osama')
+	    {
+				$comp248 = new Course ("COMP248", null, null, 3, false, false);
+	      $comp249 = new Course ("COMP249", array($comp248), null, 3, false, false);
+	      $comp352 = new Course ("COMP352", array ($comp249), null, 3, false, false);
+	      $engr201 = new Course ("ENGR201", null, null, 3, false, false);
+	      $engr202 = new Course ("ENGR202", null, null, 3, false, false);
+	      $engr213 = new Course ("ENGR213", null, null, 3, false, false);
+	      $engr233 = new Course ("ENGR233", null, null, 3, false, false);
+
+	      return array ($comp248,$comp249,$comp352, $engr201,$engr202,$engr213,$engr233);
+	    }
 	}
+
 
 
 //Updates the database by changing the status of the courses recently taken
@@ -234,10 +227,7 @@
 	{
 
 	}
-	//getLectureSections('COMP232','F');
 
-	//getTutorialSection('COMP248','F','COMP248-P');
-	getTutorialSection('ENGR213','W','ENGR213-J');
 
 	?>
 </body>

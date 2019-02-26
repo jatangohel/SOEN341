@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__.'/../Databases/DBinterface3functions/DBinterface3.php';
+require_once __DIR__.'/../Databases/DBinterface/DBinterface.php';
 require_once 'Session.php';
 require_once 'Course.php';
 require_once 'Semester.php';
@@ -9,8 +9,6 @@ require_once 'heapSort.php';
 
 class UserSchedule
 {
-
-
 private $firstSem;        // Input obtained from user ("F" or "W" or "S")
 private $firstYear;       // Input obtained from user (int)
 private $coursesPerSem;   // Input obtained from user (int)
@@ -34,6 +32,20 @@ public function getFirstSem ()
   return $this->$firstSem;
 }
 
+public function dispUserSchedule()
+{
+  foreach ($this->listOfSemesters as $sem)
+  {
+    echo "YEAR ";
+    echo $sem->getYear();
+    echo "----- SEMESTER  ";
+    echo $sem->getName();
+    echo "<br>";
+    $sem->dispSemester();
+    echo '<br> <br>';
+  }
+}
+
 public function genProgramSched ($user)
 {
   $semesters = array("W", "S","F");
@@ -47,7 +59,7 @@ public function genProgramSched ($user)
 
   while (count($untakenCourses) != 0)
   {
-    echo 'Hello'
+    echo 'Hello';
     // Update the priority of all courses unfinished
     updateAllPriority($untakenCourses);
 
@@ -60,7 +72,10 @@ public function genProgramSched ($user)
     // Generate a schedule for a semester
     $sem = new Semester ($semesters[$currentSemKey], $currentYear, $this->coursesPerSem);
     $sem->semesterGenerator($permittedCourses);
-    array_push($this->listOfSemesters, $sem);
+
+    $this->listOfSemesters[]= $sem;
+
+    var_dump($this);
 
     // Exclude the taken courses from the untaken array
     foreach ($sem->getLecs() as $taken)

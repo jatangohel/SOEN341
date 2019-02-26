@@ -28,6 +28,16 @@ class Semester
     $this->labs = array ();
   }
 
+  public function getName ()
+  {
+    return $this->name;
+  }
+
+  public function getYear ()
+  {
+    return $this->year;
+  }
+
   public function getNumCourses ()
   {
     return $this->numCourses;
@@ -46,6 +56,25 @@ class Semester
   public function getLabs()
   {
     return $this->labs;
+  }
+
+  public function dispSemester()
+  {
+    echo "Chosen Lecture Sections <br>";
+    foreach ($this->getLecs() as $lec)
+        echo $lec->dispInfo();
+
+    echo "<br>";
+
+    echo "Chosen Tutorial Sections <br>";
+    foreach ($this->getTuts() as $tut)
+        echo $tut->dispInfo();
+
+    echo "<br>";
+
+    echo "Chosen lab Sections <br>";
+    foreach ($this->getLabs() as $lab)
+        echo $lab->dispInfo();
   }
 
   private function pc_next_permutation($p, $size) {

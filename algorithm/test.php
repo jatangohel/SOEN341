@@ -14,23 +14,9 @@
 
     $userSched->genProgramSched('Osama');
 
-
+    $userSched->dispUserSchedule();
 /*
-    echo "Chosen Lecture Sections <br>";
-    foreach ($fallSemester->getLecs() as $lec)
-        echo $lec->dispInfo();
 
-    echo "<br>";
-
-    echo "Chosen Tutorial Sections <br>";
-    foreach ($fallSemester->getTuts() as $tut)
-        echo $tut->dispInfo();
-
-    echo "<br>";
-
-    echo "Chosen lab Sections <br>";
-    foreach ($fallSemester->getLabs() as $lab)
-        echo $lab->dispInfo();
         */
 
     ?>
