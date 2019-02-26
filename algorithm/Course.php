@@ -3,7 +3,6 @@
 class Course
 {
   private $courseName; // String
-  private $courseID;   // int
   private $preReqs;    // array of Courses
   private $coReqs;     // array of Courses
   private $credits;    // int
@@ -11,9 +10,8 @@ class Course
   private $engProfReq; // bool
   private $priority;   // int
 
-  public function __construct($courseID, $courseName, $preReqs, $coReqs, $credits, $pass, $engProfReq)
+  public function __construct($courseName, $preReqs, $coReqs, $credits, $pass, $engProfReq)
   {
-    $this->courseID = $courseID;
     $this->courseName = $courseName;
     $this->preReqs = $preReqs;
     $this->coReqs = $coReqs;
@@ -26,11 +24,6 @@ class Course
   public function getCourseName()
   {
     return $this->courseName;
-  }
-
-  public function getCourseID()
-  {
-    return $this->courseID;
   }
 
   public function getPreReqs()
@@ -63,11 +56,6 @@ class Course
     return $this->priority;
   }
 
-  public function setCourseID($id)
-  {
-    $this->courseID = $id;
-  }
-
   public function setCourseName($name)
   {
     $this->courseName = $name;
@@ -78,6 +66,17 @@ class Course
     $this->priority = $priority;
   }
 
+  function deleteCourse ($course, &$courses)
+  {
+  	foreach ($courses as $key=>$c)
+  	{
+  		if ($course->getCourseName() == $c->getCourseName())
+  		{
+  			unset($courses[$key]);
+  			return;
+  		}
+  	}
+  }
 
   public function calPriority ($courses)
   {

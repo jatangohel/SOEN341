@@ -22,7 +22,7 @@
  function heap_sort(&$array) {
   //This will heapify the array
   $init = (int)floor((count($array) - 1) / 2);
-  // Thanks jimHuang for bug report
+
   for($i=$init; $i >= 0; $i--){
    $count = count($array) - 1;
    build_heap($array, $i, $count);

@@ -1,5 +1,7 @@
 <?php
 
+
+
 //Returns an array of Sessions objects for the sections of a specific given course
 //$course is of type string, it represents the name of the course.
 
@@ -49,7 +51,7 @@ function getTutorials($course, $section)
   elseif ($course == "COMP248" and $section == "EE")
   {
 
-    $comp248_T1 = new Session (3,"COMP248", $section, "EA", "F", array("F"), 1745, 2015, "SGW");
+    $comp248_T1 = new Session (3,"COMP248", $section, "EA", "F", array("J"), 1745, 2015, "SGW");
     $comp248_T2 = new Session (3,"COMP248", $section, "EB", "F", array("J"), 2030, 2130, "SGW");
 
     $sec = array ($comp248_T1,$comp248_T2);
@@ -85,11 +87,83 @@ function getPermittedCourses($user, $remainingCourses,  $semester)
 
 }
 
-//Returns an array of Courses objects for all the courses that the user did not take yet
-function getUntakenCourses($user)
+function getCourse ($course)
 {
+  if ($course == "COMP346")
+  {
+    $preReqs_str = array ("SOEN228", "COMP352");
+    $preReqs = array ();
+    foreach ($preReqs_str as $p)
+      array_push($preReqs, getCourse($p));
+    return new Course (1, $course, $preReqs, null, 3, false, true);
+  }
 
+  elseif ($course == "SOEN228")
+  {
+    return new Course (1, $course, null, null, 3, false, true);
+  }
+
+  elseif ($course == "COMP352")
+  {
+    $preReqs_str = array ("COMP249");
+    $preReqs = array ();
+    foreach ($preReqs_str as $p)
+      array_push($preReqs, getCourse($p));
+    return new Course (1, $course, $preReqs, null, 3, false, true);
+  }
+  elseif ($course == "COMP249")
+  {
+    $preReqs_str = array ("COMP248");
+    $preReqs = array ();
+    foreach ($preReqs_str as $p)
+      array_push($preReqs, getCourse($p));
+    return new Course (1, $course, $preReqs, null, 3, false, true);
+  }
+  elseif ($course == "COMP248")
+  {
+    return new Course (1, $course, null, null, 3, false, true);
+  }
+
+  elseif ($course == null)
+    return null;
 }
+
+//Returns an array of Courses objects for all the courses that the user did not take yet
+//allCourses is the all the courses that the student have to take and passed by array
+//$user will pass the course that user has taken by array
+function getUntakenCourses($allCourses,$user)
+{
+foreach($allCourses as $key => $value)
+	{
+		if(is_array($value))
+		{
+			if(!isset($user[$key]))
+			{
+				$difference[$key] = $value;
+			}
+			elseif(!is_array($user[$key]))
+			{
+				$difference[$key] = $value;
+			}
+			else
+			{
+				$new_diff = getUntakenCourses($value, $user[$key]);
+				if($new_diff != FALSE)
+				{
+					$difference[$key] = $new_diff;
+				}
+			}
+		}
+		elseif(!isset($user[$key]) || $user[$key] != $value)
+		{
+			$difference[$key] = $value;
+		}
+	}
+	return !isset($difference) ? 0 : $difference;
+}
+
+
+
 
 //Updates the database by changing the status of the courses recently taken
 function updateTakenCourses($passedCourses)
