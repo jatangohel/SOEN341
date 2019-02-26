@@ -75,8 +75,9 @@ class Session
     echo "Course name: " . $this->getCourseName() . " section: " . $this->getSection()  .
     " Subsection: " . $this->getSubSection() . " time: ". $this->getStartTime() . " to ". $this->getEndTime() .
     " Dates: ";
-    foreach($this->getDays() as $d)
-      echo $d . ", ";
+ //   foreach($this->getDays() as $d)
+ //     echo $d . ", "
+    ;
 
     echo "<br>";
   }
