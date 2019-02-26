@@ -1,5 +1,7 @@
 <?php
 
+
+
 class Course
 {
   private $courseName; // String
@@ -66,19 +68,16 @@ class Course
     $this->priority = $priority;
   }
 
-  function deleteCourse ($course, &$courses)
+
+  public function dispAllPriority ($courses)
   {
-  	foreach ($courses as $key=>$c)
-  	{
-  		if ($course->getCourseName() == $c->getCourseName())
-  		{
-  			unset($courses[$key]);
-  			return;
-  		}
-  	}
+    foreach ($courses as $c)
+    {
+      echo $c->getCourseName() . "number of descendents' paths is $c->numDescendents <br>";
+    }
   }
 
-  public function calPriority ($courses)
+  function calPriority ($courses)
   {
     deleteCourse($this, $courses);
     $this->setPriority(0);
@@ -114,20 +113,6 @@ class Course
     }
   return $this->priority;
   }
-
-  public function updateAllPriority ($courses)
-  {
-    foreach ($courses as $c)
-      $c->calPriority($courses);
-  }
-
-  public function dispAllPriority ($courses)
-  {
-    foreach ($courses as $c)
-    {
-      echo $c->getCourseName() . "number of descendents' paths is $c->numDescendents <br>";
-    }
-  }
 //    public function dispLength($course)
 //    {
 //    $str=  (string)($this->coFinish - $this->coStart.);
@@ -139,4 +124,23 @@ class Course
 
 }
 
+function deleteCourse ($course, &$courses)
+{
+  foreach ($courses as $key=>$c)
+  {
+    if ($course->getCourseName() == $c->getCourseName())
+    {
+      unset($courses[$key]);
+      return;
+    }
+  }
+}
+
+
+
+function updateAllPriority ($courses)
+{
+  foreach ($courses as $c)
+    $c->calPriority($courses);
+}
 ?>

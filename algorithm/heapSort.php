@@ -21,6 +21,7 @@
 
  function heap_sort(&$array) {
   //This will heapify the array
+  /*
   $init = (int)floor((count($array) - 1) / 2);
 
   for($i=$init; $i >= 0; $i--){
@@ -35,10 +36,8 @@
    $array [$i] = $tmp_var;
    build_heap($array, 0, $i - 1);
   }
+  */
  }
 
-// Demo
-$array = array(9,8,7,6,5,4,3,2,1,0,10,1000,0);
-heap_sort($array);
-print_r($array);
+
 ?>

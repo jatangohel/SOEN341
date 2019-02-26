@@ -8,8 +8,6 @@
 	function getLectureSections($course, $semester){
 		require('config/db.php');
 
-		$stack=array();
-
 			static $table ;
 
 			switch ($semester)
@@ -43,6 +41,8 @@
 		// Free Result
 		mysqli_free_result($result);
 
+		$stack=array();
+		$tmp = null;
 		//Instantiating the Fall semster
 		foreach($posts as $post)
 		{
@@ -55,18 +55,21 @@
 			$campus = "SGW";
 
 			//Making a new session object with the course information
-			$ham =  new Session($courseName,$lecInfo,$subSection,$semester,$lecDay,$startLecTime,$endLecTime,$campus);
+			$ham = new Session($courseName,$lecInfo,$subSection,$semester,$lecDay,$startLecTime,$endLecTime,$campus);
+			//var_dump($ham);
 
 		 	array_push($stack, $ham);
+
 		}
+
 		mysqli_close($conn);
-		var_dump($stack);
+		//var_dump($stack);
 		return $stack;
-		}
+}
 
 
 	function getTutorialSection($course, $semester, $section){
-		include('tutorialfunction.php');
+		//include('tutorialfunction.php');
 	}
 
 
@@ -134,7 +137,13 @@ function getCourse ($course)
 
 function getPermittedCourses($user, $remainingCourses,  $semester)
 {
+  if ($semester=='F')
+  {
+    return array_slice($remainingCourses,0,6);
+  }
 
+  elseif ($semester=='W')
+    return $remainingCourses;
 }
 
 
@@ -142,6 +151,7 @@ function getPermittedCourses($user, $remainingCourses,  $semester)
 //Returns an array of Courses objects for all the courses that the user did not take yet
 //allCourses is the all the courses that the student have to take and passed by array
 //$user will pass the course that user has taken by array
+/*
 function getUntakenCourses($user)
 {
 	require('config/db.php');
@@ -185,8 +195,28 @@ function getUntakenCourses($user)
 	mysqli_close($conn);
 	return $stack;
 }
+*/
+function getUntakenCourses($user)
+{
+  if ($user == 'Osama')
+    {
+      $math203 = new Course ("MATH203", null, null, 3, false, false);
+      $math204 = new Course ("MATH204", null, null, 3, false, false);
+      $math205 = new Course ("MATH205", array($math203), null,  3, false, false);
+      $phys204 = new Course ("PHYS204", null, array($math203),  3, false, false);
+      $phys205 = new Course ("PHYS205", array($phys204), null,  3, false, false);
+      $comp248 = new Course ("COMP248", null, array($math204),  3, false, false);
+      $comp249 = new Course ("COMP249", array($math203,$comp248), array($math205),  3, false, false);
+      $comp352 = new Course ("COMP352", array ($comp249), null,  3, false, false);
+      $engr201 = new Course ("ENGR201", null, null,  3, false, false);
+      $engr202 = new Course ("ENGR202", null, null,  3, false, false);
+      $engr213 = new Course ("ENGR213", array($math205), array ($math204),  3, false, false);
+      $engr233 = new Course ("ENGR233", array($math204, $math205),null,  3, false, false);
 
-
+      return array ($math203,$math204,$math205,$phys204,$phys205,$comp248,$comp249,$comp352,
+      $engr201,$engr202,$engr213,$engr233);
+    }
+}
 //Updates the database by changing the status of the courses recently taken
 function updateTakenCourses($passedCourses)
 {

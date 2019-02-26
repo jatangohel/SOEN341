@@ -7,9 +7,6 @@
 <body>
   <div>
     <?php
-	require_once __DIR__.'/../DBInterface.php';
-  require_once 'Session.php';
-  require_once 'Course.php';
 
 
 class Semester
@@ -113,7 +110,7 @@ class Semester
           $chosenLabSec = null;
 
           //Choose from the array the most important course
-          $lecSections = getLectureSections($c);
+          $lecSections = getLectureSections($c->getCourseName(), $this->name);
 
           // For debugging
           //foreach ($lecSections as $key)
@@ -131,7 +128,7 @@ class Semester
               }
               $chosenLecSec = $lecS;
 
-              $tutSections = getTutorials($lecS->getCourseName(), $lecS->getSection());
+              $tutSections = getTutorialSection($lecS->getCourseName(), $this->name, $lecS->getSection());
               if($tutSections != null)
               {
                 foreach ($tutSections as $tutS)
@@ -157,7 +154,7 @@ class Semester
                  }
                }
 
-              $labSections = getLabs($lecS->getCourseName());
+              $labSections = getLabSection($lecS->getCourseName(), $this->name);
               if($labSections != null)
               {
                 foreach ($labSections as $labS)
@@ -243,6 +240,7 @@ class Semester
         $numReturnedCourses = count($returnedCourses["Lecs"]);
       }
     }
+    /*
     //Check if numReturnedCourses are less than $numOfCourses
     while($numReturnedCourses < $this->numCourses)
     {
@@ -259,6 +257,7 @@ class Semester
       $numReturnedCourses = count($returnedCourses);
     }
 
+    */
     //If returned courses are equal to $numOfCourses then successfuly added all courses.
     $this->lecs=$returnedCourses["Lecs"];
     $this->tuts=$returnedCourses["Tuts"];

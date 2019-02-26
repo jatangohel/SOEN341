@@ -82,8 +82,16 @@ function getLabs($course)
 }
 
 //Returns an array of Courses objects this user can take this semester from the remaining courses array of courses
+// DO NOT GENERATE NEW COURSES OBJECTS AND USE THE SAME ELEMENTS FROM $remainingCourses
 function getPermittedCourses($user, $remainingCourses,  $semester)
 {
+  if ($semester=='F')
+  {
+    return array_slice($remainingCourses,0,6);
+  }
+
+  elseif ($semester=='W')
+    return $remainingCourses;
 
 }
 
@@ -95,12 +103,12 @@ function getCourse ($course)
     $preReqs = array ();
     foreach ($preReqs_str as $p)
       array_push($preReqs, getCourse($p));
-    return new Course (1, $course, $preReqs, null, 3, false, true);
+    return new Course ($course, $preReqs, null, 3, false, true);
   }
 
   elseif ($course == "SOEN228")
   {
-    return new Course (1, $course, null, null, 3, false, true);
+    return new Course ($course, null, null, 3, false, true);
   }
 
   elseif ($course == "COMP352")
@@ -109,7 +117,7 @@ function getCourse ($course)
     $preReqs = array ();
     foreach ($preReqs_str as $p)
       array_push($preReqs, getCourse($p));
-    return new Course (1, $course, $preReqs, null, 3, false, true);
+    return new Course ($course, $preReqs, null, 3, false, true);
   }
   elseif ($course == "COMP249")
   {
@@ -117,11 +125,11 @@ function getCourse ($course)
     $preReqs = array ();
     foreach ($preReqs_str as $p)
       array_push($preReqs, getCourse($p));
-    return new Course (1, $course, $preReqs, null, 3, false, true);
+    return new Course ($course, $preReqs, null, 3, false, true);
   }
   elseif ($course == "COMP248")
   {
-    return new Course (1, $course, null, null, 3, false, true);
+    return new Course ($course, null, null, 3, false, true);
   }
 
   elseif ($course == null)
@@ -129,37 +137,27 @@ function getCourse ($course)
 }
 
 //Returns an array of Courses objects for all the courses that the user did not take yet
-//allCourses is the all the courses that the student have to take and passed by array
 //$user will pass the course that user has taken by array
-function getUntakenCourses($allCourses,$user)
+function getUntakenCourses($user)
 {
-foreach($allCourses as $key => $value)
-	{
-		if(is_array($value))
-		{
-			if(!isset($user[$key]))
-			{
-				$difference[$key] = $value;
-			}
-			elseif(!is_array($user[$key]))
-			{
-				$difference[$key] = $value;
-			}
-			else
-			{
-				$new_diff = getUntakenCourses($value, $user[$key]);
-				if($new_diff != FALSE)
-				{
-					$difference[$key] = $new_diff;
-				}
-			}
-		}
-		elseif(!isset($user[$key]) || $user[$key] != $value)
-		{
-			$difference[$key] = $value;
-		}
-	}
-	return !isset($difference) ? 0 : $difference;
+  if ($user == 'Osama')
+    {
+      $math203 = new Course ("MATH203", null, null, 3, false, false);
+      $math204 = new Course ("MATH204", null, null, 3, false, false);
+      $math205 = new Course ("MATH205", array($math203), null,  3, false, false);
+      $phys204 = new Course ("PHYS204", null, array($math203),  3, false, false);
+      $phys205 = new Course ("PHYS205", array($phys204), null,  3, false, false);
+      $comp248 = new Course ("COMP248", null, array($math204),  3, false, false);
+      $comp249 = new Course ("COMP249", array($math203,$comp248), array($math205),  3, false, false);
+      $comp352 = new Course ("COMP352", array ($comp249), null,  3, false, false);
+      $engr201 = new Course ("ENGR201", null, null,  3, false, false);
+      $engr202 = new Course ("ENGR202", null, null,  3, false, false);
+      $engr213 = new Course ("ENGR213", array($math205), array ($math204),  3, false, false);
+      $engr233 = new Course ("ENGR233", array($math204, $math205),null,  3, false, false);
+
+      return array ($math203,$math204,$math205,$phys204,$phys205,$comp248,$comp249,$comp352,
+      $engr201,$engr202,$engr213,$engr233);
+    }
 }
 
 
