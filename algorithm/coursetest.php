@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,28 +6,26 @@
 <body>
   <div>
 <?php
-//1.haven't add "require scheduleGen.php';" so it cannot delete courses in calPriority
-//2.in updateAllpriority, it will call calpriority too many times and exceed 30s
-//3.updateAllPriority and  displayAllpriority is in the Course class bracket,which should be outside
+
 class Course
 {
   private $courseName; // String
   private $courseID;   // int
   private $preReqs;    // array of Courses
-
   private $coReqs;     // array of Courses
   private $credits;    // int
   private $pass;       // bool
   private $engProfReq; // bool
   private $priority;   // int
-
+  private $level;
   public function __construct($courseID, $preReqs, $coReqs,$pass)
   {
     $this->courseID = $courseID;
     $this->preReqs = $preReqs;
     $this->coReqs = $coReqs;
     $this->pass = $pass;
-    $this->priority = 0;
+    $this->priority = 1;
+    $this->level=null;
   }
 
   public function getCourseName()
@@ -40,6 +37,7 @@ class Course
   {
     return $this->courseID;
   }
+
   public function getPreReqs()
   {
     return $this->preReqs;
@@ -69,7 +67,10 @@ class Course
   {
     return $this->priority;
   }
-
+  public function getlevel()
+  {
+    return $this->level;
+  }
   public function setCourseID($id)
   {
     $this->courseID = $id;
@@ -85,73 +86,74 @@ class Course
     $this->priority = $priority;
   }
 
-
-  public function calPriority ($courses)
+  public function setlevel($level)
   {
-    deleteCourse($this, $courses);
-    $this->setPriority(0);
+    $this->level = $level;
+  }
+  public function calcPriority()
+  {
+    if ($this->getPreReqs() != null)
+    {
+      foreach ($this->getPreReqs() as $preReq)
+        $this->setPriority($this->getPriority()+$preReq->getPriority());
+    }
+    if ($this->getCoReqs() != null)
+    {
+       foreach ($this->getCoReqs() as $coReq)
+       $this->setPriority($this->getPriority()+$coReq->getPriority());
+    }
+  }
+}
 
-    //echo "Checking $this->name <br>";
+  function level0 ($courses)
+  {
+    foreach ($courses as $c)
+      if($c->getPreReqs()==null&&$c->getCoReqs()==null){
+        $c->setlevel(0);
+      };
 
+  }
+
+  function level1 ($courses)
+  {
     foreach ($courses as $c)
     {
-      //echo "Checking $c->name <br>";
-      if ($c->getPreReqs() != null)
-      {
-
-        foreach ($c->getPreReqs() as $preReq)
-        {
-          if ($this->getCourseName() == $preReq->getCourseName() )
-          {
-          $this->setPriority(1+($c->calPriority($courses)));
-          //echo "$this->numDescendents <br>";
-          }
+     if ($c->getlevel=0)
+        continue;
+     if ($c->getPreReqs() != null)
+     {
+       foreach ($c->getPreReqs() as $preReq)
+       {
+        if ($preReq->getlevel()==null)
+           break ;
         }
-      }
+       }
       if ($c->getCoReqs() != null)
       {
-        foreach ($c->getCoReqs() as $coReqs)
+        foreach ($c->getCoReqs() as $coReq)
         {
-          if ($this->getCourseName() == $coReqs->getCourseName())
-          {
-          //echo "entered the if <br>";
-          $this->setPriority(1+($c->calPriority($courses)));
+          if ($coReq->getlevel()==null)
+             break;
           }
-        }
       }
+        $c->setlevel(1);
+        $c->calcPriority();
+
     }
-  return $this->priority;
   }
 
-  }
-
-
-     function updateAllPriority ($courses)
-    {
-      foreach ($courses as $c)
-        $c->calPriority($courses);}
 
 
      function dispAllPriority ($courses)
     {
       foreach ($courses as $c)
       {
-        echo $c->getCourseName() . "number of descendents' paths is $c->numDescendents <br>";
+        echo $c->getCourseID() . "priority is ".$c->getPriority()." <br>";
       }
     }
 
 
-    function deleteCourse ($course, &$courses)
-    {
-    	foreach ($courses as $key=>$c)
-    	{
-    		if ($course->getCourseName() == $c->getCourseName())
-    		{
-    			unset($courses[$key]);
-    			return;
-    		}
-    	}
-    }
+
 
 //    public function dispLength($course)
 //    {
@@ -177,13 +179,38 @@ $engr201 = new Course ("ENGR201", null, null, false);
 $engr202 = new Course ("ENGR202", null, null, false);
 $engr213 = new Course ("ENGR213", array($math205), array ($math204), false);
 $engr233 = new Course ("ENGR233", array($math204, $math205),null, false);
+$engr301 = new Course ("ENGR301", null, null, false);
+$engr371 = new Course ("ENGR371", array($engr213, $engr233), null, false);
+$engr392 = new Course ("ENGR392", array($engr201,$engr202,$encs282),null,false);
+$elec275 = new Course ("ELEC275", array($phys205), array ($engr213), false);
+$soen228 = new Course ("SOEN228", array($math203,$math204), null, false);
+$soen287 = new Course ("SOEN287", array($comp248), null, false);
+$comp232 = new Course ("COMP232", array($math203,$math204), null, false);
+$comp346 = new Course ("COMP346", array ($soen228,$comp352), null, false);
+$soen321 = new Course ("SOEN321", array($comp346), null, false);
+$soen331 = new Course ("SOEN331", array($comp232,$comp249), null, false);
+$soen341 = new Course ("SOEN341", array($comp352), array($encs282), false);
+$soen342 = new Course ("SOEN342", array($soen341), null, false);
+$soen343 = new Course ("SOEN343", array($soen341), array($soen342), false);
+$soen344 = new Course ("SOEN344", array($soen343), null, false);
+$soen345 = new Course ("SOEN345", null, array($soen343), false);
+$soen357 = new Course ("SOEN357", array($soen342), null, false);
+$soen384 = new Course ("SOEN384", array($encs282, $soen341), null, false);
+$soen385 = new Course ("SOEN385", array($engr213,$engr233), null, false);
+$soen390 = new Course ("SOEN390", null, array($soen344,$soen357), false);
+$soen490_1 = new Course ("SOEN490_1", array($soen390), null, false);
+$soen490_2 = new Course ("SOEN490_2", array($soen490_1), null, false);
+$comp335 = new Course ("COMP335", array($comp232,$comp249), null, false);
+$comp348 = new Course ("COMP348", array ($comp249), null, false);
 $remainingCourses = array ($math203,$math204,$math205,$phys204,$phys205,$ewt,$comp248,$comp249,$comp352,$encs282,
-$engr201,$engr202,$engr213,$engr233);
+$engr201,$engr202,$engr213,$engr233,$engr301,$engr371,$engr392,$elec275,$soen228,$soen287,$comp232,$comp346,$soen321,
+$soen331,$soen341,$soen342,$soen343,$soen344,$soen345,$soen357,$soen384,$soen385,$soen390,$soen490_1,$soen490_2,
+$comp335,$comp348);
 
 
 
-
-	updateAllPriority($remainingCourses);
+  level0($remainingCourses);
+  level1($remainingCourses);
 	dispAllPriority($remainingCourses);
 
 ?>
