@@ -14,15 +14,17 @@ class Semester
   private $name;
   private $year;
   private $numCourses;
+  private $timesNoClass; //Array of Sessions objects
   private $lecs;
   private $tuts;
   private $labs;
 
-  public function __construct($name, $year, $numCourses)
+  public function __construct($name, $year, $numCourses,$timesNoClass)
   {
     $this->name = $name;
     $this->year = $year;
     $this->numCourses = $numCourses;
+    $this->timesNoClass = $timesNoClass;
     $this->lecs = array ();
     $this->tuts = array ();
     $this->labs = array ();
@@ -56,6 +58,11 @@ class Semester
   public function getLabs()
   {
     return $this->labs;
+  }
+
+  public function getTimesNoClass()
+  {
+    return $this->getTimesNoClass;
   }
 
   public function dispSemester()
@@ -154,6 +161,14 @@ class Semester
                   if(conflictExists($lecS, $sessC))
                     continue 3;
                 }
+                if($this->timesNoClass != null)
+                {
+                  foreach($this->timesNoClass as $tnc)
+                  {
+                    if (conflictExists($lecS,$tnc))
+                      continue 3;
+                  }
+                }
               }
               $chosenLecSec = $lecS;
 
@@ -176,6 +191,14 @@ class Semester
                         */
                         if(conflictExists($tutS, $sessC))
                           continue 3;
+                      }
+                      if($this->timesNoClass != null)
+                      {
+                        foreach ($this->timesNoClass as $tnc)
+                        {
+                          if (conflictExists($tutS,$tnc))
+                            continue 3;
+                        }
                       }
                     }
                     $chosentTutSec = $tutS;
@@ -202,6 +225,14 @@ class Semester
                         */
                         if(conflictExists($labS, $sessC))
                           continue 3;
+                      }
+                      if($this->timesNoClass != null)
+                      {
+                        foreach($this->timesNoClass as $tnc)
+                        {
+                          if (conflictExists($labS,$tnc))
+                            continue 3;
+                        }
                       }
                     }
                     $chosenLabSec = $labS;
