@@ -205,20 +205,56 @@
 	//Returns an array of Courses objects for all the courses that the user did not take yet
 	//$user will pass the course that user has taken by array
 	function getUntakenCourses($user)
-	{
-	  if ($user == 'Osama')
-	    {
-				$comp248 = new Course ("COMP248", null, null, 3, false, false);
-	      $comp249 = new Course ("COMP249", array($comp248), null, 3, false, false);
-	      $comp352 = new Course ("COMP352", array ($comp249), null, 3, false, false);
-	      $engr201 = new Course ("ENGR201", null, null, 3, false, false);
-	      $engr202 = new Course ("ENGR202", null, null, 3, false, false);
-	      $engr213 = new Course ("ENGR213", null, null, 3, false, false);
-	      $engr233 = new Course ("ENGR233", null, null, 3, false, false);
+	{	  
 
-	      return array ($comp248,$comp249,$comp352, $engr201,$engr202,$engr213,$engr233);
-	    }
+		require('config/db.php');
+
+			//This returns an array of cours names
+		$stack=array();
+		$query = "SELECT `CourseName` FROM `coursesmain`";
+	//Get Result
+		$result = mysqli_query($conn, $query);
+
+	//Fetch Data
+		$posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+	// Free Result
+		
+
+		$data = array();
+		$query1 ="SELECT C.* FROM `login` L INNER JOIN `course` C ON C.`courseid` = L.`user_id` WHERE L.`user_id`=$user";
+
+		$result1 = mysqli_query($conn1, $query1);
+
+	//Fetch Data
+		$posts1 = mysqli_fetch_all($result1, MYSQLI_ASSOC);
+
+		/*
+	foreach($posts as $post){
+
+			$coursename=$post['CourseName'];
+			if($posts1[$coursename])
+			echo $posts1[0][$post['CourseName']];
+		
+		}
+		*/
+
+		// To iterate through found rows
+		foreach ($posts1 as $u) {
+			// iterates through columns
+			foreach ($u as $key => $value)
+				if ($key != "courseid")
+					if ($value == "0")
+						var_dump($key);
+		}
+
+		//var_dump($posts1);
+
+		mysqli_free_result($result);
+		
 	}
+
+
 
 
 
@@ -228,7 +264,7 @@
 
 	}
 
-
+	
 	?>
 </body>
 </html>
