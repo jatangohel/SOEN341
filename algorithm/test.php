@@ -10,7 +10,7 @@
 
     require_once 'UserSchedule.php';
 
-    $userSched = new UserSchedule("F",2019, 4);
+    $userSched = new UserSchedule("F",2019, 4 );
 
     $userSched->genProgramSched('Osama');
 

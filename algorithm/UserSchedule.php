@@ -50,8 +50,8 @@ public function genProgramSched ($user)
 {
   $semesters = array("W", "S","F");
 
-  $conNoClass = new Session ("NoClass", null, null, null, array("M", "W"), "9:00:00", "17:00:00", null);
-
+ $conNoClass = new Session ("NoClass", null, null,null, array("F"), "14:15:00", "14:30:00", null);
+  //  $conNoClass1 = new Session ("NoClass", null, null, null, array("F"), "17:45:00", "20:15:00", null);
   $conNoClassArr = array ($conNoClass);
 
   // Obtain untaken courses by the user
@@ -69,6 +69,9 @@ public function genProgramSched ($user)
     // Get the permitted courses to be taken this semester
     $permittedCourses = getPermittedCourses ($user, $untakenCourses, $semesters[$currentSemKey]);
 
+    //var_dump($permittedCourses);
+
+
     // Sort the array based on their priority
     heap_sort($permittedCourses);
 
@@ -84,6 +87,8 @@ public function genProgramSched ($user)
     // Exclude the taken courses from the untaken array
     foreach ($sem->getLecs() as $taken)
       deleteCourse($taken, $untakenCourses);
+
+      var_dump($untakenCourses);
 
     // Increment year if the current semester was fall
     if ($semesters[$currentSemKey] == "F")

@@ -131,6 +131,7 @@ function deleteCourse ($course, &$courses)
     if ($course->getCourseName() == $c->getCourseName())
     {
       unset($courses[$key]);
+      $courses=array_values($courses);
       return;
     }
   }

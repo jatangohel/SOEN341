@@ -1,6 +1,8 @@
 <?php
-    function build_heap(&$array, $i, $t){
-  $tmp_var = $array[$i]->getPriority();
+  function build_heap(&$array, $i, $t){
+//var_dump($array);
+
+  $tmp_var = $array[$i];
   $j = $i * 2 + 1;
 
   while ($j <= $t)  {
@@ -8,7 +10,7 @@
     if($array[$j]->getPriority() < $array[$j + 1]->getPriority()) {
      $j = $j + 1;
     }
-   if($tmp_var < $array[$j]->getPriority()) {
+   if($tmp_var->getPriority() < $array[$j]->getPriority()) {
     $array[$i] = $array[$j];
     $i = $j;
     $j = 2 * $i + 1;
@@ -26,7 +28,10 @@
 
   for($i=$init; $i >= 0; $i--){
    $count = count($array) - 1;
+   //var_dump($array);
    build_heap($array, $i, $count);
+   //var_dump($array);
+
   }
 
   //swaping of nodes
@@ -34,13 +39,9 @@
    $tmp_var = $array[0];
    $array [0] = $array [$i];
    $array [$i] = $tmp_var;
+  // var_dump($array);
+
    build_heap($array, 0, $i - 1);
   }
 
- }
- /*
-$test = array(3, 4, 6, 7, 1, 2, 9, 1);
-heap_sort($test);
-var_dump($test);
-*/
-?>
+ }?>
