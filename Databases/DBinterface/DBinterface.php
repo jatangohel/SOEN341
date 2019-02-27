@@ -12,8 +12,7 @@
 
 
 	function getLectureSections($course, $semester){
-		require('config/db.php');
-
+		require('config/db.php');		require('config/db.php');		require('config/db.php');		require('config/db.php');
 		$stack=array();
 
 		static $table ;
@@ -242,8 +241,26 @@
 	function updateTakenCourses($passedCourses)
 	{
 
+
 	}
-//getUntakenCourses(1);
+
+	function getCourse($courseName){
+
+		require('config/db.php');
+
+		$query ="SELECT *FROM `coursesmain` WHERE `CourseName`= '$courseName'";
+
+		$result = mysqli_query($conn, $query);
+
+	//Fetch Data
+		$posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+		var_dump($posts);
+
+
+
+	}
+	 getCourse('COMP232');
 	?>
 </body>
 </html>
