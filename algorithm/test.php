@@ -15,9 +15,8 @@
     $userSched->genProgramSched('Osama');
 
     $userSched->dispUserSchedule();
-/*
 
-        */
+
 
     ?>
   </div>
