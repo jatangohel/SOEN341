@@ -7,5 +7,13 @@ if(mysqli_connect_errno()){
 	echo 'Failed to connect'.mysqli_connect_errno();
 
 }
+//create connection
+$conn1 = mysqli_connect('localhost','root','root','test1');
+//check connection
+if(mysqli_connect_errno()){
+	//connection Failed
+	echo 'Failed to connect'.mysqli_connect_errno();
+
+}
 
  ?>

@@ -12,8 +12,7 @@
 
 
 	function getLectureSections($course, $semester){
-		require('config/db.php');
-
+		require('config/db.php');		require('config/db.php');		require('config/db.php');		require('config/db.php');
 		$stack=array();
 
 		static $table ;
@@ -209,16 +208,6 @@
 
 		require('config/db.php');
 
-			//This returns an array of cours names
-		$stack=array();
-		$query = "SELECT `CourseName` FROM `coursesmain`";
-	//Get Result
-		$result = mysqli_query($conn, $query);
-
-	//Fetch Data
-		$posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-	// Free Result
 		$data = array();
 		$query1 ="SELECT C.* FROM `login` L INNER JOIN `course` C ON C.`courseid` = L.`user_id` WHERE L.`user_id`=$user";
 
@@ -226,6 +215,8 @@
 
 	//Fetch Data
 		$posts1 = mysqli_fetch_all($result1, MYSQLI_ASSOC);
+
+
 
 		// To iterate through found rows
 		foreach ($posts1 as $u) {
@@ -250,10 +241,26 @@
 	function updateTakenCourses($passedCourses)
 	{
 
+
 	}
 
-getUntakenCourses(1);
+	function getCourse($courseName){
 
+		require('config/db.php');
+
+		$query ="SELECT *FROM `coursesmain` WHERE `CourseName`= '$courseName'";
+
+		$result = mysqli_query($conn, $query);
+
+	//Fetch Data
+		$posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+		var_dump($posts);
+
+
+
+	}
+	 getCourse('COMP232');
 	?>
 </body>
 </html>
