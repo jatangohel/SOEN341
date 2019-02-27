@@ -1,14 +1,14 @@
 <?php
     function build_heap(&$array, $i, $t){
-  $tmp_var = $array[$i];
+  $tmp_var = $array[$i]->getPriority();
   $j = $i * 2 + 1;
 
   while ($j <= $t)  {
    if($j < $t)
-    if($array[$j] < $array[$j + 1]) {
+    if($array[$j]->getPriority() < $array[$j + 1]->getPriority()) {
      $j = $j + 1;
     }
-   if($tmp_var < $array[$j]) {
+   if($tmp_var < $array[$j]->getPriority()) {
     $array[$i] = $array[$j];
     $i = $j;
     $j = 2 * $i + 1;

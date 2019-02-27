@@ -50,6 +50,10 @@ public function genProgramSched ($user)
 {
   $semesters = array("W", "S","F");
 
+  $conNoClass = new Session ("NoClass", null, null, null, array("M", "W"), "9:00:00", "17:00:00", null);
+
+  $conNoClassArr = array ($conNoClass);
+
   // Obtain untaken courses by the user
   $untakenCourses = getUntakenCourses($user);
 
@@ -59,7 +63,6 @@ public function genProgramSched ($user)
 
   while (count($untakenCourses) != 0)
   {
-    echo 'Hello';
     // Update the priority of all courses unfinished
     updateAllPriority($untakenCourses);
 	  var_dump($untakenCourses);
@@ -73,12 +76,10 @@ public function genProgramSched ($user)
 
 
     // Generate a schedule for a semester
-    $sem = new Semester ($semesters[$currentSemKey], $currentYear, $this->coursesPerSem);
+    $sem = new Semester ($semesters[$currentSemKey], $currentYear, $this->coursesPerSem, $conNoClassArr);
     $sem->semesterGenerator($permittedCourses);
 
     $this->listOfSemesters[]= $sem;
-
-    var_dump($this);
 
     // Exclude the taken courses from the untaken array
     foreach ($sem->getLecs() as $taken)
