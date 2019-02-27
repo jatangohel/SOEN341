@@ -7,7 +7,7 @@
 </head>
 <body>
 	<?php
-	include("Session.php");
+	//include("Session.php");
 
 
 
