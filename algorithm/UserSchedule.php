@@ -62,12 +62,15 @@ public function genProgramSched ($user)
     echo 'Hello';
     // Update the priority of all courses unfinished
     updateAllPriority($untakenCourses);
-	var_dump($untakenCourses);
+	  var_dump($untakenCourses);
     // Get the permitted courses to be taken this semester
     $permittedCourses = getPermittedCourses ($user, $untakenCourses, $semesters[$currentSemKey]);
 
     // Sort the array based on their priority
     heap_sort($permittedCourses);
+
+    var_dump($permittedCourses);
+
 
     // Generate a schedule for a semester
     $sem = new Semester ($semesters[$currentSemKey], $currentYear, $this->coursesPerSem);

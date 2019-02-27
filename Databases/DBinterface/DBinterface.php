@@ -216,7 +216,7 @@
 	      $engr213 = new Course ("ENGR213", null, null, 3, false, false);
 	      $engr233 = new Course ("ENGR233", null, null, 3, false, false);
 
-	      return array ($comp248,$comp249,$comp352, $engr201,$engr202,$engr213,$engr233);
+	      return array ($comp352, $engr201,$comp249,$engr202,$comp248,$engr213,$engr233);
 	    }
 	}
 
