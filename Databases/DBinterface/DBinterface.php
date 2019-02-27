@@ -219,8 +219,6 @@
 		$posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 	// Free Result
-
-
 		$data = array();
 		$query1 ="SELECT C.* FROM `login` L INNER JOIN `course` C ON C.`courseid` = L.`user_id` WHERE L.`user_id`=$user";
 
@@ -228,16 +226,6 @@
 
 	//Fetch Data
 		$posts1 = mysqli_fetch_all($result1, MYSQLI_ASSOC);
-
-		/*
-	foreach($posts as $post){
-
-			$coursename=$post['CourseName'];
-			if($posts1[$coursename])
-			echo $posts1[0][$post['CourseName']];
-
-		}
-		*/
 
 		// To iterate through found rows
 		foreach ($posts1 as $u) {
@@ -264,6 +252,7 @@
 
 	}
 
+getUntakenCourses(1);
 
 	?>
 </body>
