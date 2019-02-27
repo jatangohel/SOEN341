@@ -10,7 +10,6 @@
 	//include("Session.php");
 
 
-
 	function getLectureSections($course, $semester){
 		require('config/db.php');		require('config/db.php');		require('config/db.php');		require('config/db.php');
 		$stack=array();
@@ -188,16 +187,60 @@
 
 	//Returns an array of Courses objects this user can take this semester from the remaining courses array of courses
 	// DO NOT GENERATE NEW COURSES OBJECTS AND USE THE SAME ELEMENTS FROM $remainingCourses
-	function getPermittedCourses($user, $remainingCourses,  $semester)
+	function getPermittedCourses($remainingCourses,  $semester)
 	{
-	  if ($semester=='F')
-	  {
-	    return array_slice($remainingCourses,0,6);
-	  }
+		require('config/db.php');
+		$stack = array();
+		static $table;
+		switch ($semester)
+		{
+			case 'F':
+			global $table;
+			$table = 'flab';
+			break;
+			case 'W':
+			global $table;
+			$table = 'wlab';
+			break;
+			case 'S':
+			global $table;
+			$table = 'slab';
+			break;
+			default:
+			global $table;
+			$table = 'error';
+		}
 
-	  elseif ($semester=='W')
-	    return $remainingCourses;
+	  foreach ($remainingCourses as $untaken)
+		{
+			if ($untaken->getPreReqs() != null)
+			{
+				foreach($untaken->getPreReqs() as $pre)
+				{
+					foreach($remainingCourses as $checkExist)
+					{
+						if ($pre->getCourseName() == $checkExist->getCourseName())
+							continue 3;
+					}
+				}
+			}
+			// Check if offered in $semester
+			$courseName =	$untaken->getCourseName();
 
+			//Create query
+			$query = "SELECT * FROM `$table` WHERE `CourseName`='$courseName'";
+
+			//Get Result
+			$result = mysqli_query($conn, $query);
+
+			//Fetch Data
+			$posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+			if (count($posts) != 0)
+				array_push($stack, $untaken);
+		}
+
+		return $stack;
 	}
 
 
@@ -224,12 +267,15 @@
 			foreach ($u as $key => $value)
 				if ($key != "courseid")
 					if ($value == "0")
-						var_dump($key);
+						array_push($data, getCourse($key));
+
+		return $data;
 		}
 
 		//var_dump($posts1);
 
-		mysqli_free_result($result);
+		mysqli_free_result($result1);
+		return $data;
 
 	}
 
@@ -254,13 +300,33 @@
 
 	//Fetch Data
 		$posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
+		//var_dump ($posts);
+		$courseName = $posts[0]['CourseName'];
+		$preReqs_str = explode(",",$posts[0] ['Prerequisite']);
+		$coReqs_str = explode(",", $posts[0] ['Corerequisite']);
+		$credits = $posts[0]['Credit'];
 
-		var_dump($posts);
+		$preReqs = null;
+		$coReqs = null;
+		if ($preReqs_str[0] != "")
+		{
+			$preReqs = array ();
+			foreach ($preReqs_str as $p)
+				array_push($preReqs, getCourse($p));
+		}
 
-
+		if ($coReqs_str[0] != "")
+		{
+		$coReqs = array ();
+		foreach ($coReqs_str as $c)
+			array_push($coReqs, getCourse($c));
+		}
+		return new Course ($courseName, $preReqs, $coReqs, $credits, false, false);
 
 	}
-	 getCourse('COMP232');
+
+	 //getUntakenCourses (1);
+
 	?>
 </body>
 </html>
