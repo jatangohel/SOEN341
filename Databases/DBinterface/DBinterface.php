@@ -260,7 +260,21 @@
 
 
 	}
-	 getCourse('COMP232');
+	 function getID($email){
+
+		require('config/db.php');
+		
+
+$query1 ="SELECT L.user_id FROM login L INNER JOIN `course` C ON C.`courseid` = L.`user_id` WHERE L.`email`='$email'";
+
+$result1 = mysqli_query($conn1, $query1);
+
+	//Fetch Data
+		$posts1 = mysqli_fetch_all($result1, MYSQLI_ASSOC);
+
+		return $posts1;
+}
+var_dump(getID('sdhjh@gmail.com'));
 	?>
 </body>
 </html>
