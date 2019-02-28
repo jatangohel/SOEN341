@@ -274,7 +274,7 @@ $result1 = mysqli_query($conn1, $query1);
 
 		return $posts1;
 }
-var_dump(getID('sdhjh@gmail.com'));
+
 	?>
 </body>
 </html>
