@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -14,7 +15,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-	
+
 	<title>SOEN Course Stream</title>
 	<style type="text/css">
 		@media (max-width: 575px) {
@@ -26,11 +27,11 @@
 
 		@media (min-width: 578px) {
 			.myH1 {
-				color: yellow; 
+				color: yellow;
 				font-size: 30px;
 				}
 		}
-		
+
 		@media (min-width: 991px) {
 			.myH1 {
 				color: blue;
@@ -44,13 +45,13 @@
 				font-size: 50px;
 				}
 		}
-		
+
 		@media (max-width: 577px) {
 			.myP1 {
 				font-size: 10px;
 				}
 		}
-		
+
 		@media (max-width: 577px) {
 			.myP2 {
 				font-size: 10px;
@@ -68,27 +69,28 @@
 		}
 	</style>
 
-	
+
   </head>
+  <?php  ?>
   <body>
-	
-  
+
+
 	<nav class="navbar navbar-expand-md navbar-dark bg-primary sticky-top">
 		<button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
 			<span class="navbar-toggler-icon"></span>
-		
-		
+
+
 		</button>
-		
+
 		<span class="navbar-text">CourseSequence</span>
 		<div class="collapse navbar-collapse" id="collapse_target">
-		
-		
-	
+
+
+
 		<ul class="navbar-nav">
 			<li class="nav-item dropdown>
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="dropdown_target" href="#">
-					Dropdown 
+					Dropdown
 					<span class="caret"></span>
 				</a>
 			<div class="dropdown-menu" aria-labelledby="dropdown_target">
@@ -109,19 +111,22 @@
 			</li>
 			<li class="nav-item>
 				<a class="nav-link" href="#">Link 4 </a>
-			</li>	
+			</li>
 		</ul>
 		</div>
 	</nav>
-	
+
 	<div class="jumbotron text-center" style="margin-bottom: 0px;">
 		<h1 class="myH1">Course Sequence</h1>
 		<p class="myP1">Let's choose your sequence. Please log in to edit your course sequence and download for your own use.</p>
 		<p class="myP2">For a new user, you can easily create a new account for next time convenience. Thank you so much!</P>
+
 	<button type=button class="btn btn-lg btn-primary">Log In</button>
+  <a href="page2.html">
 	<button type=button class="btn btn-lg btn-danger">Sign Up</button>
+</a>
 	</div>
-	
+
 	<!-- <div class="page-header bg-light text-center">
 	<h1>Course Sequence Entrance</h1>
 	</div> -->
@@ -142,9 +147,9 @@
 		<a href="#"><i class="fas fa-share-square"></i></a>
 		</div>
 	</div>
-	
 
 
-   
+
+
   </body>
 </html>

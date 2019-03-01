@@ -18,44 +18,47 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-	
+
 		<style type="text/css">
 
-			
+
 			#ui{
 			background-color: #333;
 			padding: 30px;
 			margin-top: 100px;
 			min-height: 600px;
 			border-radius: 30px;
-			opacity: 0.7; 
+			opacity: 0.7;
 			}
-			
+
 			#ui label,h1{
 			color:#fff;
 			}
-			
+
 		</style>
     <title>Registration</title>
   </head>
+
+
+  <?php  ?>
   <body>
-  
+
 	<nav class="navbar navbar-expand-md navbar-dark bg-primary sticky-top">
 		<button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
 			<span class="navbar-toggler-icon"></span>
-		
-		
+
+
 		</button>
-		
+
 		<span class="navbar-text">CourseSequence</span>
 		<div class="collapse navbar-collapse" id="collapse_target">
-		
-		
-	
+
+
+
 		<ul class="navbar-nav">
 			<li class="nav-item dropdown>
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="dropdown_target" href="#">
-					Dropdown 
+					Dropdown
 					<span class="caret"></span>
 				</a>
 			<div class="dropdown-menu" aria-labelledby="dropdown_target">
@@ -76,11 +79,11 @@
 			</li>
 			<li class="nav-item>
 				<a class="nav-link" href="#">Link 4 </a>
-			</li>	
+			</li>
 		</ul>
 		</div>
 	</nav>
-	
+
 
 <div class="view" style="background-image: url('https://www.nationalobserver.com/sites/nationalobserver.com/files/styles/nat_header_full_size/public/img/2018/01/17/100915-concordia-creativecommons-downtown-montreal.jpg?itok=reBqyFyd;') ; background-repeat: no-repeat; background-size: cover; background-position: center center;">
     <div class="container">
@@ -95,13 +98,13 @@
 								<label>First Name:</label>
 								<input type="text" name="fname" class="form-control" placeholder="
 								Enter your First Name..">
-							</div>	
-							
+							</div>
+
 							<div class="col-lg-6">
 								<label>Last Name:</label>
 								<input type="text" name="lname" class="form-control"placeholder="
 								Enter your Last Name..">
-							</div>								
+							</div>
 						</div>
 						<br>
 						<label>E-mail</label>
@@ -113,13 +116,13 @@
 								<label>Password: </label>
 								<input type="text" name="password" class="form-control" placeholder="
 								Enter your Password(no less than 6 characters)">
-							</div>	
-							
+							</div>
+
 							<div class="col-lg-6">
 								<label>Password Confirm:</label>
 								<input type="text" name="password2" class="form-control"placeholder="
 								Confirm your Password..">
-							</div>								
+							</div>
 						</div>
 							<br>
 						<select class="form-control">
@@ -155,7 +158,7 @@
 		<a href="#"><i class="fas fa-share-square"></i></a>
 		</div>
 </div>
-	
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
