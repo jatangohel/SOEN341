@@ -196,15 +196,15 @@
 		{
 			case 'F':
 			global $table;
-			$table = 'flab';
+			$table = 'flec';
 			break;
 			case 'W':
 			global $table;
-			$table = 'wlab';
+			$table = 'wlec';
 			break;
 			case 'S':
 			global $table;
-			$table = 'slab';
+			$table = 'slec';
 			break;
 			default:
 			global $table;
