@@ -38,24 +38,24 @@ CREATE TABLE `coursesmain` (
 --
 
 INSERT INTO `coursesmain` (`CourseName`, `Credit`, `Prerequisite`, `Corerequisite`) VALUES
-('COMP232', '3.0', 'MATH203,MATH204', NULL),
-('COMP248', '3.5', NULL, 'MATH204'),
-('COMP249', '3.5', 'COMP 248,MATH 203', 'MATH205'),
+('COMP232', '3.0', NULL, NULL),
+('COMP248', '3.5', NULL, NULL),
+('COMP249', '3.5', 'COMP 248', NULL),
 ('COMP335', '3.0', 'COMP232,COMP249', NULL),
 ('COMP346', '4.0', 'COMP228,SOEN228,COMP352', NULL),
 ('COMP348', '3.0', 'COMP249', NULL),
 ('COMP352', '3.0', 'COMP249', 'COMP232'),
-('ELEC275', '3.5', 'PHYS205', 'ENGR213'),
+('ELEC275', '3.5', NULL, 'ENGR213'),
 ('ENCS282', '3.0', 'ENCS272', NULL),
 ('ENGR201', '1.5', NULL, NULL),
 ('ENGR202', '1.5', NULL, NULL),
-('ENGR213', '3.0', 'MATH205', 'MATH204'),
-('ENGR233', '3.0', 'MATH204,MATH205', NULL),
+('ENGR213', '3.0', NULL, NULL),
+('ENGR233', '3.0', NULL, NULL),
 ('ENGR301', '3.0', NULL, NULL),
 ('ENGR371', '3.0', 'ENGR213,ENGR233', NULL),
 ('ENGR391', '3.0', 'ENGR213,ENGR233,COMP248', NULL),
 ('ENGR392', '3.0', 'ENCS282,ENGR201,ENGR202', NULL),
-('SOEN228', '4.0', 'MATH 203,204', NULL),
+('SOEN228', '4.0', NULL, NULL),
 ('SOEN287', '3.0', 'COMP248', NULL),
 ('SOEN321', '3.0', 'COMP346', NULL),
 ('SOEN331', '3.0', 'COMP232,COMP249', NULL),
@@ -68,7 +68,7 @@ INSERT INTO `coursesmain` (`CourseName`, `Credit`, `Prerequisite`, `Corerequisit
 ('SOEN385', '3.0', 'ENGR213,ENGR233', NULL),
 ('SOEN390', '3.5', NULL, 'SOEN344,SOEN357'),
 ('SOEN490', '4.0', 'SOEN390', NULL),
-('SPEN345', '3.0', NULL, 'SOEN343');
+('SOEN345', '3.0', NULL, 'SOEN343');
 
 -- --------------------------------------------------------
 
