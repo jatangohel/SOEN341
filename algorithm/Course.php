@@ -77,16 +77,15 @@ class Course
     }
   }
 
-  function calPriority ($courses)
+  public function calPriority ($courses)
   {
     deleteCourse($this, $courses);
     $this->setPriority(0);
 
-    //echo "Checking $this->name <br>";
 
     foreach ($courses as $c)
     {
-      //echo "Checking $c->name <br>";
+      //var_dump($c);
       if ($c->getPreReqs() != null)
       {
 
@@ -94,8 +93,15 @@ class Course
         {
           if ($this->getCourseName() == $preReq->getCourseName() )
           {
-          $this->setPriority(1+($c->calPriority($courses)));
-          //echo "$this->numDescendents <br>";
+          $this->setPriority(-1+$this->priority+$c->calPriority($courses));
+                    //for debugging
+                    /*
+                    if($this->courseName =="COMP232")
+                    {
+                      echo $c->getCourseName() . '<br>';
+                      var_dump ($this);
+                    }
+                    */
           }
         }
       }
@@ -106,7 +112,16 @@ class Course
           if ($this->getCourseName() == $coReqs->getCourseName())
           {
           //echo "entered the if <br>";
-          $this->setPriority(1+($c->calPriority($courses)));
+          $this->setPriority(-1+$this->priority+$c->calPriority($courses));
+
+                      //for debugging
+                      /*
+                      if($this->courseName =="COMP232")
+                      {
+                        echo $c->getCourseName() . '<br>';
+                        var_dump ($this);
+                      }
+                      */
           }
         }
       }

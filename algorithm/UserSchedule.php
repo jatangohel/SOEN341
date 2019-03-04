@@ -52,7 +52,8 @@ public function genProgramSched ($user)
 
  $conNoClass = new Session ("NoClass", null, null,null, array("F"), "14:15:00", "14:30:00", null);
   //  $conNoClass1 = new Session ("NoClass", null, null, null, array("F"), "17:45:00", "20:15:00", null);
-  $conNoClassArr = array ($conNoClass);
+  //$conNoClassArr = array ($conNoClass);
+  $conNoClassArr = null;
 
   // Obtain untaken courses by the user
   $untakenCourses = getUntakenCourses($user);
@@ -61,42 +62,56 @@ public function genProgramSched ($user)
   $currentSemKey = array_search($this->firstSem, $semesters);
   $currentYear = $this->firstYear;
 
+  $flag=false;
+
   while (count($untakenCourses) != 0)
   {
+    //var_dump($untakenCourses);
+
     // Update the priority of all courses unfinished
     updateAllPriority($untakenCourses);
-    
+
+    //var_dump($untakenCourses);
+
     // Get the permitted courses to be taken this semester
-    $permittedCourses = getPermittedCourses ($user, $untakenCourses, $semesters[$currentSemKey]);
-
-    //var_dump($permittedCourses);
-
+    $permittedCourses = getPermittedCourses ($untakenCourses, $semesters[$currentSemKey]);
 
     // Sort the array based on their priority
     heap_sort($permittedCourses);
-
-    var_dump($permittedCourses);
 
 
     // Generate a schedule for a semester
     $sem = new Semester ($semesters[$currentSemKey], $currentYear, $this->coursesPerSem, $conNoClassArr);
     $sem->semesterGenerator($permittedCourses);
 
+    // DEBUG:: Use when you wish to see the scheduling of the final semesters
+    /*
+    if ($permittedCourses == null or $flag)
+    {
+      echo ("!!!!!!!!!!!!!!!!!!!!!!!!!UNTAKEN COURSES!!!!!!!!!!!!!!!!!!!!!!!!! <br>");
+      var_dump($untakenCourses);
+      echo ("!!!!!!!!!!!!!!!!!!!!!!!!!Permitted COURSES!!!!!!!!!!!!!!!!!!!!!!!!! <br>");
+
+      var_dump($permittedCourses);
+      var_dump($sem);
+      $flag = true;
+    }
+    */
     $this->listOfSemesters[]= $sem;
 
     // Exclude the taken courses from the untaken array
     foreach ($sem->getLecs() as $taken)
+    {
       deleteCourse($taken, $untakenCourses);
-
-      var_dump($untakenCourses);
+    }
 
     // Increment year if the current semester was fall
     if ($semesters[$currentSemKey] == "F")
       $currentYear++;
 
     // Increment semester
-    $currentSemKey = ($currentSemKey + 1) % 3;
-
+    ++$currentSemKey;
+    $currentSemKey %= 3;
   }
 }
 }
