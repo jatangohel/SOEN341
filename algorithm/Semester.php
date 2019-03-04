@@ -239,40 +239,62 @@ class Semester
                     break;
                  }
                }
-          }
 
-          // Push to the schedule only if all the required lectures, turorials,
-          // and labs that the course requires were selected
+               // Push to the schedule only if all the required lectures, turorials,
+               // and labs that the course requires were selected
 
-          // Case that the course has lectures and tutorials but no labs
-          if ($lecSections != null and $tutSections != null and $labSections == null)
-          {
-            // Push to the schedule if the required lecture and tutorials were chosen
-            if ($chosenLecSec != null and $chosentTutSec != null)
-            {
-              array_push($addedCourses["Lecs"], $chosenLecSec);
-              array_push($addedCourses["Tuts"], $chosentTutSec);
-            }
-          }
-          // Case that the course has lectures, tutorials, and labs
-          elseif ($lecSections != null and $tutSections != null and $labSections != null)
-          {
-            // Push to the schedule if the required lecture, tutorial, and lab were chosen
-            if ($chosenLecSec != null and $chosentTutSec != null and $chosenLabSec != null)
-            {
-              array_push($addedCourses["Lecs"], $chosenLecSec);
-              array_push($addedCourses["Tuts"], $chosentTutSec);
-              array_push($addedCourses["Labs"], $chosenLabSec);
-            }
-          }
-          // Case that the course has lectures only
-          elseif ($lecSections != null and $tutSections == null and $labSections == null)
-          {
-            // Push to the schedule if the required lecture was chosen
-            if ($chosenLecSec != null)
-            {
-              array_push($addedCourses["Lecs"], $chosenLecSec);
-            }
+               // Case that the course has lectures and tutorials but no labs
+               if ($lecSections != null and $tutSections != null and $labSections == null)
+               {
+                 // Push to the schedule if the required lecture and tutorials were chosen
+                 if ($chosenLecSec != null and $chosentTutSec != null)
+                 {
+                   array_push($addedCourses["Lecs"], $chosenLecSec);
+                   array_push($addedCourses["Tuts"], $chosentTutSec);
+
+                   // Proceed to scheduling of second course
+                   continue 2;
+                 }
+               }
+               // Case that the course has lectures, tutorials, and labs
+               elseif ($lecSections != null and $tutSections != null and $labSections != null)
+               {
+                 // Push to the schedule if the required lecture, tutorial, and lab were chosen
+                 if ($chosenLecSec != null and $chosentTutSec != null and $chosenLabSec != null)
+                 {
+                   array_push($addedCourses["Lecs"], $chosenLecSec);
+                   array_push($addedCourses["Tuts"], $chosentTutSec);
+                   array_push($addedCourses["Labs"], $chosenLabSec);
+
+                   // Proceed to scheduling of second course
+                   continue 2;
+                 }
+               }
+               // Case that the course has lectures only
+               elseif ($lecSections != null and $tutSections == null and $labSections == null)
+               {
+                 // Push to the schedule if the required lecture was chosen
+                 if ($chosenLecSec != null)
+                 {
+                   array_push($addedCourses["Lecs"], $chosenLecSec);
+
+                   // Proceed to scheduling of second course
+                   continue 2;
+                 }
+               }
+               // Case that the course has lectures and labs but no tutorials
+               elseif ($lecSections != null and $tutSections == null and $labSections != null)
+               {
+                 // Push to the schedule if the required lecture was chosen
+                 if ($chosenLecSec != null and $chosenLabSec!=null)
+                 {
+                   array_push($addedCourses["Lecs"], $chosenLecSec);
+                   array_push($addedCourses["Labs"], $chosenLabSec);
+
+                   // Proceed to scheduling of second course
+                   continue 2;
+                 }
+               }
           }
       }
 
@@ -281,7 +303,13 @@ class Semester
 
   public function semesterGenerator($permittedCourses)
   {
-    $courseCounter = $this->numCourses+1;
+    // Handle the case where there are no allowd courses to be taken in a semester by returning immediately
+    if ($permittedCourses == null)
+      return;
+    // Handle the case when the number of permitted courses to be taken in a semester is less than what is desired
+    elseif(count($permittedCourses)<$this->numCourses)
+      $this->numCourses = count($permittedCourses);
+
     $numReturnedCourses = 0;
     //Choose the first $numOfCourses to run semesterConflictChecker;
     $tempPermittedCourses = array_slice($permittedCourses, 0, $this->numCourses);

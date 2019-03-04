@@ -1,14 +1,7 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-	<title>lecture</title>
-	<link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/cerulean/bootstrap.min.css">
-</head>
-<body>
-	<?php
+<?php
 	//include("Session.php");
 
+	static $createdCourses = array();
 
 	function getLectureSections($course, $semester){
 		require('config/db.php');		require('config/db.php');		require('config/db.php');		require('config/db.php');
@@ -64,6 +57,7 @@
 			array_push($stack, $ham);
 		}
 		mysqli_close($conn);
+
 		return $stack;
 	}
 
@@ -190,6 +184,9 @@
 	function getPermittedCourses($remainingCourses,  $semester)
 	{
 		require('config/db.php');
+
+		global $createdCourses;
+
 		$stack = array();
 		static $table;
 		switch ($semester)
@@ -210,7 +207,7 @@
 			global $table;
 			$table = 'error';
 		}
-
+		// Check if pre-requesites are satisfied
 	  foreach ($remainingCourses as $untaken)
 		{
 			if ($untaken->getPreReqs() != null)
@@ -224,6 +221,19 @@
 					}
 				}
 			}
+			// CURRENTLY TREATING COREQUESITES SAME AS PREREQUISITES WHICH IS NOT OPTIMUM
+			if ($untaken->getCoReqs() != null)
+			{
+				foreach($untaken->getCoReqs() as $co)
+				{
+					foreach($remainingCourses as $checkExist)
+					{
+						if ($co->getCourseName() == $checkExist->getCourseName())
+							continue 3;
+					}
+				}
+			}
+
 			// Check if offered in $semester
 			$courseName =	$untaken->getCourseName();
 
@@ -251,6 +261,8 @@
 
 		require('config/db.php');
 
+		global $createdCourses;
+
 		$data = array();
 		$query1 ="SELECT C.* FROM `login` L INNER JOIN `course` C ON C.`courseid` = L.`user_id` WHERE L.`user_id`=$user";
 
@@ -258,8 +270,6 @@
 
 	//Fetch Data
 		$posts1 = mysqli_fetch_all($result1, MYSQLI_ASSOC);
-
-
 
 		// To iterate through found rows
 		foreach ($posts1 as $u) {
@@ -280,10 +290,7 @@
 	}
 
 
-
-
-
-//Updates the database by changing the status of the courses recently taken
+	//Updates the database by changing the status of the courses recently taken
 	function updateTakenCourses($passedCourses)
 	{
 
@@ -294,40 +301,47 @@
 
 		require('config/db.php');
 
-		$query ="SELECT *FROM `coursesmain` WHERE `CourseName`= '$courseName'";
+		global $createdCourses;
 
-		$result = mysqli_query($conn, $query);
+		//var_dump($createdCourses);
 
-	//Fetch Data
-		$posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
-		//var_dump ($posts);
-		$courseName = $posts[0]['CourseName'];
-		$preReqs_str = explode(",",$posts[0] ['Prerequisite']);
-		$coReqs_str = explode(",", $posts[0] ['Corerequisite']);
-		$credits = $posts[0]['Credit'];
+		if (array_key_exists($courseName, $createdCourses))
+			return $createdCourses[$courseName];
 
-		$preReqs = null;
-		$coReqs = null;
-		if ($preReqs_str[0] != "")
-		{
-			$preReqs = array ();
-			foreach ($preReqs_str as $p)
-				array_push($preReqs, getCourse($p));
+		else {
+
+			$query ="SELECT *FROM `coursesmain` WHERE `CourseName`= '$courseName'";
+
+			$result = mysqli_query($conn, $query);
+
+			//Fetch Data
+			$posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
+			$courseName = $posts[0]['CourseName'];
+			$preReqs_str = explode(",",$posts[0] ['Prerequisite']);
+			$coReqs_str = explode(",", $posts[0] ['Corerequisite']);
+			$credits = $posts[0]['Credit'];
+
+			$preReqs = null;
+			$coReqs = null;
+			if ($preReqs_str[0] != null)
+			{
+				$preReqs = array ();
+				foreach ($preReqs_str as $p)
+					array_push($preReqs, getCourse($p));
+			}
+
+			if ($coReqs_str[0] != null)
+			{
+			$coReqs = array ();
+			foreach ($coReqs_str as $c)
+				array_push($coReqs, getCourse($c));
+			}
+			$course = new Course ($courseName, $preReqs, $coReqs, $credits, false, false);
+			$createdCourses[$courseName]=$course;
+			return $course;
 		}
-
-		if ($coReqs_str[0] != "")
-		{
-		$coReqs = array ();
-		foreach ($coReqs_str as $c)
-			array_push($coReqs, getCourse($c));
-		}
-		return new Course ($courseName, $preReqs, $coReqs, $credits, false, false);
-
 	}
 
-	 //getUntakenCourses (1);
-
-	}
 	 function getID($email){
 
 		require('config/db.php');
