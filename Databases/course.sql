@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1
--- http://www.phpmyadmin.net
+-- version 4.8.4
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Feb 11, 2019 at 06:33 AM
--- Server version: 5.7.11
--- PHP Version: 5.6.18
+-- Host: 127.0.0.1
+-- Generation Time: Mar 04, 2019 at 07:27 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sequencebuilder`
+-- Database: `course`
 --
 
 -- --------------------------------------------------------
@@ -40,13 +42,13 @@ CREATE TABLE `coursesmain` (
 INSERT INTO `coursesmain` (`CourseName`, `Credit`, `Prerequisite`, `Corerequisite`) VALUES
 ('COMP232', '3.0', NULL, NULL),
 ('COMP248', '3.5', NULL, NULL),
-('COMP249', '3.5', 'COMP 248', NULL),
+('COMP249', '3.5', 'COMP248', NULL),
 ('COMP335', '3.0', 'COMP232,COMP249', NULL),
-('COMP346', '4.0', 'COMP228,SOEN228,COMP352', NULL),
+('COMP346', '4.0', 'SOEN228,COMP352', NULL),
 ('COMP348', '3.0', 'COMP249', NULL),
 ('COMP352', '3.0', 'COMP249', 'COMP232'),
 ('ELEC275', '3.5', NULL, 'ENGR213'),
-('ENCS282', '3.0', 'ENCS272', NULL),
+('ENCS282', '3.0', NULL, NULL),
 ('ENGR201', '1.5', NULL, NULL),
 ('ENGR202', '1.5', NULL, NULL),
 ('ENGR213', '3.0', NULL, NULL),
@@ -63,12 +65,13 @@ INSERT INTO `coursesmain` (`CourseName`, `Credit`, `Prerequisite`, `Corerequisit
 ('SOEN342', '3.0', 'SOEN341', NULL),
 ('SOEN343', '3.0', 'SOEN341', 'SOEN342'),
 ('SOEN344', '3.0', 'SOEN343', NULL),
+('SOEN345', '3.0', NULL, 'SOEN343'),
 ('SOEN357', '3.0', 'SOEN342', NULL),
 ('SOEN384', '3.0', 'ENCS282,SOEN341', NULL),
 ('SOEN385', '3.0', 'ENGR213,ENGR233', NULL),
 ('SOEN390', '3.5', NULL, 'SOEN344,SOEN357'),
-('SOEN490', '4.0', 'SOEN390', NULL),
-('SOEN345', '3.0', NULL, 'SOEN343');
+('SOEN490_1', '2.0', 'SOEN390', NULL),
+('SOEN490_2', '2.0', 'SOEN490_1', NULL);
 
 -- --------------------------------------------------------
 
@@ -123,12 +126,12 @@ INSERT INTO `flab` (`LabID`, `CourseName`, `LabSection`, `LabDay`, `StartLabTime
 (31, 'ELEC275', 'VK-X', 'M', '08:45:00', '11:30:00'),
 (32, 'ELEC275', 'VL-X', 'M', '14:45:00', '17:30:00'),
 (33, 'ELEC275', 'VM-X', 'M', '14:45:00', '17:30:00'),
-(34, 'SOEN490', 'SS-SI', 'T,J', '08:30:00', '10:30:00'),
-(35, 'SOEN490', 'SS-SJ', 'T,J', '08:30:00', '10:30:00'),
-(36, 'SOEN490', 'SS-SK', 'T,J', '08:30:00', '10:30:00'),
-(37, 'SOEN490', 'SS-SL', 'T,J', '08:30:00', '10:30:00'),
-(38, 'SOEN490', 'SS-SM', 'T,J', '08:30:00', '10:30:00'),
-(39, 'SOEN490', 'SS-SN', 'T,J', '08:30:00', '10:30:00');
+(34, 'SOEN490_1', 'SS-SI', 'T,J', '08:30:00', '10:30:00'),
+(35, 'SOEN490_1', 'SS-SJ', 'T,J', '08:30:00', '10:30:00'),
+(36, 'SOEN490_1', 'SS-SK', 'T,J', '08:30:00', '10:30:00'),
+(37, 'SOEN490_1', 'SS-SL', 'T,J', '08:30:00', '10:30:00'),
+(38, 'SOEN490_1', 'SS-SM', 'T,J', '08:30:00', '10:30:00'),
+(39, 'SOEN490_1', 'SS-SN', 'T,J', '08:30:00', '10:30:00');
 
 -- --------------------------------------------------------
 
@@ -204,7 +207,7 @@ INSERT INTO `flec` (`LecInfo`, `CourseName`, `LecDay`, `StartLecTime`, `EndLecTi
 ('ENGR392-F', 'ENGR392', 'M', '14:45:00', '17:30:00'),
 ('ENGR392-G', 'ENGR392', 'W', '14:45:00', '17:30:00'),
 ('SOEN287-Q', 'SOEN287', 'T,J', '10:15:00', '11:30:00'),
-('SOEN320-GG', 'SOEN321', 'M', '17:45:00', '20:15:00'),
+('SOEN321-GG', 'SOEN321', 'M', '17:45:00', '20:15:00'),
 ('SOEN341-F', 'SOEN341', 'W,F', '10:15:00', '11:30:00'),
 ('SOEN341-H', 'SOEN341', 'W,F', '10:15:00', '11:30:00'),
 ('SOEN342-H', 'SOEN342', 'W,F', '11:45:00', '13:00:00'),
@@ -212,7 +215,7 @@ INSERT INTO `flec` (`LecInfo`, `CourseName`, `LecDay`, `StartLecTime`, `EndLecTi
 ('SOEN343-H', 'SOEN343', 'W,F', '13:15:00', '14:30:00'),
 ('SOEN384-F', 'SOEN384', 'W,F', '10:15:00', '11:30:00'),
 ('SOEN384-G', 'SOEN384', 'W,F', '10:15:00', '11:30:00'),
-('SOEN490-SS', 'SOEN490', 'F', '18:25:00', '19:25:00');
+('SOEN490-SS', 'SOEN490_1', 'F', '18:25:00', '19:25:00');
 
 -- --------------------------------------------------------
 
@@ -678,12 +681,12 @@ INSERT INTO `wlab` (`LabID`, `CourseName`, `LabSection`, `LabDay`, `StartLabTime
 (58, 'SOEN390', 'SL-X', 'T', '18:45:00', '21:25:00'),
 (59, 'SOEN390', 'SM-X', 'J', '15:45:00', '18:25:00'),
 (60, 'SOEN390', 'SN-X', 'T', '15:00:00', '17:40:00'),
-(61, 'SOEN490', 'SSSI', 'T,J', '08:30:00', '10:30:00'),
-(62, 'SOEN490', 'SSSJ', 'T,J', '08:30:00', '10:30:00'),
-(63, 'SOEN490', 'SSSK', 'T,J', '08:30:00', '10:30:00'),
-(64, 'SOEN490', 'SSSL', 'T,J', '08:30:00', '10:30:00'),
-(65, 'SOEN490', 'SSSM', 'T,J', '08:30:00', '10:30:00'),
-(66, 'SOEN490', 'SSSN', 'T.J', '08:30:00', '10:30:00');
+(61, 'SOEN490_2', 'SSSI', 'T,J', '08:30:00', '10:30:00'),
+(62, 'SOEN490_2', 'SSSJ', 'T,J', '08:30:00', '10:30:00'),
+(63, 'SOEN490_2', 'SSSK', 'T,J', '08:30:00', '10:30:00'),
+(64, 'SOEN490_2', 'SSSL', 'T,J', '08:30:00', '10:30:00'),
+(65, 'SOEN490_2', 'SSSM', 'T,J', '08:30:00', '10:30:00'),
+(66, 'SOEN490_2', 'SSSN', 'T,J', '08:30:00', '10:30:00');
 
 -- --------------------------------------------------------
 
@@ -767,7 +770,7 @@ INSERT INTO `wlec` (`LecInfo`, `CourseName`, `LecDay`, `StartLecTime`, `EndLecTi
 ('SOEN357-S', 'SOEN357', 'W,F', '10:15:00', '11:30:00'),
 ('SOEN385-S', 'SOEN385', 'T,J', '11:45:00', '13:00:00'),
 ('SOEN390-S', 'SOEN390', 'M', '16:15:00', '17:55:00'),
-('SOEN490-SS', 'SOEN490', 'F', '18:25:00', '19:25:00');
+('SOEN490-SS', 'SOEN490_2', 'F', '18:25:00', '19:25:00');
 
 -- --------------------------------------------------------
 
@@ -1054,31 +1057,37 @@ ALTER TABLE `wtut`
 --
 ALTER TABLE `flab`
   MODIFY `LabID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
 --
 -- AUTO_INCREMENT for table `ftut`
 --
 ALTER TABLE `ftut`
   MODIFY `TutID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
+
 --
 -- AUTO_INCREMENT for table `slab`
 --
 ALTER TABLE `slab`
   MODIFY `LabID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
 --
 -- AUTO_INCREMENT for table `stut`
 --
 ALTER TABLE `stut`
   MODIFY `TutID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+
 --
 -- AUTO_INCREMENT for table `wlab`
 --
 ALTER TABLE `wlab`
   MODIFY `LabID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+
 --
 -- AUTO_INCREMENT for table `wtut`
 --
 ALTER TABLE `wtut`
   MODIFY `TutID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
+
 --
 -- Constraints for dumped tables
 --
@@ -1096,30 +1105,10 @@ ALTER TABLE `flec`
   ADD CONSTRAINT `flec_ibfk_1` FOREIGN KEY (`CourseName`) REFERENCES `coursesmain` (`CourseName`);
 
 --
--- Constraints for table `ftut`
---
-ALTER TABLE `ftut`
-  ADD CONSTRAINT `ftut_ibfk_1` FOREIGN KEY (`CourseName`) REFERENCES `coursesmain` (`CourseName`),
-  ADD CONSTRAINT `ftut_ibfk_2` FOREIGN KEY (`LecInfo`) REFERENCES `flec` (`LecInfo`);
-
---
 -- Constraints for table `slab`
 --
 ALTER TABLE `slab`
   ADD CONSTRAINT `slab_ibfk_1` FOREIGN KEY (`CourseName`) REFERENCES `coursesmain` (`CourseName`);
-
---
--- Constraints for table `slec`
---
-ALTER TABLE `slec`
-  ADD CONSTRAINT `slec_ibfk_1` FOREIGN KEY (`CourseName`) REFERENCES `coursesmain` (`CourseName`);
-
---
--- Constraints for table `stut`
---
-ALTER TABLE `stut`
-  ADD CONSTRAINT `stut_ibfk_1` FOREIGN KEY (`CourseName`) REFERENCES `coursesmain` (`CourseName`),
-  ADD CONSTRAINT `stut_ibfk_2` FOREIGN KEY (`LecInfo`) REFERENCES `flec` (`LecInfo`);
 
 --
 -- Constraints for table `wlab`
@@ -1132,13 +1121,7 @@ ALTER TABLE `wlab`
 --
 ALTER TABLE `wlec`
   ADD CONSTRAINT `wlec_ibfk_1` FOREIGN KEY (`CourseName`) REFERENCES `coursesmain` (`CourseName`);
-
---
--- Constraints for table `wtut`
---
-ALTER TABLE `wtut`
-  ADD CONSTRAINT `wtut_ibfk_1` FOREIGN KEY (`CourseName`) REFERENCES `coursesmain` (`CourseName`),
-  ADD CONSTRAINT `wtut_ibfk_2` FOREIGN KEY (`LecInfo`) REFERENCES `flec` (`LecInfo`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
