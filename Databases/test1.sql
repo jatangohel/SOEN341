@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 27, 2019 at 06:44 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.2
+-- Generation Time: Mar 04, 2019 at 07:32 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -53,28 +53,23 @@ CREATE TABLE `course` (
   `SOEN343` int(11) NOT NULL,
   `SOEN384` int(11) NOT NULL,
   `SOEN344` int(11) NOT NULL,
-  `SPEN345` int(11) NOT NULL,
+  `SOEN345` int(11) NOT NULL,
   `SOEN357` int(11) NOT NULL,
   `SOEN390` int(11) NOT NULL,
   `ENGR301` int(11) NOT NULL,
   `SOEN321` int(11) NOT NULL,
-  `SOEN490` int(11) NOT NULL,
+  `SOEN490_1` int(11) NOT NULL,
+  `SOEN490_2` int(11) NOT NULL,
   `ENGR392` int(11) NOT NULL,
-  `SOEN385` int(11) NOT NULL,
-  `MATH203` int(11) NOT NULL,
-  `MATH204` int(11) NOT NULL,
-  `MATH205` int(11) NOT NULL,
-  `ENCS272` int(11) NOT NULL,
-  `COMP228` int(11) NOT NULL,
-  `PHYS205` int(11) NOT NULL
+  `SOEN385` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `course`
 --
 
-INSERT INTO `course` (`courseid`, `COMP232`, `COMP248`, `ENGR201`, `ENGR213`, `COMP249`, `ENGR233`, `SOEN228`, `SOEN287`, `COMP348`, `COMP352`, `ENCS282`, `ENGR202`, `COMP346`, `ELEC275`, `ENGR371`, `SOEN331`, `SOEN341`, `COMP335`, `ENGR391`, `SOEN342`, `SOEN343`, `SOEN384`, `SOEN344`, `SPEN345`, `SOEN357`, `SOEN390`, `ENGR301`, `SOEN321`, `SOEN490`, `ENGR392`, `SOEN385`, `MATH203`, `MATH204`, `MATH205`, `ENCS272`, `COMP228`, `PHYS205`) VALUES
-(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+INSERT INTO `course` (`courseid`, `COMP232`, `COMP248`, `ENGR201`, `ENGR213`, `COMP249`, `ENGR233`, `SOEN228`, `SOEN287`, `COMP348`, `COMP352`, `ENCS282`, `ENGR202`, `COMP346`, `ELEC275`, `ENGR371`, `SOEN331`, `SOEN341`, `COMP335`, `ENGR391`, `SOEN342`, `SOEN343`, `SOEN384`, `SOEN344`, `SOEN345`, `SOEN357`, `SOEN390`, `ENGR301`, `SOEN321`, `SOEN490_1`, `SOEN490_2`, `ENGR392`, `SOEN385`) VALUES
+(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
