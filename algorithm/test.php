@@ -10,13 +10,19 @@
 
 require_once 'UserSchedule.php';
 
-/*
-$userSched = new UserSchedule("F",1, 4 );
+
+$numCoursesArr = array();
+
+//$numCoursesArr['1F'] = 2;
+$numCoursesArr['3W'] = 2;
+$numCoursesArr['5W'] = 6;
+
+var_dump($numCoursesArr);
+$userSched = new UserSchedule("F", $numCoursesArr);
 
 $userSched->genProgramSched('1');
 
 $userSched->dispUserSchedule();	
-*/
 
 //var_dump(getCourse ("COMP248"));
 //var_dump(getUntakenCourses('sebhani98@gmail.com'));
