@@ -10,7 +10,6 @@
 
 require_once 'UserSchedule.php';
 
-
 $numCoursesArr = array();
 
 //$numCoursesArr['1F'] = 2;
@@ -20,13 +19,19 @@ $numCoursesArr['5W'] = 6;
 var_dump($numCoursesArr);
 $userSched = new UserSchedule("F", $numCoursesArr);
 
-$userSched->genProgramSched('1');
+$userSched->genProgramSched('sebhani98@gmail.com');
 
-$userSched->dispUserSchedule();	
+$userSched->dispUserSchedule();
 
-//var_dump(getCourse ("COMP248"));
-//var_dump(getUntakenCourses('sebhani98@gmail.com'));
-var_dump(updateTakenCourses('sebhani98@gmail.com','SOEN345'));
+$A =new Course ("A", null, null, 3, true, false);
+$B =new Course ("B", null, null, 3, true, false);
+$C =new Course ("C", null, null, 3, true, false);
+$D =new Course ("D", null, array($A, $B), 3, true, false);
+
+$temp = array ($A, $C, $D);
+
+var_dump(coReqsSatisfied($temp));
+
 /*
 $comp248 = new Course ("COMP248", null, null, 3, false, false);            // permitted
 $comp249 = new Course ("COMP249", array($comp248), null, 3, false, false); // fail -> preReq

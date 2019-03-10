@@ -214,23 +214,8 @@ function getPermittedCourses($remainingCourses,  $semester)
 		{
 			foreach($untaken->getPreReqs() as $pre)
 			{
-				foreach($remainingCourses as $checkExist)
-				{
-					if ($pre->getCourseName() == $checkExist->getCourseName())
-						continue 3;
-				}
-			}
-		}
-			// CURRENTLY TREATING COREQUESITES SAME AS PREREQUISITES WHICH IS NOT OPTIMUM
-		if ($untaken->getCoReqs() != null)
-		{
-			foreach($untaken->getCoReqs() as $co)
-			{
-				foreach($remainingCourses as $checkExist)
-				{
-					if ($co->getCourseName() == $checkExist->getCourseName())
-						continue 3;
-				}
+				if (!$pre->getPass())
+					continue 2;
 			}
 		}
 
@@ -258,13 +243,12 @@ function getPermittedCourses($remainingCourses,  $semester)
 	//$user will pass the course that user has taken by array
 function getUntakenCourses($email)
 {
-	{
+
 		require('config/db.php');
 		$query = 'select CourseName from coursesmain';
 		$result = mysqli_query($conn, $query);
 		$courses = mysqli_fetch_all($result, MYSQLI_ASSOC);
 		mysqli_free_result($result);
-	//var_dump($courses);
 
 		$query = 'select UserId from users where Email="'.$email.'"';
 		$result = mysqli_query($conn, $query);
@@ -292,12 +276,9 @@ function getUntakenCourses($email)
 
 		$untakenCourses;
 		for($i=0;$i<count($courses);$i++){
-			$untakenCourses[$i] = $courses[$i];
+			$untakenCourses[$i] = getCourse($courses[$i]['CourseName']);
 		}
-		
-		
 		return $untakenCourses;
-	}
 
 }
 
@@ -326,7 +307,7 @@ function updateTakenCourses($email,$courseName)
  			global $found;
  			 $found=true;
  			}
-		} 	
+		}
 		global $found;
  		if($found===true){
 		$query = 'insert into pass (UserId, CourseName) values ('.$userId.',"'.$courseName.'")';
@@ -342,8 +323,6 @@ function getCourse($courseName){
 	require('config/db.php');
 
 	global $createdCourses;
-
-		//var_dump($createdCourses);
 
 	if (array_key_exists($courseName, $createdCourses))
 		return $createdCourses[$courseName];

@@ -64,7 +64,7 @@ public function genProgramSched ($user)
   while (count($untakenCourses) != 0)
   {
   $semCode = $currentYear.$semesters[$currentSemKey]; //used in coursesPerSem array as an index
-  
+
   /*var_dump ($this->coursesPerSemArr);
   echo '<br/>';
   var_dump($untakenCourses);*/
@@ -78,9 +78,9 @@ public function genProgramSched ($user)
     $permittedCourses = getPermittedCourses ($untakenCourses, $semesters[$currentSemKey]);
 
     // Sort the array based on their priority
-    heap_sort($permittedCourses);
-  
-  echo array_key_exists($semCode,$this->coursesPerSemArr) ? $semCode:4;
+
+    //heap_sort($permittedCourses);
+
     // Generate a schedule for a semester
     $sem = new Semester ($semesters[$currentSemKey], $currentYear, array_key_exists($semCode,$this->coursesPerSemArr) ? $this->coursesPerSemArr[$semCode]:3, $conNoClassArr);
     $sem->semesterGenerator($permittedCourses);
@@ -98,11 +98,13 @@ public function genProgramSched ($user)
       $flag = true;
     }
     */
+
     $this->listOfSemesters[]= $sem;
 
     // Exclude the taken courses from the untaken array
     foreach ($sem->getLecs() as $taken)
     {
+      updateCourseStatus($taken, $untakenCourses);
       deleteCourse($taken, $untakenCourses);
     }
 
