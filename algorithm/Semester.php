@@ -120,6 +120,21 @@ class Semester
     return $perms;
   }
 
+  private function combination($array,$k){
+    $results = array(array( ));
+    $temp = array();
+    foreach ($array as $element){
+      foreach ($results as $combination)
+          array_push($results, array_merge(array($element), $combination));
+    }
+    foreach ($results as $combination) {
+      if ($k == count($combination)) {
+          array_push($temp,$combination);
+      }
+    }
+    return $temp;
+  }
+
   //$tempPermittedCourses will be an array of strings which represent course names.
   //return vector of (vector lectures, vector tutorials, vector labs)
   private function semesterScheduling ($tempPermittedCourses)
