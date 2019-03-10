@@ -135,6 +135,17 @@ class Semester
     return $temp;
   }
 
+  private function combination_sort($combination){
+    foreach ($combination as $key => $courses){
+      $temp=0;
+      foreach($courses as $c){
+        $temp=$temp+$c->getPriority();
+      }
+      $key=$temp;
+      echo $key;
+    }
+    ksort($combination);
+  }
   //$tempPermittedCourses will be an array of strings which represent course names.
   //return vector of (vector lectures, vector tutorials, vector labs)
   private function semesterScheduling ($tempPermittedCourses)
