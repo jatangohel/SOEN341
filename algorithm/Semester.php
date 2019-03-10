@@ -326,6 +326,10 @@ class Semester
       $this->numCourses = count($permittedCourses);
 
     $numReturnedCourses = 0;
+
+    // Genera
+    $combsArray = combinations($permittedCourses);
+
     //Choose the first $numOfCourses to run semesterConflictChecker;
     $tempPermittedCourses = array_slice($permittedCourses, 0, $this->numCourses);
 

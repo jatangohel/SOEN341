@@ -214,11 +214,8 @@
 			{
 				foreach($untaken->getPreReqs() as $pre)
 				{
-					foreach($remainingCourses as $checkExist)
-					{
-						if ($pre->getCourseName() == $checkExist->getCourseName())
-							continue 3;
-					}
+					if (!$pre->getPass())
+						continue 2;
 				}
 			}
 			// CURRENTLY TREATING COREQUESITES SAME AS PREREQUISITES WHICH IS NOT OPTIMUM

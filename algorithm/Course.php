@@ -149,7 +149,7 @@ function deleteCourse ($course, &$courses)
   {
     if ($course->getCourseName() == $c->getCourseName())
     {
-      $course->setPass(true);
+      $c->setPass(true);
       unset($courses[$key]);
       $courses=array_values($courses);
       return;

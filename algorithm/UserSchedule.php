@@ -46,7 +46,7 @@ public function dispUserSchedule()
   }
 }
 
-public function genProgramSched ($user, $deadZone)
+public function genProgramSched ($user)
 {
   $semesters = array("W", "S","F");
 
