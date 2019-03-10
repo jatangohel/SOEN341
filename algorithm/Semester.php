@@ -122,16 +122,22 @@ class Semester
 
   private function combinations($array,$k){
     $results = array(array( ));
-    $temp = array();
     foreach ($array as $element){
       foreach ($results as $combination)
+      {
+        if (count($combination) < $k)
           array_push($results, array_merge(array($element), $combination));
-    }
-    foreach ($results as $combination) {
-      if ($k == count($combination)) {
-          array_push($temp,$combination);
       }
     }
+
+    $temp = array();
+
+    foreach ($results as $r)
+    {
+      if (count($r) == $k)
+        array_push($temp, $r);
+    }
+
     return $temp;
   }
 
@@ -340,16 +346,16 @@ class Semester
 
     $numReturnedCourses = 0;
 
-    var_dump($permittedCourses);
-
     // Generate all possible combinations of $permittedCourses
     $combsArray = $this->combinations($permittedCourses, $this->numCourses);
 
     // Eliminate the combinations that don't satisfy coReq
     $combsArray = coReqsSatisfiedCombs($combsArray);
 
+    //var_dump($combsArray);
+
     // Sort the combinations based on sum of priority
-    combination_sort($combsArray);
+    $this->combination_sort($combsArray);
 
     for ($i=0; $numReturnedCourses<$this->numCourses and $i<count($combsArray); $i++)
     {

@@ -149,9 +149,20 @@ function deleteCourse ($course, &$courses)
   {
     if ($course->getCourseName() == $c->getCourseName())
     {
-      $c->setPass(true);
       unset($courses[$key]);
       $courses=array_values($courses);
+      return;
+    }
+  }
+}
+
+function updateCourseStatus ($course, &$courses)
+{
+  foreach ($courses as $key=>$c)
+  {
+    if ($course->getCourseName() == $c->getCourseName())
+    {
+      $c->setPass(true);
       return;
     }
   }

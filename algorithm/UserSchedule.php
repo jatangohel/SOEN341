@@ -77,7 +77,7 @@ public function genProgramSched ($user)
     $permittedCourses = getPermittedCourses ($untakenCourses, $semesters[$currentSemKey]);
 
     // Sort the array based on their priority
-    heap_sort($permittedCourses);
+    //heap_sort($permittedCourses);
 
 
     // Generate a schedule for a semester
@@ -103,6 +103,7 @@ public function genProgramSched ($user)
     foreach ($sem->getLecs() as $taken)
     {
       deleteCourse($taken, $untakenCourses);
+      updateCourseStatus($taken, $untakenCourses);
     }
 
     // Increment year if the current semester was fall
