@@ -222,6 +222,7 @@
 				}
 			}
 			// CURRENTLY TREATING COREQUESITES SAME AS PREREQUISITES WHICH IS NOT OPTIMUM
+			/*
 			if ($untaken->getCoReqs() != null)
 			{
 				foreach($untaken->getCoReqs() as $co)
@@ -233,6 +234,7 @@
 					}
 				}
 			}
+			*/
 
 			// Check if offered in $semester
 			$courseName =	$untaken->getCourseName();

@@ -157,7 +157,28 @@ function deleteCourse ($course, &$courses)
   }
 }
 
-
+function coReqsSatisfied($courses)
+{
+  foreach ($courses as $key=>$c)
+  {
+    if ($c->getCoreqs() == null ) {
+      continue ;
+    }
+    else {
+      foreach ($c->getCoreqs() as $key=>$d)
+      {
+          if ($d->getPass()!=true){
+            foreach ($courses as $key=>$e){
+              if($d->getCourseName()==$e->getCourseName())
+                continue 2;
+            }
+            return false;
+          }
+      }
+    }
+  }
+  return true;
+}
 
 function updateAllPriority ($courses)
 {
