@@ -279,14 +279,10 @@
 					if ($value == "0")
 						array_push($data, getCourse($key));
 
-		return $data;
 		}
-
-		//var_dump($posts1);
 
 		mysqli_free_result($result1);
 		return $data;
-
 	}
 
 
