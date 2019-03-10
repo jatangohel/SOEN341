@@ -17,6 +17,15 @@ $userSched->genProgramSched('1');
 $userSched->dispUserSchedule();
 
 
+$A =new Course ("A", null, null, 3, true, false);
+$B =new Course ("B", null, null, 3, true, false);
+$C =new Course ("C", null, null, 3, true, false);
+$D =new Course ("D", null, array($A, $B), 3, true, false);
+
+$temp = array ($A, $C, $D);
+
+var_dump(coReqsSatisfied($temp));
+
 /*
 $comp248 = new Course ("COMP248", null, null, 3, false, false);            // permitted
 $comp249 = new Course ("COMP249", array($comp248), null, 3, false, false); // fail -> preReq
