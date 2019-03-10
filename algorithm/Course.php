@@ -68,6 +68,10 @@ class Course
     $this->priority = $priority;
   }
 
+  public function setPass($status)
+  {
+    $this->pass = $status;
+  }
 
   public function dispAllPriority ($courses)
   {
@@ -145,6 +149,7 @@ function deleteCourse ($course, &$courses)
   {
     if ($course->getCourseName() == $c->getCourseName())
     {
+      $course->setPass(true);
       unset($courses[$key]);
       $courses=array_values($courses);
       return;
