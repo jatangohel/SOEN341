@@ -1,6 +1,6 @@
 <?php 
 //create connection
-$conn = mysqli_connect('localhost','root','root','course');
+$conn = mysqli_connect('localhost','root','root','sequencebuilder');
 //check connection
 if(mysqli_connect_errno()){
 	//connection Failed
@@ -8,7 +8,7 @@ if(mysqli_connect_errno()){
 
 }
 //create connection
-$conn1 = mysqli_connect('localhost','root','root','test1');
+$conn1 = mysqli_connect('localhost','root','root','sequencebuilder');
 //check connection
 if(mysqli_connect_errno()){
 	//connection Failed

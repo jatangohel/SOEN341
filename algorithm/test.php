@@ -10,13 +10,17 @@
 
 require_once 'UserSchedule.php';
 
+/*
 $userSched = new UserSchedule("F",1, 4 );
 
 $userSched->genProgramSched('1');
 
-$userSched->dispUserSchedule();
+$userSched->dispUserSchedule();	
+*/
 
-
+//var_dump(getCourse ("COMP248"));
+//var_dump(getUntakenCourses('sebhani98@gmail.com'));
+var_dump(updateTakenCourses('sebhani98@gmail.com','SOEN345'));
 /*
 $comp248 = new Course ("COMP248", null, null, 3, false, false);            // permitted
 $comp249 = new Course ("COMP249", array($comp248), null, 3, false, false); // fail -> preReq
