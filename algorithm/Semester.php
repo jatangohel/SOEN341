@@ -337,6 +337,9 @@ class Semester
 
   public function semesterGenerator($permittedCourses)
   {
+    $SUCCESSFUL =1;
+    $FAILED_NUM_CREDITS = -1;
+
     // Handle the case where there are no allowd courses to be taken in a semester by returning immediately
     if ($permittedCourses == null)
       return;
@@ -352,12 +355,19 @@ class Semester
     // Eliminate the combinations that don't satisfy coReq
     $combsArray = coReqsSatisfiedCombs($combsArray);
 
+    var_dump($permittedCourses);
+    var_dump ($combsArray);
+
+    //Check the credits requirement with tolerance of 1 credit
+    
     //var_dump($combsArray);
 
     // Sort the combinations based on sum of priority
     $this->combination_sort($combsArray);
 
-    for ($i=0; $numReturnedCourses<$this->numCourses and $i<count($combsArray); $i++)
+    global $returnedCourses;
+
+    for ($i=0; $numReturnedCourses < $this->numCourses and $i<count($combsArray); $i++)
     {
       $returnedCourses = $this->semesterScheduling ($combsArray[$i]);
 
@@ -378,6 +388,8 @@ class Semester
     $this->lecs=$returnedCourses["Lecs"];
     $this->tuts=$returnedCourses["Tuts"];
     $this->labs=$returnedCourses["Labs"];
+
+    return $status;
   }
 
 }

@@ -97,13 +97,14 @@ public function genProgramSched ($user)
       $flag = true;
     }
     */
+
     $this->listOfSemesters[]= $sem;
 
     // Exclude the taken courses from the untaken array
     foreach ($sem->getLecs() as $taken)
     {
-      deleteCourse($taken, $untakenCourses);
       updateCourseStatus($taken, $untakenCourses);
+      deleteCourse($taken, $untakenCourses);
     }
 
     // Increment year if the current semester was fall
