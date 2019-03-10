@@ -180,6 +180,17 @@ function coReqsSatisfied($courses)
   return true;
 }
 
+function coReqsSatisfiedCombs ($combs)
+{
+  $result = array ();
+
+  foreach ($combs as $courses)
+    if(coReqsSatisfied($courses))
+      array_push($result, $courses);
+
+  return $result;
+}
+
 function updateAllPriority ($courses)
 {
   foreach ($courses as $c)
