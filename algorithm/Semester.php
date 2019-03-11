@@ -385,8 +385,6 @@ class Semester
     // Eliminate the combinations that don't satisfy coReq
     $combsArray = coReqsSatisfiedCombs($combsArray);
 
-    var_dump($combsArray);
-
     //Check the credits requirement with tolerance of 1.5 credit
 
     // Sort the combinations based on sum of priority
@@ -398,7 +396,7 @@ class Semester
 
     for ($i=0; $numReturnedCourses < $this->numCourses and $i<count($combsArray); $i++)
     {
-      echo ("Hello from the other side $i <br>");
+    //  echo ("Hello from the other side $i <br>");
       $returnedCourses = $this->semesterScheduling ($combsArray[$i]);
 
       $numReturnedCourses = count($returnedCourses["Lecs"]);
@@ -409,7 +407,7 @@ class Semester
 
         for ($j=1; $numReturnedCourses < $this->numCourses and $j < $MAX_PERMS and $j<count ($permPermittedCourses); $j++)
         {
-          echo ("Hey again $j <br>");
+        //  echo ("Hey again $j <br>");
 
           $returnedCourses = $this->semesterScheduling ($permPermittedCourses[$j]);
           $numReturnedCourses = count($returnedCourses["Lecs"]);
