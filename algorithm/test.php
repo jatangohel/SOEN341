@@ -13,11 +13,26 @@ require_once 'UserSchedule.php';
 $numCoursesArr = array();
 
 //$numCoursesArr['1F'] = 2;
-$numCoursesArr['3W'] = 4;
-$numCoursesArr['5W'] = 4;
 
-var_dump($numCoursesArr);
-$userSched = new UserSchedule("F", $numCoursesArr);
+$numCoursesArr['3W'] = 2;
+$numCoursesArr['5W'] = 6;
+$numCoursesArr['2F'] = 2;
+
+$noClassesArr=array(array());
+$no1 = new Session ("NoClass", null, null,null, array("W"), "08:45:00", "10:00:00", null);
+$no2 = new Session ("NoClass", null, null,null, array("J"), "08:45:00", "20:15:00", null);
+$no3 = new Session ("NoClass", null, null,null, array("T"), "08:45:00", "20:15:00", null);
+$no4 = new Session ("NoClass", null, null,null, array("F"), "08:45:00", "20:15:00", null);
+$no5 = new Session ("NoClass", null, null,null, array("M"), "08:45:00", "20:15:00", null);
+$noSem1 = array();
+array_push($noSem1, $no1);
+array_push($noSem1, $no2);
+array_push($noSem1, $no3);
+array_push($noSem1, $no4);
+array_push($noSem1, $no5);
+$noClassesArr['2F']=$noSem1;
+$noClassesArr['2W']=$noSem1;
+$userSched = new UserSchedule("F", $numCoursesArr, $noClassesArr);
 
 $userSched->genProgramSched('osama.qalam@hotmail.com');
 
