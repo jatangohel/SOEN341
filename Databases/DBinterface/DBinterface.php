@@ -346,7 +346,7 @@ function getCourse($courseName){
 		$courseName = $posts[0]['CourseName'];
 		$preReqs_str = explode(",",$posts[0] ['Prerequisite']);
 		$coReqs_str = explode(",", $posts[0] ['Corerequisite']);
-		$credits = $posts[0]['Credit'];
+		$credits = (float) $posts[0]['Credit'];
 
 		$preReqs = null;
 		$coReqs = null;

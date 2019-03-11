@@ -142,21 +142,37 @@ class Semester
     return $temp;
   }
 
-  private function combination_sort(&$combination){
-    foreach ($combination as $key => $courses){
-      $temp=0;
-      foreach($courses as $c){
-        $temp=$temp+$c->getPriority();
-      }
-      $key=$temp;
+  function combination_sort(&$combination){
+
+  $temp_combination=array();
+
+  foreach ($combination as $key => $courses){
+
+    $temp=0;
+
+    $temp_array=array();
+
+    foreach($courses as $c){
+
+      $temp=$temp+$c->getPriority();
+
     }
 
-    ksort($combination);
-    //var_dump($combination);
+    array_push($temp_array,$courses,$temp);
 
-    // To remove the keys
-    $combination=array_values($combination);
+    array_push($temp_combination,$temp_array);
+
   }
+
+  $myKey = array_column($temp_combination, 1);
+
+  array_multisort($myKey,SORT_ASC,$temp_combination);
+
+  $combination= array_column($temp_combination,0);
+
+  //var_dump($combination);
+
+}
   //$tempPermittedCourses will be an array of strings which represent course names.
   //return vector of (vector lectures, vector tutorials, vector labs)
   private function semesterScheduling ($tempPermittedCourses)
@@ -348,18 +364,18 @@ class Semester
     $status = $SUCCESSFUL;
 
     // Handle the case where there are no allowd courses to be taken in a semester by returning immediately
-    if ($permittedCourses == null)
+    // and the case that the user does not wish to have any courses in the semester
+    if ($permittedCourses == null or $this->numCourses == 0)
       return;
     // Handle the case when the number of permitted courses to be taken in a semester is less than what is desired
     elseif(count($permittedCourses)<$this->numCourses)
       $this->numCourses = count($permittedCourses);
 
-      $this->numCourses++;
+    $this->numCourses++;
 
-    // LAITH
     do{
 
-      $this->numCourses--;
+    $this->numCourses--;
 
     $numReturnedCourses = 0;
 
@@ -369,7 +385,9 @@ class Semester
     // Eliminate the combinations that don't satisfy coReq
     $combsArray = coReqsSatisfiedCombs($combsArray);
 
-    //Check the credits requirement with tolerance of 1 credit
+    var_dump($combsArray);
+
+    //Check the credits requirement with tolerance of 1.5 credit
 
     // Sort the combinations based on sum of priority
     $this->combination_sort($combsArray);

@@ -14,7 +14,10 @@ ini_set('max_execution_time', 300);
 
 $numCoursesArr = array();
 
-//$numCoursesArr['1F'] = 2;
+$numCoursesArr['2S'] = 1;
+
+$numCoursesArr['3S'] = 0;
+
 
 
 // $numCoursesArr['1F'] = 4;
@@ -35,7 +38,7 @@ array_push($noSem1, $no2);
 array_push($noSem1, $no3);
 array_push($noSem1, $no4);
 array_push($noSem1, $no5);
-$noClassesArr['2F']=$noSem1;
+//$noClassesArr['2F']=$noSem1;
 //$noClassesArr['2W']=$noSem1;
 $userSched = new UserSchedule("F", $numCoursesArr, $noClassesArr);
 
