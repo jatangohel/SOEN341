@@ -243,8 +243,10 @@ function getPermittedCourses($remainingCourses,  $semester)
 	//$user will pass the course that user has taken by array
 function getUntakenCourses($email)
 {
-
 		require('config/db.php');
+
+		global $createdCourses;
+
 		$query = 'select CourseName from coursesmain';
 		$result = mysqli_query($conn, $query);
 		$courses = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -268,9 +270,15 @@ function getUntakenCourses($email)
 
 		for($i=0;$i<count($passedCourses);$i++){
 			$takenCourse = $passedCourses[$i];
+			$courseName = $passedCourses[$i]['CourseName'];
+			$createdCourses[$courseName] = getCourse($courseName);
+			$createdCourses[$courseName]->setPass(true);
+
 			for($j=0;$j<count($courses);$j++){
 				if($courses[$j] == $takenCourse)
+				{
 					array_splice($courses,$j,1);
+				}
 			}
 		}
 
@@ -278,12 +286,12 @@ function getUntakenCourses($email)
 		for($i=0;$i<count($courses);$i++){
 			$untakenCourses[$i] = getCourse($courses[$i]['CourseName']);
 		}
+
 		return $untakenCourses;
 
 }
 
-
-	//Updates the database by changing the status of the courses recently taken
+//Updates the database by changing the status of the courses recently taken
 function updateTakenCourses($email,$courseName)
 {
 				require('config/db.php');

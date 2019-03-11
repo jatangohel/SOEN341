@@ -6,6 +6,8 @@ require_once 'Course.php';
 require_once 'Semester.php';
 require_once 'heapSort.php';
 
+$DEFAULT_COURSES_PER_SEM = 4;
+
 
 class UserSchedule
 {
@@ -46,9 +48,12 @@ public function dispUserSchedule()
 
 public function genProgramSched ($user)
 {
+  global $DEFAULT_COURSES_PER_SEM;
+
   $semesters = array("W", "S","F");
 
- $conNoClass = new Session ("NoClass", null, null,null, array("F"), "14:15:00", "14:30:00", null);
+  $conNoClass = new Session ("NoClass", null, null,null, array("F"), "14:15:00", "14:30:00", null);
+
   //  $conNoClass1 = new Session ("NoClass", null, null, null, array("F"), "17:45:00", "20:15:00", null);
   //$conNoClassArr = array ($conNoClass);
   $conNoClassArr = null;
@@ -63,11 +68,7 @@ public function genProgramSched ($user)
 
   while (count($untakenCourses) != 0)
   {
-  $semCode = $currentYear.$semesters[$currentSemKey]; //used in coursesPerSem array as an index
-
-  /*var_dump ($this->coursesPerSemArr);
-  echo '<br/>';
-  var_dump($untakenCourses);*/
+    $semCode = $currentYear.$semesters[$currentSemKey]; //used in coursesPerSem array as an index
 
     // Update the priority of all courses unfinished
     updateAllPriority($untakenCourses);
@@ -82,8 +83,10 @@ public function genProgramSched ($user)
     //heap_sort($permittedCourses);
 
     // Generate a schedule for a semester
-    $sem = new Semester ($semesters[$currentSemKey], $currentYear, array_key_exists($semCode,$this->coursesPerSemArr) ? $this->coursesPerSemArr[$semCode]:3, $conNoClassArr);
+    $sem = new Semester ($semesters[$currentSemKey], $currentYear, array_key_exists($semCode,$this->coursesPerSemArr) ? $this->coursesPerSemArr[$semCode]:$DEFAULT_COURSES_PER_SEM, $conNoClassArr);
     $sem->semesterGenerator($permittedCourses);
+
+    //var_dump($sem);
 
     // DEBUG:: Use when you wish to see the scheduling of the final semesters
     /*

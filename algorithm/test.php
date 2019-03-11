@@ -13,13 +13,13 @@ require_once 'UserSchedule.php';
 $numCoursesArr = array();
 
 //$numCoursesArr['1F'] = 2;
-$numCoursesArr['3W'] = 2;
-$numCoursesArr['5W'] = 6;
+$numCoursesArr['3W'] = 4;
+$numCoursesArr['5W'] = 4;
 
 var_dump($numCoursesArr);
 $userSched = new UserSchedule("F", $numCoursesArr);
 
-$userSched->genProgramSched('sebhani98@gmail.com');
+$userSched->genProgramSched('osama.qalam@hotmail.com');
 
 $userSched->dispUserSchedule();
 
