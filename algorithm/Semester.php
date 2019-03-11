@@ -8,6 +8,7 @@
   <div>
     <?php
 
+$MAX_PERMS = 20;
 
 class Semester
 {
@@ -151,7 +152,7 @@ class Semester
     }
 
     ksort($combination);
-    var_dump($combination);
+    //var_dump($combination);
 
     // To remove the keys
     $combination=array_values($combination);
@@ -342,6 +343,8 @@ class Semester
     $SUCCESSFUL = 1;
     $FAILED_NUM_CREDITS = -1;
 
+    global $MAX_PERMS;
+
     $status = $SUCCESSFUL;
 
     // Handle the case where there are no allowd courses to be taken in a semester by returning immediately
@@ -350,6 +353,13 @@ class Semester
     // Handle the case when the number of permitted courses to be taken in a semester is less than what is desired
     elseif(count($permittedCourses)<$this->numCourses)
       $this->numCourses = count($permittedCourses);
+
+      $this->numCourses++;
+
+    // LAITH
+    do{
+
+      $this->numCourses--;
 
     $numReturnedCourses = 0;
 
@@ -364,13 +374,13 @@ class Semester
     // Sort the combinations based on sum of priority
     $this->combination_sort($combsArray);
 
-    var_dump($combsArray);
+    //var_dump($combsArray);
 
     global $returnedCourses;
 
     for ($i=0; $numReturnedCourses < $this->numCourses and $i<count($combsArray); $i++)
     {
-      //echo ("Hello from the other side $i <br>");
+      echo ("Hello from the other side $i <br>");
       $returnedCourses = $this->semesterScheduling ($combsArray[$i]);
 
       $numReturnedCourses = count($returnedCourses["Lecs"]);
@@ -379,16 +389,20 @@ class Semester
       {
         $permPermittedCourses = $this->permutations($combsArray[$i]);
 
-        for ($j=1; $numReturnedCourses < $this->numCourses and $j<count ($permPermittedCourses); $j++)
+        for ($j=1; $numReturnedCourses < $this->numCourses and $j < $MAX_PERMS and $j<count ($permPermittedCourses); $j++)
         {
-          //echo ("Hey again $j <br>");
+          echo ("Hey again $j <br>");
 
           $returnedCourses = $this->semesterScheduling ($permPermittedCourses[$j]);
           $numReturnedCourses = count($returnedCourses["Lecs"]);
         }
       }
     }
+  }
     //If returned courses are equal to $numOfCourses then successfuly added all courses.
+
+    while($numReturnedCourses < $this->numCourses);
+
     $this->lecs=$returnedCourses["Lecs"];
     $this->tuts=$returnedCourses["Tuts"];
     $this->labs=$returnedCourses["Labs"];
