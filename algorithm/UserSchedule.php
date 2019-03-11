@@ -10,14 +10,17 @@ require_once 'heapSort.php';
 class UserSchedule
 {
 private $firstSem;        // Input obtained from user ("F" or "W" or "S")
-private $coursesPerSemArr;   // Input obtained from user (int)
 private $listOfSemesters; // Array of semesters
+private $coursesPerSemArr;   // Input obtained from user (int)
+private $noClassesArr;
 
-public function __construct($fSem, $numCourses)
+public function __construct($fSem, $numCourses,$noClassesArr)
 {
   $this->firstSem = $fSem;
+  $this->listOfSemesters = array ();
   $this->coursesPerSemArr = $numCourses;
-  $listOfSemesters = array ();
+  $this->noClassesArr= $noClassesArr;
+
 }
 
 public function getListOfSemesters ()
@@ -48,11 +51,6 @@ public function genProgramSched ($user)
 {
   $semesters = array("W", "S","F");
 
- $conNoClass = new Session ("NoClass", null, null,null, array("F"), "14:15:00", "14:30:00", null);
-  //  $conNoClass1 = new Session ("NoClass", null, null, null, array("F"), "17:45:00", "20:15:00", null);
-  //$conNoClassArr = array ($conNoClass);
-  $conNoClassArr = null;
-
   // Obtain untaken courses by the user
   $untakenCourses = getUntakenCourses($user);
 
@@ -64,7 +62,7 @@ public function genProgramSched ($user)
   while (count($untakenCourses) != 0)
   {
   $semCode = $currentYear.$semesters[$currentSemKey]; //used in coursesPerSem array as an index
-  
+
   /*var_dump ($this->coursesPerSemArr);
   echo '<br/>';
   var_dump($untakenCourses);*/
@@ -79,10 +77,10 @@ public function genProgramSched ($user)
 
     // Sort the array based on their priority
     heap_sort($permittedCourses);
-  
-  echo array_key_exists($semCode,$this->coursesPerSemArr) ? $semCode:4;
+
+    $noClasses= array_key_exists($semCode,$this->noClassesArr) ? $this->noClassesArr[$semCode] : null;
     // Generate a schedule for a semester
-    $sem = new Semester ($semesters[$currentSemKey], $currentYear, array_key_exists($semCode,$this->coursesPerSemArr) ? $this->coursesPerSemArr[$semCode]:3, $conNoClassArr);
+    $sem = new Semester ($semesters[$currentSemKey], $currentYear, array_key_exists($semCode,$this->coursesPerSemArr) ? $this->coursesPerSemArr[$semCode]:3, $noClasses);
     $sem->semesterGenerator($permittedCourses);
 
     // DEBUG:: Use when you wish to see the scheduling of the final semesters
