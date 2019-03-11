@@ -10,13 +10,18 @@
 
 require_once 'UserSchedule.php';
 
+ini_set('max_execution_time', 300);
+
 $numCoursesArr = array();
 
 //$numCoursesArr['1F'] = 2;
 
-$numCoursesArr['3W'] = 2;
-$numCoursesArr['5W'] = 6;
-$numCoursesArr['2F'] = 2;
+
+// $numCoursesArr['1F'] = 4;
+// $numCoursesArr['2F'] = 6;
+// $numCoursesArr['3W'] = 6;
+// $numCoursesArr['5W'] = 6;
+
 
 $noClassesArr=array(array());
 $no1 = new Session ("NoClass", null, null,null, array("W"), "08:45:00", "10:00:00", null);
@@ -31,7 +36,7 @@ array_push($noSem1, $no3);
 array_push($noSem1, $no4);
 array_push($noSem1, $no5);
 $noClassesArr['2F']=$noSem1;
-$noClassesArr['2W']=$noSem1;
+//$noClassesArr['2W']=$noSem1;
 $userSched = new UserSchedule("F", $numCoursesArr, $noClassesArr);
 
 $userSched->genProgramSched('osama.qalam@hotmail.com');
