@@ -42,7 +42,7 @@ array_push($noSem1, $no5);
 //$noClassesArr['2W']=$noSem1;
 $userSched = new UserSchedule("F", $numCoursesArr, $noClassesArr);
 
-$userSched->genProgramSched('osama.qalam@hotmail.com');
+$userSched->genProgramSched('sebhani98@gmail.com');
 
 $userSched->dispUserSchedule();
 

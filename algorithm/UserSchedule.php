@@ -6,7 +6,7 @@ require_once 'Course.php';
 require_once 'Semester.php';
 require_once 'heapSort.php';
 
-$DEFAULT_COURSES_PER_SEM = 8;
+$DEFAULT_COURSES_PER_SEM = 4;
 
 
 class UserSchedule
