@@ -9,6 +9,7 @@
     <?php
 
 $MAX_PERMS = 20;
+$studentCredits = 14;
 
 class Semester
 {
@@ -19,8 +20,9 @@ class Semester
   private $lecs;
   private $tuts;
   private $labs;
+  private $status;
 
-  public function __construct($name, $year, $numCourses,$timesNoClass)
+  public function __construct($name, $year, $numCourses,$timesNoClass,$status)
   {
     $this->name = $name;
     $this->year = $year;
@@ -29,7 +31,9 @@ class Semester
     $this->lecs = array ();
     $this->tuts = array ();
     $this->labs = array ();
+    $this->status = $status;
   }
+
 
   public function getName ()
   {
@@ -64,6 +68,16 @@ class Semester
   public function getTimesNoClass()
   {
     return $this->getTimesNoClass;
+  }
+
+  public function getStatus()
+  {
+    return $this->status;
+  }
+
+  public function setStatus($status)
+  {
+    $this->status = $status;
   }
 
   public function dispSemester()
@@ -360,8 +374,8 @@ class Semester
     $FAILED_NUM_CREDITS = -1;
 
     global $MAX_PERMS;
-
-    $status = $SUCCESSFUL;
+    global $studentCredits;
+   $status = $SUCCESSFUL;
 
     // Handle the case where there are no allowd courses to be taken in a semester by returning immediately
     // and the case that the user does not wish to have any courses in the semester
@@ -370,7 +384,7 @@ class Semester
     // Handle the case when the number of permitted courses to be taken in a semester is less than what is desired
     elseif(count($permittedCourses)<$this->numCourses)
       $this->numCourses = count($permittedCourses);
-
+      $numberOfCourses = $this->numCourses;
     $this->numCourses++;
 
     do{
@@ -386,6 +400,13 @@ class Semester
     $combsArray = coReqsSatisfiedCombs($combsArray);
 
     //Check the credits requirement with tolerance of 1.5 credit
+    $combsArray = creditsSatisfied ($combsArray, $studentCredits, $numberOfCourses);
+    if(sizeof($combsArray) < $this->numCourses)
+        $this->status = -1;
+      else {
+        $this->status = 1;
+      }
+  //    echo($this->status."\n");
 
     // Sort the combinations based on sum of priority
     $this->combination_sort($combsArray);
@@ -422,7 +443,6 @@ class Semester
     $this->lecs=$returnedCourses["Lecs"];
     $this->tuts=$returnedCourses["Tuts"];
     $this->labs=$returnedCourses["Labs"];
-
     return $status;
   }
 
