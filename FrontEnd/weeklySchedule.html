@@ -186,7 +186,7 @@
         }
 
         .addNew {
-          margin-left: 150px;
+          margin-left: 50px;
           display: inline;
           position: absolute;
           font-size: 12px;
@@ -404,10 +404,21 @@
 
       <div class="topHeader">
         <h1>Weekly Schedule</h1>
-        <button class="addNew">
-          Add Constrain
-        </button>
-
+		<div class="dropdown">
+			<button class="addNew" onclick="myFunction()">Add Constrain</button>
+				<div id="myDropdown" class="dropdown-content">
+					<select name="Days">
+						<option value="Monday">Monday</option>
+						<option value="Tuesday">Tuesday</option>
+						<option value="Wednesday">Wednesday</option>
+						<option value="Thursday">Thursday</option>
+						<option value="Friday">Friday</option>
+						<option value="Saturday">Saturday</option>
+						<option value="Sunday">Sunday</option>
+					</select>&nbsp;&nbsp;<input type="time" id="starting" name="starting">&nbsp;&nbsp;<input type="time" id="ending" name="ending">&nbsp;&nbsp;
+					<button type="button" name="add" id="add" class="btn btn-success">Next</button>
+				</div>
+		</div>
         <table class = "tableHeader">
         <tr>
           <th>Time</th>
@@ -932,6 +943,8 @@
         }
 
 
+
+		
 
       </script>
 

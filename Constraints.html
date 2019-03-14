@@ -42,10 +42,26 @@
 		<br />
 		<br />
 		<h2 align="center">Distrubte your courses for each semester (0-6 courses)</h2>
+
 		<div class="form-group">
 			<form name="add_name" id="add_name">
 				<table class="table table-bordered" id="dynamic_field">
 					 <tr>
+						<td><select name="Years" >
+							<option value="first_year" selected>First Year</option>
+							<option value="first_year">Second Year</option>
+							<option value="first_year">Third Year</option>
+							<option value="first_year">Fourth Year</option>
+							<option value="first_year">Fifth Year</option>
+							<option value="first_year">Sixth Year</option>
+							</select>
+						</td>
+						<td><select name="Term" >
+							<option value="Summer" selected>Summer Term</option>
+							<option value="Fall">Fall Term</option>
+							<option value="Winter">Winter Term</option>
+							</select>
+						</td>
 						<td><input type="number" name="quantity" min="0" max="6" name="number1" id="number1" class="form-control" placeholder="Semester 1" /></td>
 						<td><button type="button" name="add" id="add" class="btn btn-success">Next</button></td>
 					</tr>
@@ -57,11 +73,12 @@
 	
 	<div class="jumbotron jumbotron-fluid">
 				<h2 align="center"class="header margin-top:0px">General Course Schedule</h2>
-						<br />
 		<br />
 		<div class="card-columns">
-			<div class=" card card-body bg-primary text-center height:400px" onclick=window.location.href='Semester1.html'>
-				<table class="gridtable" id="table1" border="0">
+			<div class=" card card-body bg-primary text-center height:400px" >
+				<p> Minimum Credits of For This Semester</p>
+				<input type="number" id="credits1"/> &nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-success" name="btncredits1" id="btncredits1" value="submit"/>
+				<table class="gridtable" id="table1" border="0" onclick=window.location.href='file:///C:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html'>
 					<thead>
 						<tr class="tableheader">
 							<th>Semester 1</th>
@@ -87,8 +104,10 @@
 					</tbody>
 				</table>
 			</div>
-			<div class=" card card-body bg-warning text-center height:400px" onclick=window.location.href='Semester2.html'>
-				<table class="gridtable" id="table2" border="0">
+			<div class=" card card-body bg-warning text-center height:400px" >
+				<p> Minimum Credits of For This Semester</p>
+				<input type="number" id="credits1"/> &nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-success" name="btncredits1" id="btncredits1" value="submit"/>
+				<table class="gridtable" id="table2" border="0"onclick=window.location.href='file:///C:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html'>
 					<thead>
 						<tr class="tableheader">
 							<th>Semester 2</th>
@@ -114,8 +133,10 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="card card-body bg-danger text-center height:400px" onclick=window.location.href='Semester3.html'>
-				<table class="gridtable" id="table3" border="0">
+			<div class="card card-body bg-danger text-center height:400px">
+			<p> Minimum Credits of For This Semester</p>
+				<input type="number" id="credits1"/> &nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-success" name="btncredits1" id="btncredits1" value="submit"/>
+				<table class="gridtable" id="table3" border="0"onclick=window.location.href='file:///C:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html'>
 					<thead>
 						<tr class="tableheader">
 							<th>Semester 3</th>
@@ -193,10 +214,11 @@ $(document).ready(function(){
 	var i = 1;
 	$('#add').click(function(){
 		i++;
-		$('#dynamic_field').append('<tr id="row'+i+'"><td><input type="number" name="quantity" min="0" max="6" name="number'+i+'" id="number'+i+'" class="form-control" placeholder="Semester '+i+'"/></td><td><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+		$('#dynamic_field').append('<tr id="row'+i+'"><td><select name="Years" ><option value="first_year" selected>First Year</option><option value="first_year">Second Year</option><option value="first_year">Third Year</option><option value="first_year">Fourth Year</option><option value="first_year">Fifth Year</option><option value="first_year">Sixth Year</option></select></td><td><select name="Term" ><option value="Summer" selected>Summer Term</option><option value="Fall">Fall Term</option><option value="Winter">Winter Term</option></select></td><td><input type="number" name="quantity" min="0" max="6" name="number'+i+'" id="number'+i+'" class="form-control" placeholder="Semester '+i+'"/></td><td><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
 	});
 	$(document).on('click','.btn_remove',function(){
 		var button_id = $(this).attr("id");
+		i--;
 		$("#row"+button_id+'').remove();
 	});
 	
