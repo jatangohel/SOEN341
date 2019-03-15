@@ -119,20 +119,20 @@
 				<a class="nav-link" href="#">Link 2 </a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Link 3 </a>
+				<a class="nav-link" href="#">Profile </a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Link 4 </a>
+				<a class="nav-link" href="#">About Us </a>
 			</li>	
 		</ul>
 		</div>
 	</nav>
     
-   
+  
 
     
 	<div class="container" id="container">
-        <form id="generate" method="get">
+        <form id="generate course" method="get">
 		<table class="gridtable" id="tableMain" border="0">
 			<thead>
 				<tr class="tableheader">
@@ -315,12 +315,17 @@
                  <input type="radio" id="winter" name="intake" value="Winter Intake">
                 <label for="winter">Winter Intake</label>
                 &nbsp;&nbsp;&nbsp;&nbsp;
+				
+				 <input type="radio" id="summer" name="intake" value="Summer Intake">
+                <label for="summer">Summer Intake</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;
                 
                 <br>
                 
-                <input type="submit" class="btn btn-lg btn-primary" id="submit" name="submit" value="Generate" href="#">
+                <button class="submit-button btn-lg btn-primary" id="generate" name="generate"> Generate </button>
+				
                 
-<!--	   <button class="btn btn-lg btn-primary submit" id="button1" href="#" type="button">Generate</button>-->
+<!--	   <button class="btn btn-lg btn-primary generate" id="button1" type="button">Generate</button>-->
         </center>
            </form>
 	</div>
@@ -383,6 +388,13 @@ for (i = 0; i < acc.length; i++) {
 }
 
     </script>
+	
+<script type="text/javascript">
+    document.getElementById("generate").onclick = function () {
+		location.href= "file:///C:/xampp/htdocs/SOEN341/Constraints.html";
+	};
+</script>
+
  
 </body>
 </html>

@@ -8,6 +8,7 @@
   <div>
     <?php
 
+$MAX_PERMS = 20;
 
 class Semester
 {
@@ -120,6 +121,58 @@ class Semester
     return $perms;
   }
 
+  private function combinations($array,$k){
+    $results = array(array( ));
+    foreach ($array as $element){
+      foreach ($results as $combination)
+      {
+        if (count($combination) < $k)
+          array_push($results, array_merge(array($element), $combination));
+      }
+    }
+
+    $temp = array();
+
+    foreach ($results as $r)
+    {
+      if (count($r) == $k)
+        array_push($temp, $r);
+    }
+
+    return $temp;
+  }
+
+  function combination_sort(&$combination){
+
+  $temp_combination=array();
+
+  foreach ($combination as $key => $courses){
+
+    $temp=0;
+
+    $temp_array=array();
+
+    foreach($courses as $c){
+
+      $temp=$temp+$c->getPriority();
+
+    }
+
+    array_push($temp_array,$courses,$temp);
+
+    array_push($temp_combination,$temp_array);
+
+  }
+
+  $myKey = array_column($temp_combination, 1);
+
+  array_multisort($myKey,SORT_ASC,$temp_combination);
+
+  $combination= array_column($temp_combination,0);
+
+  //var_dump($combination);
+
+}
   //$tempPermittedCourses will be an array of strings which represent course names.
   //return vector of (vector lectures, vector tutorials, vector labs)
   private function semesterScheduling ($tempPermittedCourses)
@@ -303,53 +356,74 @@ class Semester
 
   public function semesterGenerator($permittedCourses)
   {
+    $SUCCESSFUL = 1;
+    $FAILED_NUM_CREDITS = -1;
+
+    global $MAX_PERMS;
+
+    $status = $SUCCESSFUL;
+
     // Handle the case where there are no allowd courses to be taken in a semester by returning immediately
-    if ($permittedCourses == null)
+    // and the case that the user does not wish to have any courses in the semester
+    if ($permittedCourses == null or $this->numCourses == 0)
       return;
     // Handle the case when the number of permitted courses to be taken in a semester is less than what is desired
     elseif(count($permittedCourses)<$this->numCourses)
       $this->numCourses = count($permittedCourses);
 
+    $this->numCourses++;
+
+    do{
+
+    $this->numCourses--;
+
     $numReturnedCourses = 0;
-    //Choose the first $numOfCourses to run semesterConflictChecker;
-    $tempPermittedCourses = array_slice($permittedCourses, 0, $this->numCourses);
 
-    $returnedCourses = $this->semesterScheduling ($tempPermittedCourses);
+    // Generate all possible combinations of $permittedCourses
+    $combsArray = $this->combinations($permittedCourses, $this->numCourses);
 
-    $numReturnedCourses = count($returnedCourses["Lecs"]);
+    // Eliminate the combinations that don't satisfy coReq
+    $combsArray = coReqsSatisfiedCombs($combsArray);
 
-    if ($numReturnedCourses < $this->numCourses)
+    //Check the credits requirement with tolerance of 1.5 credit
+
+    // Sort the combinations based on sum of priority
+    $this->combination_sort($combsArray);
+
+    //var_dump($combsArray);
+
+    global $returnedCourses;
+
+    for ($i=0; $numReturnedCourses < $this->numCourses and $i<count($combsArray); $i++)
     {
-      $permPermittedCourses = $this->permutations($tempPermittedCourses);
+    //  echo ("Hello from the other side $i <br>");
+      $returnedCourses = $this->semesterScheduling ($combsArray[$i]);
 
-      for ($i=1; $numReturnedCourses < $this->numCourses and $i<count ($permPermittedCourses); $i++)
+      $numReturnedCourses = count($returnedCourses["Lecs"]);
+
+      if ($numReturnedCourses < $this->numCourses)
       {
-        $returnedCourses = $this->semesterScheduling ($permPermittedCourses[$i]);
-        $numReturnedCourses = count($returnedCourses["Lecs"]);
+        $permPermittedCourses = $this->permutations($combsArray[$i]);
+
+        for ($j=1; $numReturnedCourses < $this->numCourses and $j < $MAX_PERMS and $j<count ($permPermittedCourses); $j++)
+        {
+        //  echo ("Hey again $j <br>");
+
+          $returnedCourses = $this->semesterScheduling ($permPermittedCourses[$j]);
+          $numReturnedCourses = count($returnedCourses["Lecs"]);
+        }
       }
     }
-    /*
-    //Check if numReturnedCourses are less than $numOfCourses
-    while($numReturnedCourses < $this->numCourses)
-    {
-      //If yes, then change one of the courses in the array and try again.
-      //The change should be based on which course the loop exited at
-      //If returned courses are 2 then the problem is with the 3rd one,
-      //If 3 then the problem is with the 4th one.(check for if one is returned as well).
-      if($tempPermittedCourses[$numReturnedCourses+1] != null && $permittedCourses[$courseCounter] != null)
-      {
-        $tempPermittedCourses [$numReturnedCourses+1]= $permittedCourses[$courseCounter];
-        $courseCounter++;
-      }
-      $returnedCourses = $this->semesterScheduling ($tempPermittedCourses);
-      $numReturnedCourses = count($returnedCourses);
-    }
-
-    */
+  }
     //If returned courses are equal to $numOfCourses then successfuly added all courses.
+
+    while($numReturnedCourses < $this->numCourses);
+
     $this->lecs=$returnedCourses["Lecs"];
     $this->tuts=$returnedCourses["Tuts"];
     $this->labs=$returnedCourses["Labs"];
+
+    return $status;
   }
 
 }
