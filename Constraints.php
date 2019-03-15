@@ -1,4 +1,6 @@
-
+<?php
+require_once 'backendInterface.php';
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -82,17 +84,12 @@
         <table>
           <thead>
             <tr>
-              <?php
-                $shop = array( array("title"=>"rose", "price"=>1.25 , "number"=>15),
-                array("title"=>"daisy", "price"=>0.75 , "number"=>25),
-                array("title"=>"orchid", "price"=>1.15 , "number"=>7)
-              );
-              ?>
-              <?php echo implode('</th><th>', array_keys(current($shop))); ?>
+
+              <?php echo implode('</th><th>', array_keys(current($semInfo))); ?>
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($shop as $row): array_map('htmlentities', $row); ?>
+            <?php foreach ($semInfo as $row): array_map('htmlentities', $row); ?>
               <tr>
                 <td><?php echo implode('</td><td>', $row); ?></td>
               </tr>
