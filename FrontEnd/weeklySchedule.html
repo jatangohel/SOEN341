@@ -352,6 +352,55 @@
 
           </style>
     </head>
+	 <div class="dropdown">
+			<button class="addNew" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add Constrain</button>
+				<div class="dropdown-menu dropdown-menu-right">
+					<div class="form-group">
+						<form name="add_name" id="add_name">
+							<table class="table table-bordered" id="dynamic_field">
+								<tr>
+									<td>&nbsp;&nbsp;<select name="Days">
+										<option value="Monday">Monday</option>
+										<option value="Tuesday">Tuesday</option>
+										<option value="Wednesday">Wednesday</option>
+										<option value="Thursday">Thursday</option>
+										<option value="Friday">Friday</option>
+										<option value="Saturday">Saturday</option>
+										<option value="Sunday">Sunday</option>
+										</select>&nbsp;&nbsp;<input type="time" id="starting1" name="starting1">&nbsp;&nbsp;<input type="time" id="ending1" name="ending1">&nbsp;&nbsp;
+										<button type="button" name="add" id="add" class="btn btn-success">Next</button>&nbsp;&nbsp;
+									</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+				</div>
+
+ <script>
+	$(document).ready(function(){
+	var i = 1;
+	$('#add').click(function(){
+		i++;
+		$('#dynamic_field').append('<tr id="row'+i+'"><td>&nbsp;&nbsp;<select name="Days"><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday">Friday</option><option value="Saturday">Saturday</option><option value="Sunday">Sunday</option></select>&nbsp;&nbsp;<input type="time" id="starting'+i+'" name="starting'+i+'">&nbsp;&nbsp;<input type="time" id="ending'+i+'" name="ending'+i+'">&nbsp;&nbsp;<button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button>&nbsp;&nbsp;</td></tr>');
+	});
+	$(document).on('click','.btn_remove',function(){
+		var button_id = $(this).attr("id");
+		$("#row"+button_id+'').remove();
+	});
+	$('#submit').click(function(){
+		$.ajax({
+			url:"name.php",
+			method:"POST",
+			data:$('add_name').serialize(),
+			success:function(data)
+			{
+				alert(data);
+				$('#add_name')[0].reset();
+			}
+		});
+	});
+});
+</script>
 
 
     <div class="container">
@@ -404,7 +453,7 @@
 
       <div class="topHeader">
         <h1>Weekly Schedule</h1>
-		<div class="dropdown">
+	<!--	<div class="dropdown">
 			<button class="addNew" onclick="myFunction()">Add Constrain</button>
 				<div id="myDropdown" class="dropdown-content">
 					<select name="Days">
@@ -418,7 +467,8 @@
 					</select>&nbsp;&nbsp;<input type="time" id="starting" name="starting">&nbsp;&nbsp;<input type="time" id="ending" name="ending">&nbsp;&nbsp;
 					<button type="button" name="add" id="add" class="btn btn-success">Next</button>
 				</div>
-		</div>
+		</div>-->
+		
         <table class = "tableHeader">
         <tr>
           <th>Time</th>
