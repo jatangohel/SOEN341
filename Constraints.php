@@ -79,9 +79,9 @@ require_once 'backendInterface.php';
 		<br />
 		<div class="card-columns">
 			<div class=" card card-body bg-primary text-center height:400px" >
-				<p> Minimum Credits of For This Semester</p>
-				<input type="number" id="credits1"/> &nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-success" name="btncredits1" id="btncredits1" value="submit"/>
-        <table>
+				<p> Minimum Credits This Semester
+				<input type="number"min="0" max="18"id="credits1"/> &nbsp;&nbsp;<input type="button" class="btn btn-success btn-sm" name="btncredits1" id="btncredits1" value="submit"/></p>
+        	<table class="gridtable" id="table1" border="0"onclick=window.location.href='file:///X:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html'>
           <thead>
           	<tr class="tableheader">
 							<th>Semester 1</th>
@@ -110,9 +110,9 @@ require_once 'backendInterface.php';
         </table>
 			</div>
 			<div class=" card card-body bg-warning text-center height:400px" >
-				<p> Minimum Credits of For This Semester</p>
-				<input type="number" id="credits1"/> &nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-success" name="btncredits1" id="btncredits1" value="submit"/>
-				<table class="gridtable" id="table2" border="0"onclick=window.location.href='file:///C:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html'>
+				<p> Minimum Credits This Semester
+				<input type="number" min="0" max="18" id="credits1"/> &nbsp;&nbsp;<input type="button" class="btn btn-success btn-sm" name="btncredits2" id="btncredits2" value="submit"/></p>
+				<table class="gridtable" id="table2" border="0"onclick=window.location.href='file:///X:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html'>
 					 <thead>
           	<tr class="tableheader">
 							<th>Semester 2</th>
@@ -141,9 +141,9 @@ require_once 'backendInterface.php';
 				</table>
 			</div>
 			<div class="card card-body bg-danger text-center height:400px">
-			<p> Minimum Credits of For This Semester</p>
-				<input type="number" id="credits1"/> &nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-success" name="btncredits1" id="btncredits1" value="submit"/>
-				<table class="gridtable" id="table3" border="0"onclick=window.location.href='file:///C:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html'>
+			<p> Minimum Credits This Semester
+				<input type="number" min="0" max="18" id="credits1"/> &nbsp;&nbsp;<input type="button" class="btn btn-success btn-sm" name="btncredits3" id="btncredits3" value="submit"/></p>
+				<table class="gridtable" id="table3" border="0"onclick=window.location.href='file:///X:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html'>
 					 <thead>
           	<tr class="tableheader">
 							<th>Semester 3</th>
