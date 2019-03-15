@@ -1,4 +1,6 @@
-
+<?php
+require_once 'backendInterface.php';
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -77,11 +79,11 @@
 		<br />
 		<div class="card-columns">
 			<div class=" card card-body bg-primary text-center height:400px" >
-<<<<<<< HEAD
-				<p> Minimum Credits For This Semester:&nbsp;&nbsp;<input type="number" id="credits1" min="0" max="18"/> &nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-success btn-sm" name="btncredits1" id="btncredits1" value="submit"/></p>
-				<table class="gridtable" id="table1" border="0" onclick=window.location.href='file:///C:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html'>
-					<thead>
-						<tr class="tableheader">
+				<p> Minimum Credits of For This Semester</p>
+				<input type="number" id="credits1"/> &nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-success" name="btncredits1" id="btncredits1" value="submit"/>
+        <table>
+          <thead>
+          	<tr class="tableheader">
 							<th>Semester 1</th>
 						</tr>
 					</thead>
@@ -93,47 +95,26 @@
 									<label>Credits</label>
 								</td>
 							</tr>
-						</tbody>
-						
-						<tbody>
-							<tr><td>COMP 232</td><td>3.00</td></tr>
-							<tr><td>COMP 248</td><td>3.50</td></tr>
-							<tr><td>ENGR 201</td><td>1.50</td></tr>
-							<tr><td>ENGR 213</td><td>3.00</td></tr>
-							<tr><td>SOEN 228</td><td>4.00</td></tr>
-						</tbody>
-					</tbody>
-				</table>
-=======
-				<p> Minimum Credits of For This Semester</p>
-				<input type="number" id="credits1"/> &nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-success" name="btncredits1" id="btncredits1" value="submit"/>
-        <table>
-          <thead>
             <tr>
-              <?php
-                $shop = array( array("title"=>"rose", "price"=>1.25 , "number"=>15),
-                array("title"=>"daisy", "price"=>0.75 , "number"=>25),
-                array("title"=>"orchid", "price"=>1.15 , "number"=>7)
-              );
-              ?>
-              <?php echo implode('</th><th>', array_keys(current($shop))); ?>
+
+              <?php echo implode('</th><th>', array_keys(current($semInfo))); ?>
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($shop as $row): array_map('htmlentities', $row); ?>
+            <?php foreach ($semInfo as $row): array_map('htmlentities', $row); ?>
               <tr>
                 <td><?php echo implode('</td><td>', $row); ?></td>
               </tr>
             <?php endforeach; ?>
           </tbody>
         </table>
->>>>>>> bad61f7b57433e7028fc63bb4f95d6a3de0f9e6a
 			</div>
 			<div class=" card card-body bg-warning text-center height:400px" >
-				<p> Minimum Credits For This Semester: &nbsp;&nbsp;<input type="number" id="credits2" min="0" max="18"/> &nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-success btn-sm" name="btncredits2" id="btncredits2" value="submit"/></p>
+				<p> Minimum Credits of For This Semester</p>
+				<input type="number" id="credits1"/> &nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-success" name="btncredits1" id="btncredits1" value="submit"/>
 				<table class="gridtable" id="table2" border="0"onclick=window.location.href='file:///C:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html'>
-					<thead>
-						<tr class="tableheader">
+					 <thead>
+          	<tr class="tableheader">
 							<th>Semester 2</th>
 						</tr>
 					</thead>
@@ -145,23 +126,26 @@
 									<label>Credits</label>
 								</td>
 							</tr>
-						</tbody>
+            <tr>
 
-						<tbody>
-							<tr><td>COMP 249</td><td>3.50</td></tr>
-							<tr><td>ENGR 233</td><td>3.00</td></tr>
-							<tr><td>ENGR 202</td><td>1.50</td></tr>
-							<tr><td>SOEN 287</td><td>3.00</td></tr>
-							<tr><td>ENGR 371</td><td>3.00</td></tr>
-						</tbody>
-					</tbody>
+              <?php echo implode('</th><th>', array_keys(current($semInfo2))); ?>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($semInfo2 as $row): array_map('htmlentities', $row); ?>
+              <tr>
+                <td><?php echo implode('</td><td>', $row); ?></td>
+              </tr>
+            <?php endforeach; ?>
+          </tbody>
 				</table>
 			</div>
 			<div class="card card-body bg-danger text-center height:400px">
-			<p> Minimum Credits For This Semester:&nbsp;&nbsp;<input type="number" id="credits3" min="0" max="18"/> &nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-success btn-sm" name="btncredits3" id="btncredits3" value="submit"/></p>
+			<p> Minimum Credits of For This Semester</p>
+				<input type="number" id="credits1"/> &nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-success" name="btncredits1" id="btncredits1" value="submit"/>
 				<table class="gridtable" id="table3" border="0"onclick=window.location.href='file:///C:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html'>
-					<thead>
-						<tr class="tableheader">
+					 <thead>
+          	<tr class="tableheader">
 							<th>Semester 3</th>
 						</tr>
 					</thead>
@@ -173,15 +157,18 @@
 									<label>Credits</label>
 								</td>
 							</tr>
-						</tbody>
+            <tr>
 
-						<tbody>
-							<tr><td>COMP 348</td><td>3.00</td></tr>
-							<tr><td>COMP 352</td><td>3.50</td></tr>
-							<tr><td>ELEC 275</td><td>3.50</td></tr>
-							<tr><td>ENCS 282</td><td>3.00</td></tr>
-						</tbody>
-					</tbody>
+              <?php echo implode('</th><th>', array_keys(current($semInfo3))); ?>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($semInfo3 as $row): array_map('htmlentities', $row); ?>
+              <tr>
+                <td><?php echo implode('</td><td>', $row); ?></td>
+              </tr>
+            <?php endforeach; ?>
+          </tbody>
 				</table>
 			</div>
 		</div>
