@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1
--- http://www.phpmyadmin.net
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 09, 2019 at 04:44 AM
--- Server version: 5.7.11
--- PHP Version: 5.6.18
+-- Host: 127.0.0.1
+-- Generation Time: Mar 15, 2019 at 02:28 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -632,16 +634,18 @@ CREATE TABLE `users` (
   `UserId` int(255) NOT NULL,
   `UserName` varchar(255) NOT NULL,
   `Password` varchar(255) NOT NULL,
-  `Email` varchar(255) NOT NULL
+  `Email` varchar(255) NOT NULL,
+  `Activated` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`UserId`, `UserName`, `Password`, `Email`) VALUES
-(1, 'Hani Sabsoob', 'HaniSX100234', 'sebhani98@gmail.com'),
-(2, 'John Malik', '123456789', 'JohnMalik@hotmail.com');
+INSERT INTO `users` (`UserId`, `UserName`, `Password`, `Email`, `Activated`) VALUES
+(0, 'Hani Hani', '12345678', 'hani-111-222@hotmail.com', 0),
+(1, 'Hani Sabsoob', 'HaniSX100234', 'sebhani98@gmail.com', 1),
+(2, 'John Malik', '123456789', 'JohnMalik@hotmail.com', 0);
 
 -- --------------------------------------------------------
 
@@ -1113,36 +1117,43 @@ ALTER TABLE `wtut`
 --
 ALTER TABLE `flab`
   MODIFY `LabID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
 --
 -- AUTO_INCREMENT for table `ftut`
 --
 ALTER TABLE `ftut`
   MODIFY `TutID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
+
 --
 -- AUTO_INCREMENT for table `pass`
 --
 ALTER TABLE `pass`
   MODIFY `PassedCourseId` int(24) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `slab`
 --
 ALTER TABLE `slab`
   MODIFY `LabID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
 --
 -- AUTO_INCREMENT for table `stut`
 --
 ALTER TABLE `stut`
   MODIFY `TutID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+
 --
 -- AUTO_INCREMENT for table `wlab`
 --
 ALTER TABLE `wlab`
   MODIFY `LabID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+
 --
 -- AUTO_INCREMENT for table `wtut`
 --
 ALTER TABLE `wtut`
   MODIFY `TutID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
+
 --
 -- Constraints for dumped tables
 --
@@ -1183,6 +1194,7 @@ ALTER TABLE `wlab`
 --
 ALTER TABLE `wlec`
   ADD CONSTRAINT `wlec_ibfk_1` FOREIGN KEY (`CourseName`) REFERENCES `coursesmain` (`CourseName`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
