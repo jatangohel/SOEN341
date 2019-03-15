@@ -21,4 +21,20 @@ foreach ($userSched->getListOfSemesters()[0]->getLecs() as $lec)
   array_push($semInfo,$courseInfo);
 }
 
+$semInfo2 = array (array());
+foreach ($userSched->getListOfSemesters()[1]->getLecs() as $lec)
+{
+  $courseInfo = array();
+  $courseInfo['Course Name'] = $lec->getCourseName();
+  $courseInfo['Credits'] = 3;
+  array_push($semInfo2,$courseInfo);
+}
+$semInfo3 = array (array());
+foreach ($userSched->getListOfSemesters()[2]->getLecs() as $lec)
+{
+  $courseInfo = array();
+  $courseInfo['Course Name'] = $lec->getCourseName();
+  $courseInfo['Credits'] = 3;
+  array_push($semInfo3,$courseInfo);
+}
  ?>
