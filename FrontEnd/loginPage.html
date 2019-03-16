@@ -18,6 +18,15 @@
 
 	<title>SOEN Course Stream</title>
 	<style type="text/css">
+		#brand-image
+		{
+			height: 40px;
+			float:right;
+		}
+		#brand-image1
+		{
+			height: 20px;
+		}
 		@media (max-width: 575px) {
 			.myH1 {
 				color: red;
@@ -82,6 +91,9 @@
 
 
 		</button>
+		<a class="navbar-brand" href="#">
+			<img id="brand-image" src="https://paxsims.files.wordpress.com/2013/11/concordialogo.gif" />
+		</a>
 
 		<span class="navbar-text">CourseSequence</span>
 		<div class="collapse navbar-collapse" id="collapse_target">
@@ -123,22 +135,22 @@
 
       <!-- Login And SignUp Modal - START -->
       <div class="container pb-modalreglog-container">
-          <div class="row">
-              <div class="col-xs-12 col-md-4 col-md-offset-4">
+       
+              <div class="col-md-12>
                   <div class="input-group pb-modalreglog-input-group">
-                    <p align="center">
-                      <button class="btn btn-primary pb-modalreglog-submit" data-toggle="modal" data-target="#myModal">Login</button>
-                      <button class="btn btn-primary pb-modalreglog-submit" data-toggle="modal" data-target="#myModal2">Register</button>
-                      </p>
+                    <center>
+                      <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Login</button>
+                      <button class="btn btn-danger" data-toggle="modal" data-target="#myModal2">Register</button>
+                      </center>
                   </div>
                   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                       <div class="modal-dialog" role="document">
                           <div class="modal-content">
                               <div class="modal-header">
+								<h4 class="modal-title" id="myModalLabel">Login form</h4>
                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                   </button>
-                                  <h4 class="modal-title" id="myModalLabel">Login form</h4>
                               </div>
       						<!-- login form -->
       						<form action="usersPage.php" method="POST">
@@ -160,8 +172,8 @@
       									</div>
 
       							</div>
-      							<div class="modal-footer">
-      								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      							<div class="modal-footer" >
+      								<button type="button" class="btn btn-secondary" style="float:left" data-dismiss="modal">Close</button>
       								<input name="login" value="Login "type="submit" class="btn btn-primary" id="login"/>
       							</div>
       						</form>
@@ -172,10 +184,10 @@
                       <div class="modal-dialog modal-sm" role="document">
                           <div class="modal-content">
                               <div class="modal-header">
+								<h4 class="modal-title" id="myModalLabel">Registration form</h4>
                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                   </button>
-                                  <h4 class="modal-title" id="myModalLabel">Registration form</h4>
                               </div>
       						<!-- Register form -->
       						<form class="pb-modalreglog-form-reg" action="usersPage.php" method="POST">
@@ -217,7 +229,7 @@
                           </div>
                       </div>
                   </div>
-              </div>
+      
           </div>
 
 	</div>
@@ -229,7 +241,7 @@
 
 	<div class="navbar navbar-inverse bg-dark fixed-bottom">
 		<div class="navbar-text text-white pull-left">
-			<p> Copyright Error404 Team 2019</p>
+			<p> <img id="brand-image1" src="https://pbs.twimg.com/profile_images/887741098424193024/EAz1Brtj_400x400.jpg" />Copyright Error404 Team 2019</p>
 		</div>
 		<div class="navbar-text text-success text-center">
 			<p> Please Share this Website to your friends, thanks!</p>
