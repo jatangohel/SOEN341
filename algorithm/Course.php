@@ -1,9 +1,10 @@
 <?php
 
+
+
 class Course
 {
   private $courseName; // String
-  private $courseID;   // int
   private $preReqs;    // array of Courses
   private $coReqs;     // array of Courses
   private $credits;    // int
@@ -11,9 +12,8 @@ class Course
   private $engProfReq; // bool
   private $priority;   // int
 
-  public function __construct($courseID, $courseName, $preReqs, $coReqs, $credits, $pass, $engProfReq)
+  public function __construct($courseName, $preReqs, $coReqs, $credits, $pass, $engProfReq)
   {
-    $this->courseID = $courseID;
     $this->courseName = $courseName;
     $this->preReqs = $preReqs;
     $this->coReqs = $coReqs;
@@ -26,11 +26,6 @@ class Course
   public function getCourseName()
   {
     return $this->courseName;
-  }
-
-  public function getCourseID()
-  {
-    return $this->courseID;
   }
 
   public function getPreReqs()
@@ -63,11 +58,6 @@ class Course
     return $this->priority;
   }
 
-  public function setCourseID($id)
-  {
-    $this->courseID = $id;
-  }
-
   public function setCourseName($name)
   {
     $this->courseName = $name;
@@ -78,17 +68,28 @@ class Course
     $this->priority = $priority;
   }
 
+  public function setPass($status)
+  {
+    $this->pass = $status;
+  }
+
+  public function dispAllPriority ($courses)
+  {
+    foreach ($courses as $c)
+    {
+      echo $c->getCourseName() . "number of descendents' paths is $c->numDescendents <br>";
+    }
+  }
 
   public function calPriority ($courses)
   {
     deleteCourse($this, $courses);
     $this->setPriority(0);
 
-    //echo "Checking $this->name <br>";
 
     foreach ($courses as $c)
     {
-      //echo "Checking $c->name <br>";
+      //var_dump($c);
       if ($c->getPreReqs() != null)
       {
 
@@ -96,8 +97,15 @@ class Course
         {
           if ($this->getCourseName() == $preReq->getCourseName() )
           {
-          $this->setPriority(1+($c->calPriority($courses)));
-          //echo "$this->numDescendents <br>";
+          $this->setPriority(-1+$this->priority+$c->calPriority($courses));
+                    //for debugging
+                    /*
+                    if($this->courseName =="COMP232")
+                    {
+                      echo $c->getCourseName() . '<br>';
+                      var_dump ($this);
+                    }
+                    */
           }
         }
       }
@@ -108,26 +116,21 @@ class Course
           if ($this->getCourseName() == $coReqs->getCourseName())
           {
           //echo "entered the if <br>";
-          $this->setPriority(1+($c->calPriority($courses)));
+          $this->setPriority(-1+$this->priority+$c->calPriority($courses));
+
+                      //for debugging
+                      /*
+                      if($this->courseName =="COMP232")
+                      {
+                        echo $c->getCourseName() . '<br>';
+                        var_dump ($this);
+                      }
+                      */
           }
         }
       }
     }
   return $this->priority;
-  }
-
-  public function updateAllPriority ($courses)
-  {
-    foreach ($courses as $c)
-      $c->calPriority($courses);
-  }
-
-  public function dispAllPriority ($courses)
-  {
-    foreach ($courses as $c)
-    {
-      echo $c->getCourseName() . "number of descendents' paths is $c->numDescendents <br>";
-    }
   }
 //    public function dispLength($course)
 //    {
@@ -140,4 +143,68 @@ class Course
 
 }
 
+function deleteCourse ($course, &$courses)
+{
+  foreach ($courses as $key=>$c)
+  {
+    if ($course->getCourseName() == $c->getCourseName())
+    {
+      unset($courses[$key]);
+      $courses=array_values($courses);
+      return;
+    }
+  }
+}
+
+function updateCourseStatus ($course, &$courses)
+{
+  foreach ($courses as $key=>$c)
+  {
+    if ($course->getCourseName() == $c->getCourseName())
+    {
+      $c->setPass(true);
+      return;
+    }
+  }
+}
+
+function coReqsSatisfied($courses)
+{
+  foreach ($courses as $key=>$c)
+  {
+    if ($c->getCoreqs() == null ) {
+      continue ;
+    }
+    else {
+      foreach ($c->getCoreqs() as $key=>$d)
+      {
+          if ($d->getPass()!=true){
+            foreach ($courses as $key=>$e){
+              if($d->getCourseName()==$e->getCourseName())
+                continue 2;
+            }
+            return false;
+          }
+      }
+    }
+  }
+  return true;
+}
+
+function coReqsSatisfiedCombs ($combs)
+{
+  $result = array ();
+
+  foreach ($combs as $courses)
+    if(coReqsSatisfied($courses))
+      array_push($result, $courses);
+
+  return $result;
+}
+
+function updateAllPriority ($courses)
+{
+  foreach ($courses as $c)
+    $c->calPriority($courses);
+}
 ?>
