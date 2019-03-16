@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<!-- Font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+	<title>SOEN Course Stream</title>
+	<style>
+	        :root{
+          --mainColor: #14162B;
+          --background: #2cc16a;
+
+          --fadedText: #36384D;
+
+          --mainButtons: rgb(241, 48, 78);
+
+        }
+	
+	  body {
+
+          background-image: linear-gradient(to bottom, rgba(255, 255, 255,9), rgba(230, 247, 255,9)), url("concordia.jpg");
+          background-image: -moz-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
+          background-image: -o-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
+          background-image: -ms-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
+          background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255,9)), to(rgba(230, 247, 255,9))), url(../../../../../Downloads/concordia.jpg);
+          background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,0)), url(concordia.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+	
+	        .container {
+          font-family: 'Montserrat', sans-serif;
+          position: fixed;
+          background: var(--mainColor);
+          height: 490px;
+          width: 800px;
+        /*   overflow: scroll; */
+          border-radius: 6px;
+          box-shadow: 0px 0px 47px -1px rgba(0,0,0,0.75);
+          /*   centering a fixed element in the middle of screen */
+          margin: -245px -400px;
+          top: 50%;
+          left: 50%;
+
+        }
+	 .topHeader {
+
+          color: white;
+          background: var(--mainColor);
+          height: 80px;
+          width: 100%;
+          padding: 15px 0px 15px 0px;
+          text-align: center;
+          z-index: 30;
+          box-shadow: 0px 10px 28px -11px rgba(0,0,0,0.35);
+        }
+
+        h1 {
+          font-size: 30px;
+          margin-top: 0px;
+          margin-bottom: 30px;
+          display: inline-block;
+          font-weight: 100;
+
+        }
+
+        .topHeader, th {
+          font-size: 15px;
+        }
+
+        .tableHeader th {
+          color: black;
+		  font-weight:500;
+          
+        }
+
+        table {
+          width: 100%;
+          border-spacing: 0px;
+        }
+        td, th {
+          width: 100px;
+        }
+        td {
+          height: 12px;
+          border-left: 1px solid rgba(120,120,255,0.5);
+
+        }
+        .time {
+          color: black;
+          font-size: 20px;
+          text-align: center;
+          font-weight: 100;
+
+        }
+
+        tr:nth-child(2n) {
+          background: rgba(120,120,255,0.06);
+        }
+
+	.myTable{
+	background-color: white;
+	color:black;
+	opacity: 0.75;
+	}
+	
+	.dropdown-menu{
+	background-color: #00b38f;
+	opacity:0.96;
+	}
+	
+
+	
+	
+	</style>
+	 <body>
+	 
+ <div class="topHeader">
+        <h1 class="text-center">Weekly Schedule</h1>
+		<div class="dropdown" style="float:right;margin-right:10px;">
+			<button class="btn btn-primary dropdown-toggle" name="btndropdown"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add Time Constrain</button>
+				<div class="dropdown-menu dropdown-menu-right">
+					<div class="form-group">
+						<form name="add_name" id="add_name">
+							<table class="table table-bordered" id="dynamic_field">
+								<tr>
+									<th class="text-center">Days</th>
+									<th class="text-center">Start Time</th>
+									<th class="text-center">End Time</th>
+									<th class="text-center"x>Status</th>
+								</tr>
+								<tr>
+									<td><select name="Days">
+										<option value="Monday">Monday</option>
+										<option value="Tuesday">Tuesday</option>
+										<option value="Wednesday">Wednesday</option>
+										<option value="Thursday">Thursday</option>
+										<option value="Friday">Friday</option>
+										<option value="Saturday">Saturday</option>
+										<option value="Sunday">Sunday</option>
+									</td>
+									
+									<td></select><input type="time" id="starting1" name="starting1" placeholder="Starting Time"></td>
+									<td><input type="time" id="ending1" name="ending1" placeholder="Ending Time"></td>
+									<td><button type="button" name="add" id="add" class="btn btn-secondary">Next</button></td>
+								</tr>
+								<input type="button" class="btn btn-success btn-sm"style="float:right; margin-right:20px;" value="submit"/>
+							</table>
+						</form>
+					</div>
+				</div>
+	</div>
+		
+		<div class="myTable">
+        <table class = "tableHeader">
+        <tr>
+          <th style="margin-left:20px">Time</th>
+          <th>Monday</th>
+          <th>Tuesday</th>
+          <th>Wednesday</th>
+          <th>Thursday</th>
+          <th>Friday</th>
+          <th>Saturday</th>
+          <th>Sunday</th>
+        </tr>
+      </table>
+    
+
+      <div class="scheduleArea">
+
+
+
+		</br>
+		
+      <table class="tableTimes" >
+
+        <tr >
+          <th class="time">8:00</th>
+          <td class="monday" name="monday8" id="monday8"></td>
+          <td class="tuesday" name="tuesday8" id="tuesday8"></td>
+          <td class="wednesday" name="wednesday8" id="wednesday8"></td>
+          <td class="thursday" name="thursday8" id="thursday8"></td>
+          <td class="friday" name="friday8" id="friday8"></td>
+          <td class="saturday"></td>
+		  <td class="sunday"></td>
+			
+        </tr>
+
+        <tr>
+          <th class="time ">9:00</th>
+          <td class="monday" name="monday9" id="monday9"></td>
+          <td class="tuesday" name="tuesday9" id="tuesday9"></td>
+          <td class="wednesday" name="wednesday9" id="wednesday9"></td>
+          <td class="thursday" name="thursday9" id="thursday9"></td>
+          <td class="friday" name="friday9" id="friday9"></td>
+          <td class="saturday"></td>
+		  <td class="sunday"></td>
+        </tr>
+
+       
+
+        <tr>
+          <th class="time">10:00</th>
+          <td class="monday" name="monday10" id="monday"></td>
+          <td class="tuesday" name="tuesday10" id="tuesday"></td>
+          <td class="wednesday" name="wednesday10" id="wednesday10"></td>
+          <td class="thursday" name="thursday10" id="thursday10"></td>
+          <td class="friday" name="friday10" id="friday10"></td>
+          <td class="saturday"></td>
+		  <td class="sunday"></td>
+        </tr>
+
+
+        <tr>
+          <th class="time">11:00</th>
+          <td class="monday" name="monday11" id="monday11"></td>
+          <td class="tuesday" name="tuesday11" id="tuesday11"></td>
+          <td class="wednesday" name="wednesday11" id="wednesday11"></td>
+          <td class="thursday" name="thursday11" id="thursday11"></td>
+          <td class="friday" name="friday11" id="friday11"></td>
+          <td class="saturday"></td>
+		  <td class="sunday"></td>
+        </tr>
+
+
+        <tr>
+          <th class="time">12:00</th>
+          <td class="monday" name="monday12" id="monday12"></td>
+          <td class="tuesday" name="tuesday12" id="tuesday12"></td>
+          <td class="wednesday" name="wednesday12" id="wednesday12"></td>
+          <td class="thursday" name="thursday12" id="thursday12"></td>
+          <td class="friday" name="friday12" id="friday12"></td>
+          <td class="saturday"></td>
+		  <td class="sunday"></td>
+        </tr>
+
+     
+        <tr>
+          <th class="time">13:00</th>
+          <td class="monday" name="monday13" id="monday13"></td>
+          <td class="tuesday" name="tuesday13" id="tuesday13"></td>
+          <td class="wednesday" name="wednesday13" id="wednesday13"></td>
+          <td class="thursday" name="thursday13" id="thursday13"></td>
+          <td class="friday" name="friday13" id="friday13"></td>
+          <td class="saturday"></td>
+		  <td class="sunday"></td>
+        </tr>
+
+
+        <tr>
+          <th class="time">14:00</th>
+          <td class="monday" name="monday14" id="monday14"></td>
+          <td class="tuesday" name="tuesday14" id="tuesday14"></td>
+          <td class="wednesday" name="wednesday14" id="wednesday14"></td>
+          <td class="thursday" name="thursday14" id="thursday14"></td>
+          <td class="friday" name="friday14" id="friday14"></td>
+          <td class="saturday"></td>
+          <td class="sunday"></td>
+        </tr>
+
+        <tr>
+          <th class="time">15:00</th>
+          <td class="monday" name="monday15" id="monday15"></td>
+          <td class="tuesday" name="tuesday15" id="tuesday15"></td>
+          <td class="wednesday" name="wednesday15" id="wednesday15"></td>
+          <td class="thursday" name="thursday15" id="thursday15"></td>
+          <td class="friday" name="friday15" id="friday15"></td>
+          <td class="saturday"></td>
+          <td class="sunday"></td>
+        </tr>
+ 
+
+        <tr>
+          <th class="time">16:00</th>
+          <td class="monday" name="monday16" id="monday16"></td>
+          <td class="tuesday" name="tuesday16" id="tuesday16"></td>
+          <td class="wednesday" name="wednesday16" id="wednesday16"></td>
+          <td class="thursday" name="thursday16" id="thursday16"></td>
+          <td class="friday" name="friday16" id="friday16"></td>
+          <td class="saturday"></td>
+          <td class="sunday"></td>
+        </tr>
+
+        <tr>
+          <th class="time">17:00</th>
+          <td class="monday" name="monday17" id="monday17"></td>
+          <td class="tuesday" name="tuesday17" id="tuesday17"></td>
+          <td class="wednesday" name="wednesday17" id="wednesday17"></td>
+          <td class="thursday" name="thursday17" id="thursday17"></td>
+          <td class="friday" name="friday17" id="friday17"></td>
+          <td class="saturday"></td>
+          <td class="sunday"></td>
+        </tr>
+
+        <tr>
+          <th class="time">18:00</th>
+          <td class="monday" name="monday18" id="monday18"></td>
+          <td class="tuesday" name="tuesday18" id="tuesday18"></td>
+          <td class="wednesday" name="wednesday18" id="wednesday18"></td>
+          <td class="thursday" name="thursday18" id="thursday18"></td>
+          <td class="friday" name="friday18" id="friday18"></td>
+          <td class="saturday"></td>
+          <td class="sunday"></td>
+        </tr>
+
+        <tr>
+          <th class="time">19:00</th>
+          <td class="monday" name="monday19" id="monday19"></td>
+          <td class="tuesday" name="tuesday19" id="tuesday19"></td>
+          <td class="wednesday" name="wednesday19" id="wednesday19"></td>
+          <td class="thursday" name="thursday19" id="thursday19"></td>
+          <td class="friday" name="friday19" id="friday19"></td>
+          <td class="saturday"></td>
+          <td class="sunday"></td>
+        </tr>    
+
+        <tr>
+          <th class="time">20:00</th>
+          <td class="monday" name="monday20" id="monday20"></td>
+          <td class="tuesday" name="tuesday20" id="tuesday20"></td>
+          <td class="wednesday" name="wednesday20" id="wednesday20"></td>
+          <td class="thursday" name="thursday20" id="thursday20"></td>
+          <td class="friday" name="friday20" id="friday20"></td>
+          <td class="saturday"></td>
+          <td class="sunday"></td>
+
+        </tr>
+
+        <tr>
+          <th class="time">21:00</th>
+          <td class="monday" name="monday21" id="monday21"></td>
+          <td class="tuesday" name="tuesday21" id="tuesday21"></td>
+          <td class="wednesday" name="wednesday21" id="wednesday21"></td>
+          <td class="thursday" name="thursday21" id="thursday21"></td>
+          <td class="friday" name="friday21" id="friday21"></td>
+          <td class="saturday"></td>
+          <td class="sunday"></td>
+		  
+        </tr>
+
+
+      </table>
+
+
+
+      </div>
+	    </div>
+    <!-- end of schedule area   -->
+
+
+    
+    <!--  end of container  -->
+	
+	</div>
+	</div>
+ <script>
+	$(document).ready(function(){
+	var i = 1;
+	$('#add').click(function(){
+		i++;
+		$('#dynamic_field').append('<tr id="row'+i+'"><td><select name="Days"><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday">Friday</option><option value="Saturday">Saturday</option><option value="Sunday">Sunday</option></select></td><td><input type="time" id="starting'+i+'" name="starting'+i+'"></td><td><input type="time" id="ending'+i+'" name="ending'+i+'"></td><td><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+	});
+	$(document).on('click','.btn_remove',function(){
+		var button_id = $(this).attr("id");
+		$("#row"+button_id+'').remove();
+	});
+	$('#submit').click(function(){
+		$.ajax({
+			url:"name.php",
+			method:"POST",
+			data:$('add_name').serialize(),
+			success:function(data)
+			{
+				alert(data);
+				$('#add_name')[0].reset();
+			}
+		});
+	});
+});
+</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+ 		
+</body>		
+</html>	
