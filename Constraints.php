@@ -50,29 +50,42 @@ require_once 'backendInterface.php';
 			<form name="add_name" id="add_name">
 				<table class="table table-bordered" id="dynamic_field">
 					 <tr>
-						<td><select name="Years" >
-							<option value="first_year" selected>First Year</option>
-							<option value="first_year">Second Year</option>
-							<option value="first_year">Third Year</option>
-							<option value="first_year">Fourth Year</option>
-							<option value="first_year">Fifth Year</option>
-							<option value="first_year">Sixth Year</option>
+						<td><select id= "listYear1",name="Years", onchange="getSelectYear();" >
+							<option value="1" selected>First Year</option>
+							<option value="2">Second Year</option>
+							<option value="3">Third Year</option>
+							<option value="4">Fourth Year</option>
+							<option value="5">Fifth Year</option>
+							<option value="6">Sixth Year</option>
+							</select>
+							
+						</td>
+						<td><select id = "list1",name="Term", onchange="getSelectTerm();">
+							<option value="S" selected>Summer Term</option>
+							<option value="F">Fall Term</option>
+							<option value="W">Winter Term</option>
+							</select>
+						
+						</td>
+						<td><select name="Number" id="number1">
+							<option value="0" selected>0</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
 							</select>
 						</td>
-						<td><select name="Term" >
-							<option value="Summer" selected>Summer Term</option>
-							<option value="Fall">Fall Term</option>
-							<option value="Winter">Winter Term</option>
-							</select>
-						</td>
-						<td><input type="number" name="quantity" min="0" max="6" name="number1" id="number1" class="form-control" placeholder="Semester 1" /></td>
 						<td><button type="button" name="add" id="add" class="btn btn-success">Next</button></td>
-					</tr>
+					</tr>						
 				</table>
 				<input type="button" class="btn btn-primary" name="submit" id="submit" value="submit"/>
 			</form>
+			
 		</div>
 	</div>
+
 
 	<div class="jumbotron jumbotron-fluid">
 				<h2 align="center"class="header margin-top:0px">General Course Schedule</h2>
@@ -220,11 +233,13 @@ require_once 'backendInterface.php';
 
 
 <script>
+	//var i = 1;
+	var i = 1 ;
 $(document).ready(function(){
-	var i = 1;
+	//var i = 1;
 	$('#add').click(function(){
 		i++;
-		$('#dynamic_field').append('<tr id="row'+i+'"><td><select name="Years" ><option value="first_year" selected>First Year</option><option value="first_year">Second Year</option><option value="first_year">Third Year</option><option value="first_year">Fourth Year</option><option value="first_year">Fifth Year</option><option value="first_year">Sixth Year</option></select></td><td><select name="Term" ><option value="Summer" selected>Summer Term</option><option value="Fall">Fall Term</option><option value="Winter">Winter Term</option></select></td><td><input type="number" name="quantity" min="0" max="6" name="number'+i+'" id="number'+i+'" class="form-control" placeholder="Semester '+i+'"/></td><td><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+		$('#dynamic_field').append('<tr id="row'+i+'"><td><select name="Years" " id="listYear'+i+'" ><option value="1" selected>First Year</option><option value="2">Second Year</option><option value="3">Third Year</option><option value="4">Fourth Year</option><option value="5">Fifth Year</option><option value="6">Sixth Year</option></select></td><td><select name="Term" " id="list'+i+'"><option value="S" selected>Summer Term</option><option value="F">Fall Term</option><option value="W">Winter Term</option></select></td><td><select name="Credits" id="number'+i+'" ><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select></td><td><button type="remove" id='+i+' class="btn btn-danger btn_remove">X</button></td></tr>');
 	});
 	$(document).on('click','.btn_remove',function(){
 		var button_id = $(this).attr("id");
@@ -245,6 +260,37 @@ $(document).ready(function(){
 		});
 	});
 });
+                         function getSelectYearTerm(){
+									var y;
+									var selectYear=[];
+									for (y =1; y<i+1;y++){
+									selectYear1 = document.getElementById("listYear"+y).value + document.getElementById("list"+y).value;
+									selectYear.push(selectYear1);
+								
+								}
+								
+								//return selectYear;
+							console.log(selectYear);
+
+								}
+
+                           function getNumberOfCourse(){
+                           	        var c;
+									var courseNo=[];
+									for (c=1; c<i+1;c++){
+									courseNo1 = document.getElementById("number"+c).value;
+									courseNo.push(courseNo1);
+                           }
+                          // return courseNo;
+                           console.log(courseNo);
+                         }
+
+  $(document).ready(function(){
+					$('#submit').click(function(){
+						getSelectYearTerm();
+						getNumberOfCourse();
+					});
+				});
 </script>
 <script>
 	$(document).ready(function(){
@@ -262,8 +308,9 @@ $(document).ready(function(){
 					marginTop: "0%",
 				},200);
 			}
-		};
-	});
+		});
+	
+
 </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
