@@ -37,6 +37,15 @@ require_once 'backendInterface.php';
 			-moz-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
 			box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
 		}
+		.btndropdown {
+			display: block;
+			width: 100%;
+			border: none;
+			padding: 14px 28px;
+			font-size: 16px;
+			cursor: pointer;
+			text-align: center;
+		}
 
 	</style>
   </head>
@@ -46,8 +55,11 @@ require_once 'backendInterface.php';
 		<br />
 		<h2 align="center">Distrubte your courses for each semester (0-6 courses)</h2>
 
-		<div class="form-group">
-			<form name="add_name" id="add_name">
+	<div class="dropdown" >
+			<button class="btndropdown btn-lg btn-primary dropdown-toggle" type="button" name="btndropdown"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add Constrain</button>
+				<div class="dropdown-menu dropdown-menu-right"style="width:100%">
+				<div class="form-group" style="width:100%">
+				<form name="add_name" id="add_name">
 				<table class="table table-bordered" id="dynamic_field">
 					 <tr>
 						<td><select name="Years" >
@@ -69,8 +81,10 @@ require_once 'backendInterface.php';
 						<td><button type="button" name="add" id="add" class="btn btn-success">Next</button></td>
 					</tr>
 				</table>
-				<input type="button" class="btn btn-primary" name="submit" id="submit" value="submit"/>
-			</form>
+				&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary" name="submit" id="submit" value="submit"/>
+				</form>
+				</div>
+			</div>	
 		</div>
 	</div>
 
