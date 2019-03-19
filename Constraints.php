@@ -7,14 +7,15 @@ require_once 'backendInterface.php';
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 	    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.min.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
 	<title>SOEN Course Stream</title>
 	<style>
@@ -64,11 +65,11 @@ require_once 'backendInterface.php';
 					 <tr>
 						<td><select name="Years" >
 							<option value="first_year" selected>First Year</option>
-							<option value="first_year">Second Year</option>
-							<option value="first_year">Third Year</option>
-							<option value="first_year">Fourth Year</option>
-							<option value="first_year">Fifth Year</option>
-							<option value="first_year">Sixth Year</option>
+							<option value="second_year">Second Year</option>
+							<option value="third_year">Third Year</option>
+							<option value="fourth_year">Fourth Year</option>
+							<option value="fifth_year">Fifth Year</option>
+							<option value="sixth_year">Sixth Year</option>
 							</select>
 						</td>
 						<td><select name="Term" >
@@ -77,7 +78,16 @@ require_once 'backendInterface.php';
 							<option value="Winter">Winter Term</option>
 							</select>
 						</td>
-						<td><input type="number" name="quantity" min="0" max="6" name="number1" id="number1" class="form-control" placeholder="Semester 1" /></td>
+						<td><select name="Credits" >
+							<option value="0" selected>0</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							</select>
+						</td>						
 						<td><button type="button" name="add" id="add" class="btn btn-success">Next</button></td>
 					</tr>
 				</table>
@@ -238,7 +248,7 @@ $(document).ready(function(){
 	var i = 1;
 	$('#add').click(function(){
 		i++;
-		$('#dynamic_field').append('<tr id="row'+i+'"><td><select name="Years" ><option value="first_year" selected>First Year</option><option value="first_year">Second Year</option><option value="first_year">Third Year</option><option value="first_year">Fourth Year</option><option value="first_year">Fifth Year</option><option value="first_year">Sixth Year</option></select></td><td><select name="Term" ><option value="Summer" selected>Summer Term</option><option value="Fall">Fall Term</option><option value="Winter">Winter Term</option></select></td><td><input type="number" name="quantity" min="0" max="6" name="number'+i+'" id="number'+i+'" class="form-control" placeholder="Semester '+i+'"/></td><td><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+		$('#dynamic_field').append('<tr id="row'+i+'"><td><select name="Years" ><option value="first_year" selected>First Year</option><option value="second_year">Second Year</option><option value="third_year">Third Year</option><option value="fourth_year">Fourth Year</option><option value="fifth_year">Fifth Year</option><option value="sixth_year">Sixth Year</option></select></td><td><select name="Term" ><option value="Summer" selected>Summer Term</option><option value="Fall">Fall Term</option><option value="Winter">Winter Term</option></select></td><td><select name="Credits" ><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select></td><td><button type="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
 	});
 	$(document).on('click','.btn_remove',function(){
 		var button_id = $(this).attr("id");

@@ -75,7 +75,16 @@
 							<option value="Winter">Winter Term</option>
 							</select>
 						</td>
-						<td><input type="number" name="quantity" min="0" max="6" name="number1" id="number1" class="form-control" placeholder="Semester 1" /></td>
+						<td><select name="Credits" >
+							<option value="0" selected>0</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							</select>
+						</td>	
 						<td><button type="button" name="add" id="add" class="btn btn-success">Next</button></td>
 					</tr>
 				</table>
@@ -251,7 +260,7 @@ $(document).ready(function(){
 	var i = 1;
 	$('#add').click(function(){
 		i++;
-		$('#dynamic_field').append('<tr id="row'+i+'"><td><select name="Years" ><option value="first_year" selected>First Year</option><option value="first_year">Second Year</option><option value="first_year">Third Year</option><option value="first_year">Fourth Year</option><option value="first_year">Fifth Year</option><option value="first_year">Sixth Year</option></select></td><td><select name="Term" ><option value="Summer" selected>Summer Term</option><option value="Fall">Fall Term</option><option value="Winter">Winter Term</option></select></td><td><input type="number" name="quantity" min="0" max="6" name="number'+i+'" id="number'+i+'" class="form-control" placeholder="Semester '+i+'"/></td><td><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+		$('#dynamic_field').append('<tr id="row'+i+'"><td><select name="Years" ><option value="first_year" selected>First Year</option><option value="second_year">Second Year</option><option value="third_year">Third Year</option><option value="fourth_year">Fourth Year</option><option value="fifth_year">Fifth Year</option><option value="sixth_year">Sixth Year</option></select></td><td><select name="Term" ><option value="Summer" selected>Summer Term</option><option value="Fall">Fall Term</option><option value="Winter">Winter Term</option></select></td><td><select name="Credits" ><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select></td><td><button type="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
 	});
 	$(document).on('click','.btn_remove',function(){
 		var button_id = $(this).attr("id");
