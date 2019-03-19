@@ -243,8 +243,14 @@ $(document).ready(function(){
 	});
 	$(document).on('click','.btn_remove',function(){
 		var button_id = $(this).attr("id");
+		if (button_id == i){
 		i--;
 		$("#row"+button_id+'').remove();
+	}
+	else{
+		alert("Please delet from the last one.");
+		
+	}
 	});
 
 	$('#submit').click(function(){
