@@ -50,7 +50,7 @@ require_once 'backendInterface.php';
 			<form name="add_name" id="add_name">
 				<table class="table table-bordered" id="dynamic_field">
 					 <tr>
-						<td><select id= "listYear1",name="Years", onchange="getSelectYear();" >
+						<td><select id= "listYear1",name="Years" >
 							<option value="1" selected>First Year</option>
 							<option value="2">Second Year</option>
 							<option value="3">Third Year</option>
@@ -60,7 +60,7 @@ require_once 'backendInterface.php';
 							</select>
 							
 						</td>
-						<td><select id = "list1",name="Term", onchange="getSelectTerm();">
+						<td><select id = "list1",name="Term">
 							<option value="S" selected>Summer Term</option>
 							<option value="F">Fall Term</option>
 							<option value="W">Winter Term</option>
