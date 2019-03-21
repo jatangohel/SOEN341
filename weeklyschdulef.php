@@ -192,10 +192,21 @@ require_once 'backendInterface.php';
 
         <tr style="border-top: 2px solid black; ">
           <td class="time" rowspan="4" scope="row"><span class>8:00</span></td>
-          <td name=<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime();?>
+          <!--<td name=<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime();?>
 		  id=<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime();?>
 		  rowspan="5" style="color:rgb(0,0,0);background-color:rgb(182,209,146);text-align: center;">
             <span class style="color:rgb(0,0,0);background-color:rgb(182,209,146);">SOEN  341 - S<br>Lecture<br>8:00AM - 9:15AM<br>Faubourg Building (FG) C080</span>
+          </td>-->
+		  		  <td 
+				  name=<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime();?>
+				  rowspan= <?php echo ($userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime() - $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime())/0.15; ?>>
+            <span>
+				<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime();
+				echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getCourseName() . " - " . $userSched->getListOfSemesters()[0]->getLecs()[0]->getSection() . " " . $userSched->getListOfSemesters()[0]->getLecs()[0]->getSubSection();?>
+				<br>Lecture<br>
+				<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()/10000 . ":" . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()/100?>
+				-
+				<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()/10000 . ":" . $userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()/100?></span>
           </td>
           <td class="tuesday" name="tuesday8" id="tuesday8">&nbsp;</td>
 		  
@@ -205,14 +216,7 @@ require_once 'backendInterface.php';
           <td class="saturday">&nbsp;</td>
 		      <td class="sunday">&nbsp;</td>
  		  
-		  <td rowspan= <?php echo ($userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime() - $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime())/1500; ?>
-            <span>
-				<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getCourseName() . " - " . $userSched->getListOfSemesters()[0]->getLecs()[0]->getSection() . " " . $userSched->getListOfSemesters()[0]->getLecs()[0]->getSubSection();?>
-				<br>Lecture<br>
-				<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()/10000 . ":" . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()/100?>
-				-
-				<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()/10000 . ":" . $userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()/100?></span>
-          </td>
+
 			  
         </tr>
         <tr >   

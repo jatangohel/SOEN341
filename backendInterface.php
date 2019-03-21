@@ -12,7 +12,7 @@ if (array_key_exists('numCoursesTerm', $_POST))
 		$term = $_POST['numCoursesTerm'][$i];
 		$numCoursesArr[$term] = (int) $_POST['numCoursesConstrain'][$i];
 	 } 
-	 var_dump($numCoursesArr);
+	 //var_dump($numCoursesArr);
 }
 
 
@@ -31,7 +31,7 @@ foreach ($userSched->getListOfSemesters()[0]->getLecs() as $lec)
   $courseInfo['Credits'] = 3;
   array_push($semInfo,$courseInfo);
 }
-var_dump($semInfo);
+//var_dump($semInfo);
 
 $semInfo2 = array (array());
 foreach ($userSched->getListOfSemesters()[1]->getLecs() as $lec)
