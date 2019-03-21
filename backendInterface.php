@@ -5,7 +5,7 @@ require_once __DIR__.'/algorithm/UserSchedule.php';
 
 $numCoursesArr = array();
 $noClassesArr=array(array());
-
+/*
 if (array_key_exists('numCoursesTerm', $_POST))
 {
 	for ($i=0; $i < count($_POST['numCoursesTerm']); $i++) {
@@ -14,7 +14,7 @@ if (array_key_exists('numCoursesTerm', $_POST))
 	 } 
 	 //var_dump($numCoursesArr);
 }
-
+*/
 
 $userSched = new UserSchedule("F", $numCoursesArr, $noClassesArr);
 
