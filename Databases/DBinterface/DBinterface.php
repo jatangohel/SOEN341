@@ -4,7 +4,7 @@
 static $createdCourses = array();
 
 function getLectureSections($course, $semester){
-	require('config/db.php');		require('config/db.php');		require('config/db.php');		require('config/db.php');
+	require('config/db.php');
 	$stack=array();
 
 	static $table ;
@@ -47,8 +47,13 @@ function getLectureSections($course, $semester){
 		$lecInfo = $post ['LecInfo'];
 		$subSection = null;
 		$lecDay = explode(",",$post ['LecDay']);
-		$startLecTime= $post ['StartLecTime'];
-		$endLecTime= $post ['EndLecTime'];
+		$startLecTime = (int) $post ['StartLecTime'];
+		$endLecTime = (int) $post ['EndLecTime'];
+		
+		/*
+		$startLecTime= (int) str_replace(":","",$post ['StartLecTime']);
+		$endLecTime= (int) str_replace(":","", $post ['EndLecTime']);
+		*/
 		$campus = "SGW";
 
 			//Making a new session object with the course information
@@ -63,7 +68,6 @@ function getLectureSections($course, $semester){
 
 
 function getTutorialSection($course, $semester, $section){
-		//include('tutorialfunction.php');
 	require('config/db.php');
 
 	$stack=array();
@@ -109,8 +113,8 @@ function getTutorialSection($course, $semester, $section){
 		$lecInfo = $post ['LecInfo'];
 		$subSection = $post['TutSection'];
 		$lecDay = explode(",",$post ['TutDay']);
-		$startLecTime= $post ['StartTutTime'];
-		$endLecTime= $post ['EndTutTime'];
+		$startLecTime= (int) $post ['StartTutTime'];
+		$endLecTime= (int) $post ['EndTutTime'];
 		$campus = "SGW";
 
 			//Making a new session object with the course information
@@ -165,8 +169,8 @@ function getLabSection($course, $semester){
 		$courseName = $post['CourseName'];
 		$labSection = $post ['LabSection'];
 		$labDay = explode(",",$post ['LabDay']);
-		$startLabTime= $post ['StartLabTime'];
-		$endLabTime= $post ['EndLabTime'];
+		$startLabTime= (int) $post ['StartLabTime'];
+		$endLabTime= (int) $post ['EndLabTime'];
 		$campus = "SGW";
 
 		//Making a new session object with the course information
@@ -369,19 +373,7 @@ function getCourse($courseName){
 	}
 }
 
-function getID($email){
 
-	require('config/db.php');
-
-	$query1 ="SELECT L.user_id FROM login L INNER JOIN `course` C ON C.`courseid` = L.`user_id` WHERE L.`email`='$email'";
-
-	$result1 = mysqli_query($conn1, $query1);
-
-	    //Fetch Data
-	$posts1 = mysqli_fetch_all($result1, MYSQLI_ASSOC);
-
-	return $posts1;
-}
 
 //getCourse('COMP232');
 
