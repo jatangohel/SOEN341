@@ -107,10 +107,10 @@
 				<a class="nav-link" href="#">Link 2 </a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Link 3 </a>
+				<a class="nav-link" href="#">Profile</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Link 4 </a>
+				<a class="nav-link" href="#">About Us </a>
 			</li>
 		</ul>
 		</div>
@@ -162,7 +162,7 @@
       							</div>
       							<div class="modal-footer">
       								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      								<input name="login" value="Login "type="submit" class="btn btn-primary"/>
+      								<input name="login" value="Login "type="submit" class="btn btn-primary" id="login"/>
       							</div>
       						</form>
                           </div>
@@ -341,6 +341,11 @@
           });
       })
   </script>
+  <script type="text/javascript">
+    document.getElementById("login").onclick = function () {
+        location.href = "file:///C:/xampp/htdocs/SOEN341/Generate.html?intake=Fall+Intake&submit=Generate";
+    };
+</script>
 
 
   </body>
