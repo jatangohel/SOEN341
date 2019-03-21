@@ -15,6 +15,7 @@ require_once 'backendInterface.php';
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script src="jquery.js"></script>
 
 	<title>SOEN Course Stream</title>
 	<style>
@@ -82,15 +83,15 @@ require_once 'backendInterface.php';
 				</table>
 				<input type="button" class="btn btn-primary" name="submit" id="submit" value="submit"/>
 			</form>
-			
+			<div id="result"></div>
 		</div>
 	</div>
 
 
-	<div class="jumbotron jumbotron-fluid">
+	<div id="card"  class="jumbotron jumbotron-fluid">
 				<h2 align="center"class="header margin-top:0px">General Course Schedule</h2>
 		<br />
-		<div class="card-columns">
+		<div  class="card-columns">
 			<div class=" card card-body bg-primary text-center height:400px" >
 				<p> Minimum Credits This Semester
 				<input type="number"min="0" max="18"id="credits1"/> &nbsp;&nbsp;<input type="button" class="btn btn-success btn-sm" name="btncredits1" id="btncredits1" value="submit"/></p>
@@ -110,7 +111,10 @@ require_once 'backendInterface.php';
 							</tr>
             <tr>
 
+            	
               <?php echo implode('</th><th>', array_keys(current($semInfo))); ?>
+              
+    
             </tr>
           </thead>
           <tbody>
@@ -141,7 +145,7 @@ require_once 'backendInterface.php';
 							</tr>
             <tr>
 
-              <?php echo implode('</th><th>', array_keys(current($semInfo2))); ?>
+             <?php echo implode('</th><th>', array_keys(current($semInfo2))); ?>
             </tr>
           </thead>
           <tbody>
@@ -266,17 +270,42 @@ $(document).ready(function(){
 		});
 	});
 });
+
+				function reload(){
+    var container = document.getElementById("card");
+    var content = container.innerHTML;
+    container.innerHTML= content; 
+    
+    //setTimeout(function(){
+
+    	//})
+   //this line is to watch the result in console , you can remove it later	
+    console.log(content); 
+}
+
+
+                        function getTotalTerm(){
+                        	var z =i;
+                        	return z;
+                        	//console.log(z);
+                        }
+						function getFirstTerm(){
+							firstTerm=document.getElementById("list1").value;
+							return firstTerm;
+						}
                          function getSelectYearTerm(){
 									var y;
 									var selectYear=[];
 									for (y =1; y<i+1;y++){
 									selectYear1 = document.getElementById("listYear"+y).value + document.getElementById("list"+y).value;
+									//selectYear [selectYear1] = document.getElementById("number"+y).value; 
 									selectYear.push(selectYear1);
+									//console.log(selectYear);
 								
 								}
 								
-								//return selectYear;
-							console.log(selectYear);
+								return selectYear;
+							//console.log(selectYear);
 
 								}
 
@@ -287,16 +316,33 @@ $(document).ready(function(){
 									courseNo1 = document.getElementById("number"+c).value;
 									courseNo.push(courseNo1);
                            }
-                          // return courseNo;
-                           console.log(courseNo);
+                           return courseNo;
+                          // console.log(courseNo);
                          }
 
   $(document).ready(function(){
 					$('#submit').click(function(){
-						getSelectYearTerm();
-						getNumberOfCourse();
+						$.post('backendInterface.php',{
+							numCoursesTerm:getSelectYearTerm(),
+							numCoursesConstrain:getNumberOfCourse()} ,
+		            function(data){
+
+			  $('#result').html(data);
+		       });
+						//getSelectYearTerm();
+						//getNumberOfCourse();
+						//reload();
+					});
+					
+				});
+
+ $(document).ready(function(){
+					$('#btncredits1').click(function(){
+
+				reload();
 					});
 				});
+ 
 </script>
 <script>
 	$(document).ready(function(){
