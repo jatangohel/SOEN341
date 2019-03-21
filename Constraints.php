@@ -119,6 +119,8 @@ require_once 'backendInterface.php';
 									<label>Credits</label>
 								</td>
 							</tr>
+						</tbody>
+					</tbody>
             <tr>
 
               <?php echo implode('</th><th>', array_keys(current($semInfo))); ?>

@@ -47,8 +47,13 @@ function getLectureSections($course, $semester){
 		$lecInfo = $post ['LecInfo'];
 		$subSection = null;
 		$lecDay = explode(",",$post ['LecDay']);
-		$startLecTime= $post ['StartLecTime'];
-		$endLecTime= $post ['EndLecTime'];
+		$startLecTime = (int) $post ['StartLecTime'];
+		$endLecTime = (int) $post ['EndLecTime'];
+		
+		/*
+		$startLecTime= (int) str_replace(":","",$post ['StartLecTime']);
+		$endLecTime= (int) str_replace(":","", $post ['EndLecTime']);
+		*/
 		$campus = "SGW";
 
 			//Making a new session object with the course information
@@ -109,8 +114,8 @@ function getTutorialSection($course, $semester, $section){
 		$lecInfo = $post ['LecInfo'];
 		$subSection = $post['TutSection'];
 		$lecDay = explode(",",$post ['TutDay']);
-		$startLecTime= $post ['StartTutTime'];
-		$endLecTime= $post ['EndTutTime'];
+		$startLecTime= (int) $post ['StartTutTime'];
+		$endLecTime= (int) $post ['EndTutTime'];
 		$campus = "SGW";
 
 			//Making a new session object with the course information
@@ -165,8 +170,8 @@ function getLabSection($course, $semester){
 		$courseName = $post['CourseName'];
 		$labSection = $post ['LabSection'];
 		$labDay = explode(",",$post ['LabDay']);
-		$startLabTime= $post ['StartLabTime'];
-		$endLabTime= $post ['EndLabTime'];
+		$startLabTime= (int) $post ['StartLabTime'];
+		$endLabTime= (int) $post ['EndLabTime'];
 		$campus = "SGW";
 
 		//Making a new session object with the course information
