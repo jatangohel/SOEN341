@@ -1,5 +1,7 @@
 <?php
-require_once 'backendInterface.php';
+  session_start();
+  $_SESSION["semInfo"] = "TEST";
+  require_once 'backendInterface.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -39,19 +41,25 @@ require_once 'backendInterface.php';
 			box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
 		}
 
+
+
 	</style>
   </head>
  <body>
+   <form action="backendInterface.php" method="post">
+   <input type="submit" name="End Session" value ="End Session">
+   </form>
+
 	<div class="container">
 		<br />
 		<br />
 		<h2 align="center">Distrubte your courses for each semester (0-6 courses)</h2>
 
 		<div class="form-group">
-			<form name="add_name" id="add_name">
+			<form name="num_courses_per_sem" id="num_courses_per_sem" action="backendInterface.php" method="post" >
 				<table class="table table-bordered" id="dynamic_field">
 					 <tr>
-						<td><select id= "listYear1",name="Years" >
+						<td><select id= "Years1" name="Years[]" >
 							<option value="1" selected>First Year</option>
 							<option value="2">Second Year</option>
 							<option value="3">Third Year</option>
@@ -59,16 +67,16 @@ require_once 'backendInterface.php';
 							<option value="5">Fifth Year</option>
 							<option value="6">Sixth Year</option>
 							</select>
-							
+
 						</td>
-						<td><select id = "list1",name="Term">
+						<td><select  id = "Term1" name="Term[]">
 							<option value="S" selected>Summer Term</option>
 							<option value="F">Fall Term</option>
 							<option value="W">Winter Term</option>
 							</select>
-						
+
 						</td>
-						<td><select name="Number" id="number1">
+						<td><select id="NumberofCourses1" name="NumberofCourses[]">
 							<option value="0" selected>0</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -79,9 +87,9 @@ require_once 'backendInterface.php';
 							</select>
 						</td>
 						<td><button type="button" name="add" id="add" class="btn btn-success">Next</button></td>
-					</tr>						
+					</tr>
 				</table>
-				<input type="button" class="btn btn-primary" name="submit" id="submit" value="submit"/>
+				<input type="submit" class="btn btn-primary" name="submit" id="submit" value="Submit #Courses"/>
 			</form>
 			<div id="result"></div>
 		</div>
@@ -95,7 +103,7 @@ require_once 'backendInterface.php';
 			<div class=" card card-body bg-primary text-center height:400px" >
 				<p> Minimum Credits This Semester
 				<input type="number"min="0" max="18"id="credits1"/> &nbsp;&nbsp;<input type="button" class="btn btn-success btn-sm" name="btncredits1" id="btncredits1" value="submit"/></p>
-        	<table class="gridtable" id="table1" border="0"onclick=window.location.href='file:///X:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html'>
+        	<table class="gridtable" id="table1" border="0"onclick=window.location.href='file:///D:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html'>
           <thead>
           	<tr class="tableheader">
 							<th>Semester 1</th>
@@ -113,14 +121,18 @@ require_once 'backendInterface.php';
 					</tbody>
             <tr>
 
-            	
-              <?php echo implode('</th><th>', array_keys(current($semInfo))); ?>
-              
-    
+
+              <?php
+              //var_dump($_SESSION);
+              $semInfoFE = $_SESSION['semInfo'];
+              echo implode('</th><th>', array_keys(current($semInfoFE)));
+               ?>
+
+
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($semInfo as $row): array_map('htmlentities', $row); ?>
+            <?php foreach ($semInfoFE as $row): array_map('htmlentities', $row); ?>
               <tr>
                 <td><?php echo implode('</td><td>', $row); ?></td>
               </tr>
@@ -131,7 +143,7 @@ require_once 'backendInterface.php';
 			<div class=" card card-body bg-warning text-center height:400px" >
 				<p> Minimum Credits This Semester
 				<input type="number" min="0" max="18" id="credits1"/> &nbsp;&nbsp;<input type="button" class="btn btn-success btn-sm" name="btncredits2" id="btncredits2" value="submit"/></p>
-				<table class="gridtable" id="table2" border="0"onclick=window.location.href='file:///X:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html'>
+				<table class="gridtable" id="table2" border="0"onclick=window.location.href='file:///D:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html'>
 					 <thead>
           	<tr class="tableheader">
 							<th>Semester 2</th>
@@ -162,7 +174,7 @@ require_once 'backendInterface.php';
 			<div class="card card-body bg-danger text-center height:400px">
 			<p> Minimum Credits This Semester
 				<input type="number" min="0" max="18" id="credits1"/> &nbsp;&nbsp;<input type="button" class="btn btn-success btn-sm" name="btncredits3" id="btncredits3" value="submit"/></p>
-				<table class="gridtable" id="table3" border="0"onclick=window.location.href='file:///X:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html'>
+				<table class="gridtable" id="table3" border="0"onclick=window.location.href='file:///D:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html'>
 					 <thead>
           	<tr class="tableheader">
 							<th>Semester 3</th>
@@ -245,7 +257,7 @@ $(document).ready(function(){
 	//var i = 1;
 	$('#add').click(function(){
 		i++;
-		$('#dynamic_field').append('<tr id="row'+i+'"><td><select name="Years" " id="listYear'+i+'" ><option value="1" selected>First Year</option><option value="2">Second Year</option><option value="3">Third Year</option><option value="4">Fourth Year</option><option value="5">Fifth Year</option><option value="6">Sixth Year</option></select></td><td><select name="Term" " id="list'+i+'"><option value="S" selected>Summer Term</option><option value="F">Fall Term</option><option value="W">Winter Term</option></select></td><td><select name="Credits" id="number'+i+'" ><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select></td><td><button type="remove" id='+i+' class="btn btn-danger btn_remove">X</button></td></tr>');
+		$('#dynamic_field').append('<tr id="row'+i+'"><td><select name="Years[]" " id="Years'+i+'" ><option value="1" selected>First Year</option><option value="2">Second Year</option><option value="3">Third Year</option><option value="4">Fourth Year</option><option value="5">Fifth Year</option><option value="6">Sixth Year</option></select></td><td><select name="Term[]" " id="Term'+i+'"><option value="S" selected>Summer Term</option><option value="F">Fall Term</option><option value="W">Winter Term</option></select></td><td><select name="NumberofCourses[]" id="NumberofCourses'+i+'" ><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select></td><td><button type="remove" id='+i+' class="btn btn-danger btn_remove">X</button></td></tr>');
 	});
 	$(document).on('click','.btn_remove',function(){
 		var button_id = $(this).attr("id");
@@ -255,7 +267,7 @@ $(document).ready(function(){
 	}
 	else{
 		alert("Please delet from the last one.");
-		
+
 	}
 	});
 
@@ -273,16 +285,16 @@ $(document).ready(function(){
 	});
 });
 
-				function reload(){
+		function reload(){
     var container = document.getElementById("card");
     var content = container.innerHTML;
-    container.innerHTML= content; 
-    
+    container.innerHTML= content;
+
     //setTimeout(function(){
 
     	//})
-   //this line is to watch the result in console , you can remove it later	
-    console.log(content); 
+   //this line is to watch the result in console , you can remove it later
+    console.log(content);
 }
 
 
@@ -299,13 +311,13 @@ $(document).ready(function(){
 									var y;
 									var selectYear=[];
 									for (y =1; y<i+1;y++){
-									selectYear1 = document.getElementById("listYear"+y).value + document.getElementById("list"+y).value;
-									//selectYear [selectYear1] = document.getElementById("number"+y).value; 
+									selectYear1 = document.getElementById("Years"+y).value + document.getElementById("list"+y).value;
+									//selectYear [selectYear1] = document.getElementById("number"+y).value;
 									selectYear.push(selectYear1);
 									//console.log(selectYear);
-								
+
 								}
-								
+
 								return selectYear;
 							//console.log(selectYear);
 
@@ -322,21 +334,23 @@ $(document).ready(function(){
                           // console.log(courseNo);
                          }
 
+/**************************************
   $(document).ready(function(){
 					$('#submit').click(function(){
 						$.post('backendInterface.php',{
-							numCoursesTerm:getSelectYearTerm(),
+							numCoursesYearTerm:getSelectYearTerm(),
 							numCoursesConstrain:getNumberOfCourse()} ,
 		            function(data){
 
 			  $('#result').html(data);
 		       });
-						//getSelectYearTerm();
-						//getNumberOfCourse();
+
+            //document.location.reload(false);
 						//reload();
 					});
-					
+
 				});
+****************************************/
 
  $(document).ready(function(){
 					$('#btncredits1').click(function(){
@@ -344,7 +358,7 @@ $(document).ready(function(){
 				reload();
 					});
 				});
- 
+
 </script>
 <script>
 	$(document).ready(function(){
@@ -363,7 +377,7 @@ $(document).ready(function(){
 				},200);
 			}
 		});
-	
+
 
 </script>
 
