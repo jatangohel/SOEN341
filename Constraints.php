@@ -1,5 +1,10 @@
+<?php 
+session_start();
+
+?>
 <?php
 require_once 'backendInterface.php';
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -45,6 +50,11 @@ require_once 'backendInterface.php';
 	<div class="container">
 		<br />
 		<br />
+		<?php 
+				print_r ($_SESSION["semInfoSes"]);
+				//print_r($)
+		 ?>
+
 		<h2 align="center">Distrubte your courses for each semester (0-6 courses)</h2>
 
 		<div class="form-group">
@@ -111,10 +121,8 @@ require_once 'backendInterface.php';
 							</tr>
             <tr>
 
-            	
-              <?php echo implode('</th><th>', array_keys(current($semInfo))); ?>
-              
-    
+             <?php 
+             echo implode('</th><th>', array_keys(current($semInfo))); ?>
             </tr>
           </thead>
           <tbody>
@@ -280,7 +288,7 @@ $(document).ready(function(){
 
     	//})
    //this line is to watch the result in console , you can remove it later	
-    console.log(content); 
+    //console.log(content); 
 }
 
 
@@ -320,7 +328,7 @@ $(document).ready(function(){
                           // console.log(courseNo);
                          }
 
-  $(document).ready(function(){
+  /*$(document).ready(function(){
 					$('#submit').click(function(){
 						$.post('backendInterface.php',{
 							numCoursesTerm:getSelectYearTerm(),
@@ -328,20 +336,63 @@ $(document).ready(function(){
 		            function(data){
 
 			  $('#result').html(data);
+
+			  console.log(data);
+
+			  });
+
 		       });
 						//getSelectYearTerm();
 						//getNumberOfCourse();
-						//reload();
-					});
+						reload();
 					
-				});
 
- $(document).ready(function(){
-					$('#btncredits1').click(function(){
+					});S
+				*
+				$('#submit').click(function(){
+						$.POST('backendInterface.php',{
+							numCoursesTerm:getSelectYearTerm(),
+							numCoursesConstrain:getNumberOfCourse()} ,
+		            success:(function(data)){
+		            	 someFunction( data );
+                   return data;
 
-				reload();
-					});
-				});
+			 // $('#result').html(data);
+			  return (data);
+			  	},
+			  	error:(function()){
+			  		alert('Error');
+			  	});
+			  });
+		*/	  
+	 $('#submit').click(function(){
+		$.ajax({
+        type: "POST",
+        url: 'backendInterface.php',
+        data: ({numCoursesTerm:getSelectYearTerm(),numCoursesConstrain:getNumberOfCourse()}),
+        success: function(data) {
+                // Call this function on success
+            someFunction( data );
+            return data;
+        },
+        error: function() {
+            alert('Error occured');
+        }
+    });
+});
+
+			function someFunction( data ) {
+		
+				console.log(data);
+			}
+
+
+		      
+						//getSelectYearTerm();
+						//getNumberOfCourse();
+						//reload();
+
+
  
 </script>
 <script>
