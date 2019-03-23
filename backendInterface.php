@@ -68,7 +68,7 @@ function genNewSched ()
 	}
 	$semInfo3 = array_slice($semInfo3,1);
 	$_SESSION['semInfo3'] = $semInfo3;
-	
+
 }
 
 if( empty($_POST['submitID']) )                                   //A
@@ -88,8 +88,5 @@ elseif ($_POST['submitID'] == "Submit #Courses" )  // continuing           //F
 	genNewSched();
                                            //G
 }
-elseif ($_POST['submitID'] == "End Session" )  // continuing           //F
-{
-	session_end();
-}
+
  ?>
