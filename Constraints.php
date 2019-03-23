@@ -1,10 +1,6 @@
-<?php 
-session_start();
 
-?>
 <?php
 require_once 'backendInterface.php';
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -50,10 +46,6 @@ require_once 'backendInterface.php';
 	<div class="container">
 		<br />
 		<br />
-		<?php 
-				print_r ($_SESSION["semInfoSes"]);
-				//print_r($)
-		 ?>
 
 		<h2 align="center">Distrubte your courses for each semester (0-6 courses)</h2>
 
@@ -69,14 +61,14 @@ require_once 'backendInterface.php';
 							<option value="5">Fifth Year</option>
 							<option value="6">Sixth Year</option>
 							</select>
-							
+
 						</td>
 						<td><select id = "list1",name="Term">
 							<option value="S" selected>Summer Term</option>
 							<option value="F">Fall Term</option>
 							<option value="W">Winter Term</option>
 							</select>
-						
+
 						</td>
 						<td><select name="Number" id="number1">
 							<option value="0" selected>0</option>
@@ -89,7 +81,7 @@ require_once 'backendInterface.php';
 							</select>
 						</td>
 						<td><button type="button" name="add" id="add" class="btn btn-success">Next</button></td>
-					</tr>						
+					</tr>
 				</table>
 				<input type="button" class="btn btn-primary" name="submit" id="submit" value="submit"/>
 			</form>
@@ -123,12 +115,13 @@ require_once 'backendInterface.php';
 					</tbody>
             <tr>
 
-             <?php 
-             echo implode('</th><th>', array_keys(current($semInfo))); ?>
+             <?php
+             $semInfoFE = $_SESSION['semInfo'];
+             echo implode('</th><th>', array_keys(current($semInfoFE))); ?>
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($semInfo as $row): array_map('htmlentities', $row); ?>
+            <?php foreach ($semInfoFE as $row): array_map('htmlentities', $row); ?>
               <tr>
                 <td><?php echo implode('</td><td>', $row); ?></td>
               </tr>
@@ -155,11 +148,13 @@ require_once 'backendInterface.php';
 							</tr>
             <tr>
 
-             <?php echo implode('</th><th>', array_keys(current($semInfo2))); ?>
+             <?php
+              $semInfo2FE = $_SESSION['semInfo2'];
+              echo implode('</th><th>', array_keys(current($semInfo2FE))); ?>
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($semInfo2 as $row): array_map('htmlentities', $row); ?>
+            <?php foreach ($semInfo2FE as $row): array_map('htmlentities', $row); ?>
               <tr>
                 <td><?php echo implode('</td><td>', $row); ?></td>
               </tr>
@@ -186,11 +181,13 @@ require_once 'backendInterface.php';
 							</tr>
             <tr>
 
-              <?php echo implode('</th><th>', array_keys(current($semInfo3))); ?>
+              <?php
+              $semInfo3FE = $_SESSION['semInfo3'];
+              echo implode('</th><th>', array_keys(current($semInfo3FE))); ?>
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($semInfo3 as $row): array_map('htmlentities', $row); ?>
+            <?php foreach ($semInfo3FE as $row): array_map('htmlentities', $row); ?>
               <tr>
                 <td><?php echo implode('</td><td>', $row); ?></td>
               </tr>
@@ -201,6 +198,7 @@ require_once 'backendInterface.php';
 		</div>
 	</div>
 
+<?php session_end(); ?>
 
 <!--
 		Fall					Winter
@@ -263,7 +261,7 @@ $(document).ready(function(){
 	}
 	else{
 		alert("Please delet from the last one.");
-		
+
 	}
 	});
 
@@ -284,13 +282,13 @@ $(document).ready(function(){
 				function reload(){
     var container = document.getElementById("card");
     var content = container.innerHTML;
-    container.innerHTML= content; 
-    
+    container.innerHTML= content;
+
     //setTimeout(function(){
 
     	//})
-   //this line is to watch the result in console , you can remove it later	
-    //console.log(content); 
+   //this line is to watch the result in console , you can remove it later
+    //console.log(content);
 }
 
 
@@ -308,12 +306,12 @@ $(document).ready(function(){
 									var selectYear=[];
 									for (y =1; y<i+1;y++){
 									selectYear1 = document.getElementById("listYear"+y).value + document.getElementById("list"+y).value;
-									//selectYear [selectYear1] = document.getElementById("number"+y).value; 
+									//selectYear [selectYear1] = document.getElementById("number"+y).value;
 									selectYear.push(selectYear1);
 									//console.log(selectYear);
-								
+
 								}
-								
+
 								return selectYear;
 							//console.log(selectYear);
 
@@ -330,14 +328,16 @@ $(document).ready(function(){
                           // console.log(courseNo);
                          }
 
-  /*$(document).ready(function(){
+  $(document).ready(function(){
 					$('#submit').click(function(){
 						$.post('backendInterface.php',{
-							numCoursesTerm:getSelectYearTerm(),
+              submitID:"Submit #Courses",
+							numCoursesYearTerm:getSelectYearTerm(),
 							numCoursesConstrain:getNumberOfCourse()} ,
 		            function(data){
 
 			  $('#result').html(data);
+        setTimeout(window.location.reload(false), 10000) ;
 
 			  console.log(data);
 
@@ -346,11 +346,11 @@ $(document).ready(function(){
 		       });
 						//getSelectYearTerm();
 						//getNumberOfCourse();
-						reload();
-					
+						//reload();
+
 
 					});S
-				*
+				/*
 				$('#submit').click(function(){
 						$.POST('backendInterface.php',{
 							numCoursesTerm:getSelectYearTerm(),
@@ -366,7 +366,7 @@ $(document).ready(function(){
 			  		alert('Error');
 			  	});
 			  });
-		*/	  
+
 	 $('#submit').click(function(){
 		$.ajax({
         type: "POST",
@@ -382,20 +382,20 @@ $(document).ready(function(){
         }
     });
 });
-
+*/
 			function someFunction( data ) {
-		
+
 				console.log(data);
 			}
 
 
-		      
+
 						//getSelectYearTerm();
 						//getNumberOfCourse();
 						//reload();
 
 
- 
+
 </script>
 <script>
 	$(document).ready(function(){
@@ -414,7 +414,7 @@ $(document).ready(function(){
 				},200);
 			}
 		});
-	
+
 
 </script>
 
