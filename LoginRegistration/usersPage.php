@@ -40,8 +40,7 @@
 		//getting the login info from the HTML form
 		$userEmail = $_POST['userEmail'];
 		$userPws = $_POST['userPassword'];
-		
-		
+
 		//retrieving data from the DB
 		$sql = 'SELECT * FROM users WHERE Email = ?';
 		$stmt = $pdo->prepare($sql);
@@ -75,12 +74,31 @@
 	
 	//Register new user
 	if(isset($_POST['register'])){
+
+		$LastId = 0;
+
+		//find the last userId
+		$sql = 'SELECT * FROM users';
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute([]);
+		$tt = $stmt->fetchAll();
+		foreach($tt as $t){
+			$LastId++;
+		}
+
+		if($LastId > 0)
+			$LastId++;
+
 		//getting the login info from the HTML form
 		$userName = $_POST['userName'];
 		$userEmail = $_POST['userEmail'];
 		$userPws = $_POST['userPassword'];
 		
-		
+/*		echo $userName.'<br/>';
+		echo $userEmail.'<br/>';
+		echo $userPws;
+*/
+
 		//retrieving data from the DB
 		$sql = 'SELECT * FROM users WHERE Email = ?';
 		$stmt = $pdo->prepare($sql);
@@ -94,11 +112,13 @@
 			$dbUserEmail = $user->Email;
 		}
 		
+//		echo '<br/>if state bool: '.($dbUserEmail == null && !empty($userEmail) && !empty($userPws)).'<br/>';
+
 		//no similar useremail exist in the DB and the user didn't leave his info empty
 		if($dbUserEmail == null && !empty($userEmail) && !empty($userPws)){
-			$sql = 'INSERT INTO users(Email, Password, UserName,Activated) values (?,?,?,?)';
+			$sql = 'INSERT INTO users(Email, Password, UserName,Activated,UserId) values (?,?,?,?,?)';
 			$stmt = $pdo->prepare($sql);
-			$stmt->execute([$userEmail, $userPws,$userName,1]);
+			$stmt->execute([$userEmail, $userPws,$userName,1,$LastId]);
 			
 			//str_replace is used to remove @ sign since it ruins the link
 			$activationLink = 'activateAccount.php?conf='.$userPws.'1430'.substr($userEmail,0,3)."&userEmail=".str_replace("@","remat",$userEmail);
