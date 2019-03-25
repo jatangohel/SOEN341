@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2019 at 02:28 AM
+-- Generation Time: Mar 25, 2019 at 04:06 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -421,11 +421,17 @@ CREATE TABLE `pass` (
 --
 
 INSERT INTO `pass` (`PassedCourseId`, `UserId`, `CourseName`) VALUES
-(1, 1, 'COMP232'),
-(2, 1, 'COMP248'),
-(3, 1, 'COMP249'),
 (4, 2, 'ENGR213'),
-(5, 2, 'COMP248');
+(5, 2, 'COMP248'),
+(603, 1, 'COMP352'),
+(604, 1, 'ENCS282'),
+(605, 1, 'ENGR202'),
+(606, 1, 'COMP248'),
+(607, 1, 'COMP249'),
+(608, 1, 'ENGR201'),
+(609, 3, 'COMP249'),
+(610, 3, 'ENGR201'),
+(611, 1, 'SOEN341');
 
 -- --------------------------------------------------------
 
@@ -635,17 +641,22 @@ CREATE TABLE `users` (
   `UserName` varchar(255) NOT NULL,
   `Password` varchar(255) NOT NULL,
   `Email` varchar(255) NOT NULL,
-  `Activated` int(1) NOT NULL
+  `Activated` int(1) NOT NULL,
+  `InputtedPassed` tinyint(1) DEFAULT NULL,
+  `FirstSemester` varchar(225) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`UserId`, `UserName`, `Password`, `Email`, `Activated`) VALUES
-(0, 'Hani Hani', '12345678', 'hani-111-222@hotmail.com', 0),
-(1, 'Hani Sabsoob', 'HaniSX100234', 'sebhani98@gmail.com', 1),
-(2, 'John Malik', '123456789', 'JohnMalik@hotmail.com', 0);
+INSERT INTO `users` (`UserId`, `UserName`, `Password`, `Email`, `Activated`, `InputtedPassed`, `FirstSemester`) VALUES
+(1, 'Hani Sabsoob', 'HaniSX100234', 'sebhani98@gmail.com', 1, 1, 'R'),
+(2, 'John Malik', '123456789', 'JohnMalik@hotmail.com', 0, 0, 'R'),
+(3, 'Obama', '123123123', 'test@t.com', 1, 1, 'R'),
+(4, 'hdhsfc', '123123123', 'htest@hh.com', 1, 0, 'F'),
+(5, 'Obama', '12345678', 'jatan@h.com', 1, 0, 'R'),
+(6, 'Hani Sabsoob', 'hani100234', 'hani-111-222@hotmail.com', 1, 0, 'R');
 
 -- --------------------------------------------------------
 
@@ -1128,7 +1139,7 @@ ALTER TABLE `ftut`
 -- AUTO_INCREMENT for table `pass`
 --
 ALTER TABLE `pass`
-  MODIFY `PassedCourseId` int(24) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `PassedCourseId` int(24) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=612;
 
 --
 -- AUTO_INCREMENT for table `slab`

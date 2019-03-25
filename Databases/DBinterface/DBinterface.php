@@ -258,12 +258,10 @@ function getUntakenCourses($email)
 
 		$query = 'select UserId from users where Email="'.$email.'"';
 		$result = mysqli_query($conn, $query);
-	//$userID = mysqli_fetch_all($result, MYSQLI_ASSOC);
 		$data = mysqli_fetch_array($result);
-	//mysqli_free_result($data);
 		$userId = $data['UserId'];
 
-	//var_dump($data);
+		//if a user is not found
 		if(empty($userId))
 			return false;
 
@@ -296,36 +294,49 @@ function getUntakenCourses($email)
 }
 
 //Updates the database by changing the status of the courses recently taken
-function updateTakenCourses($email,$courseName)
+function updateTakenCourses($email,$takenCourses)
 {
-				require('config/db.php');
-				echo false;
-				echo true;
-		$query = 'select UserId from users where Email="'.$email.'"';
-		$result = mysqli_query($conn, $query);
+	require('config/db.php');
+	
+	$query = 'select UserId from users where Email="'.$email.'"';
+	$result = mysqli_query($conn, $query);
 	//$userID = mysqli_fetch_all($result, MYSQLI_ASSOC);
-		$data = mysqli_fetch_array($result);
+	$data = mysqli_fetch_array($result);
 	//mysqli_free_result($data);
-		$userId = $data['UserId'];
-		if(empty($userId))
-			return false;
-		$untaken=getUntakenCourses($email);
-		var_dump($untaken);
-		static	$counter=0;
-		$found=false;
-		foreach ($untaken as $untook) {
-			$courseUntakenName=$untook['CourseName'];
- 			if($courseUntakenName==$courseName){
- 			global $found;
- 			 $found=true;
- 			}
+	$userId = $data['UserId'];
+	
+	//user is not found
+	if(empty($userId))
+		return false;
+	
+	//if a course must be added
+	$found = false;
+
+	//find all taken courses
+	$query = "select CourseName from pass where UserId=$userId";
+	$result = mysqli_query($conn, $query);
+	$passedCourses = mysqli_fetch_all($result, MYSQLI_ASSOC);
+	mysqli_free_result($result);
+
+	//remove all already inserted courses
+	for($i=0;$i<sizeof($passedCourses);$i++){
+		for($j=0;$j<sizeof($takenCourses);$j++){
+			if($passedCourses[$i]['CourseName']==$takenCourses[$j])
+				array_splice($takenCourses, $j,1);
 		}
-		global $found;
+	}
+
+	//if the there's course to insert of not
+	if(sizeof($takenCourses)!=0)
+		$found = true;
+		
  		if($found===true){
-		$query = 'insert into pass (UserId, CourseName) values ('.$userId.',"'.$courseName.'")';
-		$result = mysqli_query($conn, $query);
+ 			for($i=0;$i<sizeof($takenCourses);$i++){
+				$query = 'insert into pass (UserId, CourseName) values ('.$userId.',"'.$takenCourses[$i].'")';
+				$result = mysqli_query($conn, $query);
+			}
 		}else{
-			echo "This course has been already added";
+			echo "All courses have been already added";
 		}
 
 }
@@ -374,6 +385,20 @@ function getCourse($courseName){
 }
 
 
+
+function updateInputtedPassed($email,$newVal){
+	require('config/db.php');
+
+	$query = 'update users set InputtedPassed = "'.$newVal.'" where Email = "'.$email.'"';
+	$result = mysqli_query($conn, $query);
+}
+
+function updatedFirstSemester($email,$newVal){
+	require('config/db.php');
+
+	$query = 'update users set FirstSemester = "'.$newVal.'" where Email = "'.$email.'"';
+	$result = mysqli_query($conn, $query);
+}
 
 //getCourse('COMP232');
 
