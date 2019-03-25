@@ -22,7 +22,7 @@ class Semester
   private $labs;
   private $status;
 
-  public function __construct($name, $year, $numCourses,$timesNoClass,$status)
+  public function __construct($name, $year, $numCourses,$timesNoClass)
   {
     $this->name = $name;
     $this->year = $year;
@@ -31,7 +31,7 @@ class Semester
     $this->lecs = array ();
     $this->tuts = array ();
     $this->labs = array ();
-    $this->status = $status;
+    $this->status = 0;
   }
 
 

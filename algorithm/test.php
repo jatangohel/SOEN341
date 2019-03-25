@@ -40,9 +40,9 @@ array_push($noSem1, $no4);
 array_push($noSem1, $no5);
 //$noClassesArr['2F']=$noSem1;
 //$noClassesArr['2W']=$noSem1;
-$userSched = new UserSchedule("F", $numCoursesArr, $noClassesArr);
-
-$userSched->genProgramSched('sebhani98@gmail.com');
+$userSched = new UserSchedule($numCoursesArr, $noClassesArr);
+$testUser = new user('hani',"sebhani98@gmail.com" , 'hani123', $userSched, "F");
+$userSched->genProgramSched($testUser);
 
 $userSched->dispUserSchedule();
 
