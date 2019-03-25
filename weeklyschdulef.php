@@ -118,7 +118,7 @@ require_once 'backendInterface.php';
           background: rgba(120,120,255,0.06);
         }
 
-#monday8,#wednesday8{
+#M8,#W8{
       color:rgb(0,0,0);background-color:rgb(182,209,100);text-align: center;
 }
 	.myTable{
@@ -155,7 +155,7 @@ require_once 'backendInterface.php';
 									<th class="text-center"x>Status</th>
 								</tr>
 								<tr>
-									<td><select name="Days">
+									<td><select name="Days" style="text-align:center;">
 										<option value="Monday">Monday</option>
 										<option value="Tuesday">Tuesday</option>
 										<option value="Wednesday">Wednesday</option>
@@ -181,11 +181,11 @@ require_once 'backendInterface.php';
       <table class="tableTimes" >
 	          <tr>
           <th style="margin-left:20px">Time</th>
-          <th>Monday</th>
-          <th>Tuesday</th>
-          <th>Wednesday</th>
-          <th>Thursday</th>
-          <th>Friday</th>
+          <th>M</th>
+          <th>T</th>
+          <th>W</th>
+          <th>J</th>
+          <th>F</th>
           <th>Saturday</th>
           <th>Sunday</th>
         </tr>
@@ -196,23 +196,23 @@ require_once 'backendInterface.php';
 		  id=<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime();?>
 		  rowspan="5" style="color:rgb(0,0,0);background-color:rgb(182,209,146);text-align: center;">
             <span class style="color:rgb(0,0,0);background-color:rgb(182,209,146);">SOEN  341 - S<br>Lecture<br>8:00AM - 9:15AM<br>Faubourg Building (FG) C080</span>
-          </td>-->
+          </td>--> 
 		  		  <td 
 				  name=<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime();?>
-				  rowspan= <?php echo ($userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime() - $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime())/1500; ?>>
+				  rowspan= <?php echo ($userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime() - $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime())/150000; ?>>
             <span>
 				<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime();
 				echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getCourseName() . " - " . $userSched->getListOfSemesters()[0]->getLecs()[0]->getSection() . " " . $userSched->getListOfSemesters()[0]->getLecs()[0]->getSubSection();?>
 				<br>Lecture<br>
-				<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()/10000 . ":" . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()/100?>
+				<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()/10000) . ":" . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()%10000/100?>
 				-
-				<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()/10000 . ":" . $userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()/100?></span>
+				<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()/10000 ). ":" . $userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()%10000/100;?></span>
           </td>
-          <td class="tuesday" name="tuesday8" id="tuesday8">&nbsp;</td>
+          <td class="T" name="T80000" id="T80000">&nbsp;</td>
 		  
-          <td class="wednesday" name="wednesday8" id="wednesday8">5555&nbsp;</td>
-          <td class="thursday" name="thursday8" id="thursday8">&nbsp;</td>
-          <td class="friday" name="friday8" id="friday8">&nbsp;</td>
+          <td class="W" name="W80000" id="W80000">10&nbsp;</td>
+          <td class="J" name="J80000" id="J80000">8&nbsp;</td>
+          <td class="F" name="F80000" id="F80000">0&nbsp;</td>
           <td class="saturday">&nbsp;</td>
 		      <td class="sunday">&nbsp;</td>
  		  
@@ -221,31 +221,31 @@ require_once 'backendInterface.php';
         </tr>
         <tr >   
 
-          <td class="monday" name="monday815" id="monday815">&nbsp;</td>
-          <td class="tuesday" name="tuesday815" id="tuesday815">&nbsp;</td>
-          <td class="wednesday" name="wednesday815" id="wednesday815">&nbsp;</td>
-          <td class="thursday" name="thursday815" id="thursday815">&nbsp;</td>
-          <td class="friday" name="friday815" id="friday815">&nbsp;</td>
+          <td class="M" name="M81500" id="M81500">&nbsp;</td>
+          <td class="T" name="T81500" id="T81500">&nbsp;</td>
+          <td class="W" name="W81500" id="W81500">&nbsp;</td>
+          <td class="J" name="J81500" id="J81500">&nbsp;</td>
+          <td class="F" name="F81500" id="F81500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>    
         </tr>        
         <tr >
-          <td class="monday" name="monday830" id="monday830">&nbsp;</td>
-          <td class="tuesday" name="tuesday830" id="tuesday830">&nbsp;</td>
-          <td class="wednesday" name="wednesday830" id="wednesday830">&nbsp;</td>
-          <td class="thursday" name="thursday830" id="thursday830">&nbsp;</td>
-          <td class="friday" name="friday830" id="friday830">&nbsp;</td>
+          <td class="M" name="M83000" id="M83000">&nbsp;</td>
+          <td class="T" name="T83000" id="T83000">&nbsp;</td>
+          <td class="W" name="W83000" id="W83000">&nbsp;</td>
+          <td class="J" name="J83000" id="J83000">&nbsp;</td>
+          <td class="F" name="F83000" id="F83000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>    
         </tr>        
         <tr >
-          <td class="monday" name="monday845" id="monday845">&nbsp;</td>
-          <td class="tuesday" name="tuesday845" id="tuesday845"rowspan="5" style="color:rgb(0,0,0);background-color:rgb(182,209,146);text-align: center;">
+          <td class="M" name="M84500" id="M84500">&nbsp;</td>
+          <td class="T" name="T84500" id="T84500"rowspan="5" style="color:rgb(0,0,0);background-color:rgb(182,209,146);text-align: center;">
             <span class style="color:rgb(0,0,0);background-color:rgb(182,209,146);">COEN  390 - S<br>Lecture<br>8:45AM - 10:00AM<br>Faubourg Building (FG) C090</span>
 			</td>
-          <td class="wednesday" name="wednesday845" id="wednesday845">&nbsp;</td>
-          <td class="thursday" name="thursday845" id="thursday845">&nbsp;</td>
-          <td class="friday" name="friday845" id="friday845">&nbsp;</td>
+          <td class="W" name="W84500" id="W84500">&nbsp;</td>
+          <td class="J" name="J84500" id="J84500">&nbsp;</td>
+          <td class="F" name="F84500" id="F84500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>    
         </tr>
@@ -254,38 +254,38 @@ require_once 'backendInterface.php';
 
         <tr>
           <td class="time" rowspan="4" scope="row"><span class>9:00</span>&nbsp;</td>
-          <td class="monday" name="monday9" id="monday9">&nbsp;</td>
-          <td class="tuesday" name="tuesday9" id="tuesday9">&nbsp;</td>
-          <td class="wednesday" name="wednesday9" id="wednesday9">&nbsp;</td>
-          <td class="thursday" name="thursday9" id="thursday9">&nbsp;</td>
-          <td class="friday" name="friday9" id="friday9">&nbsp;</td>
+          <td class="M" name="M90000" id="M90000">&nbsp;</td>
+          <td class="T" name="T90000" id="T90000">&nbsp;</td>
+          <td class="W" name="W90000" id="W90000">&nbsp;</td>
+          <td class="J" name="J90000" id="J90000">&nbsp;</td>
+          <td class="F" name="F90000" id="F90000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
 		      <td class="sunday">&nbsp;</td>
         </tr>
         <tr>
-          <td class="monday" name="monday915" id="monday9">&nbsp;</td>
-          <td class="tuesday" name="tuesday915" id="tuesday9">&nbsp;</td>
-          <td class="wednesday" name="wednesday915" id="wednesday9">&nbsp;</td>
-          <td class="thursday" name="thursday915" id="thursday9">&nbsp;</td>
-          <td class="friday" name="friday915" id="friday9">&nbsp;</td>
+          <td class="M" name="M91500" id="M91500">&nbsp;</td>
+          <td class="T" name="T91500" id="T91500">&nbsp;</td>
+          <td class="W" name="W91500" id="W91500">&nbsp;</td>
+          <td class="J" name="J91500" id="J91500">&nbsp;</td>
+          <td class="F" name="F91500" id="F91500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>  
         <tr>
-          <td class="monday" name="monday930" id="monday930">&nbsp;</td>
-          <td class="tuesday" name="tuesday930" id="tuesday930">&nbsp;</td>
-          <td class="wednesday" name="wednesday930" id="wednesday930">&nbsp;</td>
-          <td class="thursday" name="thursday930" id="thursday930">&nbsp;</td>
-          <td class="friday" name="friday930" id="friday930">&nbsp;</td>
+          <td class="M" name="M93000" id="M93000">&nbsp;</td>
+          <td class="T" name="T93000" id="T93000">&nbsp;</td>
+          <td class="W" name="W93000" id="W93000">&nbsp;</td>
+          <td class="J" name="J93000" id="J93000">&nbsp;</td>
+          <td class="F" name="F93000" id="F93000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>      
         <tr>
-          <td class="monday" name="monday945" id="monday945">&nbsp;</td>
-          <td class="tuesday" name="tuesday945" id="tuesday945">&nbsp;</td>
-          <td class="wednesday" name="wednesday945" id="wednesday945">&nbsp;</td>
-          <td class="thursday" name="thursday945" id="thursday945">&nbsp;</td>
-          <td class="friday" name="friday945" id="friday945">&nbsp;</td>
+          <td class="M" name="M94500" id="M94500">&nbsp;</td>
+          <td class="T" name="T94500" id="T94500">&nbsp;</td>
+          <td class="W" name="W94500" id="W94500">&nbsp;</td>
+          <td class="J" name="J94500" id="J94500">&nbsp;</td>
+          <td class="F" name="F94500" id="F94500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
@@ -294,38 +294,38 @@ require_once 'backendInterface.php';
 
         <tr>
           <td class="time" rowspan="4" scope="row"><span class>10:00</span>&nbsp;</td>
-          <td class="monday" name="monday10" id="monday10">&nbsp;</td>
-          <td class="tuesday" name="tuesday10" id="tuesday10">&nbsp;</td>
-          <td class="wednesday" name="wednesday10" id="wednesday10">&nbsp;</td>
-          <td class="thursday" name="thursday10" id="thursday10">&nbsp;</td>
-          <td class="friday" name="friday10" id="friday10">&nbsp;</td>
+          <td class="M" name="M100000" id="M100000">&nbsp;</td>
+          <td class="T" name="T100000" id="T100000">&nbsp;</td>
+          <td class="W" name="W100000" id="W100000">&nbsp;</td>
+          <td class="J" name="J100000" id="J100000">&nbsp;</td>
+          <td class="F" name="F100000" id="F100000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
 		       <td class="sunday">&nbsp;</td>
         </tr>
         <tr>
-          <td class="monday" name="monday1015" id="monday10">&nbsp;</td>
-          <td class="tuesday" name="tuesday1015" id="tuesday10">&nbsp;</td>
-          <td class="wednesday" name="wednesday1015" id="wednesday10">&nbsp;</td>
-          <td class="thursday" name="thursday1015" id="thursday10">&nbsp;</td>
-          <td class="friday" name="friday1015" id="friday10">&nbsp;</td>
+          <td class="M" name="M101500" id="M101500">&nbsp;</td>
+          <td class="T" name="T101500" id="T101500">&nbsp;</td>
+          <td class="W" name="W101500" id="W101500">&nbsp;</td>
+          <td class="J" name="J101500" id="J101500">&nbsp;</td>
+          <td class="F" name="F101500" id="F101500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
            <td class="sunday">&nbsp;</td>
         </tr>
         <tr>
-          <td class="monday" name="monday1030" id="monday1030">&nbsp;</td>
-          <td class="tuesday" name="tuesday1030" id="tuesday1030">&nbsp;</td>
-          <td class="wednesday" name="wednesday1030" id="wednesday1030">&nbsp;</td>
-          <td class="thursday" name="thursday1030" id="thursday1030">&nbsp;</td>
-          <td class="friday" name="friday1030" id="friday1030">&nbsp;</td>
+          <td class="M" name="M103000" id="M103000">&nbsp;</td>
+          <td class="T" name="T103000" id="T103000">&nbsp;</td>
+          <td class="W" name="W103000" id="W103000">&nbsp;</td>
+          <td class="J" name="J103000" id="J103000">&nbsp;</td>
+          <td class="F" name="F103000" id="F103000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
            <td class="sunday">&nbsp;</td>
         </tr>
         <tr>
-          <td class="monday" name="monday1045" id="monday1045">&nbsp;</td>
-          <td class="tuesday" name="tuesday1045" id="tuesday1045">&nbsp;</td>
-          <td class="wednesday" name="wednesday1045" id="wednesday1045">&nbsp;</td>
-          <td class="thursday" name="thursday1045" id="thursday1045">&nbsp;</td>
-          <td class="friday" name="friday1045" id="friday1045">&nbsp;</td>
+          <td class="M" name="M104500" id="M104500">&nbsp;</td>
+          <td class="T" name="T104500" id="T104500">&nbsp;</td>
+          <td class="W" name="W104500" id="W104500">&nbsp;</td>
+          <td class="J" name="J104500" id="J104500">&nbsp;</td>
+          <td class="F" name="F104500" id="F104500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
            <td class="sunday">&nbsp;</td>
         </tr>
@@ -336,38 +336,38 @@ require_once 'backendInterface.php';
 
         <tr>
           <td class="time" rowspan="4" scope="row"><span class>11:00</span>&nbsp;</td>
-          <td class="monday" name="monday11" id="monday11">&nbsp;</td>
-          <td class="tuesday" name="tuesday11" id="tuesday11">&nbsp;</td>
-          <td class="wednesday" name="wednesday11" id="wednesday11">&nbsp;</td>
-          <td class="thursday" name="thursday11" id="thursday11">&nbsp;</td>
-          <td class="friday" name="friday11" id="friday11">&nbsp;</td>
+          <td class="M" name="M110000" id="M110000">&nbsp;</td>
+          <td class="T" name="T110000" id="T110000">&nbsp;</td>
+          <td class="W" name="W110000" id="W110000">&nbsp;</td>
+          <td class="J" name="J110000" id="J110000">&nbsp;</td>
+          <td class="F" name="F110000" id="F110000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
 		      <td class="sunday">&nbsp;</td>
         </tr>
         <tr>
-          <td class="monday" name="monday1115" id="monday11">&nbsp;</td>
-          <td class="tuesday" name="tuesday1115" id="tuesday11">&nbsp;</td>
-          <td class="wednesday" name="wednesday1115" id="wednesday11">&nbsp;</td>
-          <td class="thursday" name="thursday1115" id="thursday11">&nbsp;</td>
-          <td class="friday" name="friday1115" id="friday11">&nbsp;</td>
+          <td class="M" name="M111500" id="M111500">&nbsp;</td>
+          <td class="T" name="T111500" id="T111500">&nbsp;</td>
+          <td class="W" name="W111500" id="W111500">&nbsp;</td>
+          <td class="J" name="J111500" id="J111500">&nbsp;</td>
+          <td class="F" name="F111500" id="F111500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
         <tr>
-          <td class="monday" name="monday1130" id="monday1130">&nbsp;</td>
-          <td class="tuesday" name="tuesday1130" id="tuesday1130">&nbsp;</td>
-          <td class="wednesday" name="wednesday1130" id="wednesday1130">&nbsp;</td>
-          <td class="thursday" name="thursday1130" id="thursday1130">&nbsp;</td>
-          <td class="friday" name="friday1130" id="friday1130">&nbsp;</td>
+          <td class="M" name="M113000" id="M113000">&nbsp;</td>
+          <td class="T" name="T113000" id="T113000">&nbsp;</td>
+          <td class="W" name="W113000" id="W113000">&nbsp;</td>
+          <td class="J" name="J113000" id="J113000">&nbsp;</td>
+          <td class="F" name="F113000" id="F113000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
         <tr>
-          <td class="monday" name="monday1145" id="monday1145">&nbsp;</td>
-          <td class="tuesday" name="tuesday1145" id="tuesday1145">&nbsp;</td>
-          <td class="wednesday" name="wednesday1145" id="wednesday1145">&nbsp;</td>
-          <td class="thursday" name="thursday1145" id="thursday1145">&nbsp;</td>
-          <td class="friday" name="friday1145" id="friday1145">&nbsp;</td>
+          <td class="M" name="M114500" id="M114500">&nbsp;</td>
+          <td class="T" name="T114500" id="T114500">&nbsp;</td>
+          <td class="W" name="W114500" id="W114500">&nbsp;</td>
+          <td class="J" name="J114500" id="J114500">&nbsp;</td>
+          <td class="F" name="F114500" id="F114500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
@@ -377,38 +377,38 @@ require_once 'backendInterface.php';
 
         <tr>
           <td class="time" rowspan="4" scope="row"><span class>12:00</span>&nbsp;</td>
-          <td class="monday" name="monday12" id="monday12">&nbsp;</td>
-          <td class="tuesday" name="tuesday12" id="tuesday12">&nbsp;</td>
-          <td class="wednesday" name="wednesday12" id="wednesday12">&nbsp;</td>
-          <td class="thursday" name="thursday12" id="thursday12">&nbsp;</td>
-          <td class="friday" name="friday12" id="friday12">&nbsp;</td>
+          <td class="M" name="M120000" id="M120000">&nbsp;</td>
+          <td class="T" name="T120000" id="T120000">&nbsp;</td>
+          <td class="W" name="W120000" id="W120000">&nbsp;</td>
+          <td class="J" name="J120000" id="J120000">&nbsp;</td>
+          <td class="F" name="F120000" id="F120000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
 		      <td class="sunday">&nbsp;</td>
         </tr>
          <tr>
-          <td class="monday" name="monday1215" id="monday12">&nbsp;</td>
-          <td class="tuesday" name="tuesday1215" id="tuesday12">&nbsp;</td>
-          <td class="wednesday" name="wednesday1215" id="wednesday12">&nbsp;</td>
-          <td class="thursday" name="thursday1215" id="thursday12">&nbsp;</td>
-          <td class="friday" name="friday1215" id="friday12">&nbsp;</td>
+          <td class="M" name="M121500" id="M121500">&nbsp;</td>
+          <td class="T" name="T121500" id="T121500">&nbsp;</td>
+          <td class="W" name="W121500" id="W121500">&nbsp;</td>
+          <td class="J" name="J121500" id="J121500">&nbsp;</td>
+          <td class="F" name="F121500" id="F121500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
          <tr>
-          <td class="monday" name="monday1230" id="monday1230">&nbsp;</td>
-          <td class="tuesday" name="tuesday1230" id="tuesday1230">&nbsp;</td>
-          <td class="wednesday" name="wednesday1230" id="wednesday1230">&nbsp;</td>
-          <td class="thursday" name="thursday1230" id="thursday1230">&nbsp;</td>
-          <td class="friday" name="friday1230" id="friday1230">&nbsp;</td>
+          <td class="M" name="M123000" id="M123000">&nbsp;</td>
+          <td class="T" name="T123000" id="T123000">&nbsp;</td>
+          <td class="W" name="W123000" id="W123000">&nbsp;</td>
+          <td class="J" name="J123000" id="J123000">&nbsp;</td>
+          <td class="F" name="F123000" id="F123000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
          <tr>
-          <td class="monday" name="monday1245" id="monday1245">&nbsp;</td>
-          <td class="tuesday" name="tuesday1245" id="tuesday1245">&nbsp;</td>
-          <td class="wednesday" name="wednesday1245" id="wednesday1245">&nbsp;</td>
-          <td class="thursday" name="thursday1245" id="thursday1245">&nbsp;</td>
-          <td class="friday" name="friday1245" id="friday1245">&nbsp;</td>
+          <td class="M" name="M124500" id="M124500">&nbsp;</td>
+          <td class="T" name="T124500" id="T124500">&nbsp;</td>
+          <td class="W" name="W124500" id="W124500">&nbsp;</td>
+          <td class="J" name="J124500" id="J124500">&nbsp;</td>
+          <td class="F" name="F124500" id="F124500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
@@ -418,38 +418,38 @@ require_once 'backendInterface.php';
 
         <tr>
           <td class="time" rowspan="4" scope="row"><span class>13:00</span>&nbsp;</td>
-          <td class="monday" name="monday13" id="monday13">&nbsp;</td>
-          <td class="tuesday" name="tuesday13" id="tuesday13">&nbsp;</td>
-          <td class="wednesday" name="wednesday13" id="wednesday13">&nbsp;</td>
-          <td class="thursday" name="thursday13" id="thursday13">&nbsp;</td>
-          <td class="friday" name="friday13" id="friday13">&nbsp;</td>
+          <td class="M" name="M130000" id="M130000">&nbsp;</td>
+          <td class="T" name="T130000" id="T130000">&nbsp;</td>
+          <td class="W" name="W130000" id="W130000">&nbsp;</td>
+          <td class="J" name="J130000" id="J130000">&nbsp;</td>
+          <td class="F" name="F130000" id="F130000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
 		      <td class="sunday">&nbsp;</td>
         </tr>
           <tr>
-          <td class="monday" name="monday1315" id="monday13">&nbsp;</td>
-          <td class="tuesday" name="tuesday1315" id="tuesday13">&nbsp;</td>
-          <td class="wednesday" name="wednesday1315" id="wednesday13">&nbsp;</td>
-          <td class="thursday" name="thursday1315" id="thursday13">&nbsp;</td>
-          <td class="friday" name="friday1315" id="friday13">&nbsp;</td>
+          <td class="M" name="M131500" id="M131500">&nbsp;</td>
+          <td class="T" name="T131500" id="T131500">&nbsp;</td>
+          <td class="W" name="W131500" id="W131500">&nbsp;</td>
+          <td class="J" name="J131500" id="J131500">&nbsp;</td>
+          <td class="F" name="F131500" id="F131500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
           <tr>
-          <td class="monday" name="monday1330" id="monday1330">&nbsp;</td>
-          <td class="tuesday" name="tuesday1330" id="tuesday1330">&nbsp;</td>
-          <td class="wednesday" name="wednesday1330" id="wednesday1330">&nbsp;</td>
-          <td class="thursday" name="thursday1330" id="thursday1330">&nbsp;</td>
-          <td class="friday" name="friday1330" id="friday1330">&nbsp;</td>
+          <td class="M" name="M133000" id="M133000">&nbsp;</td>
+          <td class="T" name="T133000" id="T133000">&nbsp;</td>
+          <td class="W" name="W133000" id="W133000">&nbsp;</td>
+          <td class="J" name="J133000" id="J133000">&nbsp;</td>
+          <td class="F" name="F133000" id="F133000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
           <tr>
-          <td class="monday" name="monday1345" id="monday1345">&nbsp;</td>
-          <td class="tuesday" name="tuesday1345" id="tuesday1345">&nbsp;</td>
-          <td class="wednesday" name="wednesday1345" id="wednesday1345">&nbsp;</td>
-          <td class="thursday" name="thursday1345" id="thursday1345">&nbsp;</td>
-          <td class="friday" name="friday1345" id="friday1345">&nbsp;</td>
+          <td class="M" name="M134500" id="M134500">&nbsp;</td>
+          <td class="T" name="T134500" id="T134500">&nbsp;</td>
+          <td class="W" name="W134500" id="W134500">&nbsp;</td>
+          <td class="J" name="J134500" id="J134500">&nbsp;</td>
+          <td class="F" name="F134500" id="F134500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
@@ -459,38 +459,38 @@ require_once 'backendInterface.php';
 
         <tr>
           <td class="time" rowspan="4" scope="row"><span class>14:00</span>&nbsp;</td>
-          <td class="monday" name="monday14" id="monday14">&nbsp;</td>
-          <td class="tuesday" name="tuesday14" id="tuesday14">&nbsp;</td>
-          <td class="wednesday" name="wednesday14" id="wednesday14">&nbsp;</td>
-          <td class="thursday" name="thursday14" id="thursday14">&nbsp;</td>
-          <td class="friday" name="friday14" id="friday14">&nbsp;</td>
+          <td class="M" name="M140000" id="M140000">&nbsp;</td>
+          <td class="T" name="T140000" id="T140000">&nbsp;</td>
+          <td class="W" name="W140000" id="W140000">&nbsp;</td>
+          <td class="J" name="J140000" id="J140000">&nbsp;</td>
+          <td class="F" name="F140000" id="F140000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
          <tr>
-          <td class="monday" name="monday1415" id="monday14">&nbsp;</td>
-          <td class="tuesday" name="tuesday1415" id="tuesday14">&nbsp;</td>
-          <td class="wednesday" name="wednesday1415" id="wednesday14">&nbsp;</td>
-          <td class="thursday" name="thursday1415" id="thursday14">&nbsp;</td>
-          <td class="friday" name="friday1415" id="friday14">&nbsp;</td>
+          <td class="M" name="M141500" id="M141500">&nbsp;</td>
+          <td class="T" name="T141500" id="T141500">&nbsp;</td>
+          <td class="W" name="W141500" id="W141500">&nbsp;</td>
+          <td class="J" name="J141500" id="J141500">&nbsp;</td>
+          <td class="F" name="F141500" id="F141500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
          <tr>
-          <td class="monday" name="monday1430" id="monday1430">&nbsp;</td>
-          <td class="tuesday" name="tuesday1430" id="tuesday1430">&nbsp;</td>
-          <td class="wednesday" name="wednesday1430" id="wednesday1430">&nbsp;</td>
-          <td class="thursday" name="thursday1430" id="thursday1430">&nbsp;</td>
-          <td class="friday" name="friday1430" id="friday1430">&nbsp;</td>
+          <td class="M" name="M143000" id="M143000">&nbsp;</td>
+          <td class="T" name="T143000" id="T143000">&nbsp;</td>
+          <td class="W" name="W143000" id="W143000">&nbsp;</td>
+          <td class="J" name="J143000" id="J143000">&nbsp;</td>
+          <td class="F" name="F143000" id="F143000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
          <tr>
-          <td class="monday" name="monday1445" id="monday1445">&nbsp;</td>
-          <td class="tuesday" name="tuesday1445" id="tuesday1445">&nbsp;</td>
-          <td class="wednesday" name="wednesday1445" id="wednesday1445">&nbsp;</td>
-          <td class="thursday" name="thursday1445" id="thursday1445">&nbsp;</td>
-          <td class="friday" name="friday1445" id="friday1445">&nbsp;</td>
+          <td class="M" name="M144500" id="M144500">&nbsp;</td>
+          <td class="T" name="T144500" id="T144500">&nbsp;</td>
+          <td class="W" name="W144500" id="W144500">&nbsp;</td>
+          <td class="J" name="J144500" id="J144500">&nbsp;</td>
+          <td class="F" name="F144500" id="F144500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
@@ -500,38 +500,38 @@ require_once 'backendInterface.php';
 
         <tr>
           <td class="time" rowspan="4" scope="row"><span class>15:00</span>&nbsp;</td>
-          <td class="monday" name="monday15" id="monday15">&nbsp;</td>
-          <td class="tuesday" name="tuesday15" id="tuesday15">&nbsp;</td>
-          <td class="wednesday" name="wednesday15" id="wednesday15">&nbsp;</td>
-          <td class="thursday" name="thursday15" id="thursday15">&nbsp;</td>
-          <td class="friday" name="friday15" id="friday15">&nbsp;</td>
+          <td class="M" name="M150000" id="M150000">&nbsp;</td>
+          <td class="T" name="T150000" id="T150000">&nbsp;</td>
+          <td class="W" name="W150000" id="W150000">&nbsp;</td>
+          <td class="J" name="J150000" id="J150000">&nbsp;</td>
+          <td class="F" name="F150000" id="F150000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
          <tr>
-          <td class="monday" name="monday1515" id="monday15">&nbsp;</td>
-          <td class="tuesday" name="tuesday1515" id="tuesday15">&nbsp;</td>
-          <td class="wednesday" name="wednesday1515" id="wednesday15">&nbsp;</td>
-          <td class="thursday" name="thursday1515" id="thursday15">&nbsp;</td>
-          <td class="friday" name="friday1515" id="friday15">&nbsp;</td>
+          <td class="M" name="M151500" id="M151500">&nbsp;</td>
+          <td class="T" name="T151500" id="T151500">&nbsp;</td>
+          <td class="W" name="W151500" id="W151500">&nbsp;</td>
+          <td class="J" name="J151500" id="J151500">&nbsp;</td>
+          <td class="F" name="F151500" id="F151500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
          <tr>
-          <td class="monday" name="monday1530" id="monday1530">&nbsp;</td>
-          <td class="tuesday" name="tuesday1530" id="tuesday1530">&nbsp;</td>
-          <td class="wednesday" name="wednesday1530" id="wednesday1530">&nbsp;</td>
-          <td class="thursday" name="thursday1530" id="thursday1530">&nbsp;</td>
-          <td class="friday" name="friday1530" id="friday1530">&nbsp;</td>
+          <td class="M" name="M153000" id="M153000">&nbsp;</td>
+          <td class="T" name="T153000" id="T153000">&nbsp;</td>
+          <td class="W" name="W153000" id="W153000">&nbsp;</td>
+          <td class="J" name="J153000" id="J153000">&nbsp;</td>
+          <td class="F" name="F153000" id="F153000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
          <tr>
-          <td class="monday" name="monday1545" id="monday1545">&nbsp;</td>
-          <td class="tuesday" name="tuesday1545" id="tuesday1545">&nbsp;</td>
-          <td class="wednesday" name="wednesday1545" id="wednesday1545">&nbsp;</td>
-          <td class="thursday" name="thursday1545" id="thursday1545">&nbsp;</td>
-          <td class="friday" name="friday1545" id="friday1545">&nbsp;</td>
+          <td class="M" name="M154500" id="M154500">&nbsp;</td>
+          <td class="T" name="T154500" id="T154500">&nbsp;</td>
+          <td class="W" name="W154500" id="W154500">&nbsp;</td>
+          <td class="J" name="J154500" id="J154500">&nbsp;</td>
+          <td class="F" name="F154500" id="F154500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
@@ -542,38 +542,38 @@ require_once 'backendInterface.php';
 
         <tr>
           <td class="time" rowspan="4" scope="row"><span class>16:00</span>&nbsp;</td>
-          <td class="monday" name="monday16" id="monday16">&nbsp;</td>
-          <td class="tuesday" name="tuesday16" id="tuesday16">&nbsp;</td>
-          <td class="wednesday" name="wednesday16" id="wednesday16">&nbsp;</td>
-          <td class="thursday" name="thursday16" id="thursday16">&nbsp;</td>
-          <td class="friday" name="friday16" id="friday16">&nbsp;</td>
+          <td class="M" name="M160000" id="M160000">&nbsp;</td>
+          <td class="T" name="T160000" id="T160000">&nbsp;</td>
+          <td class="W" name="W160000" id="W160000">&nbsp;</td>
+          <td class="J" name="J160000" id="J160000">&nbsp;</td>
+          <td class="F" name="F160000" id="F160000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
         <tr>
-          <td class="monday" name="monday1615" id="monday16">&nbsp;</td>
-          <td class="tuesday" name="tuesday1615" id="tuesday16">&nbsp;</td>
-          <td class="wednesday" name="wednesday1615" id="wednesday16">&nbsp;</td>
-          <td class="thursday" name="thursday1615" id="thursday16">&nbsp;</td>
-          <td class="friday" name="friday1615" id="friday16">&nbsp;</td>
+          <td class="M" name="M161500" id="M161500">&nbsp;</td>
+          <td class="T" name="T161500" id="T161500">&nbsp;</td>
+          <td class="W" name="W161500" id="W161500">&nbsp;</td>
+          <td class="J" name="J161500" id="J161500">&nbsp;</td>
+          <td class="F" name="F161500" id="F161500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
         <tr>
-          <td class="monday" name="monday1630" id="monday1630">&nbsp;</td>
-          <td class="tuesday" name="tuesday1630" id="tuesday1630">&nbsp;</td>
-          <td class="wednesday" name="wednesday1630" id="wednesday1630">&nbsp;</td>
-          <td class="thursday" name="thursday1630" id="thursday1630">&nbsp;</td>
-          <td class="friday" name="friday1630" id="friday1630">&nbsp;</td>
+          <td class="M" name="M163000" id="M163000">&nbsp;</td>
+          <td class="T" name="T163000" id="T163000">&nbsp;</td>
+          <td class="W" name="W163000" id="W163000">&nbsp;</td>
+          <td class="J" name="J163000" id="J163000">&nbsp;</td>
+          <td class="F" name="F163000" id="F163000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
         <tr>
-          <td class="monday" name="monday1645" id="monday1645">&nbsp;</td>
-          <td class="tuesday" name="tuesday1645" id="tuesday1645">&nbsp;</td>
-          <td class="wednesday" name="wednesday1645" id="wednesday1645">&nbsp;</td>
-          <td class="thursday" name="thursday1645" id="thursday1645">&nbsp;</td>
-          <td class="friday" name="friday1645" id="friday1645">&nbsp;</td>
+          <td class="M" name="M164500" id="M164500">&nbsp;</td>
+          <td class="T" name="T164500" id="T164500">&nbsp;</td>
+          <td class="W" name="W164500" id="W164500">&nbsp;</td>
+          <td class="J" name="J164500" id="J164500">&nbsp;</td>
+          <td class="F" name="F164500" id="F164500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
@@ -583,38 +583,38 @@ require_once 'backendInterface.php';
 
         <tr>
           <td class="time" rowspan="4" scope="row"><span class>17:00</span>&nbsp;</td>
-          <td class="monday" name="monday17" id="monday17">&nbsp;</td>
-          <td class="tuesday" name="tuesday17" id="tuesday17">&nbsp;</td>
-          <td class="wednesday" name="wednesday17" id="wednesday17">&nbsp;</td>
-          <td class="thursday" name="thursday17" id="thursday17">&nbsp;</td>
-          <td class="friday" name="friday17" id="friday17">&nbsp;</td>
+          <td class="M" name="M170000" id="M170000">&nbsp;</td>
+          <td class="T" name="T170000" id="T170000">&nbsp;</td>
+          <td class="W" name="W170000" id="W170000">&nbsp;</td>
+          <td class="J" name="J170000" id="J170000">&nbsp;</td>
+          <td class="F" name="F170000" id="F170000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
         <tr>
-          <td class="monday" name="monday1715" id="monday17">&nbsp;</td>
-          <td class="tuesday" name="tuesday1715" id="tuesday17">&nbsp;</td>
-          <td class="wednesday" name="wednesday1715" id="wednesday17">&nbsp;</td>
-          <td class="thursday" name="thursday1715" id="thursday17">&nbsp;</td>
-          <td class="friday" name="friday1715" id="friday17">&nbsp;</td>
+          <td class="M" name="M171500" id="M171500">&nbsp;</td>
+          <td class="T" name="T171500" id="T171500">&nbsp;</td>
+          <td class="W" name="W171500" id="W171500">&nbsp;</td>
+          <td class="J" name="J171500" id="J171500">&nbsp;</td>
+          <td class="F" name="F171500" id="F171500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
         <tr>
-          <td class="monday" name="monday1730" id="monday1730">&nbsp;</td>
-          <td class="tuesday" name="tuesday1730" id="tuesday1730">&nbsp;</td>
-          <td class="wednesday" name="wednesday1730" id="wednesday1730">&nbsp;</td>
-          <td class="thursday" name="thursday1730" id="thursday1730">&nbsp;</td>
-          <td class="friday" name="friday1730" id="friday1730">&nbsp;</td>
+          <td class="M" name="M173000" id="M173000">&nbsp;</td>
+          <td class="T" name="T173000" id="T173000">&nbsp;</td>
+          <td class="W" name="W173000" id="W173000">&nbsp;</td>
+          <td class="J" name="J173000" id="J173000">&nbsp;</td>
+          <td class="F" name="F173000" id="F173000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
         <tr>
-          <td class="monday" name="monday1745" id="monday1745">&nbsp;</td>
-          <td class="tuesday" name="tuesday1745" id="tuesday1745">&nbsp;</td>
-          <td class="wednesday" name="wednesday1745" id="wednesday1745">&nbsp;</td>
-          <td class="thursday" name="thursday1745" id="thursday1745">&nbsp;</td>
-          <td class="friday" name="friday1745" id="friday1745">&nbsp;</td>
+          <td class="M" name="M174500" id="M174500">&nbsp;</td>
+          <td class="T" name="T174500" id="T174500">&nbsp;</td>
+          <td class="W" name="W174500" id="W174500">&nbsp;</td>
+          <td class="J" name="J174500" id="J174500">&nbsp;</td>
+          <td class="F" name="F174500" id="F174500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
@@ -624,38 +624,38 @@ require_once 'backendInterface.php';
 
         <tr>
           <td class="time" rowspan="4" scope="row"><span class>18:00</span>&nbsp;</td>
-          <td class="monday" name="monday18" id="monday18">&nbsp;</td>
-          <td class="tuesday" name="tuesday18" id="tuesday18">&nbsp;</td>
-          <td class="wednesday" name="wednesday18" id="wednesday18">&nbsp;</td>
-          <td class="thursday" name="thursday18" id="thursday18">&nbsp;</td>
-          <td class="friday" name="friday18" id="friday18">&nbsp;</td>
+          <td class="M" name="M180000" id="M180000">&nbsp;</td>
+          <td class="T" name="T180000" id="T180000">&nbsp;</td>
+          <td class="W" name="W180000" id="W180000">&nbsp;</td>
+          <td class="J" name="J180000" id="J180000">&nbsp;</td>
+          <td class="F" name="F180000" id="F180000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
         <tr>
-          <td class="monday" name="monday1815" id="monday18">&nbsp;</td>
-          <td class="tuesday" name="tuesday1815" id="tuesday18">&nbsp;</td>
-          <td class="wednesday" name="wednesday1815" id="wednesday18">&nbsp;</td>
-          <td class="thursday" name="thursday1815" id="thursday18">&nbsp;</td>
-          <td class="friday" name="friday1815" id="friday18">&nbsp;</td>
+          <td class="M" name="M181500" id="M181500">&nbsp;</td>
+          <td class="T" name="T181500" id="T181500">&nbsp;</td>
+          <td class="W" name="W181500" id="W181500">&nbsp;</td>
+          <td class="J" name="J181500" id="J181500">&nbsp;</td>
+          <td class="F" name="F181500" id="F181500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
         <tr>
-          <td class="monday" name="monday1830" id="monday1830">&nbsp;</td>
-          <td class="tuesday" name="tuesday1830" id="tuesday1830">&nbsp;</td>
-          <td class="wednesday" name="wednesday1830" id="wednesday1830">&nbsp;</td>
-          <td class="thursday" name="thursday1830" id="thursday1830">&nbsp;</td>
-          <td class="friday" name="friday1830" id="friday1830">&nbsp;</td>
+          <td class="M" name="M183000" id="M183000">&nbsp;</td>
+          <td class="T" name="T183000" id="T183000">&nbsp;</td>
+          <td class="W" name="W183000" id="W183000">&nbsp;</td>
+          <td class="J" name="J183000" id="J183000">&nbsp;</td>
+          <td class="F" name="F183000" id="F183000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
         <tr>
-          <td class="monday" name="monday1845" id="monday1845">&nbsp;</td>
-          <td class="tuesday" name="tuesday1845" id="tuesday1845">&nbsp;</td>
-          <td class="wednesday" name="wednesday1845" id="wednesday1845">&nbsp;</td>
-          <td class="thursday" name="thursday1845" id="thursday1845">&nbsp;</td>
-          <td class="friday" name="friday1845" id="friday1845">&nbsp;</td>
+          <td class="M" name="M184500" id="M184500">&nbsp;</td>
+          <td class="T" name="T184500" id="T184500">&nbsp;</td>
+          <td class="W" name="W184500" id="W184500">&nbsp;</td>
+          <td class="J" name="J184500" id="J184500">&nbsp;</td>
+          <td class="F" name="F184500" id="F184500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
@@ -665,38 +665,38 @@ require_once 'backendInterface.php';
 
         <tr>
           <td class="time" rowspan="4" scope="row"><span class>19:00</span>&nbsp;</td>
-          <td class="monday" name="monday19" id="monday19">&nbsp;</td>
-          <td class="tuesday" name="tuesday19" id="tuesday19">&nbsp;</td>
-          <td class="wednesday" name="wednesday19" id="wednesday19">&nbsp;</td>
-          <td class="thursday" name="thursday19" id="thursday19">&nbsp;</td>
-          <td class="friday" name="friday19" id="friday19">&nbsp;</td>
+          <td class="M" name="M190000" id="M190000">&nbsp;</td>
+          <td class="T" name="T190000" id="T190000">&nbsp;</td>
+          <td class="W" name="W190000" id="W190000">&nbsp;</td>
+          <td class="J" name="J190000" id="J190000">&nbsp;</td>
+          <td class="F" name="F190000" id="F190000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr> 
         <tr>
-          <td class="monday" name="monday1915" id="monday19">&nbsp;</td>
-          <td class="tuesday" name="tuesday1915" id="tuesday19">&nbsp;</td>
-          <td class="wednesday" name="wednesday1915" id="wednesday19">&nbsp;</td>
-          <td class="thursday" name="thursday1915" id="thursday19">&nbsp;</td>
-          <td class="friday" name="friday1915" id="friday19">&nbsp;</td>
+          <td class="M" name="M191500" id="M191500">&nbsp;</td>
+          <td class="T" name="T191500" id="T191500">&nbsp;</td>
+          <td class="W" name="W191500" id="W191500">&nbsp;</td>
+          <td class="J" name="J191500" id="J191500">&nbsp;</td>
+          <td class="F" name="F191500" id="F191500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr> 
         <tr>
-          <td class="monday" name="monday1930" id="monday1930">&nbsp;</td>
-          <td class="tuesday" name="tuesday1930" id="tuesday1930">&nbsp;</td>
-          <td class="wednesday" name="wednesday1930" id="wednesday1930">&nbsp;</td>
-          <td class="thursday" name="thursday1930" id="thursday1930">&nbsp;</td>
-          <td class="friday" name="friday1930" id="friday1930">&nbsp;</td>
+          <td class="M" name="M193000" id="M193000">&nbsp;</td>
+          <td class="T" name="T193000" id="T193000">&nbsp;</td>
+          <td class="W" name="W193000" id="W193000">&nbsp;</td>
+          <td class="J" name="J193000" id="J193000">&nbsp;</td>
+          <td class="F" name="F193000" id="F193000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr> 
         <tr>
-          <td class="monday" name="monday1945" id="monday1945">&nbsp;</td>
-          <td class="tuesday" name="tuesday1945" id="tuesday1945">&nbsp;</td>
-          <td class="wednesday" name="wednesday1945" id="wednesday1945">&nbsp;</td>
-          <td class="thursday" name="thursday1945" id="thursday1945">&nbsp;</td>
-          <td class="friday" name="friday1945" id="friday1945">&nbsp;</td>
+          <td class="M" name="M194500" id="M194500">&nbsp;</td>
+          <td class="T" name="T194500" id="T194500">&nbsp;</td>
+          <td class="W" name="W194500" id="W194500">&nbsp;</td>
+          <td class="J" name="J194500" id="J194500">&nbsp;</td>
+          <td class="F" name="F194500" id="F194500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>    
@@ -707,38 +707,38 @@ require_once 'backendInterface.php';
 
         <tr>
           <td class="time" rowspan="4" scope="row"><span class>20:00</span>&nbsp;</td>
-          <td class="monday" name="monday20" id="monday20">&nbsp;</td>
-          <td class="tuesday" name="tuesday20" id="tuesday20">&nbsp;</td>
-          <td class="wednesday" name="wednesday20" id="wednesday20">&nbsp;</td>
-          <td class="thursday" name="thursday20" id="thursday20">&nbsp;</td>
-          <td class="friday" name="friday20" id="friday20">&nbsp;</td>
+          <td class="M" name="M200000" id="M200000">&nbsp;</td>
+          <td class="T" name="T200000" id="T200000">&nbsp;</td>
+          <td class="W" name="W200000" id="W200000">&nbsp;</td>
+          <td class="J" name="J200000" id="J200000">&nbsp;</td>
+          <td class="F" name="F200000" id="F200000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
         <tr>
-          <td class="monday" name="monday2015" id="monday20">&nbsp;</td>
-          <td class="tuesday" name="tuesday2015" id="tuesday20">&nbsp;</td>
-          <td class="wednesday" name="wednesday2015" id="wednesday20">&nbsp;</td>
-          <td class="thursday" name="thursday2015" id="thursday20">&nbsp;</td>
-          <td class="friday" name="friday2015" id="friday20">&nbsp;</td>
+          <td class="M" name="M201500" id="M201500">&nbsp;</td>
+          <td class="T" name="T201500" id="T201500">&nbsp;</td>
+          <td class="W" name="W201500" id="W201500">&nbsp;</td>
+          <td class="J" name="J201500" id="J201500">&nbsp;</td>
+          <td class="F" name="F201500" id="F201500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
         <tr>
-          <td class="monday" name="monday2030" id="monday2030">&nbsp;</td>
-          <td class="tuesday" name="tuesday2030" id="tuesday2030">&nbsp;</td>
-          <td class="wednesday" name="wednesday2030" id="wednesday2030">&nbsp;</td>
-          <td class="thursday" name="thursday2030" id="thursday2030">&nbsp;</td>
-          <td class="friday" name="friday2030" id="friday2030">&nbsp;</td>
+          <td class="M" name="M203000" id="M203000">&nbsp;</td>
+          <td class="T" name="T203000" id="T203000">&nbsp;</td>
+          <td class="W" name="W203000" id="W203000">&nbsp;</td>
+          <td class="J" name="J203000" id="J203000">&nbsp;</td>
+          <td class="F" name="F203000" id="F203000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
         <tr>
-          <td class="monday" name="monday2045" id="monday2045">&nbsp;</td>
-          <td class="tuesday" name="tuesday2045" id="tuesday2045">&nbsp;</td>
-          <td class="wednesday" name="wednesday2045" id="wednesday2045">&nbsp;</td>
-          <td class="thursday" name="thursday2045" id="thursday2045">&nbsp;</td>
-          <td class="friday" name="friday2045" id="friday2045">&nbsp;</td>
+          <td class="M" name="M204500" id="M204500">&nbsp;</td>
+          <td class="T" name="T204500" id="T204500">&nbsp;</td>
+          <td class="W" name="W204500" id="W204500">&nbsp;</td>
+          <td class="J" name="J204500" id="J204500">&nbsp;</td>
+          <td class="F" name="F204500" id="F204500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
@@ -750,38 +750,38 @@ require_once 'backendInterface.php';
 
         <tr>
           <td class="time" rowspan="4" scope="row"><span class>21:00</span>&nbsp;</td>
-          <td class="monday" name="monday21" id="monday21">&nbsp;</td>
-          <td class="tuesday" name="tuesday21" id="tuesday21">&nbsp;</td>
-          <td class="wednesday" name="wednesday21" id="wednesday21">&nbsp;</td>
-          <td class="thursday" name="thursday21" id="thursday21">&nbsp;</td>
-          <td class="friday" name="friday21" id="friday21">&nbsp;</td>
+          <td class="M" name="M210000" id="M210000">&nbsp;</td>
+          <td class="T" name="T210000" id="T210000">&nbsp;</td>
+          <td class="W" name="W210000" id="W210000">&nbsp;</td>
+          <td class="J" name="J210000" id="J210000">&nbsp;</td>
+          <td class="F" name="F210000" id="F210000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>		  
         </tr>
         <tr>
-          <td class="monday" name="monday2115" id="monday21">&nbsp;</td>
-          <td class="tuesday" name="tuesday2115" id="tuesday21">&nbsp;</td>
-          <td class="wednesday" name="wednesday2115" id="wednesday21">&nbsp;</td>
-          <td class="thursday" name="thursday2115" id="thursday21">&nbsp;</td>
-          <td class="friday" name="friday2115" id="friday21">&nbsp;</td>
+          <td class="M" name="M211500" id="M211500">&nbsp;</td>
+          <td class="T" name="T211500" id="T211500">&nbsp;</td>
+          <td class="W" name="W211500" id="W211500">&nbsp;</td>
+          <td class="J" name="J211500" id="J211500">&nbsp;</td>
+          <td class="F" name="F211500" id="F211500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>      
         </tr>
         <tr>
-          <td class="monday" name="monday2130" id="monday2130">&nbsp;</td>
-          <td class="tuesday" name="tuesday2130" id="tuesday2130">&nbsp;</td>
-          <td class="wednesday" name="wednesday2130" id="wednesday2130">&nbsp;</td>
-          <td class="thursday" name="thursday2130" id="thursday2130">&nbsp;</td>
-          <td class="friday" name="friday2130" id="friday2130">&nbsp;</td>
+          <td class="M" name="M213000" id="M213000">&nbsp;</td>
+          <td class="T" name="T213000" id="T213000">&nbsp;</td>
+          <td class="W" name="W213000" id="W213000">&nbsp;</td>
+          <td class="J" name="J213000" id="J213000">&nbsp;</td>
+          <td class="F" name="F213000" id="F213000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>      
         </tr>
         <tr>
-          <td class="monday" name="monday2145" id="monday2145">&nbsp;</td>
-          <td class="tuesday" name="tuesday2145" id="tuesday2145">&nbsp;</td>
-          <td class="wednesday" name="wednesday2145" id="wednesday2145">&nbsp;</td>
-          <td class="thursday" name="thursday2145" id="thursday2145">&nbsp;</td>
-          <td class="friday" name="friday2145" id="friday2145">&nbsp;</td>
+          <td class="M" name="M214500" id="M214500">&nbsp;</td>
+          <td class="T" name="T214500" id="T214500">&nbsp;</td>
+          <td class="W" name="W214500" id="W214500">&nbsp;</td>
+          <td class="J" name="J214500" id="J214500">&nbsp;</td>
+          <td class="F" name="F214500" id="F214500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>      
         </tr>
@@ -806,7 +806,7 @@ require_once 'backendInterface.php';
 	var i = 1;
 	$('#add').click(function(){
 		i++;
-		$('#dynamic_field').append('<tr id="row'+i+'"><td><select name="Days"><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday">Friday</option><option value="Saturday">Saturday</option><option value="Sunday">Sunday</option></select>&nbsp;</td><td><input type="time" id="starting'+i+'" name="starting'+i+'">&nbsp;</td><td><input type="time" id="ending'+i+'" name="ending'+i+'">&nbsp;</td><td><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button>&nbsp;</td></tr>');
+		$('#dynamic_field').append('<tr id="row'+i+'"><td><select name="Days"><option value="M">M</option><option value="T">T</option><option value="W">W</option><option value="J">J</option><option value="F">F</option><option value="Saturday">Saturday</option><option value="Sunday">Sunday</option></select>&nbsp;</td><td><input type="time" id="starting'+i+'" name="starting'+i+'">&nbsp;</td><td><input type="time" id="ending'+i+'" name="ending'+i+'">&nbsp;</td><td><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button>&nbsp;</td></tr>');
 	});
 	$(document).on('click','.btn_remove',function(){
 		var button_id = $(this).attr("id");
@@ -826,6 +826,12 @@ require_once 'backendInterface.php';
 	});
 });
 
+function pad(n) {
+    return (n < 10) ? ("0" + n) : n;
+}
+  function pad (str, max) {
+      return str.length < max ? pad("0" + str, max) : str;
+    }
 /*$(document).ready(function() {
   $('table tr').each(function(i, v) {
     var cols = $(this).find('td');
@@ -838,6 +844,17 @@ require_once 'backendInterface.php';
     });
   });
 });*/
+
+ /* <td name=<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime();?>
+				  rowspan= <?php echo ($userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime() - $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime())/150000; ?>>
+            <span>
+				<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime();
+				echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getCourseName() . " - " . $userSched->getListOfSemesters()[0]->getLecs()[0]->getSection() . " " . $userSched->getListOfSemesters()[0]->getLecs()[0]->getSubSection();?>
+				<br>Lecture<br>
+				<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()/1000000) . ":" . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()%1000000/100?>
+				-
+				<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()/1000000 ). ":" . $userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()%1000000/100;?></span>
+          </td>*/
 </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
