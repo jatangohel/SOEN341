@@ -117,11 +117,12 @@ require_once 'backendInterface.php';
 
              <?php
              $semInfoFE = $_SESSION['semInfo'];
-             echo implode('</th><th>', array_keys(current($semInfoFE))); ?>
+
+             echo implode('</th><th>', array_keys(current($semInfoFE[0]))); ?>
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($semInfoFE as $row): array_map('htmlentities', $row); ?>
+            <?php foreach ($semInfoFE[0] as $row): array_map('htmlentities', $row); ?>
               <tr>
                 <td><?php echo implode('</td><td>', $row); ?></td>
               </tr>
@@ -149,12 +150,13 @@ require_once 'backendInterface.php';
             <tr>
 
              <?php
-              $semInfo2FE = $_SESSION['semInfo2'];
-              echo implode('</th><th>', array_keys(current($semInfo2FE))); ?>
+              echo implode('</th><th>', array_keys(current($semInfoFE[1])));
+              count($semInfoFE);
+               ?>
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($semInfo2FE as $row): array_map('htmlentities', $row); ?>
+            <?php foreach ($semInfoFE[1] as $row): array_map('htmlentities', $row); ?>
               <tr>
                 <td><?php echo implode('</td><td>', $row); ?></td>
               </tr>
@@ -182,12 +184,11 @@ require_once 'backendInterface.php';
             <tr>
 
               <?php
-              $semInfo3FE = $_SESSION['semInfo3'];
-              echo implode('</th><th>', array_keys(current($semInfo3FE))); ?>
+              echo implode('</th><th>', array_keys(current($semInfoFE[2]))); ?>
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($semInfo3FE as $row): array_map('htmlentities', $row); ?>
+            <?php foreach ($semInfoFE[2] as $row): array_map('htmlentities', $row); ?>
               <tr>
                 <td><?php echo implode('</td><td>', $row); ?></td>
               </tr>
