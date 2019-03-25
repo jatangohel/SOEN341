@@ -118,20 +118,44 @@ require_once 'backendInterface.php';
           background: rgba(120,120,255,0.06);
         }
 
-#M8,#W8{
-      color:rgb(0,0,0);background-color:rgb(182,209,100);text-align: center;
+# + "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] ?>" + "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()?> {
+      color:rgb(0,0,0);background-color:rgb(182,209,146);text-align: center;
 }
-	.myTable{
-	background-color: white;
-	color:black;
-	opacity: 0.75;
-	}
 	
 	.dropdown-menu{
 	background-color: #80ffbf;
 	opacity:0.86;
 	}
 	
+	.myClass {
+  color:rgb(0,0,0);background-color:rgb(182,209,146);text-align: center;
+  opacity: 0.8;
+  width: 100px;
+  height: 30px;
+/* !important needed so on resize it doesnt come back to relative   */
+  position: absolute !important;
+  cursor: -webkit-grab; cursor:-moz-grab;
+  z-index: 10;
+  border-radius: 3px;
+}
+
+.myClass p {
+  margin: 6px 6px;
+}
+.fa-trash-o {
+  cursor: pointer; 
+  float: right;
+  transition: 300ms;
+}
+.fa-trash-o:hover {
+  color: rgba(0,0,0,0.5);
+  transition: 300ms;
+} 
+.myClass:active {
+  cursor: -webkit-grabbing; cursor:-moz-grabbing;
+  opacity: 0.7;
+}
+}
 
 	
 	
@@ -175,9 +199,10 @@ require_once 'backendInterface.php';
 					</div>
 				</div>
 	</div>
+	  <div class="scheduleArea">
+		<div class="myClass"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
 		
-		<div class="myTable">
-        
+		
       <table class="tableTimes" >
 	          <tr>
           <th style="margin-left:20px">Time</th>
@@ -192,11 +217,11 @@ require_once 'backendInterface.php';
 
         <tr style="border-top: 2px solid black; ">
           <td class="time" rowspan="4" scope="row"><span class>8:00</span></td>
-          <!--<td name=<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime();?>
+          <!--<td name=<?php  echo (String)$userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime();?>
 		  id=<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime();?>
 		  rowspan="5" style="color:rgb(0,0,0);background-color:rgb(182,209,146);text-align: center;">
             <span class style="color:rgb(0,0,0);background-color:rgb(182,209,146);">SOEN  341 - S<br>Lecture<br>8:00AM - 9:15AM<br>Faubourg Building (FG) C080</span>
-          </td>--> 
+          </td> 
 		  		  <td 
 				  name=<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime();?>
 				  rowspan= <?php echo ($userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime() - $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime())/150000; ?>>
@@ -207,7 +232,8 @@ require_once 'backendInterface.php';
 				<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()/10000) . ":" . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()%10000/100?>
 				-
 				<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()/10000 ). ":" . $userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()%10000/100;?></span>
-          </td>
+          </td>-->
+          <td class="M" name="M80000" id="M80000">&nbsp;</td>
           <td class="T" name="T80000" id="T80000">&nbsp;</td>
 		  
           <td class="W" name="W80000" id="W80000">10&nbsp;</td>
@@ -240,7 +266,7 @@ require_once 'backendInterface.php';
         </tr>        
         <tr >
           <td class="M" name="M84500" id="M84500">&nbsp;</td>
-          <td class="T" name="T84500" id="T84500"rowspan="5" style="color:rgb(0,0,0);background-color:rgb(182,209,146);text-align: center;">
+          <td class="T" name="T84500" id="T84500" style="color:rgb(0,0,0);background-color:rgb(182,209,146);text-align: center;">
             <span class style="color:rgb(0,0,0);background-color:rgb(182,209,146);">COEN  390 - S<br>Lecture<br>8:45AM - 10:00AM<br>Faubourg Building (FG) C090</span>
 			</td>
           <td class="W" name="W84500" id="W84500">&nbsp;</td>
@@ -789,19 +815,16 @@ require_once 'backendInterface.php';
 
       </table>
 
-
-
+	</div>
       </div>
 	    </div>
-    <!-- end of schedule area   -->
-
-
-    
-    <!--  end of container  -->
+	</div>
+	</div>
 	
-	</div>
-	</div>
  <script>
+
+
+
 	$(document).ready(function(){
 	var i = 1;
 	$('#add').click(function(){
@@ -826,12 +849,148 @@ require_once 'backendInterface.php';
 	});
 });
 
-function pad(n) {
-    return (n < 10) ? ("0" + n) : n;
+ //CREATE NEW ELEMENTS
+
+   
+ createNew();
+     
+	
+	
+function createNew() {
+  
+  
+  
+  
+  var title = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] ?>";
+  var fromTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime() ?>";
+  var toTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime() ?>";
+  var courseName = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getCourseName() ?>";
+  var courseSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getSection() ?>";
+  var courseSubSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getSubSection() ?>";
+  var StartHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()/10000) ?>";
+  var StartMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()%10000/100 ?>";
+  var EndHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()/10000) ?>";
+  var EndMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()%10000/100 ?>";
+
+
+  
+document.getElementById(title + fromTimeHour).innerHTML=(courseSection + '<br>' + "Lecture" + '<br>' + StartHour + ":" + StartMinute + '&nbsp;' + "~" + '&nbsp;' + EndHour + ":" + EndMinute);
+document.getElementById(title + fromTimeHour).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
+document.getElementById(title + fromTimeHour).style = " color:rgb(0,0,0);background-color:rgb(182,209,146);text-align: center;opacity: 0.8;";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  var unit = 15;
+  //create new element using title+weekday as ID
+  var newElement = '<div id=' + title + fromTimeHour + ' class="myClass"><p class="title">' + title + fromTimeHour + '<i class="fa fa-trash-o" aria-hidden="true"></i></p><div style="z-index:90;"></div></div>';
+  
+  //inserts it
+  $(newElement).insertById(".tableTimes");
+   
+  
+  //this is how we will control where the elements will appear on the grid
+  //left for the day of the week
+  //top for starting time
+  //height interval of time
+  /*$("#" + title + fromTimeHour).css({
+    "left": weekDay,
+    "top": getStartHour(fromTimeHour, fromTimeHalf),
+    "height": getToHour(fromTimeHour, fromTimeHalf, toTimeHour, toTimeHalf),
+    
+  });
+  
+  updateElements();*/
 }
-  function pad (str, max) {
-      return str.length < max ? pad("0" + str, max) : str;
-    }
+
+function correctHour(toHour) {
+  
+        var result;
+
+        if(toHour < 7) {
+          result = 12 + Number(toHour);
+        } else {
+          result = toHour;
+        }
+        // alert(result);
+        return result;
+      }
+
+function getToHour(fromHour, fromHalf, toHour, toHalf) {
+  //needs to handle 9am to 1pm types of entry
+  var compensation;
+  
+  if(fromHalf == 30 && toHalf == 30) {
+    
+    compensation = 0;
+    
+  } else if (fromHalf == 30 ){
+    
+    compensation = -15;
+    
+  } else if(toHalf == 30){
+    
+    compensation = 15;
+    
+  } else {
+    
+    compensation = 0;
+  }
+  
+    var correctedToHour = correctHour(toHour);
+    var correctedFromHour = correctHour(fromHour);
+    // alert(correctedHour);
+    return ((correctedToHour - correctedFromHour) * 30) + compensation;
+  
+}
+
+function getStartHour(fromHour, fromHalf) {
+  
+  let base = 140; //that gives 7am
+  var unitHalf;
+  
+  //this rounds down or up
+  if (fromHalf >= 30) {
+    
+    unitHalf = 15; //half an hour
+  
+  } else {
+    
+    unitHalf = 0;
+  }
+  
+  
+  if(fromHour >= 8) {
+    
+    return base + ((fromHour - 8) * 30) + unitHalf;
+    
+  } else {
+    //260 is the base for anything after 12
+    return  260 + (fromHour * 30) + unitHalf;
+    
+  }
+  
+};
+
+
+
+
+
+ 
 /*$(document).ready(function() {
   $('table tr').each(function(i, v) {
     var cols = $(this).find('td');
@@ -845,15 +1004,21 @@ function pad(n) {
   });
 });*/
 
- /* <td name=<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime();?>
+ /*  <!--<td name=<?php  echo (String)$userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime();?>
+		  id=<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime();?>
+		  rowspan="5" style="color:rgb(0,0,0);background-color:rgb(182,209,146);text-align: center;">
+            <span class style="color:rgb(0,0,0);background-color:rgb(182,209,146);">SOEN  341 - S<br>Lecture<br>8:00AM - 9:15AM<br>Faubourg Building (FG) C080</span>
+          </td>--> 
+		  		  <td 
+				  name=<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime();?>
 				  rowspan= <?php echo ($userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime() - $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime())/150000; ?>>
             <span>
 				<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime();
 				echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getCourseName() . " - " . $userSched->getListOfSemesters()[0]->getLecs()[0]->getSection() . " " . $userSched->getListOfSemesters()[0]->getLecs()[0]->getSubSection();?>
 				<br>Lecture<br>
-				<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()/1000000) . ":" . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()%1000000/100?>
+				<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()/10000) . ":" . $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()%10000/100?>
 				-
-				<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()/1000000 ). ":" . $userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()%1000000/100;?></span>
+				<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()/10000 ). ":" . $userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()%10000/100;?></span>
           </td>*/
 </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
