@@ -1,4 +1,4 @@
-<?php 
+<?php
 //create connection
 $conn = mysqli_connect('localhost','root','root','sequencebuilder');
 //check connection
