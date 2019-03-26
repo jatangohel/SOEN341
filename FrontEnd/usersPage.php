@@ -1,6 +1,6 @@
 <?php
-   ob_start();
-   session_start();
+ob_start();
+session_start();
 ?>
 
 <?php
@@ -11,6 +11,9 @@
 	$path='PHPMailer\examples\EmailSender.php';
 	require $path;
 	*/
+
+		
+
 	function sendActivationEmail($activationLink,$userEmail){
 		// the message
 		$msg = "Welcome Sequence Builder...<br/>If you registered in the coolest website ever *SEQUENCE BUILDER*, click the following link to activate your account <br/> $activationLink <br/>Otherwise, ignore our email please!";
@@ -70,7 +73,10 @@
 		//since facebook has already authenticate the user's password
 		if(isset($_GET['login']))
 			$dbUserPws = 'temp';
+
+
 		
+
 		if(!empty($userEmail) && !empty($userPws) && $dbUserEmail == $userEmail && $dbUserPws == $userPws && $dbAcctAcctivated == 1){
 			$_SESSION['loggedin'] = true;
 			$_SESSION['userName'] = $LoggedInUserName;
@@ -88,7 +94,7 @@
 			echo "Invalid email or password has been used";
 			header('Refresh: 2; URL = ../index.php');
 		}
-			
+
 
 /*			echo "<br/>Activation status: ";
 			if($dbAcctAcctivated == 1)
@@ -96,18 +102,32 @@
 			else
 				echo "Accound has not been activated!";
 */
-	}
-	
-	
-	
+			}
+
+
+
 	//Register new user
-	if(isset($_POST['register'])){
+			if(isset($_POST['register'])){
+
+				$LastId = 0;
+
+		//find the last userId
+				$sql = 'SELECT * FROM users';
+				$stmt = $pdo->prepare($sql);
+				$stmt->execute([]);
+				$tt = $stmt->fetchAll();
+				foreach($tt as $t){
+					$LastId++;
+				}
+
+
+				$LastId++;
 
 		//getting the login info from the HTML form
-		$userName = $_POST['userName'];
-		$userEmail = $_POST['userEmail'];
-		$userPws = $_POST['userPassword'];
-		
+				$userName = $_POST['userName'];
+				$userEmail = $_POST['userEmail'];
+				$userPws = $_POST['userPassword'];
+
 /*		echo $userName.'<br/>';
 		echo $userEmail.'<br/>';
 		echo $userPws;
@@ -120,7 +140,7 @@
 		$users = $stmt->fetchAll();
 		
 		$dbUserEmail = null;
-	
+
 		//getting the user info from the DB for comparision
 		foreach($users as $user){
 			$dbUserEmail = $user->Email;
@@ -130,21 +150,18 @@
 
 		//no similar useremail exist in the DB and the user didn't leave his info empty
 		if($dbUserEmail == null && !empty($userEmail) && !empty($userPws)){
-
-			$query = "insert into users (UserName,Password,Email,Activated) values ('$userName','$userPws','$userEmail',1)";
-			$result = mysqli_query($conn, $query);
-			mysqli_close($conn);
+			$sql = 'INSERT INTO users(Email, Password, UserName,Activated,UserId,InputtedPassed,FirstSemester) values (?,?,?,?,?,?,?)';
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute([$userEmail, $userPws,$userName,1,$LastId,false,'R']);
 			
 			//str_replace is used to remove @ sign since it ruins the link
 			$activationLink = 'activateAccount.php?conf='.$userPws.'1430'.substr($userEmail,0,3)."&userEmail=".str_replace("@","remat",$userEmail);
 //			sendActivationEmail($activationLink,$userEmail);
 			echo 'An activation email has been sent to you!<br/>You will be directed to the home page...';
 			header('Refresh: 2; URL = ../index.php');
-		}else{
-			echo (!empty($userEmail) && !empty($userPws)) ? "$userEmail is already registered!": "Enter your info properly!";
-			header('Refresh: 2; URL = ../index.php');
-		}
+		}else
+		echo (!empty($userEmail) && !empty($userPws)) ? "$userEmail is already registered!": "Enter your info properly!";
 		
 		
 	}
-?>
+	?>
