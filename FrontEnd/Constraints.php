@@ -338,7 +338,9 @@ $(document).ready(function(){
 		            function(data){
 
 			  $('#result').html(data);
-        setTimeout(window.location.reload(false), 10000) ;
+			  //document.getElementById('time').innerHTML = Date(); 
+			  window.location.getElementById('card').innerHTML.reload(false);
+       // setTimeout(window.location.reload(false), 10000) ;
 
 			  console.log(data);
 
@@ -350,7 +352,7 @@ $(document).ready(function(){
 						//reload();
 
 
-					});S
+					});
 				/*
 				$('#submit').click(function(){
 						$.POST('backendInterface.php',{
