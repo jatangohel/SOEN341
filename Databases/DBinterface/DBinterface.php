@@ -467,7 +467,7 @@ function getFirstSemester($email){
 }
 //getCourse('COMP232');
 
-echo(getInputtedPassed("sebhani98@gmail.com"));
+//echo(getInputtedPassed("sebhani98@gmail.com"));
 
 ?>
 </body>

@@ -1,15 +1,27 @@
 <?php
-   ob_start();
-   session_start();
+ob_start();
+session_start();
 ?>
 
 <?php
-
-
 /*
 	$path='PHPMailer\examples\EmailSender.php';
 	require $path;
 	*/
+
+	function getInputtedPassed($email){
+			require '../Databases/DBinterface/config/db.php';
+			$query = 'select InputtedPassed from users where Email = "'.$email.'"';
+			$result = mysqli_query($conn, $query);
+			$data = mysqli_fetch_array($result);
+			$InputtedPassed = $data['InputtedPassed'];
+
+			return $InputtedPassed;
+		}
+		echo "amr";
+
+		echo(getInputtedPassed("sebhani98@gmail.com"));
+
 	function sendActivationEmail($activationLink,$userEmail){
 		// the message
 		$msg = "Welcome Sequence Builder...<br/>If you registered in the coolest website ever *SEQUENCE BUILDER*, click the following link to activate your account <br/> $activationLink <br/>Otherwise, ignore our email please!";
@@ -69,7 +81,10 @@
 		//since facebook has already authenticate the user's password
 		if(isset($_GET['login']))
 			$dbUserPws = 'temp';
+
+
 		
+
 		if(!empty($userEmail) && !empty($userPws) && $dbUserEmail == $userEmail && $dbUserPws == $userPws && $dbAcctAcctivated == 1){
 			$_SESSION['loggedin'] = true;
 			$_SESSION['userName'] = $LoggedInUserName;
@@ -81,7 +96,7 @@
 			echo "Invalid email or password has been used";
 			header('Refresh: 2; URL = ../index.php');
 		}
-			
+
 
 /*			echo "<br/>Activation status: ";
 			if($dbAcctAcctivated == 1)
@@ -89,32 +104,32 @@
 			else
 				echo "Accound has not been activated!";
 */
-	}
-	
-	
-	
-	//Register new user
-	if(isset($_POST['register'])){
+			}
 
-		$LastId = 0;
+
+
+	//Register new user
+			if(isset($_POST['register'])){
+
+				$LastId = 0;
 
 		//find the last userId
-		$sql = 'SELECT * FROM users';
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute([]);
-		$tt = $stmt->fetchAll();
-		foreach($tt as $t){
-			$LastId++;
-		}
+				$sql = 'SELECT * FROM users';
+				$stmt = $pdo->prepare($sql);
+				$stmt->execute([]);
+				$tt = $stmt->fetchAll();
+				foreach($tt as $t){
+					$LastId++;
+				}
 
-		
-		$LastId++;
+
+				$LastId++;
 
 		//getting the login info from the HTML form
-		$userName = $_POST['userName'];
-		$userEmail = $_POST['userEmail'];
-		$userPws = $_POST['userPassword'];
-		
+				$userName = $_POST['userName'];
+				$userEmail = $_POST['userEmail'];
+				$userPws = $_POST['userPassword'];
+
 /*		echo $userName.'<br/>';
 		echo $userEmail.'<br/>';
 		echo $userPws;
@@ -127,7 +142,7 @@
 		$users = $stmt->fetchAll();
 		
 		$dbUserEmail = null;
-	
+
 		//getting the user info from the DB for comparision
 		foreach($users as $user){
 			$dbUserEmail = $user->Email;
@@ -147,8 +162,8 @@
 			echo 'An activation email has been sent to you!<br/>You will be directed to the home page...';
 			header('Refresh: 2; URL = ../index.php');
 		}else
-			echo (!empty($userEmail) && !empty($userPws)) ? "$userEmail is already registered!": "Enter your info properly!";
+		echo (!empty($userEmail) && !empty($userPws)) ? "$userEmail is already registered!": "Enter your info properly!";
 		
 		
 	}
-?>
+	?>
