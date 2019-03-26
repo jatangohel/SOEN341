@@ -29,7 +29,7 @@ function genNewSched ()
 		 }
 	}
 
-echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+
 
 	$userSched = new UserSchedule("F", $numCoursesArr, $noClassesArr);
 
@@ -57,7 +57,7 @@ echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
 	
 	$_SESSION['semInfo'] = $semInfo;
 
-	var_dump($semInfo);
+	
 }
 }
 /*
