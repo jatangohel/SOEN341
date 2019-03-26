@@ -7,9 +7,19 @@
 <body>
   <div>
     <?php
+/*
+test for updateTakenCourses function
+
 
 require_once 'UserSchedule.php';
 
+$x = array('COMP352','SOEN341');
+
+updateTakenCourses('sebhani98@gmail.com',$x);
+
+echo 'done yo sucker!';
+
+*/
 ini_set('max_execution_time', 300);
 
 $numCoursesArr = array();
@@ -77,8 +87,6 @@ $untaken =  array ($comp248,$comp249,$comp352,$engr201,$engr202,$engr213,$engr23
 updateAllPriority($untaken);
 
 var_dump($untaken);
-*/
-
     ?>
   </div>
 </body>
