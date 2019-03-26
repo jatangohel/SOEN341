@@ -1,6 +1,9 @@
 
 <?php
+
+require_once __DIR__.'/../PageBuilder/header.php';
 require_once 'backendInterface.php';
+
 
 function cardDisp($i)
 {
