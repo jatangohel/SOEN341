@@ -1,6 +1,46 @@
 
 <?php
-require_once __DIR__.'/../FrontEnd/backendInterface.php';
+require_once 'backendInterface.php';
+
+function cardDisp($i)
+{
+  $semInfoFE = $_SESSION ['semInfo'];
+  echo 	'<div class="card card-body bg-danger text-center height:400px">' .
+    '<p> Minimum Credits This Semester'.
+      '<input type="number" min="0" max="18" id="credits1"/> &nbsp;&nbsp;<input type="button" class="btn btn-success btn-sm" name="btncredits3" id="btncredits3" value="submit"/></p>' .
+      '<table class="gridtable" id="table3" border="0"onclick=window.location.href="file:///X:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html">'.
+         '<thead>'.
+          '<tr class="tableheader">'.
+            '<th>Semester';  echo $i;
+            echo ' </th>'.
+          '</tr>'.
+        '</thead>'.
+        '<tbody>'.
+          '<tbody class="labels">'.
+            '<tr>'.
+              '<td colspan="2">'.
+                '<label>Course Name</label>'.
+                '<label>Credits</label>'.
+              '</td>'.
+            '</tr>'.
+          '<tr>';
+
+
+            echo implode('</th><th>', array_keys(current($semInfoFE[$i])));
+          echo '</tr>'.
+      '</thead>'.
+        '<tbody>';
+           foreach ($semInfoFE[$i] as $row): array_map('htmlentities', $row);
+            echo'<tr>'.
+              '<td>'; echo implode('</td><td>', $row);
+
+              echo '</td>'.
+            '</tr>';
+           endforeach;
+        echo '</tbody>'.
+      '</table>'.
+    '</div>';
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -94,108 +134,22 @@ require_once __DIR__.'/../FrontEnd/backendInterface.php';
 				<h2 align="center"class="header margin-top:0px">General Course Schedule</h2>
 		<br />
 		<div  class="card-columns">
-			<div class=" card card-body bg-primary text-center height:400px" >
-				<p> Minimum Credits This Semester
-				<input type="number"min="0" max="18"id="credits1"/> &nbsp;&nbsp;<input type="button" class="btn btn-success btn-sm" name="btncredits1" id="btncredits1" value="submit"/></p>
-        	<table class="gridtable" id="table1" border="0"onclick=window.location.href='file:///X:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html'>
-          <thead>
-          	<tr class="tableheader">
-							<th>Semester 1</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tbody class="labels">
-							<tr>
-								<td colspan="2">
-									<label>Course Name</label>
-									<label>Credits</label>
-								</td>
-							</tr>
-						</tbody>
-					</tbody>
-            <tr>
 
-             <?php
-             $semInfoFE = $_SESSION['semInfo'];
 
-             echo implode('</th><th>', array_keys(current($semInfoFE[0]))); ?>
-            </tr>
-          </thead>
-          <tbody>
-            <?php foreach ($semInfoFE[0] as $row): array_map('htmlentities', $row); ?>
-              <tr>
-                <td><?php echo implode('</td><td>', $row); ?></td>
-              </tr>
-            <?php endforeach; ?>
-          </tbody>
-        </table>
-			</div>
-			<div class=" card card-body bg-warning text-center height:400px" >
-				<p> Minimum Credits This Semester
-				<input type="number" min="0" max="18" id="credits1"/> &nbsp;&nbsp;<input type="button" class="btn btn-success btn-sm" name="btncredits2" id="btncredits2" value="submit"/></p>
-				<table class="gridtable" id="table2" border="0"onclick=window.location.href='file:///X:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html'>
-					 <thead>
-          	<tr class="tableheader">
-							<th>Semester 2</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tbody class="labels">
-							<tr>
-								<td colspan="2">
-									<label>Course Name</label>
-									<label>Credits</label>
-								</td>
-							</tr>
-            <tr>
 
-             <?php
-              echo implode('</th><th>', array_keys(current($semInfoFE[1])));
-              count($semInfoFE);
-               ?>
-            </tr>
-          </thead>
-          <tbody>
-            <?php foreach ($semInfoFE[1] as $row): array_map('htmlentities', $row); ?>
-              <tr>
-                <td><?php echo implode('</td><td>', $row); ?></td>
-              </tr>
-            <?php endforeach; ?>
-          </tbody>
-				</table>
-			</div>
-			<div class="card card-body bg-danger text-center height:400px">
-			<p> Minimum Credits This Semester
-				<input type="number" min="0" max="18" id="credits1"/> &nbsp;&nbsp;<input type="button" class="btn btn-success btn-sm" name="btncredits3" id="btncredits3" value="submit"/></p>
-				<table class="gridtable" id="table3" border="0"onclick=window.location.href='file:///X:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html'>
-					 <thead>
-          	<tr class="tableheader">
-							<th>Semester 3</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tbody class="labels">
-							<tr>
-								<td colspan="2">
-									<label>Course Name</label>
-									<label>Credits</label>
-								</td>
-							</tr>
-            <tr>
 
-              <?php
-              echo implode('</th><th>', array_keys(current($semInfoFE[2]))); ?>
-            </tr>
-          </thead>
-          <tbody>
-            <?php foreach ($semInfoFE[2] as $row): array_map('htmlentities', $row); ?>
-              <tr>
-                <td><?php echo implode('</td><td>', $row); ?></td>
-              </tr>
-            <?php endforeach; ?>
-          </tbody>
-				</table>
-			</div>
+<?php
+for ($i = 0; $i < count ($_SESSION['semInfo']); $i++)
+  cardDisp($i);
+ ?>
+
+
+
+
+
+
+
+
 		</div>
 	</div>
 
