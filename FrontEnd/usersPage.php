@@ -5,6 +5,7 @@
 
 <?php
 	include '../Databases/DBinterface/config/db.php';
+	include '../Databases/DBinterface/DBinterface.php';
 
 /*
 	$path='PHPMailer\examples\EmailSender.php';
@@ -74,8 +75,13 @@
 			$_SESSION['loggedin'] = true;
 			$_SESSION['userName'] = $LoggedInUserName;
 			$_SESSION['userEmail'] = $userEmail;
+
 			echo "$LoggedInUserName you're logged in!";
-			header('Refresh: 2; URL = ../Generate.php');
+
+			if(getInputtedPassed($userEmail))
+				header('Refresh: 2; URL = Constraints.php');
+			else
+				header('Refresh: 2; URL = ../Generate.php');
 		}
 		else{
 			

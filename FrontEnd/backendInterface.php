@@ -89,7 +89,7 @@ function genNewSched ()
 
 if( empty($_POST['submitID']) )                                   //A
 {
-  session_start();  // before any output                        //C
+//  session_start();  // before any output                        //C
 	if (empty($_SESSION))
 	{
 		$_SESSION['numCoursesYearTerm']= array();                                        //D
