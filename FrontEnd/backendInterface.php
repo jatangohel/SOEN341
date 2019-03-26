@@ -40,7 +40,7 @@ echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
 
 	$semInfo = array();
 
-	for ($i =0;$i<=count($userSched->getListOfSemesters());$i++){
+	for ($i =0;$i<count($userSched->getListOfSemesters());$i++){
 
 	$semInfo[$i]= array (array());
 	//$semInfo[1]= array (array());
@@ -54,6 +54,8 @@ echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
 	  array_push($semInfo[$i],$courseInfo);
 	}
 	$semInfo[$i] = array_slice($semInfo[$i],1);
+	
+	$_SESSION['semInfo'] = $semInfo;
 
 	var_dump($semInfo);
 }
