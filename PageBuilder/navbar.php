@@ -1,3 +1,7 @@
+<?php
+   ob_start();
+   session_start();
+?>
 <nav class="navbar navbar-expand-md navbar-dark bg-primary sticky-top">
         <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
             <span class="navbar-toggler-icon"></span>
@@ -41,12 +45,18 @@
                <!-- PROFILE DROPDOWN - scrolling off the page to the right -->
                <li class="nav-item dropdown">
                    <a href="#" class="nav-link dropdown-toggle" id="navDropDownLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               Welcome, <?php echo$_SESSION['userName'] ?>!
+               Welcome 
+
+               <?php 
+                if(isset($_SESSION['loggedin']))
+                 echo ', '.$_SESSION['userName']; 
+               ?>!
+          
            </a>
                    <div class="dropdown-menu" aria-labelledby="navDropDownLink">
                        <a class="dropdown-item" href="#">Preferences</a>
                        <div class="dropdown-divider"></div>
-                       <a class="dropdown-item" href="logout.php">Logout</a>
+                       <a class="dropdown-item" href="FrontEnd/logout.php">Logout</a>
                    </div>
                </li>
            </ul>
