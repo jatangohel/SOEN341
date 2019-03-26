@@ -1,138 +1,6 @@
-<!DOCTYPE html>
-<html>
+
+
 <head>
-    <meta charset="utf-8" />
-    <title>SOEN 341 - Course Scheduler</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<!-- Font awesome -->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    
-   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    
-    <script type="text/javascript" src="js/pwsChecker.js"></script>
-    
-    <style> 
-     
-        /* Button end */
-        
-        
-        
-        /* Typing effect CSS Ends */
-        
-          
-        .typewriter{
-display: flex;
-  justify-content: center;
-        }       
-        
-.typewriter h1 {
-
-    
-  color: #3A3A3A;
-  font-family: monospace;
-  overflow: hidden;
-  border-right: .15em solid orange;
-  white-space:nowrap;
-  margin: 0 auto;
-  letter-spacing: .15em;
-  animation: 
-    typing 3.5s steps(45, end),
-    blink-caret .5s step-end infinite;
-}
-   
-       @media screen and (max-width: 475px) {
-            .typewriter h1{
-            white-space:nowrap;
-        }        }
-/* The typing effect */
-@keyframes typing {
-  from { width: 0 }
-  to { width: 85% }
-}
-
-/* The typewriter cursor effect */
-@keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: orange }
-}
-     
-        
-        /* Typing effect CSS Ends */
-            
-        
-    tr{
-        background-color:white;
-        color:black;
-    }
-    
-    .radio_buttons {
-        padding-top: 20px;
-        padding-bottom: 20px;
-        background-color: rgb(45, 45, 45);
-        color:white;
-    }
-        
-        
-    body
-  {
-      
-    background-image: linear-gradient(to bottom, rgba(255, 255, 255,9), rgba(230, 247, 255,9)), url("concordia.jpg");
-    background-image: -moz-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
-    background-image: -o-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
-    background-image: -ms-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255,9)), to(rgba(230, 247, 255,9))), url(../../../../../Downloads/concordia.jpg);
-    background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,0)), url(../concordia.jpg);
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-attachment: fixed;
-        }
-        
-        
-        
-        .pb-modalreglog-container
-    {
-        margin-top: 100px;
-    }
-
-    .pb-modalreglog-legend
-    {
-        text-align: center;
-    }
-
-    .pb-modalreglog-input-group
-    {
-        margin: auto;
-    }
-
-    .pb-modalreglog-submit
-    {
-       
-        margin-left: 30%;
-    }
-
-    .pb-modalreglog-form-reg
-    {
-        text-align: center;
-    }
-
-    .pb-modalreglog-footer p
-    {
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    #pb-modalreglog-progressbar
-    {
-        border-radius: 2px;
-    }
-        
-        
-    </style>
-    
      <script>
     $(function () {
         var progress = $("#pb-modalreglog-progressbar").shieldProgressBar({
@@ -194,57 +62,20 @@ display: flex;
         });
     })
 </script>
-    
+
 </head>
 <body>
-<!-- NAVBAR -->
-    
-     
-    <nav class="navbar navbar-expand-md navbar-dark bg-primary sticky-top">
-		<button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
-			<span class="navbar-toggler-icon"></span>
-		
-		
-		</button>
-		 <a class="navbar-brand" href="index.html"><img src="../images/University-of-Concordia.gif" width="130px"></a>
-		<span class="navbar-text"></span>
-		<div class="collapse navbar-collapse" id="collapse_target">
-		
-		
-	
-		<ul class="navbar-nav">
-
-<!--
-			<li class="nav-item">
-				<a class="nav-link" href="#">Profile </a>
-			</li>
--->
-			<li class="nav-item">
-				<a class="nav-link" href="#">About Us </a>
-			</li>	
-            
-            <li class="nav-item">
-				<a class="nav-link" href="#">Privacy Policy </a>
-			</li>
-            
-            <li class="nav-item">
-				<a class="nav-link" href="#">Terms & Conditions </a>
-			</li>
-		</ul>
-		</div>
-	</nav>
-    
-    
-    <!-- NAVBAR ENDS -->
+<!-- page setup -->
 <div class="container">
 <div class="page-header">
     <br><br><br>
    <div class="typewriter">
   <h1>Welcome to Concordia Course Scheduler.</h1>
 </div>
-   
+
 </div>
     </div>
+
 <!-- Login And SignUp Modal - START -->
 <div class="container">
     <div class="row">
@@ -253,18 +84,18 @@ display: flex;
             <p class="text-center">
               Please Login if you have your credentails or Kindly Register yourself.
             </p>
-            
+
             <div class="input-group">
                 <button class="btn btn-primary btn-block" data-toggle="modal" data-target= "#myModal">Login</button>
                 <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal2">Register</button>
             </div>
-            
+
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                
+
                             </button>
                             <h4 class="modal-title" id="myModalLabel">Login form</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -272,7 +103,7 @@ display: flex;
 						<!-- login form -->
 						<form action="usersPage.php" method="POST">
 							<div class="modal-body">
-								
+
 									<div class="form-group">
 										<label for="email">Email address</label>
 										<div class="input-group pb-modalreglog-input-group">
@@ -287,7 +118,7 @@ display: flex;
 											<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
 										</div>
 									</div>
-								
+
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -302,7 +133,7 @@ display: flex;
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                               
+
                             </button>
                             <h4 class="modal-title" id="myModalLabel">Registration form</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -310,7 +141,7 @@ display: flex;
 						<!-- Register form -->
 						<form class="pb-modalreglog-form-reg" action="usersPage.php" method="POST">
 							<div class="modal-body">
-								
+
 									<div class="form-group">
 										<div id="pb-modalreglog-progressbar"></div>
 									</div>
@@ -335,7 +166,7 @@ display: flex;
 											<input name="userPassword" type="password" class="form-control" id="inputPws" placeholder="Password" onkeyup="pwsLengthChecker()" required><!-- onkeyup is the only event works b/c it detects the length not (-1) like onkeydown -->
 										</div>
 										<p id="pwsLengthErr">
-											
+
 										</p>
 									</div>
 							</div>
@@ -350,24 +181,9 @@ display: flex;
         </div>
     </div>
     </div>
-    
-    
 
-    <footer class="page-footer font-small blue pt-4">
-    
-    <div class="navbar navbar-inverse bg-dark fixed-bottom">
-		<div class="navbar-text text-white pull-left">
-			<p>© Copyright Error404 Team</p>
-		</div>
-		<div class="navbar-text text-success text-center">
-			<p>SOEN 341 - Winter 2019</p>
-		</div>
-		<div class="navbar-text pull-right">
-		<a href="https://github.com/jatangohel" target="_blank">Visit our OpenSource <i class="fab fa-github"></i></a>
-		</div>
-	</div>
-    
-    </footer>
-    
-</body>  
-</html>
+
+
+
+
+</body>
