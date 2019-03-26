@@ -18,9 +18,8 @@ session_start();
 
 			return $InputtedPassed;
 		}
-		echo "amr";
 
-		echo(getInputtedPassed("sebhani98@gmail.com"));
+		
 
 	function sendActivationEmail($activationLink,$userEmail){
 		// the message

@@ -7,7 +7,7 @@
 <?php
 	if(!isset($_SESSION['loggedin'])){
 		echo "Login please!";
-		header('Refresh: 2; URL = ../index.php');
+		header('Refresh: 2; URL = index.php');
 	}
 
 ?>
