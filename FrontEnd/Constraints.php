@@ -1,6 +1,9 @@
 
 <?php
+
+require_once __DIR__.'/../PageBuilder/header.php';
 require_once 'backendInterface.php';
+
 
 function cardDisp($i)
 {
@@ -25,7 +28,7 @@ function cardDisp($i)
             '</tr>'.
           '<tr>';
 
-
+          if (!empty($semInfoFE[$i]))
             echo implode('</th><th>', array_keys(current($semInfoFE[$i])));
           echo '</tr>'.
       '</thead>'.
@@ -49,14 +52,15 @@ function cardDisp($i)
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<!-- Font awesome -->
+ <!--	    Bootstrap CSS
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">  -->
+
+<!-- 		Font awesome
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-	<script src="jquery.js"></script>
+	<script src="jquery.js"></script> -->
 
 	<title>SOEN Course Stream</title>
 	<style>

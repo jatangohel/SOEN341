@@ -7,7 +7,7 @@ $page_author = "Error404";
 
 //Construct Page
 include 'PageBuilder/navbar.php';
-include 'FrontEnd/index.php';
+include 'FrontEnd/Generate.php';
 include 'PageBuilder/header.php';
 include 'PageBuilder/footer.php';
 //include 'FrontEnd/usersPage.php';
