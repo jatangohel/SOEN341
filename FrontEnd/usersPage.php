@@ -4,7 +4,7 @@
 ?>
 
 <?php
-
+	include '../Databases/DBinterface/config/db.php';
 
 /*
 	$path='PHPMailer\examples\EmailSender.php';
@@ -73,6 +73,7 @@
 		if(!empty($userEmail) && !empty($userPws) && $dbUserEmail == $userEmail && $dbUserPws == $userPws && $dbAcctAcctivated == 1){
 			$_SESSION['loggedin'] = true;
 			$_SESSION['userName'] = $LoggedInUserName;
+			$_SESSION['userEmail'] = $userEmail;
 			echo "$LoggedInUserName you're logged in!";
 			header('Refresh: 2; URL = ../Generate.php');
 		}
@@ -95,20 +96,6 @@
 	
 	//Register new user
 	if(isset($_POST['register'])){
-
-		$LastId = 0;
-
-		//find the last userId
-		$sql = 'SELECT * FROM users';
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute([]);
-		$tt = $stmt->fetchAll();
-		foreach($tt as $t){
-			$LastId++;
-		}
-
-		
-		$LastId++;
 
 		//getting the login info from the HTML form
 		$userName = $_POST['userName'];
@@ -137,17 +124,20 @@
 
 		//no similar useremail exist in the DB and the user didn't leave his info empty
 		if($dbUserEmail == null && !empty($userEmail) && !empty($userPws)){
-			$sql = 'INSERT INTO users(Email, Password, UserName,Activated,UserId,InputtedPassed,FirstSemester) values (?,?,?,?,?,?,?)';
-			$stmt = $pdo->prepare($sql);
-			$stmt->execute([$userEmail, $userPws,$userName,1,$LastId,false,'R']);
+
+			$query = "insert into users (UserName,Password,Email,Activated) values ('$userName','$userPws','$userEmail',1)";
+			$result = mysqli_query($conn, $query);
+			mysqli_close($conn);
 			
 			//str_replace is used to remove @ sign since it ruins the link
 			$activationLink = 'activateAccount.php?conf='.$userPws.'1430'.substr($userEmail,0,3)."&userEmail=".str_replace("@","remat",$userEmail);
 //			sendActivationEmail($activationLink,$userEmail);
 			echo 'An activation email has been sent to you!<br/>You will be directed to the home page...';
 			header('Refresh: 2; URL = ../index.php');
-		}else
+		}else{
 			echo (!empty($userEmail) && !empty($userPws)) ? "$userEmail is already registered!": "Enter your info properly!";
+			header('Refresh: 2; URL = ../index.php');
+		}
 		
 		
 	}
