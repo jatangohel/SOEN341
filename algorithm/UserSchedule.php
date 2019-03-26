@@ -53,7 +53,7 @@ public function dispUserSchedule()
 public function genProgramSched ($user)
 {
   global $DEFAULT_COURSES_PER_SEM;
-
+  global $createdCourses;
   $semesters = array("W", "S","F");
 
   // Obtain untaken courses by the user
@@ -106,7 +106,7 @@ public function genProgramSched ($user)
     // Exclude the taken courses from the untaken array
     foreach ($sem->getLecs() as $taken)
     {
-      updateCourseStatus($taken, $untakenCourses);
+      $createdCourses[$taken->getCourseName()]->setPass(true);
       deleteCourse($taken, $untakenCourses);
     }
 

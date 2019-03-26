@@ -9,6 +9,7 @@
     <?php
 
 $MAX_PERMS = 20;
+$MAX_COMBS = 10;
 $studentCredits = 14;
 
 class Semester
@@ -374,6 +375,7 @@ class Semester
     $FAILED_NUM_CREDITS = -1;
 
     global $MAX_PERMS;
+    global $MAX_COMBS;
     global $studentCredits;
    $status = $SUCCESSFUL;
 
@@ -415,7 +417,7 @@ class Semester
 
     global $returnedCourses;
 
-    for ($i=0; $numReturnedCourses < $this->numCourses and $i<count($combsArray); $i++)
+    for ($i=0; $numReturnedCourses < $this->numCourses and $i < $MAX_COMBS and $i<count($combsArray); $i++)
     {
     //  echo ("Hello from the other side $i <br>");
       $returnedCourses = $this->semesterScheduling ($combsArray[$i]);

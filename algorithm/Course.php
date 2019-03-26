@@ -156,17 +156,6 @@ function deleteCourse ($course, &$courses)
   }
 }
 
-function updateCourseStatus ($course, &$courses)
-{
-  foreach ($courses as $key=>$c)
-  {
-    if ($course->getCourseName() == $c->getCourseName())
-    {
-      $c->setPass(true);
-      return;
-    }
-  }
-}
 
 function coReqsSatisfied($courses)
 {

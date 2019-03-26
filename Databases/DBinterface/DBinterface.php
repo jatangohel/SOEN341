@@ -2,6 +2,15 @@
 	//include("Session.php");
 
 static $createdCourses = array();
+static $flec = array();
+static $wlec = array();
+static $slec = array();
+static $ftut = array();
+static $wtut = array();
+static $stut = array();
+static $flab = array();
+static $wlab = array();
+static $slab = array();
 
 function getLectureSections($course, $semester){
 	require('config/db.php');		require('config/db.php');		require('config/db.php');		require('config/db.php');

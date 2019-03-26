@@ -41,7 +41,7 @@ array_push($noSem1, $no5);
 //$noClassesArr['2F']=$noSem1;
 //$noClassesArr['2W']=$noSem1;
 $userSched = new UserSchedule($numCoursesArr, $noClassesArr);
-$testUser = new user('hani',"sebhani98@gmail.com" , 'hani123', $userSched, "F");
+$testUser = new user("hani","osama.qalam@hotmail.com" , "hani123", $userSched, "F");
 $userSched->genProgramSched($testUser);
 
 $userSched->dispUserSchedule();
@@ -52,10 +52,17 @@ $C =new Course ("C", null, null, 3, true, false);
 $D =new Course ("D", null, array($A, $B), 3, true, false);
 
 $temp = array ($A, $C, $D);
-
+$startTime = 0.0;
+$endTime = 0.0;
+$startTime = microtime(true);
 var_dump(coReqsSatisfied($temp));
+$endTime = microtime(true);
 
+//var_dump(microtime(true));
+
+echo ($endTime - $startTime) * 1000;
 /*
+
 $comp248 = new Course ("COMP248", null, null, 3, false, false);            // permitted
 $comp249 = new Course ("COMP249", array($comp248), null, 3, false, false); // fail -> preReq
 $comp352 = new Course ("COMP352", array ($comp249), null, 3, false, false);// fail -> preReq
