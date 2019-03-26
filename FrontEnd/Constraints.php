@@ -1,6 +1,6 @@
 
 <?php
-require_once __DIR__.'/../FrontEnd/backendInterface.php';
+require_once 'backendInterface.php';
 ?>
 <!doctype html>
 <html lang="en">
