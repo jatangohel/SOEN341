@@ -31,9 +31,14 @@ function genNewSched ()
 
 
 
-	$userSched = new UserSchedule("F", $numCoursesArr, $noClassesArr);
 
-	$userSched->genProgramSched('sebhani98@gmail.com');
+
+
+
+	$userSched = new UserSchedule($numCoursesArr, $noClassesArr);
+	$user = new User ("Hani",'sebhani98@gmail.com', $userSched, 'F');
+
+	$userSched->genProgramSched($user);
 
 
 	$numSemesters = count($userSched->getListOfSemesters());
@@ -54,11 +59,15 @@ function genNewSched ()
 	  array_push($semInfo[$i],$courseInfo);
 	}
 	$semInfo[$i] = array_slice($semInfo[$i],1);
-	
+
 	$_SESSION['semInfo'] = $semInfo;
 	var_dump($_SESSION);
 
+
 	
+
+
+
 }
 }
 /*
@@ -90,7 +99,7 @@ function genNewSched ()
 
 if( empty($_POST['submitID']) )                                   //A
 {
-  session_start();  // before any output                        //C
+//  session_start();  // before any output                        //C
 	if (empty($_SESSION))
 	{
 		$_SESSION['numCoursesYearTerm']= array();                                        //D
