@@ -81,11 +81,12 @@ session_start();
 			$_SESSION['loggedin'] = true;
 			$_SESSION['userName'] = $LoggedInUserName;
 			$_SESSION['userEmail'] = $userEmail;
+			$_SESSION['flagPrevPage'] = true;
 
 			echo "$LoggedInUserName you're logged in!";
 
 			if(getInputtedPassed($userEmail))
-				header('Refresh: 2; URL = Constraints.php');
+				header('Refresh: 2; URL = ../Constraints.php');
 			else
 				header('Refresh: 2; URL = ../Generate.php');
 		}

@@ -156,7 +156,7 @@
 
 
 	<div class="container" id="container">
-        <form id="generatecourse" action="formAction.php" method="POST">
+        <form id="generatecourse" action="Constraints.php" method="POST">
 		<table class="gridtable" id="tableMain" border="0">
 			<thead>
 				<tr class="tableheader">
@@ -181,12 +181,12 @@
                         <td>PHYS 204</td>
                         <td>
                        <label for="PHYS204">PASS</label>&nbsp;&nbsp;&nbsp;
-                            <input type="checkbox" id="PHYS204" name="PHYS204" value="PHYS204">
+                            <input type="checkbox" id="PHYS204" name="check_list[]" value="PHYS204">
                         </td>
                     </tr>
 
 					<tr><td>PHYS 205</td><td><label for="PHYS205">PASS</label>&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" id="PHYS205" name="PHYS205" value="PHYS205"></td></tr>
+                        <input type="checkbox" id="PHYS205" name="check_list[]" value="PHYS205"></td></tr>
 				</tbody>
 
 
@@ -201,11 +201,11 @@
 				</tbody>
 				<tbody class="collapse" id="data_2">
 					<tr><td>MATH 203</td><td> <label for="MATH203">PASS</label>&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" id="MATH203" name="MATH203" value="MATH203"> </td></tr>
+                        <input type="checkbox" id="MATH203" name="check_list[]" value="MATH203"> </td></tr>
 					<tr><td>MATH 204</td><td> <label for="MATH204">PASS</label>&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" id="MATH204" name="MATH204" value="MATH204"> </td></tr>
+                        <input type="checkbox" id="MATH204" name="check_list[]" value="MATH204"> </td></tr>
 					<tr><td>MATH 205</td><td> <label for="MATH205">PASS</label>&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" id="MATH205" name="MATH205" value="MATH205"> </td></tr>
+                        <input type="checkbox" id="MATH205" name="check_list[]" value="MATH205"> </td></tr>
 				</tbody>
 
 
@@ -220,7 +220,7 @@
 				</tbody>
 				<tbody class="collapse" id="data_3">
 					<tr class="hide"><td>ELEC 275</td><td> <label for="ELEC275">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="ELEC275" name="ELEC275" value="ELEC275"> </td></tr>
+                        </label><input type="checkbox" id="ELEC275" name="check_list[]" value="ELEC275"> </td></tr>
 				</tbody>
 
 
@@ -239,7 +239,7 @@
 				</tbody>
 				<tbody class="collapse" id="data_4">
 					<tr class="hide"><td>ENCS 282</td><td> <label for="ENCS282">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="ENCS282" name="ENCS282" value="ENCS282"> </td></tr>
+                        </label><input type="checkbox" id="ENCS282" name="check_list[]" value="ENCS282"> </td></tr>
 				</tbody>
 
 
@@ -254,17 +254,17 @@
 				</tbody>
 				<tbody class="collapse" id="data_5">
 					<tr class="hide"><td>ENGR 201</td><td> <label for="ENGR201">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="ENGR201" name="ENGR201" value="ENGR201"> </td></tr>
+                        </label><input type="checkbox"  id="ENGR201" name="check_list[]" value="ENGR201"> </td></tr>
 					<tr class="hide"><td>ENGR 202</td><td> <label for="ENGR202">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="ENGR202" name="ENGR202" value="ENGR202"> </td></tr>
+                        </label><input type="checkbox" id="ENGR202" name="check_list[]" value="ENGR202"> </td></tr>
 					<tr class="hide"><td>ENGR 213</td><td> <label for="ENGR213">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="ENGR213" name="ENGR213" value="ENGR213"> </td></tr>
+                        </label><input type="checkbox"  id="ENGR213" name="check_list[]" value="ENGR213"> </td></tr>
 					<tr class="hide"><td>ENGR 233</td><td> <label for="ENGR233">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="ENGR233" name="ENGR233" value="ENGR233"> </td></tr>
+                        </label><input type="checkbox"  id="ENGR233" name="check_list[]" value="ENGR233"> </td></tr>
 					<tr class="hide"><td>ENGR 301</td><td> <label for="ENGR301">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="ENGR301" name="ENGR301" value="ENGR301"> </td></tr>
+                        </label><input type="checkbox"  id="ENGR301" name="check_list[]" value="ENGR301"> </td></tr>
 					<tr class="hide"><td>ENGR 371</td><td> <label for="ENGR371">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="ENGR371" name="ENGR371" value="ENGR371"> </td></tr>
+                        </label><input type="checkbox"  id="ENGR371" name="check_list[]" value="ENGR371"> </td></tr>
 				</tbody>
 
 				<tbody class="labels" data-toggle="collapse" data-target="#data_6" aria-expanded="true">
@@ -277,19 +277,19 @@
 				</tbody>
 				<tbody class="collapse" id="data_6">
 					<tr class="hide"><td>COMP 232</td><td> <label for="COMP232">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="COMP232" name="COMP232" value="COMP232"> </td></tr>
+                        </label><input type="checkbox" id="COMP232" name="check_list[]" value="COMP232"> </td></tr>
 					<tr class="hide"><td>COMP 248</td><td> <label for="COMP248">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="COMP248" name="COMP248" value="COMP248"> </td></tr>
+                        </label><input type="checkbox" id="COMP248" name="check_list[]" value="COMP248"> </td></tr>
 					<tr class="hide"><td>COMP 249</td><td> <label for="COMP249">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="COMP249" name="COMP249" value="COMP249"> </td></tr>
+                        </label><input type="checkbox" id="COMP249" name="check_list[]" value="COMP249"> </td></tr>
 					<tr class="hide"><td>COMP 335</td><td> <label for="COMP335">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="COMP335" name="COMP335" value="COMP335"> </td></tr>
+                        </label><input type="checkbox" id="COMP335" name="check_list[]" value="COMP335"> </td></tr>
 					<tr class="hide"><td>COMP 346</td><td> <label for="COMP346">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="COMP346" name="COMP346" value="COMP346"> </td></tr>
+                        </label><input type="checkbox" id="COMP346" name="check_list[]" value="COMP346"> </td></tr>
 					<tr class="hide"><td>COMP 348</td><td> <label for="COMP348">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="COMP348" name="COMP348" value="COMP348"> </td></tr>
+                        </label><input type="checkbox" id="COMP348" name="check_list[]" value="COMP348"> </td></tr>
 					<tr class="hide"><td>COMP 352</td><td> <label for="COMP352">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="COMP352" name="COMP352" value="COMP352"> </td></tr>
+                        </label><input type="checkbox" id="COMP352" name="check_list[]" value="COMP352"> </td></tr>
 				</tbody>
 
 				<tbody class="labels" data-toggle="collapse" data-target="#data_7" aria-expanded="true">
@@ -302,33 +302,33 @@
 				</tbody>
 				<tbody class="collapse" id="data_7">
 					<tr class="hide"><td>SOEN 228</td><td> <label for="SOEN228">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="SOEN228" name="SOEN228" value="SOEN228"> </td></tr>
+                        </label><input type="checkbox" id="SOEN228" name="check_list[]" value="SOEN228"> </td></tr>
 					<tr class="hide"><td>SOEN 287</td><td> <label for="SOEN287">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="SOEN287" name="SOEN287" value="SOEN287"> </td></tr>
+                        </label><input type="checkbox" id="SOEN287" name="check_list[]" value="SOEN287"> </td></tr>
 					<tr class="hide"><td>SOEN 321</td><td> <label for="SOEN321">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="SOEN321" name="SOEN321" value="SOEN321"> </td></tr>
+                        </label><input type="checkbox" id="SOEN321" name="check_list[]" value="SOEN321"> </td></tr>
 					<tr class="hide"><td>SOEN 331</td><td> <label for="SOEN331">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="SOEN331" name="SOEN331" value="SOEN331"> </td></tr>
+                        </label><input type="checkbox" id="SOEN331" name="check_list[]" value="SOEN331"> </td></tr>
 					<tr class="hide"><td>SOEN 341</td><td> <label for="SOEN341">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="SOEN341" name="SOEN341" value="SOEN341"> </td></tr>
+                        </label><input type="checkbox" id="SOEN341" name="check_list[]" value="SOEN341"> </td></tr>
 					<tr class="hide"><td>SOEN 342</td><td> <label for="SOEN342">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="SOEN342" name="SOEN342" value="SOEN342"> </td></tr>
+                        </label><input type="checkbox" id="SOEN342" name="check_list[]" value="SOEN342"> </td></tr>
 					<tr class="hide"><td>SOEN 343</td><td> <label for="SOEN343">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="SOEN343" name="SOEN343" value="SOEN343"> </td></tr>
+                        </label><input type="checkbox" id="SOEN343" name="check_list[]" value="SOEN343"> </td></tr>
 					<tr class="hide"><td>SOEN 344</td><td> <label for="SOEN344">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="SOEN344" name="SOEN344" value="SOEN344"> </td></tr>
+                        </label><input type="checkbox" id="SOEN344" name="check_list[]" value="SOEN344"> </td></tr>
 					<tr class="hide"><td>SOEN 345</td><td> <label for="SOEN345">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="SOEN345" name="SOEN345" value="SOEN345"> </td></tr>
+                        </label><input type="checkbox" id="SOEN345" name="check_list[]" value="SOEN345"> </td></tr>
 					<tr class="hide"><td>SOEN 357</td><td> <label for="SOEN357">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="SOEN357" name="SOEN357" value="SOEN357"> </td></tr>
+                        </label><input type="checkbox" id="SOEN357" name="check_list[]"value="SOEN357"> </td></tr>
 					<tr class="hide"><td>SOEN 384</td><td> <label for="SOEN384">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="SOEN384" name="SOEN384" value="SOEN384"> </td></tr>
+                        </label><input type="checkbox" id="SOEN384" name="check_list[]" value="SOEN384"> </td></tr>
 					<tr class="hide"><td>SOEN 385</td><td> <label for="SOEN385">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="SOEN385" name="SOEN385" value="SOEN385"> </td></tr>
+                        </label><input type="checkbox" id="SOEN385" name="check_list[]" value="SOEN385"> </td></tr>
 					<tr class="hide"><td>SOEN 390</td><td> <label for="SOEN390">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="SOEN390" name="SOEN390" value="SOEN390"> </td></tr>
+                        </label><input type="checkbox" id="SOEN390" name="check_list[]" value="SOEN390"> </td></tr>
 					<tr class="hide"><td>SOEN 490</td><td> <label for="SOEN490">PASS&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="SOEN490" name="SOEN490" value="SOEN490"> </td></tr>
+                        </label><input type="checkbox" id="SOEN490" name="check_list[]" value="SOEN490"> </td></tr>
 				</tbody>
 		</table>
         	<center>
@@ -358,6 +358,8 @@
                 <button class="submit-button btn-lg btn-primary" id="generate" name="generate"> Generate </button>
 
                 </div>
+
+                
 <!--	   <button class="btn btn-lg btn-primary generate" id="button1" type="button">Generate</button>-->
         </center>
            </form>

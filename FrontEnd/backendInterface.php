@@ -58,6 +58,8 @@ function genNewSched ()
 
 	$_SESSION['semInfo'] = $semInfo;
 
+	//var_dump($_SESSION);
+
 
 }
 }
@@ -90,9 +92,11 @@ function genNewSched ()
 
 if( empty($_POST['submitID']) )                                   //A
 {
+	//var_dump($_SESSION);
 //  session_start();  // before any output                        //C
-	if (empty($_SESSION))
+	if ($_SESSION['flagPrevPage'])
 	{
+		$_SESSION['flagPrevPage'] = false;
 		$_SESSION['numCoursesYearTerm']= array();                                        //D
 	  $_SESSION['numCoursesConstrain']= array();
 		genNewSched();
@@ -100,6 +104,7 @@ if( empty($_POST['submitID']) )                                   //A
 }
 elseif ($_POST['submitID'] == "Submit #Courses" )  // continuing           //F
 {
+
 	session_start();  // before any output
   processNumCoursesConstraint();
 	genNewSched();

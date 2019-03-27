@@ -4,6 +4,11 @@
 require_once __DIR__.'/../PageBuilder/header.php';
 require_once 'backendInterface.php';
 
+//just printing the stuffs
+if(!empty($_POST['check_list'])){
+foreach($_POST['check_list'] as $selected){
+echo $selected."</br>";
+}}
 
 function cardDisp($i)
 {
@@ -138,8 +143,6 @@ function cardDisp($i)
 				<h2 align="center"class="header margin-top:0px">General Course Schedule</h2>
 		<br />
 		<div  class="card-columns">
-
-
 
 
 <?php
