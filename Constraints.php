@@ -2,7 +2,7 @@
 ob_start();
 session_start();
 ?>
-	
+
 <?php
 	//Page Info
 	$page_name = "error 404 - Main page";
@@ -18,5 +18,3 @@ session_start();
 	include 'PageBuilder/footer.php';
 	//include 'FrontEnd/usersPage.php';
 ?>
-<?php session_end(); ?>
-

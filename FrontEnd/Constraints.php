@@ -4,6 +4,7 @@
 require_once __DIR__.'/../PageBuilder/header.php';
 require_once 'backendInterface.php';
 
+
 /*
 Summary:
 
@@ -12,6 +13,7 @@ getUntakenCoursesFrontEnd($_POST['check_list']); --> untaken courses
 $_POST["intake"] --> semester
 
 */
+
 
 function cardDisp($i)
 {
@@ -163,7 +165,7 @@ for ($i = 0; $i < count ($_SESSION['semInfo']); $i++)
 		</div>
 	</div>
 
-<?php session_end(); ?>
+<?php //session_end(); ?>
 
 <!--
 		Fall					Winter
@@ -302,7 +304,7 @@ $(document).ready(function(){
 		            function(data){
 
 			  $('#result').html(data);
-        setTimeout(window.location.reload(false), 10000) ;
+        window.location.reload(false);
 
 			  console.log(data);
 
