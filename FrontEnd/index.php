@@ -1,4 +1,4 @@
-
+<?php require_once __DIR__.'/../PageBuilder/header.php'; ?>
 
 <head>
    <script>

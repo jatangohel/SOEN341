@@ -13,13 +13,15 @@ echo $selected."</br>";
 function cardDisp($i)
 {
   $semInfoFE = $_SESSION ['semInfo'];
-  echo 	'<div class="card card-body bg-danger text-center height:400px">' .
+  echo
+  '<div class="card card-body text-center height:400px" style="background: #F8C471" >' .
     '<p> Minimum Credits This Semester'.
       '<input type="number" min="0" max="18" id="credits1"/> &nbsp;&nbsp;<input type="button" class="btn btn-success btn-sm" name="btncredits3" id="btncredits3" value="submit"/></p>' .
       '<table class="gridtable" id="table3" border="0"onclick=window.location.href="file:///X:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html">'.
          '<thead>'.
           '<tr class="tableheader">'.
-            '<th>Semester';  echo " ".$i;
+
+            '<th>Semester ';  echo $i;
             echo ' </th>'.
           '</tr>'.
         '</thead>'.
@@ -27,8 +29,8 @@ function cardDisp($i)
           '<tbody class="labels">'.
             '<tr>'.
               '<td colspan="2">'.
-                '<label>Course Name</label>'.
-                '<label>Credits</label>'.
+              //  '<label>Course Name</label>'.
+              // '<label>Credits</label>'.
               '</td>'.
             '</tr>'.
           '<tr>';
@@ -47,6 +49,7 @@ function cardDisp($i)
            endforeach;
         echo '</tbody>'.
       '</table>'.
+
     '</div>';
 }
 ?>
@@ -81,13 +84,53 @@ function cardDisp($i)
 		.jumbotron {
 			margin-top:8%;
 			margin-left: 8%;
+      margin-right: 8%;
+
+
 		}
+     .card {
+      /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      padding: 16px;
+      text-align: center;
+      background-color: #f1f1f1;
+      padding: 20px;  */
+       margin: 0 8 8 8px;
+       opacity: 0.95;
+
+    }
 
 		.card:hover{
-			-webkit-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
+			 -webkit-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
 			-moz-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
 			box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
+
+
 		}
+
+.row {margin: 0 -5px;}
+
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+body
+{
+background-image: linear-gradient(to bottom, rgba(255, 255, 255,9), rgba(230, 247, 255,9)), url("concordia.jpg");
+background-image: -moz-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
+background-image: -o-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
+background-image: -ms-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
+background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255,9)), to(rgba(230, 247, 255,9))), url(../../../../../Downloads/concordia.jpg);
+background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,0)), url(concordia.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+
 
 	</style>
   </head>
@@ -138,11 +181,12 @@ function cardDisp($i)
 		</div>
 	</div>
 
-
-	<div id="card"  class="jumbotron jumbotron-fluid">
+<div class ="container">
+	<!-- <div id="card"  class="jumbotron jumbotron-fluid" > -->
 				<h2 align="center"class="header margin-top:0px">General Course Schedule</h2>
 		<br />
-		<div  class="card-columns">
+		<div  class="card-cloumns">
+      <div class = "row">
 
 
 <?php
@@ -154,10 +198,8 @@ for ($i = 0; $i < count ($_SESSION['semInfo']); $i++)
 
 
 
-
-
-
 		</div>
+    </div>
 	</div>
 
 <?php session_end(); ?>
