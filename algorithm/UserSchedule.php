@@ -5,20 +5,20 @@ require_once 'Session.php';
 require_once 'Course.php';
 require_once 'Semester.php';
 require_once 'heapSort.php';
+require_once 'User.php';
 
 $DEFAULT_COURSES_PER_SEM = 4;
 
 
 class UserSchedule
 {
-private $firstSem;        // Input obtained from user ("F" or "W" or "S")
 private $listOfSemesters; // Array of semesters
 private $coursesPerSemArr;   // Input obtained from user (int)
 private $noClassesArr;
 
-public function __construct($fSem, $numCourses,$noClassesArr)
+public function __construct($numCourses,$noClassesArr)
 {
-  $this->firstSem = $fSem;
+//  $this->firstSem = $fSem;
   $this->listOfSemesters = array ();
   $this->coursesPerSemArr = $numCourses;
   $this->noClassesArr= $noClassesArr;
@@ -30,10 +30,7 @@ public function getListOfSemesters ()
   return $this->listOfSemesters;
 }
 
-public function getFirstSem ()
-{
-  return $this->$firstSem;
-}
+
 
 public function dispUserSchedule()
 {
@@ -52,14 +49,14 @@ public function dispUserSchedule()
 public function genProgramSched ($user)
 {
   global $DEFAULT_COURSES_PER_SEM;
-
+  global $createdCourses;
   $semesters = array("W", "S","F");
 
   // Obtain untaken courses by the user
-  $untakenCourses = getUntakenCourses($user);
+  $untakenCourses = getUntakenCourses($user->getEmail());
 
   // Get the key for first semester in the array of semesters
-  $currentSemKey = array_search($this->firstSem, $semesters);
+  $currentSemKey = array_search($user->getFirstSemester(), $semesters);
   $currentYear = 1;
   $flag=false;
 
@@ -74,10 +71,6 @@ public function genProgramSched ($user)
 
     // Get the permitted courses to be taken this semester
     $permittedCourses = getPermittedCourses ($untakenCourses, $semesters[$currentSemKey]);
-
-    // Sort the array based on their priority
-
-    //heap_sort($permittedCourses);
 
     $noClasses= array_key_exists($semCode,$this->noClassesArr) ? $this->noClassesArr[$semCode] : null;
     // Generate a schedule for a semester
@@ -105,7 +98,7 @@ public function genProgramSched ($user)
     // Exclude the taken courses from the untaken array
     foreach ($sem->getLecs() as $taken)
     {
-      updateCourseStatus($taken, $untakenCourses);
+      $createdCourses[$taken->getCourseName()]->setPass(true);
       deleteCourse($taken, $untakenCourses);
     }
 

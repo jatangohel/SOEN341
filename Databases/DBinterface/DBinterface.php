@@ -2,11 +2,22 @@
 	//include("Session.php");
 
 static $createdCourses = array();
+static $flec = array();
+static $wlec = array();
+static $slec = array();
+static $ftut = array(array());
+static $wtut = array(array());
+static $stut = array(array());
+static $flab = array(array());
+static $wlab = array(array());
+static $slab = array(array());
 
 function getLectureSections($course, $semester){
 	require('config/db.php');
 	$stack=array();
-
+	global $flec;
+	global $wlec;
+	global $slec;
 	static $table ;
 
 	switch ($semester)
@@ -14,20 +25,27 @@ function getLectureSections($course, $semester){
 		case 'F':
 		global $table;
 		$table = 'flec';
+		$loadedSessions = &$flec;
 		break;
 		case 'W':
 		global $table;
 		$table = 'wlec';
+		$loadedSessions = &$wlec;
 		break;
 		case 'S':
 		global $table;
 		$table = 'slec';
+		$loadedSessions = &$slec;
 		break;
 		default:
 		global $table;
 		$table = 'error';
 	}
 
+	if (array_key_exists($course, $loadedSessions))
+		return $loadedSessions[$course];
+
+	else {
 		//Create query
 	$query = "SELECT * FROM `$table` WHERE `CourseName`='$course'";
 
@@ -47,52 +65,67 @@ function getLectureSections($course, $semester){
 		$lecInfo = $post ['LecInfo'];
 		$subSection = null;
 		$lecDay = explode(",",$post ['LecDay']);
-		$startLecTime = (int) $post ['StartLecTime'];
-		$endLecTime = (int) $post ['EndLecTime'];
-		
-		/*
-		$startLecTime= (int) str_replace(":","",$post ['StartLecTime']);
-		$endLecTime= (int) str_replace(":","", $post ['EndLecTime']);
-		*/
+		$startLecTime= $post ['StartLecTime'];
+		$endLecTime= $post ['EndLecTime'];
 		$campus = "SGW";
 
 			//Making a new session object with the course information
 		$ham =  new Session($courseName,$lecInfo,$subSection,$semester,$lecDay,$startLecTime,$endLecTime,$campus);
 
 		array_push($stack, $ham);
+
+		if(array_key_exists( $courseName, $loadedSessions))
+		array_push($loadedSessions[$courseName], $ham);
+			else{
+		$loadedSessions[$courseName] = array($ham);
+	}
+
+
 	}
 	mysqli_close($conn);
 
 	return $stack;
 }
+}
 
 
 function getTutorialSection($course, $semester, $section){
+		//include('tutorialfunction.php');
 	require('config/db.php');
 
 	$stack=array();
 
 	static $table ;
-
+	global $ftut;
+	global $wtut;
+	global $stut;
+	$loadedSessions;
 	switch ($semester)
 	{
 		case 'F':
 		global $table;
 		$table = 'ftut';
+		$loadedSessions = &$ftut;
 		break;
 		case 'W':
 		global $table;
 		$table = 'wtut';
+		$loadedSessions = &$wtut;
 		break;
 		case 'S':
 		global $table;
 		$table = 'stut';
+		$loadedSessions = &$stut;
 		break;
 		default:
 		global $table;
 		$table = 'error';
 	}
 
+	if (array_key_exists($course, $loadedSessions))
+		return $loadedSessions[$course];
+
+	else {
 		//Create query
 	$query = "SELECT * FROM `$table` WHERE `CourseName`='$course' AND `LecInfo`='$section'";
 
@@ -113,18 +146,25 @@ function getTutorialSection($course, $semester, $section){
 		$lecInfo = $post ['LecInfo'];
 		$subSection = $post['TutSection'];
 		$lecDay = explode(",",$post ['TutDay']);
-		$startLecTime= (int) $post ['StartTutTime'];
-		$endLecTime= (int) $post ['EndTutTime'];
+		$startLecTime= $post ['StartTutTime'];
+		$endLecTime= $post ['EndTutTime'];
 		$campus = "SGW";
 
 			//Making a new session object with the course information
 		$ham =  new Session($courseName,$lecInfo,$subSection,$semester,$lecDay,$startLecTime,$endLecTime,$campus);
 
 		array_push($stack, $ham);
+
+		if(array_key_exists( $courseName, $loadedSessions))
+		array_push($loadedSessions[$courseName], $ham);
+			else{
+		$loadedSessions[$courseName] = array($ham);
+	}
+
 	}
 	mysqli_close($conn);
 	return $stack;
-
+}
 }
 
 function getLabSection($course, $semester){
@@ -132,25 +172,36 @@ function getLabSection($course, $semester){
 	require('config/db.php');
 	$stack=array();
 	static $table;
+	global $flab;
+	global $wlab;
+	global $slab;
+	$loadedSessions = array(array());
 	switch ($semester)
 	{
 		case 'F':
 		global $table;
 		$table = 'flab';
+		$loadedSessions = &$flab;
 		break;
 		case 'W':
 		global $table;
 		$table = 'wlab';
+		$loadedSessions = &$wlab;
 		break;
 		case 'S':
 		global $table;
 		$table = 'slab';
+		$loadedSessions = &$slab;
 		break;
 		default:
 		global $table;
 		$table = 'error';
 	}
 
+	if (array_key_exists($course, $loadedSessions))
+		return $loadedSessions[$course];
+
+	else {
 	//Create query
 	$query = "SELECT * FROM `$table` WHERE `CourseName`='$course'";
 
@@ -169,18 +220,24 @@ function getLabSection($course, $semester){
 		$courseName = $post['CourseName'];
 		$labSection = $post ['LabSection'];
 		$labDay = explode(",",$post ['LabDay']);
-		$startLabTime= (int) $post ['StartLabTime'];
-		$endLabTime= (int) $post ['EndLabTime'];
+		$startLabTime= $post ['StartLabTime'];
+		$endLabTime= $post ['EndLabTime'];
 		$campus = "SGW";
 
 		//Making a new session object with the course information
 		$ham =  new Session($courseName,$labSection,null,$semester,$labDay,$startLabTime,$endLabTime,$campus);
 
 		array_push($stack, $ham);
+		if(array_key_exists( $courseName, $loadedSessions))
+		array_push($loadedSessions[$courseName], $ham);
+			else{
+		$loadedSessions[$courseName] = array($ham);
+	}
 	}
 
 	mysqli_close($conn);
 	return $stack;
+}
 }
 
 	//Returns an array of Courses objects this user can take this semester from the remaining courses array of courses
@@ -373,9 +430,44 @@ function getCourse($courseName){
 	}
 }
 
+function getID($email){
 
+	require('config/db.php');
 
+	$query1 ="SELECT L.user_id FROM login L INNER JOIN `course` C ON C.`courseid` = L.`user_id` WHERE L.`email`='$email'";
+
+	$result1 = mysqli_query($conn1, $query1);
+
+	    //Fetch Data
+	$posts1 = mysqli_fetch_all($result1, MYSQLI_ASSOC);
+
+	return $posts1;
+}
+
+function getInputtedPassed($email){
+   require('config/db.php');
+
+   $query = 'select InputtedPassed from users where Email = "'.$email.'"';
+   $result = mysqli_query($conn, $query);
+   $data = mysqli_fetch_array($result);
+   $InputtedPassed = $data['InputtedPassed'];
+
+   return $InputtedPassed;
+}
+
+function getFirstSemester($email){
+   require('config/db.php');
+
+   $query = 'select FirstSemester from users where Email = "'.$email.'"';
+   $result = mysqli_query($conn, $query);
+   $data = mysqli_fetch_array($result);
+   $FirstSemester = $data['FirstSemester'];
+
+   return $FirstSemester;
+}
 //getCourse('COMP232');
+
+//echo(getInputtedPassed("sebhani98@gmail.com"));
 
 ?>
 </body>
