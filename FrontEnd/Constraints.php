@@ -19,7 +19,7 @@ function cardDisp($i)
       '<table class="gridtable" id="table3" border="0"onclick=window.location.href="file:///X:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html">'.
          '<thead>'.
           '<tr class="tableheader">'.
-            '<th>Semester';  echo $i;
+            '<th>Semester';  echo " ".$i;
             echo ' </th>'.
           '</tr>'.
         '</thead>'.
