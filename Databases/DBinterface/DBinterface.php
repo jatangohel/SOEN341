@@ -444,7 +444,30 @@ function getID($email){
 	return $posts1;
 }
 
+function getInputtedPassed($email){
+   require('config/db.php');
+
+   $query = 'select InputtedPassed from users where Email = "'.$email.'"';
+   $result = mysqli_query($conn, $query);
+   $data = mysqli_fetch_array($result);
+   $InputtedPassed = $data['InputtedPassed'];
+
+   return $InputtedPassed;
+}
+
+function getFirstSemester($email){
+   require('config/db.php');
+
+   $query = 'select FirstSemester from users where Email = "'.$email.'"';
+   $result = mysqli_query($conn, $query);
+   $data = mysqli_fetch_array($result);
+   $FirstSemester = $data['FirstSemester'];
+
+   return $FirstSemester;
+}
 //getCourse('COMP232');
+
+//echo(getInputtedPassed("sebhani98@gmail.com"));
 
 ?>
 </body>
