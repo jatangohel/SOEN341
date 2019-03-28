@@ -118,9 +118,10 @@ require_once 'backendInterface.php';
           background: rgba(120,120,255,0.06);
         }
 
-# + "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] ?>" + "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()?> {
-      color:rgb(0,0,0);background-color:rgb(182,209,146);text-align: center;
+#T90000{
+	rgb(255,0,0)
 }
+
 	
 	.dropdown-menu{
 	background-color: #80ffbf;
@@ -260,16 +261,16 @@ require_once 'backendInterface.php';
           <td class="T" name="T83000" id="T83000">&nbsp;</td>
           <td class="W" name="W83000" id="W83000">&nbsp;</td>
           <td class="J" name="J83000" id="J83000">&nbsp;</td>
-          <td class="F" name="F83000" id="F83000">&nbsp;</td>
+          <td class="F" name="F83000" id="F83000">&xcxnbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>    
         </tr>        
         <tr >
-          <td class="M" name="M84500" id="M84500">&nbsp;</td>
+          <td class="M" name="M84500" id="M84500">&xcxc;</td>
           <td class="T" name="T84500" id="T84500" style="color:rgb(0,0,0);background-color:rgb(182,209,146);text-align: center;">
             <span class style="color:rgb(0,0,0);background-color:rgb(182,209,146);">COEN  390 - S<br>Lecture<br>8:45AM - 10:00AM<br>Faubourg Building (FG) C090</span>
 			</td>
-          <td class="W" name="W84500" id="W84500">&nbsp;</td>
+          <td class="W" name="W84500" id="W84500">&nxcxccbsp;</td>
           <td class="J" name="J84500" id="J84500">&nbsp;</td>
           <td class="F" name="F84500" id="F84500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
@@ -281,7 +282,7 @@ require_once 'backendInterface.php';
         <tr>
           <td class="time" rowspan="4" scope="row"><span class>9:00</span>&nbsp;</td>
           <td class="M" name="M90000" id="M90000">&nbsp;</td>
-          <td class="T" name="T90000" id="T90000">&nbsp;</td>
+          <td class="T" name="T90000" id="T90000">&wf;</td>
           <td class="W" name="W90000" id="W90000">&nbsp;</td>
           <td class="J" name="J90000" id="J90000">&nbsp;</td>
           <td class="F" name="F90000" id="F90000">&nbsp;</td>
@@ -291,7 +292,7 @@ require_once 'backendInterface.php';
         <tr>
           <td class="M" name="M91500" id="M91500">&nbsp;</td>
           <td class="T" name="T91500" id="T91500">&nbsp;</td>
-          <td class="W" name="W91500" id="W91500">&nbsp;</td>
+          <td class="W" name="W91500" id="W91500">&;</td>
           <td class="J" name="J91500" id="J91500">&nbsp;</td>
           <td class="F" name="F91500" id="F91500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
@@ -823,7 +824,8 @@ require_once 'backendInterface.php';
 	
  <script>
 
-
+var element = document.getElementById("#T90000");
+element.parentNode.removeChild(element);
 
 	$(document).ready(function(){
 	var i = 1;

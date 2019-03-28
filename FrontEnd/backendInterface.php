@@ -57,6 +57,7 @@ function genNewSched ()
 	$semInfo[$i] = array_slice($semInfo[$i],1);
 
 	$_SESSION['semInfo'] = $semInfo;
+	$_SESSION['userSched'] = $userSched;
 
 
 }
