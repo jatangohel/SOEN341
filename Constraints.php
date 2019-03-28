@@ -4,6 +4,8 @@ session_start();
 ?>
 	
 <?php
+echo '<link href="css/stylec.css" rel="stylesheet">';
+
 	//Page Info
 	$page_name = "error 404 - Main page";
 	$page_keywords = "Error404";
@@ -19,4 +21,3 @@ session_start();
 	//include 'FrontEnd/usersPage.php';
 ?>
 <?php session_end(); ?>
-

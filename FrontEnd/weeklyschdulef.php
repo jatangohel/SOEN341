@@ -1,5 +1,9 @@
 <?php
 require_once 'backendInterface.php';
+if (isset($_GET['semester'])) {
+  $semester = (int)$_GET['semester'];
+  echo $semester;
+}
 ?>
 <!doctype html>
 <html lang="en">

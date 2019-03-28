@@ -1,4 +1,3 @@
-
 <?php
 
 require_once __DIR__.'/../PageBuilder/header.php';
@@ -6,6 +5,7 @@ require_once 'backendInterface.php';
 
 //just printing the stuffs
 if(!empty($_POST['check_list'])){
+	echo(count($_POST['check_list']));
 foreach($_POST['check_list'] as $selected){
 echo $selected."</br>";
 }}
@@ -13,8 +13,11 @@ echo $selected."</br>";
 function cardDisp($i)
 {
   $semInfoFE = $_SESSION ['semInfo'];
+ // echo "&emsp;&emsp;&emsp;&emsp;&emsp;";
   echo
-  '<div class="card card-body text-center height:400px" style="background: #F8C471" >' .
+  '<a class="card card-body text-center height:400px" id="hello" href="FrontEnd/weeklyschdulef.php?semester=';echo"$i";echo'"class="custom-card" style="background: #F8C471">'.
+  '<div name=';echo $i; echo' >' .
+  	//'<form id="cardcard" action="weeklyschedulef.php" method="POST">'.
     '<p> Minimum Credits This Semester'.
       '<input type="number" min="0" max="18" id="credits1"/> &nbsp;&nbsp;<input type="button" class="btn btn-success btn-sm" name="btncredits3" id="btncredits3" value="submit"/></p>' .
       '<table class="gridtable" id="table3" border="0"onclick=window.location.href="file:///X:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html">'.
@@ -49,8 +52,10 @@ function cardDisp($i)
            endforeach;
         echo '</tbody>'.
       '</table>'.
-
-    '</div>';
+      //'</form>'.
+    '</div>'.
+    '</a>';
+   // echo "&emsp;&emsp;&emsp;&emsp;";
 }
 ?>
 <!doctype html>
@@ -123,7 +128,7 @@ background-image: linear-gradient(to bottom, rgba(255, 255, 255,9), rgba(230, 24
 background-image: -moz-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
 background-image: -o-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
 background-image: -ms-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
-background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255,9)), to(rgba(230, 247, 255,9))), url(../../../../../Downloads/concordia.jpg);
+background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255,9)), to(rgba(230, 247, 255,9))), url(../../../../../Downloads);
 background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,0)), url(concordia.jpg);
   background-repeat: no-repeat;
   background-size: cover;
