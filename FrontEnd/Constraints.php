@@ -1,77 +1,86 @@
 <?php
 
+require_once __DIR__.'/../Databases/DBinterface/DBinterface.php';
 require_once __DIR__.'/../PageBuilder/header.php';
 require_once 'backendInterface.php';
+
 
 
 
 /*
 Summary:
 
-$_POST['check_list'] --> passed courses
 getUntakenCoursesFrontEnd($_POST['check_list']); --> untaken courses
 $_POST["intake"] --> semester
 
 */
 
+$email=$_SESSION['userEmail'];
+
+if(isset($_POST['check_list'])){
+
+if (count($_POST['check_list'])>0){
+updateInputtedPassed($email);
+}
+}
 
 function cardDisp($i)
 {
-  $semInfoFE = $_SESSION ['semInfo'];
+	$semInfoFE = $_SESSION ['semInfo'];
  // echo "&emsp;&emsp;&emsp;&emsp;&emsp;";
-  echo
-  '<a class="card card-body text-center height:400px" id="hello" href="FrontEnd/weeklyschdulef.php?semester=';echo"$i";echo'"class="custom-card" style="background: #F8C471">'.
-  '<div name=';echo $i; echo' >' .
+	echo
+	'<a class="card card-body text-center height:400px" id="hello" href="FrontEnd/weeklyschdulef.php?semester=';echo"$i";echo'"class="custom-card" style="background: #F8C471">'.
+	'<div name=';echo $i; echo' >' .
   	//'<form id="cardcard" action="weeklyschedulef.php" method="POST">'.
-    '<p> Minimum Credits This Semester'.
-      '<input type="number" min="0" max="18" id="credits1"/> &nbsp;&nbsp;<input type="button" class="btn btn-success btn-sm" name="btncredits3" id="btncredits3" value="submit"/></p>' .
-      '<table class="gridtable" id="table3" border="0"onclick=window.location.href="file:///X:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html">'.
-         '<thead>'.
-          '<tr class="tableheader">'.
+	'<p> Minimum Credits This Semester'.
+	'<input type="number" min="0" max="18" id="credits1"/> &nbsp;&nbsp;<input type="button" class="btn btn-success btn-sm" name="btncredits3" id="btncredits3" value="submit"/></p>' .
+	'<table class="gridtable" id="table3" border="0"onclick=window.location.href="file:///X:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html">'.
+	'<thead>'.
+	'<tr class="tableheader">'.
 
-            '<th>Semester ';  echo $i;
-            echo ' </th>'.
-          '</tr>'.
-        '</thead>'.
-        '<tbody>'.
-          '<tbody class="labels">'.
-            '<tr>'.
-              '<td colspan="2">'.
+	'<th>Semester ';  echo $i;
+	echo ' </th>'.
+	'</tr>'.
+	'</thead>'.
+	'<tbody>'.
+	'<tbody class="labels">'.
+	'<tr>'.
+	'<td colspan="2">'.
               //  '<label>Course Name</label>'.
               // '<label>Credits</label>'.
-              '</td>'.
-            '</tr>'.
-          '<tr>';
+	'</td>'.
+	'</tr>'.
+	'<tr>';
 
-          if (!empty($semInfoFE[$i]))
-            echo implode('</th><th>', array_keys(current($semInfoFE[$i])));
-          echo '</tr>'.
-      '</thead>'.
-        '<tbody>';
-           foreach ($semInfoFE[$i] as $row): array_map('htmlentities', $row);
-            echo'<tr>'.
-              '<td>'; echo implode('</td><td>', $row);
+	if (!empty($semInfoFE[$i]))
+		echo implode('</th><th>', array_keys(current($semInfoFE[$i])));
+	echo '</tr>'.
+	'</thead>'.
+	'<tbody>';
+	foreach ($semInfoFE[$i] as $row): array_map('htmlentities', $row);
+		echo'<tr>'.
+		'<td>'; echo implode('</td><td>', $row);
 
-              echo '</td>'.
-            '</tr>';
-           endforeach;
-        echo '</tbody>'.
-      '</table>'.
+		echo '</td>'.
+		'</tr>';
+	endforeach;
+	echo '</tbody>'.
+	'</table>'.
       //'</form>'.
-    '</div>'.
-    '</a>';
+	'</div>'.
+	'</a>';
    // echo "&emsp;&emsp;&emsp;&emsp;";
 }
 ?>
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
  <!--	    Bootstrap CSS
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">  -->
+ 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">  -->
 
 <!-- 		Font awesome
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -82,69 +91,69 @@ function cardDisp($i)
 
 	<title>SOEN Course Stream</title>
 	<style>
-		table.gridtable {
-			padding: 10px;
-			font-weight: bold;
-			text-align: left;
-			font-size: 18px;
-			opacity: 0.7;
-			display: block;
-		}
+	table.gridtable {
+		padding: 10px;
+		font-weight: bold;
+		text-align: left;
+		font-size: 18px;
+		opacity: 0.7;
+		display: block;
+	}
 
-		.jumbotron {
-			margin-top:8%;
-			margin-left: 8%;
-      margin-right: 8%;
+	.jumbotron {
+		margin-top:8%;
+		margin-left: 8%;
+		margin-right: 8%;
 
 
-		}
-     .card {
+	}
+	.card {
       /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
       padding: 16px;
       text-align: center;
       background-color: #f1f1f1;
       padding: 20px;  */
-       margin: 0 8 8 8px;
-       opacity: 0.95;
+      margin: 0 8 8 8px;
+      opacity: 0.95;
 
-    }
+  }
 
-		.card:hover{
-			 -webkit-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
-			-moz-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
-			box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
-
-
-		}
-
-.row {margin: 0 -5px;}
+  .card:hover{
+  	-webkit-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
+  	-moz-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
+  	box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
 
 
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
+  }
+
+  .row {margin: 0 -5px;}
 
 
-body
-{
-background-image: linear-gradient(to bottom, rgba(255, 255, 255,9), rgba(230, 247, 255,9)), url("concordia.jpg");
-background-image: -moz-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
-background-image: -o-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
-background-image: -ms-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
-background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255,9)), to(rgba(230, 247, 255,9))), url(../../../../../Downloads);
-background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,0)), url(concordia.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-}
+  .row:after {
+  	content: "";
+  	display: table;
+  	clear: both;
+  }
+
+
+  body
+  {
+  	background-image: linear-gradient(to bottom, rgba(255, 255, 255,9), rgba(230, 247, 255,9)), url("concordia.jpg");
+  	background-image: -moz-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
+  	background-image: -o-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
+  	background-image: -ms-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
+  	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255,9)), to(rgba(230, 247, 255,9))), url(../../../../../Downloads);
+  	background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,0)), url(concordia.jpg);
+  	background-repeat: no-repeat;
+  	background-size: cover;
+  	background-attachment: fixed;
+  }
 
 
 
-	</style>
-  </head>
- <body>
+</style>
+</head>
+<body>
 	<div class="container">
 		<br />
 		<br />
@@ -154,7 +163,7 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 		<div class="form-group">
 			<form name="add_name" id="add_name">
 				<table class="table table-bordered" id="dynamic_field">
-					 <tr>
+					<tr>
 						<td><select id= "listYear1",name="Years" >
 							<option value="1" selected>First Year</option>
 							<option value="2">Second Year</option>
@@ -162,57 +171,57 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 							<option value="4">Fourth Year</option>
 							<option value="5">Fifth Year</option>
 							<option value="6">Sixth Year</option>
-							</select>
+						</select>
 
-						</td>
-						<td><select id = "list1",name="Term">
-							<option value="S" selected>Summer Term</option>
-							<option value="F">Fall Term</option>
-							<option value="W">Winter Term</option>
-							</select>
+					</td>
+					<td><select id = "list1",name="Term">
+						<option value="S" selected>Summer Term</option>
+						<option value="F">Fall Term</option>
+						<option value="W">Winter Term</option>
+					</select>
 
-						</td>
-						<td><select name="Number" id="number1">
-							<option value="0" selected>0</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							</select>
-						</td>
-						<td><button type="button" name="add" id="add" class="btn btn-success">Next</button></td>
-					</tr>
-				</table>
-				<input type="button" class="btn btn-primary" name="submit" id="submit" value="submit"/>
-			</form>
-			<div id="result"></div>
-		</div>
-	</div>
+				</td>
+				<td><select name="Number" id="number1">
+					<option value="0" selected>0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+				</select>
+			</td>
+			<td><button type="button" name="add" id="add" class="btn btn-success">Next</button></td>
+		</tr>
+	</table>
+	<input type="button" class="btn btn-primary" name="submit" id="submit" value="submit"/>
+</form>
+<div id="result"></div>
+</div>
+</div>
 
 <div class ="container">
 	<!-- <div id="card"  class="jumbotron jumbotron-fluid" > -->
-				<h2 align="center"class="header margin-top:0px">General Course Schedule</h2>
+		<h2 align="center"class="header margin-top:0px">General Course Schedule</h2>
 		<br />
 		<div  class="card-cloumns">
-      <div class = "row">
+			<div class = "row">
 
 
-<?php
-for ($i = 0; $i < count ($_SESSION['semInfo']); $i++)
-  cardDisp($i);
- ?>
+				<?php
+				for ($i = 0; $i < count ($_SESSION['semInfo']); $i++)
+					cardDisp($i);
+				?>
 
 
 
 
 
+			</div>
 		</div>
-    </div>
 	</div>
 
-<?php //session_end(); ?>
+	<?php //session_end(); ?>
 
 <!--
 		Fall					Winter
@@ -255,13 +264,13 @@ for ($i = 0; $i < count ($_SESSION['semInfo']); $i++)
 		ENGR 392	3.00
 		SOEN 385	3.00
 		SOEN 490	4.00
--->
+	-->
 
 
-<script>
+	<script>
 	//var i = 1;
 	var i = 1 ;
-$(document).ready(function(){
+	$(document).ready(function(){
 	//var i = 1;
 	$('#add').click(function(){
 		i++;
@@ -270,13 +279,13 @@ $(document).ready(function(){
 	$(document).on('click','.btn_remove',function(){
 		var button_id = $(this).attr("id");
 		if (button_id == i){
-		i--;
-		$("#row"+button_id+'').remove();
-	}
-	else{
-		alert("Please delet from the last one.");
+			i--;
+			$("#row"+button_id+'').remove();
+		}
+		else{
+			alert("Please delet from the last one.");
 
-	}
+		}
 	});
 
 	$('#submit').click(function(){
@@ -293,10 +302,10 @@ $(document).ready(function(){
 	});
 });
 
-				function reload(){
-    var container = document.getElementById("card");
-    var content = container.innerHTML;
-    container.innerHTML= content;
+	function reload(){
+		var container = document.getElementById("card");
+		var content = container.innerHTML;
+		container.innerHTML= content;
 
     //setTimeout(function(){
 
@@ -306,20 +315,20 @@ $(document).ready(function(){
 }
 
 
-                        function getTotalTerm(){
-                        	var z =i;
-                        	return z;
+function getTotalTerm(){
+	var z =i;
+	return z;
                         	//console.log(z);
                         }
-						function getFirstTerm(){
-							firstTerm=document.getElementById("list1").value;
-							return firstTerm;
-						}
-                         function getSelectYearTerm(){
-									var y;
-									var selectYear=[];
-									for (y =1; y<i+1;y++){
-									selectYear1 = document.getElementById("listYear"+y).value + document.getElementById("list"+y).value;
+                        function getFirstTerm(){
+                        	firstTerm=document.getElementById("list1").value;
+                        	return firstTerm;
+                        }
+                        function getSelectYearTerm(){
+                        	var y;
+                        	var selectYear=[];
+                        	for (y =1; y<i+1;y++){
+                        		selectYear1 = document.getElementById("listYear"+y).value + document.getElementById("list"+y).value;
 									//selectYear [selectYear1] = document.getElementById("number"+y).value;
 									selectYear.push(selectYear1);
 									//console.log(selectYear);
@@ -329,35 +338,35 @@ $(document).ready(function(){
 								return selectYear;
 							//console.log(selectYear);
 
-								}
+						}
 
-                           function getNumberOfCourse(){
-                           	        var c;
-									var courseNo=[];
-									for (c=1; c<i+1;c++){
-									courseNo1 = document.getElementById("number"+c).value;
-									courseNo.push(courseNo1);
-                           }
-                           return courseNo;
+						function getNumberOfCourse(){
+							var c;
+							var courseNo=[];
+							for (c=1; c<i+1;c++){
+								courseNo1 = document.getElementById("number"+c).value;
+								courseNo.push(courseNo1);
+							}
+							return courseNo;
                           // console.log(courseNo);
-                         }
+                      }
 
-  $(document).ready(function(){
-					$('#submit').click(function(){
-						$.post('backendInterface.php',{
-              submitID:"Submit #Courses",
-							numCoursesYearTerm:getSelectYearTerm(),
-							numCoursesConstrain:getNumberOfCourse()} ,
-		            function(data){
+                      $(document).ready(function(){
+                      	$('#submit').click(function(){
+                      		$.post('backendInterface.php',{
+                      			submitID:"Submit #Courses",
+                      			numCoursesYearTerm:getSelectYearTerm(),
+                      			numCoursesConstrain:getNumberOfCourse()} ,
+                      			function(data){
 
-			  $('#result').html(data);
-        window.location.reload(false);
+                      				$('#result').html(data);
+                      				window.location.reload(false);
 
-			  console.log(data);
+                      				console.log(data);
 
-			  });
+                      			});
 
-		       });
+                      	});
 						//getSelectYearTerm();
 						//getNumberOfCourse();
 						//reload();
@@ -397,10 +406,10 @@ $(document).ready(function(){
     });
 });
 */
-			function someFunction( data ) {
+function someFunction( data ) {
 
-				console.log(data);
-			}
+	console.log(data);
+}
 
 
 
@@ -410,10 +419,10 @@ $(document).ready(function(){
 
 
 
-</script>
-<script>
-	$(document).ready(function(){
-		$('.card-columns').hover()
+					</script>
+					<script>
+						$(document).ready(function(){
+							$('.card-columns').hover()
 			//trigger when mouse hover
 			function(){
 				$(this).animate({
@@ -430,10 +439,10 @@ $(document).ready(function(){
 		});
 
 
-</script>
+	</script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 </body>
 </html>
