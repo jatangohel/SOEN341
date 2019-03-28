@@ -4,11 +4,14 @@
 require_once __DIR__.'/../PageBuilder/header.php';
 require_once 'backendInterface.php';
 
-//just printing the stuffs
-if(!empty($_POST['check_list'])){
-foreach($_POST['check_list'] as $selected){
-echo $selected."</br>";
-}}
+/*
+Summary:
+
+$_POST['check_list'] --> passed courses
+getUntakenCoursesFrontEnd($_POST['check_list']); --> untaken courses
+$_POST["intake"] --> semester
+
+*/
 
 function cardDisp($i)
 {

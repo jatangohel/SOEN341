@@ -337,19 +337,19 @@
                     <p><b><u>Kindly select your start semester in order to continue!</u></b></p>
 
                     <div class="custom-control custom-radio">
-                  <input type="radio" class="custom-control-input" id="fall" name="intake" value="Fall Intake" required>
+                  <input type="radio" class="custom-control-input" id="fall" name="intake" value="F" required>
                     <label for="fall" class="custom-control-label">Fall Intake</label></div>
                 &nbsp;&nbsp;&nbsp;&nbsp;
 
 
                     <div class="custom-control custom-radio">
-                 <input type="radio" class="custom-control-input" id="winter" name="intake" value="Winter Intake" required>
+                 <input type="radio" class="custom-control-input" id="winter" name="intake" value="W" required>
                         <label for="winter" class="custom-control-label">Winter Intake</label></div>
                 &nbsp;&nbsp;&nbsp;&nbsp;
 
 
                         <div class="custom-control custom-radio">
-				 <input type="radio" class="custom-control-input" id="summer" name="intake" value="Summer Intake" required>
+				 <input type="radio" class="custom-control-input" id="summer" name="intake" value="S" required>
                             <label for="summer" class="custom-control-label">Summer Intake</label></div>
                 &nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -362,7 +362,7 @@
                 
 <!--	   <button class="btn btn-lg btn-primary generate" id="button1" type="button">Generate</button>-->
         </center>
-           </form>
+        </form>
 	</div>
 	<br><br><br><br><br>
 
@@ -408,7 +408,7 @@ for (i = 0; i < acc.length; i++) {
 
 <script type="text/javascript">
     document.getElementById("generate").onclick = function () {
-		location.href= "file:///C:/xampp/htdocs/SOEN341/Constraints.html";
+		document.getElementById("generatecourse").submit();
 	};
 </script>
 

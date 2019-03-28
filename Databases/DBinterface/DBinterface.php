@@ -465,9 +465,57 @@ function getFirstSemester($email){
 
    return $FirstSemester;
 }
+
+function updateInputtedPassed($email){
+	require('config/db.php');
+
+	$query = 'update users set InputtedPassed = 1 where Email = "'.$email.'"';
+	$result = mysqli_query($conn, $query);
+}
+
+function updatedFirstSemester($email,$newVal){
+	require('config/db.php');
+
+	$query = 'update users set FirstSemester = "'.$newVal.'" where Email = "'.$email.'"';
+	$result = mysqli_query($conn, $query);
+}
 //getCourse('COMP232');
 
 //echo(getInputtedPassed("sebhani98@gmail.com"));
+
+//used in Constraints.php
+function getUntakenCoursesFrontEnd($ConstraintsTakenCourses)
+{
+		require('config/db.php');
+
+		$untakenFrontEnd = array();
+
+		$query = 'select CourseName from coursesmain';
+		$result = mysqli_query($conn, $query);
+		$courses = mysqli_fetch_all($result, MYSQLI_ASSOC);
+		mysqli_free_result($result);
+
+		
+		if(!empty($ConstraintsTakenCourses)){	
+			for($i=0;$i<count($ConstraintsTakenCourses);$i++){
+				$takenCourse = $ConstraintsTakenCourses[$i];
+
+				for($j=0;$j<count($courses);$j++){
+					$courseName = $courses[$j]['CourseName'];
+					if($courseName == $takenCourse)
+					{
+						array_splice($courses,$j,1);
+					}
+				}
+			}
+		}	
+
+			for($i=0;$i<count($courses);$i++){
+				$untakenFrontEnd[$i] = $courses[$i]["CourseName"];
+			}
+	
+		return $untakenFrontEnd;
+}
 
 ?>
 </body>
