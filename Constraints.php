@@ -2,7 +2,7 @@
 ob_start();
 session_start();
 ?>
-	
+
 <?php
 echo '<link href="css/stylec.css" rel="stylesheet">';
 
@@ -20,4 +20,3 @@ echo '<link href="css/stylec.css" rel="stylesheet">';
 	include 'PageBuilder/footer.php';
 	//include 'FrontEnd/usersPage.php';
 ?>
-<?php session_end(); ?>
