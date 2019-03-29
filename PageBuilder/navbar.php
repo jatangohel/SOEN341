@@ -40,26 +40,26 @@ if (session_status() != PHP_SESSION_ACTIVE)
       </li>
     </ul>
 
-       <?php 
-        if($_SERVER['REQUEST_URI']!='/SOEN341/'){ ?>
-    <ul class="navbar-nav ">
-     <!-- PROFILE DROPDOWN - scrolling off the page to the right -->
-     <li class="nav-item dropdown">
-       <a href="#" class="nav-link dropdown-toggle" id="navDropDownLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         Welcome
+    <?php 
+    if($_SERVER['REQUEST_URI']!='/SOEN341/'){ ?>
+      <ul class="navbar-nav ">
+       <!-- PROFILE DROPDOWN - scrolling off the page to the right -->
+       <li class="nav-item dropdown">
+         <a href="#" class="nav-link dropdown-toggle" id="navDropDownLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           Welcome
 
-         <?php
-         if(isset($_SESSION['loggedin']))
-           echo ', '.$_SESSION['userName'];
-         ?>
+           <?php
+           if(isset($_SESSION['loggedin']))
+             echo ', '.$_SESSION['userName'];
+           ?>
 
-       </a>
-       <div class="dropdown-menu" aria-labelledby="navDropDownLink">.
-         <a class="dropdown-item" href="#">Preferences</a>.
-         <div class="dropdown-divider"></div>.
-         <a class="dropdown-item" href="FrontEnd/logout.php">Logout</a>.
-       </div>;
-       <?php   } ?>
+         </a>
+         <div class="dropdown-menu" aria-labelledby="navDropDownLink">.
+           <a class="dropdown-item" href="#">Preferences</a>.
+           <div class="dropdown-divider"></div>.
+           <a class="dropdown-item" href="FrontEnd/logout.php">Logout</a>.
+         </div>;
+       <?php } ?>
      </li>
    </ul>
 
