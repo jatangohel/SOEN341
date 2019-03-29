@@ -30,15 +30,25 @@ function cardDisp($i)
  // echo "&emsp;&emsp;&emsp;&emsp;&emsp;";
 	echo
 	'<a class="card card-body text-center height:400px" id="hello" href="FrontEnd/weeklyschdulef.php?semester=';echo"$i";echo'"class="custom-card" style="background: #F8C471">'.
-	'<div name=';echo $i; echo' >' .
+	'<div name=';echo $i; echo' >' ;
   	//'<form id="cardcard" action="weeklyschedulef.php" method="POST">'.
-	'<p> Minimum Credits This Semester'.
-	'<input type="number" min="0" max="18" id="credits1"/> &nbsp;&nbsp;<input type="button" class="btn btn-success btn-sm" name="btncredits3" id="btncredits3" value="submit"/></p>' .
-	'<table class="gridtable" id="table3" border="0"onclick=window.location.href="file:///X:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html">'.
+	if ($_SESSION['dispEng'])
+		echo '<p> Minimum credits this semester';
+	else
+		echo '<p> Crédits minimum pour ce semestre';
+	if ($_SESSION['dispEng'])
+		echo '<input type="number" min="0" max="18" id="credits1"/> &nbsp;&nbsp;<input type="button" class="btn btn-success btn-sm" name="btncredits3" id="btncredits3" value="Submit"/></p>';
+	else
+		echo '<input type="number" min="0" max="18" id="credits1"/> &nbsp;&nbsp;<input type="button" class="btn btn-success btn-sm" name="btncredits3" id="btncredits3" value="Soumettre"/></p>';
+	echo '<table class="gridtable" id="table3" border="0"onclick=window.location.href="file:///X:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.html">'.
 	'<thead>'.
-	'<tr class="tableheader">'.
+	'<tr class="tableheader">';
 
-	'<th>Semester ';  echo $i;
+	if ($_SESSION['dispEng'])
+		echo '<th>Semester ';
+	else
+		echo '<th>Semestre ';
+	echo $i + 1;
 	echo ' </th>'.
 	'</tr>'.
 	'</thead>'.
@@ -46,7 +56,7 @@ function cardDisp($i)
 	'<tbody class="labels">'.
 	'<tr>'.
 	'<td colspan="2">'.
-              //  '<label>Course Name</label>'.
+              //  '<label>Course name</label>'.
               // '<label>Credits</label>'.
 	'</td>'.
 	'</tr>'.
