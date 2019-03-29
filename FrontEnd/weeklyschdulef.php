@@ -1,5 +1,7 @@
 <?php
 require_once 'backendInterface.php';
+session_start();
+$_SESSION['dispEng']='0';
 ?>
 <!doctype html>
 <html lang="en">
@@ -16,7 +18,14 @@ require_once 'backendInterface.php';
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
-	<title>SOEN Course Stream</title>
+	<title>
+		<?php
+			if($_SESSION['dispEng'])
+				echo "SOEN Course Stream";
+			else
+				echo "Cours SOEN";
+		?>
+	</title>
 	<style>
 	        :root{
           --mainColor: #14162B;
@@ -139,35 +148,144 @@ require_once 'backendInterface.php';
 	 <body>
 	 
  <div class="topHeader">
-        <button class="btn btn-warning" style="float:left; margin-left:20px;"><strong>Save Schedule</strong></button>
+        <button class="btn btn-warning" style="float:left; margin-left:20px;"><strong>
+			<?php
+				if($_SESSION['dispEng'])
+					echo "Save Schedule";
+				else
+					echo "Sauvegarder horaire";
+			?>
+		</strong></button>
 
-        <h1 class="text-center">Weekly Schedule</h1>
+        <h1 class="text-center">
+			<?php
+				if($_SESSION['dispEng'])
+					echo "Weekly Schedule";
+				else
+					echo "Horaire hebdomadaire";
+			?>
+		</h1>
 		<div class="dropdown" style="float:right;margin-right:10px;">
-			<button class="btn btn-primary dropdown-toggle" name="btndropdown"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add Time Constrain</button>
+			<button class="btn btn-primary dropdown-toggle" name="btndropdown"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<?php
+					if($_SESSION['dispEng'])
+						echo "Add Time Constraint";
+					else
+						echo "Ajouter contrainte";
+				?>
+			</button>
 				<div class="dropdown-menu dropdown-menu-right">
 					<div class="form-group">
 						<form name="add_name" id="add_name">
 							<table class="table table-bordered" id="dynamic_field">
 								<tr>
-									<th class="text-center">Days</th>
-									<th class="text-center">Start Time</th>
-									<th class="text-center">End Time</th>
+									<th class="text-center">
+										<?php
+											if($_SESSION['dispEng'])
+												echo "Days";
+											else
+												echo "Jours";
+										?>
+									</th>
+									<th class="text-center">
+										<?php
+											if($_SESSION['dispEng'])
+												echo "Start Time";
+											else
+												echo "Début";
+										?>
+									</th>
+									<th class="text-center">
+										<?php
+											if($_SESSION['dispEng'])
+												echo "End Time";
+											else
+												echo "Fin";
+										?>
+									</th>
 									<th class="text-center"x>Status</th>
 								</tr>
 								<tr>
 									<td><select name="Days" style="text-align:center;">
-										<option value="Monday">Monday</option>
-										<option value="Tuesday">Tuesday</option>
-										<option value="Wednesday">Wednesday</option>
-										<option value="Thursday">Thursday</option>
-										<option value="Friday">Friday</option>
-										<option value="Saturday">Saturday</option>
-										<option value="Sunday">Sunday</option>
+										<option value="Monday">
+											<?php
+												if($_SESSION['dispEng'])
+													echo "Monday";
+												else
+													echo "Lundi";
+											?>
+										</option>
+										<option value="Tuesday">
+											<?php
+												if($_SESSION['dispEng'])
+													echo "Tuesday";
+												else
+													echo "Mardi";
+											?>
+										</option>
+										<option value="Wednesday">
+											<?php
+												if($_SESSION['dispEng'])
+													echo "Wednesday";
+												else
+													echo "Mercredi";
+											?>
+										</option>
+										<option value="Thursday">
+											<?php
+												if($_SESSION['dispEng'])
+													echo "Thursday";
+												else
+													echo "Jeudi";
+											?>
+										</option>
+										<option value="Friday">
+											<?php
+												if($_SESSION['dispEng'])
+													echo "Friday";
+												else
+													echo "Vendredi";
+											?>
+										</option>
+										<option value="Saturday">
+											<?php
+												if($_SESSION['dispEng'])
+													echo "Saturday";
+												else
+													echo "Samedi";
+											?>
+										</option>
+										<option value="Sunday">
+											<?php
+												if($_SESSION['dispEng'])
+													echo "Sunday";
+												else
+													echo "Dimanche";
+											?>
+										</option>
 									</td>
-									
-									<td></select><input type="time" id="starting1" name="starting1" placeholder="Starting Time"></td>
-									<td><input type="time" id="ending1" name="ending1" placeholder="Ending Time"></td>
-									<td><button type="button" name="add" id="add" class="btn btn-secondary">Next</button></td>
+									<?php
+										if($_SESSION['dispEng'])
+											$startHolder="Start Time";
+										else
+											$startHolder="Début";
+									?>
+									<?php
+										if($_SESSION['dispEng'])
+											$endHolder="End Time";
+										else
+											$endHolder="Fin";
+									?>
+									<td></select><input type="time" id="starting1" name="starting1" placeholder=<?= $startHolder?>></td>
+									<td><input type="time" id="ending1" name="ending1" placeholder=<?= $endHolder?>></td>
+									<td><button type="button" name="add" id="add" class="btn btn-secondary">
+										<?php
+											if($_SESSION['dispEng'])
+												echo "Next";
+											else
+												echo "Suivant";
+										?>
+									</button></td>
 								</tr>
 								<input type="button" class="btn btn-success btn-sm"style="float:right; margin-right:20px;" value="submit"/>
 							</table>
@@ -179,15 +297,64 @@ require_once 'backendInterface.php';
 		<div class="myTable">
         
       <table class="tableTimes" >
-	          <tr>
-          <th style="margin-left:20px">Time</th>
-          <th>M</th>
-          <th>T</th>
-          <th>W</th>
-          <th>J</th>
-          <th>F</th>
-          <th>Saturday</th>
-          <th>Sunday</th>
+		<tr>
+			<th style="margin-left:20px">
+				<?php
+					if($_SESSION['dispEng'])
+						echo "Time";
+					else
+						echo "Heures";
+				?>
+			</th>
+			<th>
+				<?php
+					if($_SESSION['dispEng'])
+						echo "M";
+					else
+						echo "L";
+				?>
+			</th>
+			<th>
+				<?php
+					if($_SESSION['dispEng'])
+						echo "T";
+					else
+						echo "Mar.";
+				?>
+			</th>
+			<th>
+				<?php
+					if($_SESSION['dispEng'])
+						echo "W";
+					else
+						echo "Mer.";
+				?>
+			</th>
+			<th>J</th>
+			<th>
+				<?php
+					if($_SESSION['dispEng'])
+						echo "F";
+					else
+						echo "V";
+				?>
+			</th>
+			<th>
+				<?php
+					if($_SESSION['dispEng'])
+						echo "Sat.";
+					else
+						echo "S";
+				?>
+			</th>
+			<th>
+				<?php
+					if($_SESSION['dispEng'])
+						echo "Sun.";
+					else
+						echo "D";
+				?>
+			</th>
         </tr>
 
         <tr style="border-top: 2px solid black; ">

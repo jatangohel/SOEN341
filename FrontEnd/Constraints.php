@@ -44,6 +44,8 @@ function cardDisp($i)
       '</table>'.
     '</div>';
 }
+session_start();
+$_SESSION['dispEng']='0';
 ?>
 <!doctype html>
 <html lang="en">
@@ -91,26 +93,96 @@ function cardDisp($i)
 		<br />
 		<br />
 
-		<h2 align="center">Distrubte your courses for each semester (0-6 courses)</h2>
+		<h2 align="center">
+			<?php
+				if($_SESSION['dispEng'])
+					echo "Distribute your courses for each semester (0-6 courses)";
+				else
+					echo "Distribuez vos cours pour chaque semestre (0-6 cours)";
+			?>
+		</h2>
 
 		<div class="form-group">
 			<form name="add_name" id="add_name">
 				<table class="table table-bordered" id="dynamic_field">
 					 <tr>
 						<td><select id= "listYear1",name="Years" >
-							<option value="1" selected>First Year</option>
-							<option value="2">Second Year</option>
-							<option value="3">Third Year</option>
-							<option value="4">Fourth Year</option>
-							<option value="5">Fifth Year</option>
-							<option value="6">Sixth Year</option>
+							<option value="1" selected>
+								<?php
+									if($_SESSION['dispEng'])
+										echo "First Year";
+									else
+										echo "Première année";
+								?>
+							</option>
+							<option value="2">
+								<?php
+									if($_SESSION['dispEng'])
+										echo "Second Year";
+									else
+										echo "Deuxième année";
+								?>
+							</option>
+							<option value="3">
+								<?php
+									if($_SESSION['dispEng'])
+										echo "Third Year";
+									else
+										echo "Troisième année";
+								?>
+							</option>
+							<option value="4">
+								<?php
+									if($_SESSION['dispEng'])
+										echo "Fourth Year";
+									else
+										echo "Quatrième année";
+								?>
+							</option>
+							<option value="5">
+								<?php
+									if($_SESSION['dispEng'])
+										echo "Fifth Year";
+									else
+										echo "Cinqième année";
+								?>
+							</option>
+							<option value="6">
+								<?php
+									if($_SESSION['dispEng'])
+										echo "Sixth Year";
+									else
+										echo "Sixième année";
+								?>
+							</option>
 							</select>
 
 						</td>
 						<td><select id = "list1",name="Term">
-							<option value="S" selected>Summer Term</option>
-							<option value="F">Fall Term</option>
-							<option value="W">Winter Term</option>
+							<option value="S" selected>
+								<?php
+									if($_SESSION['dispEng'])
+										echo "Summer Term";
+									else
+										echo "Session d'été";
+								?>
+							</option>
+							<option value="F">
+								<?php
+									if($_SESSION['dispEng'])
+										echo "Fall Term";
+									else
+										echo "Session d'automne";
+								?>
+							</option>
+							<option value="W">
+								<?php
+									if($_SESSION['dispEng'])
+										echo "Winter Term";
+									else
+										echo "Session d'hiver";
+								?>
+							</option>
 							</select>
 
 						</td>
@@ -124,7 +196,14 @@ function cardDisp($i)
 							<option value="6">6</option>
 							</select>
 						</td>
-						<td><button type="button" name="add" id="add" class="btn btn-success">Next</button></td>
+						<td><button type="button" name="add" id="add" class="btn btn-success">
+								<?php
+									if($_SESSION['dispEng'])
+										echo "Next";
+									else
+										echo "Suivant";
+								?>
+							</button></td>
 					</tr>
 				</table>
 				<input type="button" class="btn btn-primary" name="submit" id="submit" value="submit"/>
@@ -135,7 +214,14 @@ function cardDisp($i)
 
 
 	<div id="card"  class="jumbotron jumbotron-fluid">
-				<h2 align="center"class="header margin-top:0px">General Course Schedule</h2>
+				<h2 align="center"class="header margin-top:0px">
+								<?php
+									if($_SESSION['dispEng'])
+										echo "General Course Schedule";
+									else
+										echo "Horaire des cours";
+								?>
+				</h2>
 		<br />
 		<div  class="card-columns">
 
