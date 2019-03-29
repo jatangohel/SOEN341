@@ -1,4 +1,6 @@
 <?php
+echo '<link href="css/style.css" rel="stylesheet">';
+
 //Page Info
 $page_name = "error 404 - Main page";
 $page_keywords = "Error404";

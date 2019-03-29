@@ -166,7 +166,7 @@
 
 
 	<div class="container" id="container">
-        <form id="generatecourse" action="formAction.php" method="POST">
+        <form id="generatecourse" action="Constraints.php" method="POST">
 		<table class="gridtable" id="tableMain" border="0">
 			<thead>
 				<tr class="tableheader">
@@ -696,9 +696,11 @@
 					?>
 				</button>
                 </div>
+
+                
 <!--	   <button class="btn btn-lg btn-primary generate" id="button1" type="button">Generate</button>-->
         </center>
-           </form>
+        </form>
 	</div>
 	<br><br><br><br><br>
 
@@ -744,7 +746,7 @@ for (i = 0; i < acc.length; i++) {
 
 <script type="text/javascript">
     document.getElementById("generate").onclick = function () {
-		location.href= "file:///C:/xampp/htdocs/SOEN341/Constraints.html";
+		document.getElementById("generatecourse").submit();
 	};
 </script>
 

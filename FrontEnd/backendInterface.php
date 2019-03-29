@@ -3,7 +3,8 @@
 require_once __DIR__.'/../algorithm/UserSchedule.php';
 require_once "sessionfns.php";
 
-
+if (session_status() != PHP_SESSION_ACTIVE)
+	session_start();
 
 function processNumCoursesConstraint()
 {
@@ -30,9 +31,10 @@ function genNewSched ()
 	}
 
 
-
+	$email = $_SESSION['userEmail'];
+	$userName = $_SESSION['userName'];
 	$userSched = new UserSchedule($numCoursesArr, $noClassesArr);
-	$user = new User ("Hani",'sebhani98@gmail.com', $userSched, 'F');
+	$user = new User ($userName, $email, $userSched, 'F');
 
 	$userSched->genProgramSched($user);
 
@@ -57,6 +59,8 @@ function genNewSched ()
 	$semInfo[$i] = array_slice($semInfo[$i],1);
 
 	$_SESSION['semInfo'] = $semInfo;
+
+	//var_dump($_SESSION);
 
 
 }
@@ -88,22 +92,16 @@ function genNewSched ()
 }
 */
 
-if( empty($_POST['submitID']) )                                   //A
+if( empty($_POST['submitID']) )
 {
-//  session_start();  // before any output                        //C
-	if (empty($_SESSION))
-	{
-		$_SESSION['numCoursesYearTerm']= array();                                        //D
-	  $_SESSION['numCoursesConstrain']= array();
-		genNewSched();
-	}
+	$_SESSION['numCoursesYearTerm']= array();
+	$_SESSION['numCoursesConstrain']= array();
+	genNewSched();
 }
 elseif ($_POST['submitID'] == "Submit #Courses" )  // continuing           //F
 {
-	session_start();  // before any output
   processNumCoursesConstraint();
-	genNewSched();
-                                           //G
+	genNewSched();                                           //G
 }
 
  ?>
