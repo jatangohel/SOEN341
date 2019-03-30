@@ -5,12 +5,12 @@ static $createdCourses = array();
 static $flec = array();
 static $wlec = array();
 static $slec = array();
-static $ftut = array(array());
-static $wtut = array(array());
-static $stut = array(array());
-static $flab = array(array());
-static $wlab = array(array());
-static $slab = array(array());
+static $ftut = array();
+static $wtut = array();
+static $stut = array();
+static $flab = array();
+static $wlab = array();
+static $slab = array();
 
 function getLectureSections($course, $semester){
 	require('config/db.php');
@@ -91,7 +91,6 @@ function getLectureSections($course, $semester){
 
 
 function getTutorialSection($course, $semester, $section){
-		//include('tutorialfunction.php');
 	require('config/db.php');
 
 	$stack=array();
@@ -500,8 +499,8 @@ function getUntakenCoursesFrontEnd($ConstraintsTakenCourses)
 		$courses = mysqli_fetch_all($result, MYSQLI_ASSOC);
 		mysqli_free_result($result);
 
-		
-		if(!empty($ConstraintsTakenCourses)){	
+
+		if(!empty($ConstraintsTakenCourses)){
 			for($i=0;$i<count($ConstraintsTakenCourses);$i++){
 				$takenCourse = $ConstraintsTakenCourses[$i];
 
@@ -513,12 +512,12 @@ function getUntakenCoursesFrontEnd($ConstraintsTakenCourses)
 					}
 				}
 			}
-		}	
+		}
 
 			for($i=0;$i<count($courses);$i++){
 				$untakenFrontEnd[$i] = $courses[$i]["CourseName"];
 			}
-	
+
 		return $untakenFrontEnd;
 }
 

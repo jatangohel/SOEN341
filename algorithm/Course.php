@@ -83,12 +83,8 @@ class Course
 
   public function calPriority ($courses)
   {
-    var_dump($this);
-    echo "===================================================================================================================";
-    var_dump($courses);
     deleteCourse($this, $courses);
     $this->setPriority(0);
-
 
     foreach ($courses as $c)
     {
@@ -146,11 +142,11 @@ class Course
 
 }
 
-function deleteCourse ($course, $courses)
+function deleteCourse ($courseName, &$courses)
 {
   foreach ($courses as $key=>$c)
   {
-    if ($course->getCourseName() == $c->getCourseName())
+    if ($courseName == $c->getCourseName())
     {
       unset($courses[$key]);
       $courses=array_values($courses);

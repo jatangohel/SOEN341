@@ -99,7 +99,8 @@ public function genProgramSched ($user)
     foreach ($sem->getLecs() as $taken)
     {
       $createdCourses[$taken->getCourse()->getCourseName()]->setPass(true);
-      deleteCourse($taken, $untakenCourses);
+      $course = $taken->getCourse();
+      deleteCourse($course->getCourseName(), $untakenCourses);
     }
 
     // Increment year if the current semester was fall

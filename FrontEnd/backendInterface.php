@@ -52,8 +52,8 @@ function genNewSched ()
 	foreach ($userSched->getListOfSemesters()[$i]->getLecs() as $lec)
 	{
 	  $courseInfo = array();
-	  $courseInfo['Course Name'] = $lec->getCourseName();
-	  $courseInfo['Credits'] = 3;
+	  $courseInfo['Course Name'] = $lec->getCourse()->getCourseName();
+	  $courseInfo['Credits'] = $lec->getCourse()->getCredits();
 	  array_push($semInfo[$i],$courseInfo);
 	}
 	$semInfo[$i] = array_slice($semInfo[$i],1);
