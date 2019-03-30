@@ -48,45 +48,45 @@ function getLectureSections($course, $semester){
 
 	else {
 		//Create query
-	$query = "SELECT * FROM `$table` WHERE `CourseName`='$course'";
+		$query = "SELECT * FROM `$table` WHERE `CourseName`='$course'";
 
 		//Get Result
-	$result = mysqli_query($conn, $query);
+		$result = mysqli_query($conn, $query);
 
 		//Fetch Data
-	$posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
+		$posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 		// Free Result
-	mysqli_free_result($result);
+		mysqli_free_result($result);
 
 		//Instantiating the Fall semster
-	foreach($posts as $post)
-	{
-		$courseName = $post['CourseName'];
-		$lecInfo = $post ['LecInfo'];
-		$subSection = null;
-		$lecDay = explode(",",$post ['LecDay']);
-		$startLecTime= $post ['StartLecTime'];
-		$endLecTime= $post ['EndLecTime'];
-		$campus = "SGW";
+		foreach($posts as $post)
+		{
+			$courseName = $post['CourseName'];
+			$lecInfo = $post ['LecInfo'];
+			$subSection = null;
+			$lecDay = explode(",",$post ['LecDay']);
+			$startLecTime= $post ['StartLecTime'];
+			$endLecTime= $post ['EndLecTime'];
+			$campus = "SGW";
 
 			//Making a new session object with the course information
-		$ham =  new Session($createdCourses[$courseName],$lecInfo,$subSection,$semester,$lecDay,$startLecTime,$endLecTime,$campus);
+			$ham =  new Session($createdCourses[$courseName],$lecInfo,$subSection,$semester,$lecDay,$startLecTime,$endLecTime,$campus);
 
-		array_push($stack, $ham);
+			array_push($stack, $ham);
 
-		if(array_key_exists( $courseName, $loadedSessions))
-		array_push($loadedSessions[$courseName], $ham);
+			if(array_key_exists( $courseName, $loadedSessions))
+				array_push($loadedSessions[$courseName], $ham);
 			else{
-		$loadedSessions[$courseName] = array($ham);
+				$loadedSessions[$courseName] = array($ham);
+			}
+
+
+		}
+		mysqli_close($conn);
+
+		return $stack;
 	}
-
-
-	}
-	mysqli_close($conn);
-
-	return $stack;
-}
 }
 
 
@@ -99,6 +99,9 @@ function getTutorialSection($course, $semester, $section){
 	global $ftut;
 	global $wtut;
 	global $stut;
+
+	$loadedSessions;
+	global $createdCourses;
 
 	switch ($semester)
 	{
@@ -127,44 +130,44 @@ function getTutorialSection($course, $semester, $section){
 
 	else {
 		//Create query
-	$query = "SELECT * FROM `$table` WHERE `CourseName`='$course' AND `LecInfo`='$section'";
+		$query = "SELECT * FROM `$table` WHERE `CourseName`='$course' AND `LecInfo`='$section'";
 
 
 		//Get Result
-	$result = mysqli_query($conn, $query);
+		$result = mysqli_query($conn, $query);
 
 		//Fetch Data
-	$posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
+		$posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 		// Free Result
-	mysqli_free_result($result);
+		mysqli_free_result($result);
 
 		//Instantiating the Fall semster
-	foreach($posts as $post)
-	{
-		$courseName = $post['CourseName'];
-		$lecInfo = $post ['LecInfo'];
-		$subSection = $post['TutSection'];
-		$lecDay = explode(",",$post ['TutDay']);
-		$startLecTime= $post ['StartTutTime'];
-		$endLecTime= $post ['EndTutTime'];
-		$campus = "SGW";
+		foreach($posts as $post)
+		{
+			$courseName = $post['CourseName'];
+			$lecInfo = $post ['LecInfo'];
+			$subSection = $post['TutSection'];
+			$lecDay = explode(",",$post ['TutDay']);
+			$startLecTime= $post ['StartTutTime'];
+			$endLecTime= $post ['EndTutTime'];
+			$campus = "SGW";
 
 			//Making a new session object with the course information
-		$ham =  new Session($createdCourses[$courseName],$lecInfo,$subSection,$semester,$lecDay,$startLecTime,$endLecTime,$campus);
+			$ham =  new Session($createdCourses[$courseName],$lecInfo,$subSection,$semester,$lecDay,$startLecTime,$endLecTime,$campus);
 
-		array_push($stack, $ham);
+			array_push($stack, $ham);
 
-		if(array_key_exists($section, $loadedSessions))
-		array_push($loadedSessions[$section], $ham);
+			if(array_key_exists($section, $loadedSessions))
+				array_push($loadedSessions[$section], $ham);
 			else{
-		$loadedSessions[$section] = array($ham);
-	}
+				$loadedSessions[$section] = array($ham);
+			}
 
+		}
+		mysqli_close($conn);
+		return $stack;
 	}
-	mysqli_close($conn);
-	return $stack;
-}
 }
 
 function getLabSection($course, $semester){
@@ -175,6 +178,9 @@ function getLabSection($course, $semester){
 	global $flab;
 	global $wlab;
 	global $slab;
+
+	$loadedSessions = array(array());
+	global $createdCourses;
 
 	switch ($semester)
 	{
@@ -203,41 +209,41 @@ function getLabSection($course, $semester){
 
 	else {
 	//Create query
-	$query = "SELECT * FROM `$table` WHERE `CourseName`='$course'";
+		$query = "SELECT * FROM `$table` WHERE `CourseName`='$course'";
 
 	//Get Result
-	$result = mysqli_query($conn, $query);
+		$result = mysqli_query($conn, $query);
 
 	//Fetch Data
-	$posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
+		$posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 	// Free Result
-	mysqli_free_result($result);
+		mysqli_free_result($result);
 
 	//Instantiating the Fall semster
-	foreach($posts as $post)
-	{
-		$courseName = $post['CourseName'];
-		$labSection = $post ['LabSection'];
-		$labDay = explode(",",$post ['LabDay']);
-		$startLabTime= $post ['StartLabTime'];
-		$endLabTime= $post ['EndLabTime'];
-		$campus = "SGW";
+		foreach($posts as $post)
+		{
+			$courseName = $post['CourseName'];
+			$labSection = $post ['LabSection'];
+			$labDay = explode(",",$post ['LabDay']);
+			$startLabTime= $post ['StartLabTime'];
+			$endLabTime= $post ['EndLabTime'];
+			$campus = "SGW";
 
 		//Making a new session object with the course information
-		$ham =  new Session($createdCourses[$courseName],$labSection,null,$semester,$labDay,$startLabTime,$endLabTime,$campus);
+			$ham =  new Session($createdCourses[$courseName],$labSection,null,$semester,$labDay,$startLabTime,$endLabTime,$campus);
 
-		array_push($stack, $ham);
-		if(array_key_exists( $courseName, $loadedSessions))
-		array_push($loadedSessions[$courseName], $ham);
+			array_push($stack, $ham);
+			if(array_key_exists( $courseName, $loadedSessions))
+				array_push($loadedSessions[$courseName], $ham);
 			else{
-		$loadedSessions[$courseName] = array($ham);
-	}
-	}
+				$loadedSessions[$courseName] = array($ham);
+			}
+		}
 
-	mysqli_close($conn);
-	return $stack;
-}
+		mysqli_close($conn);
+		return $stack;
+	}
 }
 
 	//Returns an array of Courses objects this user can take this semester from the remaining courses array of courses
@@ -304,86 +310,86 @@ function getPermittedCourses($remainingCourses,  $semester)
 	//$user will pass the course that user has taken by array
 function getUntakenCourses($email)
 {
-		require('config/db.php');
+	require('config/db.php');
 
-		global $createdCourses;
+	global $createdCourses;
 
-		$query = 'select CourseName from coursesmain';
-		$result = mysqli_query($conn, $query);
-		$courses = mysqli_fetch_all($result, MYSQLI_ASSOC);
-		mysqli_free_result($result);
+	$query = 'select CourseName from coursesmain';
+	$result = mysqli_query($conn, $query);
+	$courses = mysqli_fetch_all($result, MYSQLI_ASSOC);
+	mysqli_free_result($result);
 
-		$query = 'select UserId from users where Email="'.$email.'"';
-		$result = mysqli_query($conn, $query);
+	$query = 'select UserId from users where Email="'.$email.'"';
+	$result = mysqli_query($conn, $query);
 	//$userID = mysqli_fetch_all($result, MYSQLI_ASSOC);
-		$data = mysqli_fetch_array($result);
+	$data = mysqli_fetch_array($result);
 	//mysqli_free_result($data);
-		$userId = $data['UserId'];
+	$userId = $data['UserId'];
 
 	//var_dump($data);
-		if(empty($userId))
-			return false;
+	if(empty($userId))
+		return false;
 
-		$query = "select CourseName from pass where UserId=$userId";
-		$result = mysqli_query($conn, $query);
-		$passedCourses = mysqli_fetch_all($result, MYSQLI_ASSOC);
-		mysqli_free_result($result);
+	$query = "select CourseName from pass where UserId=$userId";
+	$result = mysqli_query($conn, $query);
+	$passedCourses = mysqli_fetch_all($result, MYSQLI_ASSOC);
+	mysqli_free_result($result);
 
-		for($i=0;$i<count($passedCourses);$i++){
-			$takenCourse = $passedCourses[$i];
-			$courseName = $passedCourses[$i]['CourseName'];
-			$createdCourses[$courseName] = getCourse($courseName);
-			$createdCourses[$courseName]->setPass(true);
+	for($i=0;$i<count($passedCourses);$i++){
+		$takenCourse = $passedCourses[$i];
+		$courseName = $passedCourses[$i]['CourseName'];
+		$createdCourses[$courseName] = getCourse($courseName);
+		$createdCourses[$courseName]->setPass(true);
 
-			for($j=0;$j<count($courses);$j++){
-				if($courses[$j] == $takenCourse)
-				{
-					array_splice($courses,$j,1);
-				}
+		for($j=0;$j<count($courses);$j++){
+			if($courses[$j] == $takenCourse)
+			{
+				array_splice($courses,$j,1);
 			}
 		}
+	}
 
-		$untakenCourses;
-		for($i=0;$i<count($courses);$i++){
-			$untakenCourses[$i] = getCourse($courses[$i]['CourseName']);
-		}
+	$untakenCourses;
+	for($i=0;$i<count($courses);$i++){
+		$untakenCourses[$i] = getCourse($courses[$i]['CourseName']);
+	}
 
-		return $untakenCourses;
+	return $untakenCourses;
 
 }
 
 //Updates the database by changing the status of the courses recently taken
 function updateTakenCourses($email,$courseName)
 {
-				require('config/db.php');
-				echo false;
-				echo true;
-		$query = 'select UserId from users where Email="'.$email.'"';
-		$result = mysqli_query($conn, $query);
+	require('config/db.php');
+	echo false;
+	echo true;
+	$query = 'select UserId from users where Email="'.$email.'"';
+	$result = mysqli_query($conn, $query);
 	//$userID = mysqli_fetch_all($result, MYSQLI_ASSOC);
-		$data = mysqli_fetch_array($result);
+	$data = mysqli_fetch_array($result);
 	//mysqli_free_result($data);
-		$userId = $data['UserId'];
-		if(empty($userId))
-			return false;
-		$untaken=getUntakenCourses($email);
-		var_dump($untaken);
-		static	$counter=0;
-		$found=false;
-		foreach ($untaken as $untook) {
-			$courseUntakenName=$untook['CourseName'];
- 			if($courseUntakenName==$courseName){
- 			global $found;
- 			 $found=true;
- 			}
+	$userId = $data['UserId'];
+	if(empty($userId))
+		return false;
+	$untaken=getUntakenCourses($email);
+	var_dump($untaken);
+	static	$counter=0;
+	$found=false;
+	foreach ($untaken as $untook) {
+		$courseUntakenName=$untook['CourseName'];
+		if($courseUntakenName==$courseName){
+			global $found;
+			$found=true;
 		}
-		global $found;
- 		if($found===true){
+	}
+	global $found;
+	if($found===true){
 		$query = 'insert into pass (UserId, CourseName) values ('.$userId.',"'.$courseName.'")';
 		$result = mysqli_query($conn, $query);
-		}else{
-			echo "This course has been already added";
-		}
+	}else{
+		echo "This course has been already added";
+	}
 
 }
 
@@ -445,25 +451,25 @@ function getID($email){
 }
 
 function getInputtedPassed($email){
-   require('config/db.php');
+	require('config/db.php');
 
-   $query = 'select InputtedPassed from users where Email = "'.$email.'"';
-   $result = mysqli_query($conn, $query);
-   $data = mysqli_fetch_array($result);
-   $InputtedPassed = $data['InputtedPassed'];
+	$query = 'select InputtedPassed from users where Email = "'.$email.'"';
+	$result = mysqli_query($conn, $query);
+	$data = mysqli_fetch_array($result);
+	$InputtedPassed = $data['InputtedPassed'];
 
-   return $InputtedPassed;
+	return $InputtedPassed;
 }
 
 function getFirstSemester($email){
-   require('config/db.php');
+	require('config/db.php');
 
-   $query = 'select FirstSemester from users where Email = "'.$email.'"';
-   $result = mysqli_query($conn, $query);
-   $data = mysqli_fetch_array($result);
-   $FirstSemester = $data['FirstSemester'];
+	$query = 'select FirstSemester from users where Email = "'.$email.'"';
+	$result = mysqli_query($conn, $query);
+	$data = mysqli_fetch_array($result);
+	$FirstSemester = $data['FirstSemester'];
 
-   return $FirstSemester;
+	return $FirstSemester;
 }
 
 function updateInputtedPassed($email){
@@ -486,35 +492,35 @@ function updatedFirstSemester($email,$newVal){
 //used in Constraints.php
 function getUntakenCoursesFrontEnd($ConstraintsTakenCourses)
 {
-		require('config/db.php');
+	require('config/db.php');
 
-		$untakenFrontEnd = array();
+	$untakenFrontEnd = array();
 
-		$query = 'select CourseName from coursesmain';
-		$result = mysqli_query($conn, $query);
-		$courses = mysqli_fetch_all($result, MYSQLI_ASSOC);
-		mysqli_free_result($result);
+	$query = 'select CourseName from coursesmain';
+	$result = mysqli_query($conn, $query);
+	$courses = mysqli_fetch_all($result, MYSQLI_ASSOC);
+	mysqli_free_result($result);
 
 
-		if(!empty($ConstraintsTakenCourses)){
-			for($i=0;$i<count($ConstraintsTakenCourses);$i++){
-				$takenCourse = $ConstraintsTakenCourses[$i];
+	if(!empty($ConstraintsTakenCourses)){
+		for($i=0;$i<count($ConstraintsTakenCourses);$i++){
+			$takenCourse = $ConstraintsTakenCourses[$i];
 
-				for($j=0;$j<count($courses);$j++){
-					$courseName = $courses[$j]['CourseName'];
-					if($courseName == $takenCourse)
-					{
-						array_splice($courses,$j,1);
-					}
+			for($j=0;$j<count($courses);$j++){
+				$courseName = $courses[$j]['CourseName'];
+				if($courseName == $takenCourse)
+				{
+					array_splice($courses,$j,1);
 				}
 			}
 		}
+	}
 
-			for($i=0;$i<count($courses);$i++){
-				$untakenFrontEnd[$i] = $courses[$i]["CourseName"];
-			}
+	for($i=0;$i<count($courses);$i++){
+		$untakenFrontEnd[$i] = $courses[$i]["CourseName"];
+	}
 
-		return $untakenFrontEnd;
+	return $untakenFrontEnd;
 }
 
 ?>
