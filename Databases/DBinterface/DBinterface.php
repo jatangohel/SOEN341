@@ -5,12 +5,12 @@ static $createdCourses = array();
 static $flec = array();
 static $wlec = array();
 static $slec = array();
-static $ftut = array(array());
-static $wtut = array(array());
-static $stut = array(array());
-static $flab = array(array());
-static $wlab = array(array());
-static $slab = array(array());
+static $ftut = array();
+static $wtut = array();
+static $stut = array();
+static $flab = array();
+static $wlab = array();
+static $slab = array();
 
 function getLectureSections($course, $semester){
 	require('config/db.php');
@@ -99,7 +99,7 @@ function getTutorialSection($course, $semester, $section){
 	global $ftut;
 	global $wtut;
 	global $stut;
-	$loadedSessions;
+
 	switch ($semester)
 	{
 		case 'F':
@@ -122,8 +122,8 @@ function getTutorialSection($course, $semester, $section){
 		$table = 'error';
 	}
 
-	if (array_key_exists($course, $loadedSessions))
-		return $loadedSessions[$course];
+	if (array_key_exists($section, $loadedSessions))
+		return $loadedSessions[$section];
 
 	else {
 		//Create query
@@ -155,10 +155,10 @@ function getTutorialSection($course, $semester, $section){
 
 		array_push($stack, $ham);
 
-		if(array_key_exists( $courseName, $loadedSessions))
-		array_push($loadedSessions[$courseName], $ham);
+		if(array_key_exists($section, $loadedSessions))
+		array_push($loadedSessions[$section], $ham);
 			else{
-		$loadedSessions[$courseName] = array($ham);
+		$loadedSessions[$section] = array($ham);
 	}
 
 	}
@@ -175,7 +175,7 @@ function getLabSection($course, $semester){
 	global $flab;
 	global $wlab;
 	global $slab;
-	$loadedSessions = array(array());
+
 	switch ($semester)
 	{
 		case 'F':
@@ -495,8 +495,8 @@ function getUntakenCoursesFrontEnd($ConstraintsTakenCourses)
 		$courses = mysqli_fetch_all($result, MYSQLI_ASSOC);
 		mysqli_free_result($result);
 
-		
-		if(!empty($ConstraintsTakenCourses)){	
+
+		if(!empty($ConstraintsTakenCourses)){
 			for($i=0;$i<count($ConstraintsTakenCourses);$i++){
 				$takenCourse = $ConstraintsTakenCourses[$i];
 
@@ -508,12 +508,12 @@ function getUntakenCoursesFrontEnd($ConstraintsTakenCourses)
 					}
 				}
 			}
-		}	
+		}
 
 			for($i=0;$i<count($courses);$i++){
 				$untakenFrontEnd[$i] = $courses[$i]["CourseName"];
 			}
-	
+
 		return $untakenFrontEnd;
 }
 

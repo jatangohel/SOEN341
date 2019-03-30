@@ -15,6 +15,7 @@ $_POST["intake"] --> semester
 
 */
 
+
 $email=$_SESSION['userEmail'];
 
 if(isset($_POST['check_list'])){
