@@ -352,61 +352,80 @@ function getTotalTerm(){
                           // console.log(courseNo);
                       }
 
-                      $(document).ready(function(){
-                      	$('#submit').click(function(){
-                      		$.post('backendInterface.php',{
-                      			submitID:"Submit #Courses",
-                      			numCoursesYearTerm:getSelectYearTerm(),
-                      			numCoursesConstrain:getNumberOfCourse()} ,
-                      			function(data){
+											$(document).ready(function(){
+										 					$('#submit').click(function(){
+										 						$.post('backendInterface.php',{
+										               submitID:"Submit #Courses",
+										 							numCoursesYearTerm:getSelectYearTerm(),
+										 							numCoursesConstrain:getNumberOfCourse()} ,
+										 		            function(data){
+										 			  $('#result').html(data);
+										         //setTimeout(window.location.reload(false), 10000) ;
+										          $("#card").load(" #card >*");
+										 			  //console.log(data);
+										 			  });
+										 		       });
+										 						//getSelectYearTerm();
+										 						//getNumberOfCourse();
+										 						//reload();
+										 					});
+        //               $(document).ready(function(){
+        //               	$('#submit').click(function(){
+        //               		$.post('backendInterface.php',{
+        //               			submitID:"Submit #Courses",
+        //               			numCoursesYearTerm:getSelectYearTerm(),
+        //               			numCoursesConstrain:getNumberOfCourse()} ,
+        //               			function(data){
+				// 											console.log("HELLLO");
+				//
+        //               				$('#result').html(data);
+        //               				window.location.reload(false);
+				//
+				// 											console.log("HELLLO");
+				//
+        //               			});
+				//
+        //               	});
+				// 		//getSelectYearTerm();
+				// 		//getNumberOfCourse();
+				// 		//reload();
+				//
+				//
+				// 	});
+				// 
 
-                      				$('#result').html(data);
-                      				window.location.reload(false);
+// 				$('#submit').click(function(){
+// 						$.POST('backendInterface.php',{
+// 							numCoursesTerm:getSelectYearTerm(),
+// 							numCoursesConstrain:getNumberOfCourse()} ,
+// 		            success:(function(data)){
+// 		            	 someFunction( data );
+//                    return data;
+//
+// 			 // $('#result').html(data);
+// 			  return (data);
+// 			  	},
+// 			  	error:(function()){
+// 			  		alert('Error');
+// 			  	});
+// 			  });
+//
+// 	 $('#submit').click(function(){
+// 		$.ajax({
+//         type: "POST",
+//         url: 'backendInterface.php',
+//         data: ({numCoursesTerm:getSelectYearTerm(),numCoursesConstrain:getNumberOfCourse()}),
+//         success: function(data) {
+//                 // Call this function on success
+//             someFunction( data );
+//             return data;
+//         },
+//         error: function() {
+//             alert('Error occured');
+//         }
+//     });
+// });
 
-                      				console.log(data);
-
-                      			});
-
-                      	});
-						//getSelectYearTerm();
-						//getNumberOfCourse();
-						//reload();
-
-
-					});S
-				/*
-				$('#submit').click(function(){
-						$.POST('backendInterface.php',{
-							numCoursesTerm:getSelectYearTerm(),
-							numCoursesConstrain:getNumberOfCourse()} ,
-		            success:(function(data)){
-		            	 someFunction( data );
-                   return data;
-
-			 // $('#result').html(data);
-			  return (data);
-			  	},
-			  	error:(function()){
-			  		alert('Error');
-			  	});
-			  });
-
-	 $('#submit').click(function(){
-		$.ajax({
-        type: "POST",
-        url: 'backendInterface.php',
-        data: ({numCoursesTerm:getSelectYearTerm(),numCoursesConstrain:getNumberOfCourse()}),
-        success: function(data) {
-                // Call this function on success
-            someFunction( data );
-            return data;
-        },
-        error: function() {
-            alert('Error occured');
-        }
-    });
-});
-*/
 function someFunction( data ) {
 
 	console.log(data);
@@ -442,8 +461,7 @@ function someFunction( data ) {
 
 	</script>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 
 </body>
 </html>
