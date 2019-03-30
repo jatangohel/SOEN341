@@ -167,49 +167,6 @@
 			<tbody>
 
 
-				<tbody class="labels" data-toggle="collapse" data-target="#data_1" aria-expanded="true">
-					<tr>
-						<td colspan="2">
-							<label for="Physics">Physics &nbsp;&nbsp;&nbsp;<i class="fas fa-angle-down"></i></label>
-<!--                              <input type="checkbox" id="PHYS204" name="PHYS204" value="PHYS204">-->
-						</td>
-					</tr>
-				</tbody>
-				<tbody class="collapse" id="data_1">
-
-					<tr>
-                        <td>PHYS 204</td>
-                        <td>
-                       <label for="PHYS204">PASS</label>&nbsp;&nbsp;&nbsp;
-                            <input type="checkbox" id="PHYS204" name="check_list[]" value="PHYS204">
-                        </td>
-                    </tr>
-
-					<tr><td>PHYS 205</td><td><label for="PHYS205">PASS</label>&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" id="PHYS205" name="check_list[]" value="PHYS205"></td></tr>
-				</tbody>
-
-
-
-
-				<tbody class="labels" data-toggle="collapse" href="#data_2"  aria-expanded="true">
-					<tr>
-						<td colspan="2">
-							<label for="Mathmatics">Mathmatics &nbsp;&nbsp;&nbsp;<i class="fas fa-angle-down"></i></label>
-						</td>
-					</tr>
-				</tbody>
-				<tbody class="collapse" id="data_2">
-					<tr><td>MATH 203</td><td> <label for="MATH203">PASS</label>&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" id="MATH203" name="check_list[]" value="MATH203"> </td></tr>
-					<tr><td>MATH 204</td><td> <label for="MATH204">PASS</label>&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" id="MATH204" name="check_list[]" value="MATH204"> </td></tr>
-					<tr><td>MATH 205</td><td> <label for="MATH205">PASS</label>&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" id="MATH205" name="check_list[]" value="MATH205"> </td></tr>
-				</tbody>
-
-
-
 				<tbody class="labels" data-toggle="collapse" href="#data_3"  aria-expanded="true">
 					<tr>
 						<td colspan="2">
