@@ -98,7 +98,7 @@ public function genProgramSched ($user)
     // Exclude the taken courses from the untaken array
     foreach ($sem->getLecs() as $taken)
     {
-      $createdCourses[$taken->getCourseName()]->setPass(true);
+      $createdCourses[$taken->getCourse()->getCourseName()]->setPass(true);
       deleteCourse($taken, $untakenCourses);
     }
 

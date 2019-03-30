@@ -240,7 +240,7 @@ class Semester
               }
               $chosenLecSec = $lecS;
 
-              $tutSections = getTutorialSection($lecS->getCourseName(), $this->name, $lecS->getSection());
+              $tutSections = getTutorialSection($lecS->getCourse()->getCourseName(), $this->name, $lecS->getSection());
               if($tutSections != null)
               {
                 foreach ($tutSections as $tutS)
@@ -274,7 +274,7 @@ class Semester
                  }
                }
 
-              $labSections = getLabSection($lecS->getCourseName(), $this->name);
+              $labSections = getLabSection($lecS->getCourse()->getCourseName(), $this->name);
               if($labSections != null)
               {
                 foreach ($labSections as $labS)
