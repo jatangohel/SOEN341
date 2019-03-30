@@ -5,29 +5,36 @@ require_once 'Session.php';
 require_once 'Course.php';
 require_once 'Semester.php';
 require_once 'heapSort.php';
-require_once 'User.php';
+require_once 'user.php';
 
 $DEFAULT_COURSES_PER_SEM = 4;
-
+$DEFAULT_CREDITS_PER_SEM = 15.0;
 
 class UserSchedule
 {
 private $listOfSemesters; // Array of semesters
 private $coursesPerSemArr;   // Input obtained from user (int)
 private $noClassesArr;
+private $numCredits;
 
-public function __construct($numCourses,$noClassesArr)
+public function __construct($numCourses,$numCredits, $noClassesArr)
 {
 //  $this->firstSem = $fSem;
   $this->listOfSemesters = array ();
   $this->coursesPerSemArr = $numCourses;
   $this->noClassesArr= $noClassesArr;
+  $this->numCredits = $numCredits;
 
 }
 
 public function getListOfSemesters ()
 {
   return $this->listOfSemesters;
+}
+
+public function getNumCredits()
+{
+  return $this->numCredits;
 }
 
 
@@ -49,6 +56,7 @@ public function dispUserSchedule()
 public function genProgramSched ($user)
 {
   global $DEFAULT_COURSES_PER_SEM;
+  global $DEFAULT_CREDITS_PER_SEM;
   global $createdCourses;
   $semesters = array("W", "S","F");
 
@@ -74,7 +82,9 @@ public function genProgramSched ($user)
 
     $noClasses= array_key_exists($semCode,$this->noClassesArr) ? $this->noClassesArr[$semCode] : null;
     // Generate a schedule for a semester
-    $sem = new Semester ($semesters[$currentSemKey], $currentYear, array_key_exists($semCode,$this->coursesPerSemArr) ? $this->coursesPerSemArr[$semCode]:$DEFAULT_COURSES_PER_SEM, $noClasses);
+    $sem = new Semester ($semesters[$currentSemKey], $currentYear,
+              array_key_exists($semCode,$this->coursesPerSemArr) ? $this->coursesPerSemArr[$semCode]:$DEFAULT_COURSES_PER_SEM,
+              array_key_exists($semCode,$this->coursesPerSemArr) ? $this->coursesPerSemArr[$semCode]:$DEFAULT_CREDITS_PER_SEM, $noClasses);
     $sem->semesterGenerator($permittedCourses);
 
     //var_dump($sem);

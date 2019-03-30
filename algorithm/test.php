@@ -7,11 +7,13 @@
 <body>
   <div>
     <?php
+
+require_once 'UserSchedule.php';
 /*
 test for updateTakenCourses function
 
 
-require_once 'UserSchedule.php';
+
 
 $x = array('COMP352','SOEN341');
 
@@ -28,7 +30,7 @@ $numCoursesArr['2S'] = 1;
 
 $numCoursesArr['3S'] = 0;
 
-
+$numCredits = 12;
 
 // $numCoursesArr['1F'] = 4;
 // $numCoursesArr['2F'] = 6;
@@ -50,7 +52,7 @@ array_push($noSem1, $no4);
 array_push($noSem1, $no5);
 //$noClassesArr['2F']=$noSem1;
 //$noClassesArr['2W']=$noSem1;
-$userSched = new UserSchedule($numCoursesArr, $noClassesArr);
+$userSched = new UserSchedule($numCoursesArr,$numCredits, $noClassesArr);
 $testUser = new user("hani","osama.qalam@hotmail.com" , "hani123", $userSched, "F");
 $userSched->genProgramSched($testUser);
 
@@ -87,6 +89,7 @@ $untaken =  array ($comp248,$comp249,$comp352,$engr201,$engr202,$engr213,$engr23
 updateAllPriority($untaken);
 
 var_dump($untaken);
+*/
     ?>
   </div>
 </body>

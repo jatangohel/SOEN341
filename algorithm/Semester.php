@@ -22,12 +22,14 @@ class Semester
   private $tuts;
   private $labs;
   private $status;
+  private $numCredits;
 
-  public function __construct($name, $year, $numCourses,$timesNoClass)
+  public function __construct($name, $year, $numCourses, $numCredits, $timesNoClass)
   {
     $this->name = $name;
     $this->year = $year;
     $this->numCourses = $numCourses;
+    $this->numCredits = $numCredits;
     $this->timesNoClass = $timesNoClass;
     $this->lecs = array ();
     $this->tuts = array ();
@@ -49,6 +51,11 @@ class Semester
   public function getNumCourses ()
   {
     return $this->numCourses;
+  }
+
+  public function getNumCredits ()
+  {
+    return $this->numCredits;
   }
 
   public function getLecs()
