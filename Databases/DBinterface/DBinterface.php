@@ -19,6 +19,7 @@ function getLectureSections($course, $semester){
 	global $wlec;
 	global $slec;
 	static $table ;
+	global $createdCourses;
 
 	switch ($semester)
 	{
@@ -70,7 +71,7 @@ function getLectureSections($course, $semester){
 		$campus = "SGW";
 
 			//Making a new session object with the course information
-		$ham =  new Session($courseName,$lecInfo,$subSection,$semester,$lecDay,$startLecTime,$endLecTime,$campus);
+		$ham =  new Session($createdCourses[$courseName],$lecInfo,$subSection,$semester,$lecDay,$startLecTime,$endLecTime,$campus);
 
 		array_push($stack, $ham);
 
@@ -90,7 +91,6 @@ function getLectureSections($course, $semester){
 
 
 function getTutorialSection($course, $semester, $section){
-		//include('tutorialfunction.php');
 	require('config/db.php');
 
 	$stack=array();
@@ -151,7 +151,7 @@ function getTutorialSection($course, $semester, $section){
 		$campus = "SGW";
 
 			//Making a new session object with the course information
-		$ham =  new Session($courseName,$lecInfo,$subSection,$semester,$lecDay,$startLecTime,$endLecTime,$campus);
+		$ham =  new Session($createdCourses[$courseName],$lecInfo,$subSection,$semester,$lecDay,$startLecTime,$endLecTime,$campus);
 
 		array_push($stack, $ham);
 
@@ -225,7 +225,7 @@ function getLabSection($course, $semester){
 		$campus = "SGW";
 
 		//Making a new session object with the course information
-		$ham =  new Session($courseName,$labSection,null,$semester,$labDay,$startLabTime,$endLabTime,$campus);
+		$ham =  new Session($createdCourses[$courseName],$labSection,null,$semester,$labDay,$startLabTime,$endLabTime,$campus);
 
 		array_push($stack, $ham);
 		if(array_key_exists( $courseName, $loadedSessions))

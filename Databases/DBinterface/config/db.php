@@ -1,4 +1,6 @@
 <?php
+//ini_set('max_execution_time', 1000);
+
 //create connection
 $conn = mysqli_connect('localhost','root','root','sequencebuilder');
 //check connection
