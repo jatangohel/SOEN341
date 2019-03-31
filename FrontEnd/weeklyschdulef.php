@@ -28,10 +28,11 @@ return $tempa.":".$tempb;
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	
+	
 	<title>SOEN Course Stream</title></head>
 	<style>
 	        :root{
@@ -56,6 +57,9 @@ return $tempa.":".$tempb;
             background-size: cover;
             background-attachment: fixed;
         }
+
+				
+
 	
 	        .container {
           font-family: 'Montserrat', sans-serif;
@@ -279,7 +283,7 @@ return $tempa.":".$tempb;
         <tr>
           <td class="time" rowspan="4" scope="row"><span class>9:00</span>&nbsp;</td>
           <td class="M" name="M90000" id="M90000">&nbsp;</td>
-          <td class="T" name="T90000" id="T90000" hidden>&nbsp;</td>
+          <td class="T" name="T90000" id="T90000" >&nbsp;</td>
           <td class="W" name="W90000" id="W90000">&nbsp;</td>
           <td class="J" name="J90000" id="J90000">&nbsp;</td>
           <td class="F" name="F90000" id="F90000">&nbsp;</td>
@@ -823,15 +827,23 @@ return $tempa.":".$tempb;
 	</div>
 	
  <script>
-/*function deletecell()
-{
-document.getElementById('T90000').hide();
-document.getElementById('T91500').hide();
 
-document.getElementById("T93000").hide();
 
-document.getElementById("T94500").hide();
-}*/
+document.getElementById('T90000').style.display="none";
+document.getElementById('T91500').style.display="none";
+document.getElementById("T93000").style.display="none";
+document.getElementById("T94500").style.display="none";
+document.getElementById("T94500").style.display="none";
+document.getElementById('T180000').style.display="none";
+document.getElementById('T181500').style.display="none";
+document.getElementById('T183000').style.display="none";
+document.getElementById('T184500').style.display="none";
+document.getElementById('T190000').style.display="none";
+document.getElementById('T191500').style.display="none";
+document.getElementById('T193000').style.display="none";
+document.getElementById('T194500').style.display="none";
+document.getElementById('T200000').style.display="none";
+
 
 	$(document).ready(function(){
 	var i = 1;
@@ -858,8 +870,8 @@ document.getElementById("T94500").hide();
 });
 
  //CREATE NEW ELEMENTS
-//a="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime()) ?>";
-//alert(a);
+a="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime()) ?>";
+alert(a);
    
  createNew();
      
@@ -867,7 +879,7 @@ document.getElementById("T94500").hide();
 	<?php $i = 1; ?>
 function createNew() {
   
-  
+  var counter = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime()+"1500"?>";
   
   var title = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getDays()[0] ?>";
   var fromTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime() ?>";
@@ -879,9 +891,11 @@ function createNew() {
   var StartMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime()%10000/100 ?>";
   var EndHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[3]->getEndTime()/10000) ?>";
   var EndMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getEndTime()%10000/100 ?>";
+   var a="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime()) ?>";
+   var b="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[3]->getEndTime()) ?>";
  // var startTImeToShow= ("<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[1]->getStartTime()) ?>";)
   
-document.getElementById(title + fromTimeHour).innerHTML=(courseSection + '<br>' + "Lecture" + '<br>' + StartHour + ":" + StartMinute + '&nbsp;' + "~" + '&nbsp;' + EndHour + ":" + EndMinute);
+document.getElementById(title + fromTimeHour).innerHTML=(courseSection + '<br>' + "Lecture" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
 document.getElementById(title + fromTimeHour).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
 document.getElementById(title + fromTimeHour).style = " color:rgb(0,0,0);background-color:rgb(182,209,146);text-align: center;opacity: 0.8;";
 
@@ -889,7 +903,10 @@ document.getElementById(title + fromTimeHour).style = " color:rgb(0,0,0);backgro
 
 
 
-
+document.getElementById(title+counter).style.display="none";
+document.getElementById(title+ (fromTimeHour+'3000')).style.display="none";
+//document.getElementById(title+ (fromTimeHour+counter+counter+counter)).style.display="none";
+//document.getElementById(title+ (fromTimeHour+counter+counter+counter+counter)).style.display="none";
 
 
 
@@ -1018,8 +1035,7 @@ function getStartHour(fromHour, fromHalf) {
 				<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[1]->getEndTime()/10000 ). ":" . $userSched->getListOfSemesters()[0]->getLecs()[1]->getEndTime()%10000/100;?></span>
           </td>*/
 </script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</body>		
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+ 	</body>		
 </html>	
