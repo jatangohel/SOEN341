@@ -1,3 +1,4 @@
+* { margin: 0, padding: 0 }
 
 .typewriter{
 display: flex;
@@ -144,7 +145,7 @@ border-radius: 2px;
 }
 
 body {
-   padding-top: 56px;
+   padding-top: 0px;
  }
  .carousel-item {
    height: 65vh;

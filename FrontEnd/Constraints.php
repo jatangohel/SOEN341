@@ -14,7 +14,7 @@
 <?php
 
 require_once __DIR__.'/../Databases/DBinterface/DBinterface.php';
-require_once __DIR__.'/../PageBuilder/header.php';
+//require_once __DIR__.'/../PageBuilder/header.php';
 require_once 'backendInterface.php';
 
 

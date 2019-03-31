@@ -4,7 +4,7 @@ session_start();
 ?>
 
 <?php
-echo '<link href="css/stylec.css" rel="stylesheet">';
+echo '<link href="css/stylec.css" rel="stylesheet"/>';
 
 	//Page Info
 	$page_name = "error 404 - Main page";
