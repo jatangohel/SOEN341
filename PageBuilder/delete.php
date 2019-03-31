@@ -1,7 +1,6 @@
 <?php
-  //ob_start();
-if (session_status() != PHP_SESSION_ACTIVE)
-  session_start();
+   ob_start();
+   session_start();
 ?>
 <nav class="navbar navbar-expand-md navbar-dark bg-primary sticky-top">
         <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
@@ -50,8 +49,8 @@ if (session_status() != PHP_SESSION_ACTIVE)
 
                <?php 
                 if(isset($_SESSION['loggedin']))
-                // echo ', '.$_SESSION['userName']; 
-               ?>
+                 echo ', '.$_SESSION['userName']; 
+               ?>!
           
            </a>
                    <div class="dropdown-menu" aria-labelledby="navDropDownLink">
