@@ -38,7 +38,7 @@ if (session_status() != PHP_SESSION_ACTIVE)
                 <a class="nav-link" href="#">About Us </a>
             </li>
         </ul>
-
+        <?php     if($_SERVER['REQUEST_URI']!='/SOEN341/'){ ?>
          <ul class="navbar-nav ">
                <!-- PROFILE DROPDOWN - scrolling off the page to the right -->
                <li class="nav-item dropdown">
@@ -58,6 +58,6 @@ if (session_status() != PHP_SESSION_ACTIVE)
                    </div>
                </li>
            </ul>
-
+         <?php } ?>
         </div>
     </nav>
