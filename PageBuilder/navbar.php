@@ -32,9 +32,6 @@ if (session_status() != PHP_SESSION_ACTIVE)
             </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link 2 </a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="#">Profile </a>
             </li>
             <li class="nav-item">
@@ -50,7 +47,7 @@ if (session_status() != PHP_SESSION_ACTIVE)
 
                <?php 
                 if(isset($_SESSION['loggedin']))
-                // echo ', '.$_SESSION['userName']; 
+                 echo ', '.$_SESSION['userName']; 
                ?>
           
            </a>
