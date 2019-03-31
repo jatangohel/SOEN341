@@ -1,4 +1,17 @@
 <?php
+   ob_start();
+   
+   if(!isset($_SESSION))
+   	session_start();
+?>
+<?php
+	if(!isset($_SESSION['loggedin'])){
+		echo "Login please!";
+		header('Refresh: 2; URL = index.php');
+	}
+
+?>
+<?php
 
 require_once __DIR__.'/../Databases/DBinterface/DBinterface.php';
 require_once __DIR__.'/../PageBuilder/header.php';
