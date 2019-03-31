@@ -143,36 +143,6 @@ return $tempa.":".$tempb;
 	opacity:0.86;
 	}
 
-	.myClass {
-  color:rgb(0,0,0);background-color:rgb(182,209,146);text-align: center;
-  opacity: 0.8;
-  width: 100px;
-  height: 30px;
-/* !important needed so on resize it doesnt come back to relative   */
-  position: absolute !important;
-  cursor: -webkit-grab; cursor:-moz-grab;
-  z-index: 10;
-  border-radius: 3px;
-}
-
-.myClass p {
-  margin: 6px 6px;
-}
-.fa-trash-o {
-  cursor: pointer; 
-  float: right;
-  transition: 300ms;
-}
-.fa-trash-o:hover {
-  color: rgba(0,0,0,0.5);
-  transition: 300ms;
-} 
-.myClass:active {
-  cursor: -webkit-grabbing; cursor:-moz-grabbing;
-  opacity: 0.7;
-}
-
-
 	
 	
 	</style>
@@ -217,7 +187,6 @@ return $tempa.":".$tempb;
 				</div>
 	</div>
 	  <div class="scheduleArea">
-		<div class="myClass" name="myClass" id="myClass" hidden><i class="fa fa-trash-o" aria-hidden="true"></i></div>
 		
 		
       <table class="tableTimes" style=" text-align:center" >
@@ -235,12 +204,12 @@ return $tempa.":".$tempb;
         <tr style="border-top: 2px solid black; ">
           <td class="time" rowspan="4" scope="row"><span class>8:00</span></td>
          
-          <td class="M" name="M80000" id="M80000">&nbsp;</td>
-          <td class="T" name="T80000" id="T80000">&nbsp;</td>
+          <td class="M" name="M080000" id="M080000">&nbsp;</td>
+          <td class="T" name="T080000" id="T080000">&nbsp;</td>
 		  
-          <td class="W" name="W80000" id="W80000">10&nbsp;</td>
-          <td class="J" name="J80000" id="J80000">8&nbsp;</td>
-          <td class="F" name="F80000" id="F80000">0&nbsp;</td>
+          <td class="W" name="W080000" id="W080000">&nbsp;</td>
+          <td class="J" name="J080000" id="J080000">&nbsp;</td>
+          <td class="F" name="F080000" id="F080000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
 		      <td class="sunday">&nbsp;</td>
  		  
@@ -249,31 +218,29 @@ return $tempa.":".$tempb;
         </tr>
         <tr >   
 
-          <td class="M" name="M81500" id="M81500">&nbsp;</td>
-          <td class="T" name="T81500" id="T81500">&nbsp;</td>
-          <td class="W" name="W81500" id="W81500">&nbsp;</td>
-          <td class="J" name="J81500" id="J81500">&nbsp;</td>
-          <td class="F" name="F81500" id="F81500">&nbsp;</td>
+          <td class="M" name="M081500" id="M081500">&nbsp;</td>
+          <td class="T" name="T081500" id="T081500">&nbsp;</td>
+          <td class="W" name="W081500" id="W081500">&nbsp;</td>
+          <td class="J" name="J081500" id="J081500">&nbsp;</td>
+          <td class="F" name="F081500" id="F081500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>    
         </tr>        
         <tr >
-          <td class="M" name="M83000" id="M83000">&nbsp;</td>
-          <td class="T" name="T83000" id="T83000">&nbsp;</td>
-          <td class="W" name="W83000" id="W83000">&nbsp;</td>
-          <td class="J" name="J83000" id="J83000">&nbsp;</td>
-          <td class="F" name="F83000" id="F83000">&nbsp;</td>
+          <td class="M" name="M083000" id="M083000">&nbsp;</td>
+          <td class="T" name="T083000" id="T083000">&nbsp;</td>
+          <td class="W" name="W083000" id="W083000">&nbsp;</td>
+          <td class="J" name="J083000" id="J083000">&nbsp;</td>
+          <td class="F" name="F083000" id="F083000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>    
         </tr>        
         <tr >
-          <td class="M" name="M84500" id="M84500">&nbsp;</td>
-          <td class="T" name="T84500" id="T84500" rowspan="5" style="color:rgb(0,0,0);background-color:rgb(182,209,146);text-align: center;">
-            <span style="color:rgb(0,0,0);background-color:rgb(182,209,146);">COEN  390 - S<br>Lecture<br>8:45AM - 10:00AM<br>Faubourg Building (FG) C090</span>
-			</td>
-          <td class="W" name="W84500" id="W84500">&nbsp;</td>
-          <td class="J" name="J84500" id="J84500">&nbsp;</td>
-          <td class="F" name="F84500" id="F84500">&nbsp;</td>
+          <td class="M" name="M084500" id="M084500">&nbsp;</td>
+          <td class="T" name="T084500" id="T084500">&nbsp;</td>
+          <td class="W" name="W084500" id="W084500">&nbsp;</td>
+          <td class="J" name="J084500" id="J084500">&nbsp;</td>
+          <td class="F" name="F084500" id="F084500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>    
         </tr>
@@ -282,38 +249,38 @@ return $tempa.":".$tempb;
 
         <tr>
           <td class="time" rowspan="4" scope="row"><span class>9:00</span>&nbsp;</td>
-          <td class="M" name="M90000" id="M90000">&nbsp;</td>
-          <td class="T" name="T90000" id="T90000" >&nbsp;</td>
-          <td class="W" name="W90000" id="W90000">&nbsp;</td>
-          <td class="J" name="J90000" id="J90000">&nbsp;</td>
-          <td class="F" name="F90000" id="F90000">&nbsp;</td>
+          <td class="M" name="M090000" id="M090000">&nbsp;</td>
+          <td class="T" name="T090000" id="T090000" >&nbsp;</td>
+          <td class="W" name="W090000" id="W090000">&nbsp;</td>
+          <td class="J" name="J090000" id="J090000">&nbsp;</td>
+          <td class="F" name="F090000" id="F090000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
 		      <td class="sunday">&nbsp;</td>
         </tr>
         <tr>
-          <td class="M" name="M91500" id="M91500">&nbsp;</td>
-          <td class="T" name="T91500" id="T91500">&nbsp;</td>
-          <td class="W" name="W91500" id="W91500">&nbsp;</td>
-          <td class="J" name="J91500" id="J91500">&nbsp;</td>
-          <td class="F" name="F91500" id="F91500">&nbsp;</td>
+          <td class="M" name="M091500" id="M091500">&nbsp;</td>
+          <td class="T" name="T091500" id="T091500">&nbsp;</td>
+          <td class="W" name="W091500" id="W091500">&nbsp;</td>
+          <td class="J" name="J091500" id="J091500">&nbsp;</td>
+          <td class="F" name="F091500" id="F091500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>  
         <tr>
-          <td class="M" name="M93000" id="M93000">&nbsp;</td>
-          <td class="T" name="T93000" id="T93000">&nbsp;</td>
-          <td class="W" name="W93000" id="W93000">&nbsp;</td>
-          <td class="J" name="J93000" id="J93000">&nbsp;</td>
-          <td class="F" name="F93000" id="F93000">&nbsp;</td>
+          <td class="M" name="M093000" id="M093000">&nbsp;</td>
+          <td class="T" name="T093000" id="T093000">&nbsp;</td>
+          <td class="W" name="W093000" id="W093000">&nbsp;</td>
+          <td class="J" name="J093000" id="J093000">&nbsp;</td>
+          <td class="F" name="F093000" id="F093000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>      
         <tr>
-          <td class="M" name="M94500" id="M94500">&nbsp;</td>
-          <td class="T" name="T94500" id="T94500">&nbsp;</td>
-          <td class="W" name="W94500" id="W94500">&nbsp;</td>
-          <td class="J" name="J94500" id="J94500">&nbsp;</td>
-          <td class="F" name="F94500" id="F94500">&nbsp;</td>
+          <td class="M" name="M094500" id="M094500">&nbsp;</td>
+          <td class="T" name="T094500" id="T094500">&nbsp;</td>
+          <td class="W" name="W094500" id="W094500">&nbsp;</td>
+          <td class="J" name="J094500" id="J094500">&nbsp;</td>
+          <td class="F" name="F094500" id="F094500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
@@ -546,7 +513,7 @@ return $tempa.":".$tempb;
           <td class="sunday">&nbsp;</td>
         </tr>
          <tr>
-          <td class="M" name="M153000" id="M153000"><?php echo $userSched->getListOfSemesters()[0]->getLecs()[1]->getStartTime() ?>&nbsp;</td>
+          <td class="M" name="M153000" id="M153000">&nbsp;</td>
           <td class="T" name="T153000" id="T153000">&nbsp;</td>
           <td class="W" name="W153000" id="W153000">&nbsp;</td>
           <td class="J" name="J153000" id="J153000">&nbsp;</td>
@@ -829,20 +796,7 @@ return $tempa.":".$tempb;
  <script>
 
 
-document.getElementById('T90000').style.display="none";
-document.getElementById('T91500').style.display="none";
-document.getElementById("T93000").style.display="none";
-document.getElementById("T94500").style.display="none";
-document.getElementById("T94500").style.display="none";
-document.getElementById('T180000').style.display="none";
-document.getElementById('T181500').style.display="none";
-document.getElementById('T183000').style.display="none";
-document.getElementById('T184500').style.display="none";
-document.getElementById('T190000').style.display="none";
-document.getElementById('T191500').style.display="none";
-document.getElementById('T193000').style.display="none";
-document.getElementById('T194500').style.display="none";
-document.getElementById('T200000').style.display="none";
+
 
 
 	$(document).ready(function(){
@@ -869,17 +823,14 @@ document.getElementById('T200000').style.display="none";
 	});
 });
 
- //CREATE NEW ELEMENTS
-a="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime()) ?>";
-alert(a);
+
    
  createNew();
      
-	
-	<?php $i = 1; ?>
+
 function createNew() {
+	
   
-  var counter = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime()+"1500"?>";
   
   var title = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getDays()[0] ?>";
   var fromTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime() ?>";
@@ -893,147 +844,29 @@ function createNew() {
   var EndMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getEndTime()%10000/100 ?>";
    var a="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime()) ?>";
    var b="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[3]->getEndTime()) ?>";
- // var startTImeToShow= ("<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[1]->getStartTime()) ?>";)
-  
+
+
 document.getElementById(title + fromTimeHour).innerHTML=(courseSection + '<br>' + "Lecture" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
 document.getElementById(title + fromTimeHour).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
 document.getElementById(title + fromTimeHour).style = " color:rgb(0,0,0);background-color:rgb(182,209,146);text-align: center;opacity: 0.8;";
 
 
 
-
-
-document.getElementById(title+counter).style.display="none";
-document.getElementById(title+ (fromTimeHour+'3000')).style.display="none";
-//document.getElementById(title+ (fromTimeHour+counter+counter+counter)).style.display="none";
-//document.getElementById(title+ (fromTimeHour+counter+counter+counter+counter)).style.display="none";
-
-
-
-
-
-
-
-
-
-
-
-
-  var unit = 15;
-  //create new element using title+weekday as ID
-  var newElement = '<div id=' + title + fromTimeHour + ' class="myClass"><p class="title">' + title + fromTimeHour + '<i class="fa fa-trash-o" aria-hidden="true"></i></p><div style="z-index:90;"></div></div>';
-  
-  //inserts it
-  $(newElement).insertById(".tableTimes");
-   
-  
-  //this is how we will control where the elements will appear on the grid
-  //left for the day of the week
-  //top for starting time
-  //height interval of time
-  /*$("#" + title + fromTimeHour).css({
-    "left": weekDay,
-    "top": getStartHour(fromTimeHour, fromTimeHalf),
-    "height": getToHour(fromTimeHour, fromTimeHalf, toTimeHour, toTimeHalf),
-    
-  });
-  
-  updateElements();*/
+var tempTime=parseInt(fromTimeHour);
+for (var i=1;i<document.getElementById(title + fromTimeHour).rowSpan;i++)
+{
+tempTime=tempTime+1500;
+if((tempTime%10000)%6000==0)
+tempTime=tempTime+4000;
+if(tempTime<100000)
+	document.getElementById(title+'0'+tempTime).style.display="none";
+else
+	document.getElementById(title+tempTime).style.display="none";
 }
 
-function correctHour(toHour) {
-  
-        var result;
-
-        if(toHour < 7) {
-          result = 12 + Number(toHour);
-        } else {
-          result = toHour;
-        }
-        // alert(result);
-        return result;
-      }
-
-function getToHour(fromHour, fromHalf, toHour, toHalf) {
-  //needs to handle 9am to 1pm types of entry
-  var compensation;
-  
-  if(fromHalf == 30 && toHalf == 30) {
-    
-    compensation = 0;
-    
-  } else if (fromHalf == 30 ){
-    
-    compensation = -15;
-    
-  } else if(toHalf == 30){
-    
-    compensation = 15;
-    
-  } else {
-    
-    compensation = 0;
-  }
-  
-    var correctedToHour = correctHour(toHour);
-    var correctedFromHour = correctHour(fromHour);
-    // alert(correctedHour);
-    return ((correctedToHour - correctedFromHour) * 30) + compensation;
-  
 }
 
-function getStartHour(fromHour, fromHalf) {
-  
-  let base = 140; //that gives 7am
-  var unitHalf;
-  
-  //this rounds down or up
-  if (fromHalf >= 30) {
-    
-    unitHalf = 15; //half an hour
-  
-  } else {
-    
-    unitHalf = 0;
-  }
-  
-  
-  if(fromHour >= 8) {
-    
-    return base + ((fromHour - 8) * 30) + unitHalf;
-    
-  } else {
-    //260 is the base for anything after 12
-    return  260 + (fromHour * 30) + unitHalf;
-    
-  }
-  
-};
 
-
-
-
-
- 
-
-
-
- /*  <!--<td name=<?php  echo (String)$userSched->getListOfSemesters()[0]->getLecs()[1]->getDays()[0] . $userSched->getListOfSemesters()[0]->getLecs()[1]->getStartTime();?>
-		  id=<?php echo $userSched->getListOfSemesters()[0]->getLecs()[1]->getDays()[0] . $userSched->getListOfSemesters()[0]->getLecs()[1]->getStartTime();?>
-		  rowspan="5" style="color:rgb(0,0,0);background-color:rgb(182,209,146);text-align: center;">
-            <span class style="color:rgb(0,0,0);background-color:rgb(182,209,146);">SOEN  341 - S<br>Lecture<br>8:00AM - 9:15AM<br>Faubourg Building (FG) C080</span>
-          </td>--> 
-		  		  <td 
-				  name=<?php echo $userSched->getListOfSemesters()[0]->getLecs()[1]->getDays()[0] . $userSched->getListOfSemesters()[0]->getLecs()[1]->getStartTime();?>
-				  rowspan= <?php echo ($userSched->getListOfSemesters()[0]->getLecs()[1]->getEndTime() - $userSched->getListOfSemesters()[0]->getLecs()[1]->getStartTime())/150000; ?>>
-            <span>
-				<?php echo $userSched->getListOfSemesters()[0]->getLecs()[1]->getDays()[0] . $userSched->getListOfSemesters()[0]->getLecs()[1]->getStartTime();
-				echo $userSched->getListOfSemesters()[0]->getLecs()[1]->getCourseName() . " - " . $userSched->getListOfSemesters()[0]->getLecs()[1]->getSection() . " " . $userSched->getListOfSemesters()[0]->getLecs()[1]->getSubSection();?>
-				<br>Lecture<br>
-				<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[1]->getStartTime()/10000) . ":" . $userSched->getListOfSemesters()[0]->getLecs()[1]->getStartTime()%10000/100?>
-				-
-				<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[1]->getEndTime()/10000 ). ":" . $userSched->getListOfSemesters()[0]->getLecs()[1]->getEndTime()%10000/100;?></span>
-          </td>*/
 </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
