@@ -523,6 +523,31 @@ function getUntakenCoursesFrontEnd($ConstraintsTakenCourses)
 	return $untakenFrontEnd;
 }
 
+// user change functions
+function changeusername($username,$prevusername){
+	require('config/db.php');
+
+	$query = 'update users set UserName = "'.$prevusername.'" where UserName = "'.$username.'"';
+	$result = mysqli_query($conn, $query);
+}
+
+function changeemail($email,$username){
+		require('config/db.php');
+	$query = 'update users set Email = "'.$email.'" where UserName = "'.$username.'"';
+	$result = mysqli_query($conn, $query);
+}
+
+function changepass	($password,$username){
+	require('config/db.php');
+	$query = 'update users set Password = "'.$password.'" where UserName = "'.$username.'"';
+	$result = mysqli_query($conn, $query);
+
+}
+
+changeusername('mohcurr','mohnow');
+changeemail('mohhef@now.com','mohnow');
+changepass('passnow','mohnow');
+
 ?>
 </body>
 </html>
