@@ -544,9 +544,9 @@ function changepass	($password,$username){
 
 }
 
-changeusername('mohcurr','mohnow');
-changeemail('mohhef@now.com','mohnow');
-changepass('passnow','mohnow');
+//changeusername('mohcurr','mohnow');
+//changeemail('mohhef@now.com','mohnow');
+//changepass('passnow','mohnow');
 
 ?>
 </body>
