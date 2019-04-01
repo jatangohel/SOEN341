@@ -148,7 +148,7 @@ return $tempa.":".$tempb;
 	
 	</style>
 	 <body>
-	 	<?php var_dump( $userSched->getListOfSemesters()[0]->getLecs());?>
+	 	<?php var_dump( $userSched->getListOfSemesters());?>
 
  <div class="topHeader">
         <button class="btn btn-warning" style="float:left; margin-left:20px;"><strong>Save Schedule</strong></button>
@@ -797,7 +797,9 @@ return $tempa.":".$tempb;
  <script>
 
 
+//var test = 	<?php echo json_encode($userSched->getListOfSemesters()); ?>
 
+//alert(test[4][0][0]);
 
 
 	$(document).ready(function(){
@@ -813,8 +815,7 @@ return $tempa.":".$tempb;
 	
 });
 
-//var test = 	<?php echo json_encode($userSched->getListOfSemesters()[0]->getLecs()); ?>
-alert("test[0][0]");
+//var test = 	<?php echo json_encode($userSched->getListOfSemesters()); ?>
    
  createLecNew();
      
