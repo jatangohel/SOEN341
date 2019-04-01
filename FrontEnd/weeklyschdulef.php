@@ -33,6 +33,7 @@ return $tempa.":".$tempb;
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	
 	
+	
 	<title>SOEN Course Stream</title></head>
 	<style>
 	        :root{
@@ -147,7 +148,7 @@ return $tempa.":".$tempb;
 	
 	</style>
 	 <body>
-	 	<?php var_dump( $userSched->getListOfSemesters()[0]->getLecs()[3]);?>
+	 	<?php var_dump( $userSched->getListOfSemesters()[0]->getLecs()[0]);?>
 
  <div class="topHeader">
         <button class="btn btn-warning" style="float:left; margin-left:20px;"><strong>Save Schedule</strong></button>
@@ -826,23 +827,58 @@ return $tempa.":".$tempb;
 
    
  createLecNew();
+     
 function createLecNew() {
-  var title = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getDays()[0] ?>";
-  var fromTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime() ?>";
-  var toTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getEndTime() ?>";
-  var courseName = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getCourseName() ?>";
-  var courseSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getSection() ?>";
-  var courseSubSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getSubSection() ?>";
-  var StartHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime()/10000) ?>";
-  var StartMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime()%10000/100 ?>";
-  var EndHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[3]->getEndTime()/10000) ?>";
-  var EndMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getEndTime()%10000/100 ?>";
-   var a="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime()) ?>";
-   var b="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[3]->getEndTime()) ?>";
+  var title = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] ?>";
+  var fromTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime() ?>";
+  var toTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime() ?>";
+  var courseName = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getCourseName() ?>";
+  var courseSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getSection() ?>";
+  var courseSubSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getSubSection() ?>";
+  var StartHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()/10000) ?>";
+  var StartMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()%10000/100 ?>";
+  var EndHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()/10000) ?>";
+  var EndMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()%10000/100 ?>";
+   var a="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()) ?>";
+   var b="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()) ?>";
 
 document.getElementById(title + fromTimeHour).innerHTML=(courseSection + '<br>' + "Lecture" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
 document.getElementById(title + fromTimeHour).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
-document.getElementById(title + fromTimeHour).style = " color:rgb(0,0,0);background-color:rgb(182,209,146);text-align: center;opacity: 0.8;";
+document.getElementById(title + fromTimeHour).style = " color:rgb(0,0,0);background-color:rgb(102, 255, 153);text-align: center;opacity: 0.8;";
+
+
+var tempTime=parseInt(fromTimeHour);
+for (var i=1;i<document.getElementById(title + fromTimeHour).rowSpan;i++)
+{
+tempTime=tempTime+1500;
+if((tempTime%10000)%6000==0)
+tempTime=tempTime+4000;
+if(tempTime<100000)
+	document.getElementById(title+'0'+tempTime).style.display="none";
+else
+	document.getElementById(title+tempTime).style.display="none";
+}
+}
+ createTutNew();
+     
+function createTutNew() {
+  var title = "<?php echo $userSched->getListOfSemesters()[0]->getTuts()[0]->getDays()[0] ?>";
+  var fromTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getTuts()[0]->getStartTime() ?>";
+  var toTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getTuts()[0]->getEndTime() ?>";
+  var courseName = "<?php echo $userSched->getListOfSemesters()[0]->getTuts()[0]->getCourseName() ?>";
+  var courseSection = "<?php echo $userSched->getListOfSemesters()[0]->getTuts()[0]->getSection() ?>";
+  var courseSubSection = "<?php echo $userSched->getListOfSemesters()[0]->getTuts()[0]->getSubSection() ?>";
+  var StartHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getTuts()[0]->getStartTime()/10000) ?>";
+  var StartMinute = "<?php echo $userSched->getListOfSemesters()[0]->getTuts()[0]->getStartTime()%10000/100 ?>";
+  var EndHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getTuts()[0]->getEndTime()/10000) ?>";
+  var EndMinute = "<?php echo $userSched->getListOfSemesters()[0]->getTuts()[0]->getEndTime()%10000/100 ?>";
+   var a="<?php echo getTime($userSched->getListOfSemesters()[0]->getTuts()[0]->getStartTime()) ?>";
+   var b="<?php echo getTime($userSched->getListOfSemesters()[0]->getTuts()[0]->getEndTime()) ?>";
+
+document.getElementById(title + fromTimeHour).innerHTML=(courseName + "-" + courseSubSection + '<br>' + "Tutorial" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
+document.getElementById(title + fromTimeHour).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
+document.getElementById(title + fromTimeHour).style = " color:rgb(0,0,0);background-color:rgb(153, 204, 255);text-align: center;opacity: 0.8;";
+
 
 var tempTime=parseInt(fromTimeHour);
 for (var i=1;i<document.getElementById(title + fromTimeHour).rowSpan;i++)
@@ -858,25 +894,26 @@ else
 
 }
 
-//TO DO Change Lec to Tutorial
-createLecNew();
-function createLecNew() {
-  var title = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getDays()[0] ?>";
-  var fromTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime() ?>";
-  var toTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getEndTime() ?>";
-  var courseName = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getCourseName() ?>";
-  var courseSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getSection() ?>";
-  var courseSubSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getSubSection() ?>";
-  var StartHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime()/10000) ?>";
-  var StartMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime()%10000/100 ?>";
-  var EndHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[3]->getEndTime()/10000) ?>";
-  var EndMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getEndTime()%10000/100 ?>";
-   var a="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime()) ?>";
-   var b="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[3]->getEndTime()) ?>";
+ createLabNew();
+     
+function createLabNew() {
+  var title = "<?php echo $userSched->getListOfSemesters()[0]->getLabs()[0]->getDays()[0] ?>";
+  var fromTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLabs()[0]->getStartTime() ?>";
+  var toTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLabs()[0]->getEndTime() ?>";
+  var courseName = "<?php echo $userSched->getListOfSemesters()[0]->getLabs()[0]->getCourseName() ?>";
+  var courseSection = "<?php echo $userSched->getListOfSemesters()[0]->getLabs()[0]->getSection() ?>";
+  var courseSubSection = "<?php echo $userSched->getListOfSemesters()[0]->getLabs()[0]->getSubSection() ?>";
+  var StartHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLabs()[0]->getStartTime()/10000) ?>";
+  var StartMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLabs()[0]->getStartTime()%10000/100 ?>";
+  var EndHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLabs()[0]->getEndTime()/10000) ?>";
+  var EndMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLabs()[0]->getEndTime()%10000/100 ?>";
+   var a="<?php echo getTime($userSched->getListOfSemesters()[0]->getLabs()[0]->getStartTime()) ?>";
+   var b="<?php echo getTime($userSched->getListOfSemesters()[0]->getLabs()[0]->getEndTime()) ?>";
 
-document.getElementById(title + fromTimeHour).innerHTML=(courseSection + '<br>' + "Lecture" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
+document.getElementById(title + fromTimeHour).innerHTML=(courseName + '&nbsp;'+ courseSection + '<br>' + "Laboratory" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
 document.getElementById(title + fromTimeHour).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
-document.getElementById(title + fromTimeHour).style = " color:rgb(0,0,0);background-color:rgb(182,209,146);text-align: center;opacity: 0.8;";
+document.getElementById(title + fromTimeHour).style = " color:rgb(0,0,0);background-color:rgb(255, 204, 102);text-align: center;opacity: 0.8;";
+
 
 var tempTime=parseInt(fromTimeHour);
 for (var i=1;i<document.getElementById(title + fromTimeHour).rowSpan;i++)
@@ -890,38 +927,8 @@ else
 	document.getElementById(title+tempTime).style.display="none";
 }
 
-//TO DO Change Lec to Lab
-createLecNew();
-function createLecNew() {
-  var title = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getDays()[0] ?>";
-  var fromTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime() ?>";
-  var toTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getEndTime() ?>";
-  var courseName = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getCourseName() ?>";
-  var courseSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getSection() ?>";
-  var courseSubSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getSubSection() ?>";
-  var StartHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime()/10000) ?>";
-  var StartMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime()%10000/100 ?>";
-  var EndHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[3]->getEndTime()/10000) ?>";
-  var EndMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getEndTime()%10000/100 ?>";
-   var a="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime()) ?>";
-   var b="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[3]->getEndTime()) ?>";
-
-document.getElementById(title + fromTimeHour).innerHTML=(courseSection + '<br>' + "Lecture" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
-document.getElementById(title + fromTimeHour).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
-document.getElementById(title + fromTimeHour).style = " color:rgb(0,0,0);background-color:rgb(182,209,146);text-align: center;opacity: 0.8;";
-
-var tempTime=parseInt(fromTimeHour);
-for (var i=1;i<document.getElementById(title + fromTimeHour).rowSpan;i++)
-{
-tempTime=tempTime+1500;
-if((tempTime%10000)%6000==0)
-tempTime=tempTime+4000;
-if(tempTime<100000)
-	document.getElementById(title+'0'+tempTime).style.display="none";
-else
-	document.getElementById(title+tempTime).style.display="none";
 }
-}
+
 
 
 </script>
