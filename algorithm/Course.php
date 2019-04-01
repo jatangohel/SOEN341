@@ -86,7 +86,6 @@ class Course
     deleteCourse($this, $courses);
     $this->setPriority(0);
 
-
     foreach ($courses as $c)
     {
       //var_dump($c);
@@ -143,11 +142,11 @@ class Course
 
 }
 
-function deleteCourse ($course, &$courses)
+function deleteCourse ($courseName, &$courses)
 {
   foreach ($courses as $key=>$c)
   {
-    if ($course->getCourseName() == $c->getCourseName())
+    if ($courseName == $c->getCourseName())
     {
       unset($courses[$key]);
       $courses=array_values($courses);
@@ -156,17 +155,6 @@ function deleteCourse ($course, &$courses)
   }
 }
 
-function updateCourseStatus ($course, &$courses)
-{
-  foreach ($courses as $key=>$c)
-  {
-    if ($course->getCourseName() == $c->getCourseName())
-    {
-      $c->setPass(true);
-      return;
-    }
-  }
-}
 
 function coReqsSatisfied($courses)
 {
@@ -202,9 +190,41 @@ function coReqsSatisfiedCombs ($combs)
   return $result;
 }
 
+//This function will calculate the total credits of the courses in each set in the
+//array and will compare it with a given number of credits requested by the user
+//Inputs are: a combination of sets of courses, number of required credits, and
+//number of courses requested by the user.
+function creditsSatisfied ($combs, $studentCredits, $numberOfCourses)
+{
+  $result = array();
+  foreach ($combs as $coursesList)
+    {
+      $totCredits = 0;
+      foreach ($coursesList as $course)
+      {
+        //If the remaining courses are less than the courses required by the user
+        //then the credits will not satisfy and we can skip.
+        if(sizeof($coursesList) < 4)
+          {
+          //  echo($numberOfCourses."---");
+            array_push($result, $coursesList);
+            continue;
+          }
+        $totCredits += $course->getcredits();
+      }
+      //We have a margin of 1.5 credits
+      if($studentCredits <= $totCredits + 1.5)
+        array_push($result, $coursesList);
+    }
+
+  //  echo("[[[[[[[[[DONE]]]]]]]]]");
+    return $result;
+}
+
 function updateAllPriority ($courses)
 {
   foreach ($courses as $c)
     $c->calPriority($courses);
 }
+
 ?>

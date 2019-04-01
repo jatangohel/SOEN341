@@ -1,9 +1,10 @@
 <?php
 
-require_once __DIR__.'/algorithm/UserSchedule.php';
+require_once __DIR__.'/../algorithm/UserSchedule.php';
 require_once "sessionfns.php";
 
-
+if (session_status() != PHP_SESSION_ACTIVE)
+	session_start();
 
 function processNumCoursesConstraint()
 {
@@ -30,63 +31,77 @@ function genNewSched ()
 	}
 
 
-	$userSched = new UserSchedule("F", $numCoursesArr, $noClassesArr);
+	$email = $_SESSION['userEmail'];
+	$userName = $_SESSION['userName'];
+	$userSched = new UserSchedule($numCoursesArr, $noClassesArr);
+	$user = new User ($userName, $email, $userSched, 'F');
 
-	$userSched->genProgramSched('sebhani98@gmail.com');
+	$userSched->genProgramSched($user);
 
-	$semInfo = array (array());
 
-	foreach ($userSched->getListOfSemesters()[0]->getLecs() as $lec)
+	$numSemesters = count($userSched->getListOfSemesters());
+
+	$semInfo = array();
+
+	for ($i =0;$i<count($userSched->getListOfSemesters());$i++){
+
+	$semInfo[$i]= array (array());
+	//$semInfo[1]= array (array());
+	//$semInfo[2]= array (array());
+
+	foreach ($userSched->getListOfSemesters()[$i]->getLecs() as $lec)
 	{
 	  $courseInfo = array();
-	  $courseInfo['Course Name'] = $lec->getCourseName();
-	  $courseInfo['Credits'] = 3;
-	  array_push($semInfo,$courseInfo);
+	  $courseInfo['Course Name'] = $lec->getCourse()->getCourseName();
+	  $courseInfo['Credits'] = $lec->getCourse()->getCredits();
+	  array_push($semInfo[$i],$courseInfo);
 	}
-	$semInfo = array_slice($semInfo,1);
+	$semInfo[$i] = array_slice($semInfo[$i],1);
+
 	$_SESSION['semInfo'] = $semInfo;
 
+	//var_dump($_SESSION);
 
-	$semInfo2 = array (array());
+
+}
+}
+/*
+
 	foreach ($userSched->getListOfSemesters()[1]->getLecs() as $lec)
 	{
 	  $courseInfo = array();
 	  $courseInfo['Course Name'] = $lec->getCourseName();
 	  $courseInfo['Credits'] = 3;
-	  array_push($semInfo2,$courseInfo);
+	  array_push($semInfo[1],$courseInfo);
 	}
-	$semInfo2 = array_slice($semInfo2,1);
-	$_SESSION['semInfo2'] = $semInfo2;
+	$semInfo[1] = array_slice($semInfo[1],1);
 
-	$semInfo3 = array (array());
 	foreach ($userSched->getListOfSemesters()[2]->getLecs() as $lec)
 	{
 	  $courseInfo = array();
 	  $courseInfo['Course Name'] = $lec->getCourseName();
 	  $courseInfo['Credits'] = 3;
-	  array_push($semInfo3,$courseInfo);
+	  array_push($semInfo[2],$courseInfo);
 	}
-	$semInfo3 = array_slice($semInfo3,1);
-	$_SESSION['semInfo3'] = $semInfo3;
+	$semInfo[2] = array_slice($semInfo[2],1);
+
+	$_SESSION['semInfo'] = $semInfo;
+
+//var_dump (count($semInfo));
 
 }
+*/
 
-if( empty($_POST['submitID']) )                                   //A
+if( empty($_POST['submitID']) )
 {
-  session_start();  // before any output                        //C
-	if (empty($_SESSION))
-	{
-		$_SESSION['numCoursesYearTerm']= array();                                        //D
-	  $_SESSION['numCoursesConstrain']= array();
-		genNewSched();
-	}
+	$_SESSION['numCoursesYearTerm']= array();
+	$_SESSION['numCoursesConstrain']= array();
+	genNewSched();
 }
 elseif ($_POST['submitID'] == "Submit #Courses" )  // continuing           //F
 {
-	session_start();  // before any output
   processNumCoursesConstraint();
-	genNewSched();
-                                           //G
+	genNewSched();                                           //G
 }
 
  ?>
