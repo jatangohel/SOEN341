@@ -148,7 +148,7 @@ return $tempa.":".$tempb;
 	
 	</style>
 	 <body>
-	 	<?php var_dump( $userSched->getListOfSemesters()[0]->getLecs()[0]);?>
+	 	<?php var_dump( $userSched->getListOfSemesters()[0]->getLecs());?>
 
  <div class="topHeader">
         <button class="btn btn-warning" style="float:left; margin-left:20px;"><strong>Save Schedule</strong></button>
@@ -810,25 +810,17 @@ return $tempa.":".$tempb;
 		var button_id = $(this).attr("id");
 		$("#row"+button_id+'').remove();
 	});
-	$('#submit').click(function(){
-		$.ajax({
-			url:"name.php",
-			method:"POST",
-			data:$('add_name').serialize(),
-			success:function(data)
-			{
-				alert(data);
-				$('#add_name')[0].reset();
-			}
-		});
-	});
+	
 });
 
-
+//var test = 	<?php echo json_encode($userSched->getListOfSemesters()[0]->getLecs()); ?>
+alert("test[0][0]");
    
  createLecNew();
      
 function createLecNew() {
+
+	
   var title = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] ?>";
   var fromTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime() ?>";
   var toTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime() ?>";
