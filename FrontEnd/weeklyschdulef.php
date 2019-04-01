@@ -3,7 +3,7 @@ require_once 'backendInterface.php';
 
 genNewSched();
 $userSched = $_SESSION['userSched'];
-
+var_dump($userSched);
 function getTime($time){
 $tempa=intval($time/10000);
 $tempb=intval(($time-$tempa*10000)/100);
@@ -31,9 +31,9 @@ return $tempa.":".$tempb;
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-	
-	
-	
+
+
+
 	<title>SOEN Course Stream</title></head>
 	<style>
 	        :root{
@@ -45,7 +45,7 @@ return $tempa.":".$tempb;
           --mainButtons: rgb(241, 48, 78);
 
         }
-	
+
 	  body {
 
           background-image: linear-gradient(to bottom, rgba(255, 255, 255,9), rgba(230, 247, 255,9)), url("concordia.jpg");
@@ -59,9 +59,9 @@ return $tempa.":".$tempb;
             background-attachment: fixed;
         }
 
-				
 
-	
+
+
 	        .container {
           font-family: 'Montserrat', sans-serif;
           position: fixed;
@@ -105,7 +105,7 @@ return $tempa.":".$tempb;
         .tableHeader th {
           color: black;
 		  font-weight:500;
-          
+
         }
 
         table {
@@ -122,9 +122,9 @@ return $tempa.":".$tempb;
 
 
         }
-		
+
 		tr{
-		
+
 		}
         .time {
           color: black;
@@ -144,8 +144,8 @@ return $tempa.":".$tempb;
 	opacity:0.86;
 	}
 
-	
-	
+
+
 	</style>
 	 <body>
 	 	<?php var_dump( $userSched->getListOfSemesters()[0]->getLecs()[0]);?>
@@ -176,7 +176,7 @@ return $tempa.":".$tempb;
 										<option value="Saturday">Saturday</option>
 										<option value="Sunday">Sunday</option>
 									</td>
-									
+
 									<td></select><input type="time" id="starting1" name="starting1" placeholder="Starting Time"></td>
 									<td><input type="time" id="ending1" name="ending1" placeholder="Ending Time"></td>
 									<td><button type="button" name="add" id="add" class="btn btn-secondary">Next</button></td>
@@ -188,8 +188,8 @@ return $tempa.":".$tempb;
 				</div>
 	</div>
 	  <div class="scheduleArea">
-		
-		
+
+
       <table class="tableTimes" style=" text-align:center" >
 	          <tr >
           <th style="margin-left:20px">Time</th>
@@ -204,20 +204,20 @@ return $tempa.":".$tempb;
 
         <tr style="border-top: 2px solid black; ">
           <td class="time" rowspan="4" scope="row"><span class>8:00</span></td>
-         
+
           <td class="M" name="M080000" id="M080000">&nbsp;</td>
           <td class="T" name="T080000" id="T080000">&nbsp;</td>
-		  
+
           <td class="W" name="W080000" id="W080000">&nbsp;</td>
           <td class="J" name="J080000" id="J080000">&nbsp;</td>
           <td class="F" name="F080000" id="F080000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
 		      <td class="sunday">&nbsp;</td>
- 		  
 
-			  
+
+
         </tr>
-        <tr >   
+        <tr >
 
           <td class="M" name="M081500" id="M081500">&nbsp;</td>
           <td class="T" name="T081500" id="T081500">&nbsp;</td>
@@ -225,8 +225,8 @@ return $tempa.":".$tempb;
           <td class="J" name="J081500" id="J081500">&nbsp;</td>
           <td class="F" name="F081500" id="F081500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
-          <td class="sunday">&nbsp;</td>    
-        </tr>        
+          <td class="sunday">&nbsp;</td>
+        </tr>
         <tr >
           <td class="M" name="M083000" id="M083000">&nbsp;</td>
           <td class="T" name="T083000" id="T083000">&nbsp;</td>
@@ -234,8 +234,8 @@ return $tempa.":".$tempb;
           <td class="J" name="J083000" id="J083000">&nbsp;</td>
           <td class="F" name="F083000" id="F083000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
-          <td class="sunday">&nbsp;</td>    
-        </tr>        
+          <td class="sunday">&nbsp;</td>
+        </tr>
         <tr >
           <td class="M" name="M084500" id="M084500">&nbsp;</td>
           <td class="T" name="T084500" id="T084500">&nbsp;</td>
@@ -243,7 +243,7 @@ return $tempa.":".$tempb;
           <td class="J" name="J084500" id="J084500">&nbsp;</td>
           <td class="F" name="F084500" id="F084500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
-          <td class="sunday">&nbsp;</td>    
+          <td class="sunday">&nbsp;</td>
         </tr>
 
 
@@ -266,7 +266,7 @@ return $tempa.":".$tempb;
           <td class="F" name="F091500" id="F091500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
-        </tr>  
+        </tr>
         <tr>
           <td class="M" name="M093000" id="M093000">&nbsp;</td>
           <td class="T" name="T093000" id="T093000">&nbsp;</td>
@@ -275,7 +275,7 @@ return $tempa.":".$tempb;
           <td class="F" name="F093000" id="F093000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
-        </tr>      
+        </tr>
         <tr>
           <td class="M" name="M094500" id="M094500">&nbsp;</td>
           <td class="T" name="T094500" id="T094500">&nbsp;</td>
@@ -409,7 +409,7 @@ return $tempa.":".$tempb;
           <td class="sunday">&nbsp;</td>
         </tr>
 
-     
+
 
 
         <tr>
@@ -531,7 +531,7 @@ return $tempa.":".$tempb;
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
- 
+
 
 
 
@@ -668,7 +668,7 @@ return $tempa.":".$tempb;
           <td class="F" name="F190000" id="F190000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
-        </tr> 
+        </tr>
         <tr>
           <td class="M" name="M191500" id="M191500">&nbsp;</td>
           <td class="T" name="T191500" id="T191500">&nbsp;</td>
@@ -677,7 +677,7 @@ return $tempa.":".$tempb;
           <td class="F" name="F191500" id="F191500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
-        </tr> 
+        </tr>
         <tr>
           <td class="M" name="M193000" id="M193000">&nbsp;</td>
           <td class="T" name="T193000" id="T193000">&nbsp;</td>
@@ -686,7 +686,7 @@ return $tempa.":".$tempb;
           <td class="F" name="F193000" id="F193000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
-        </tr> 
+        </tr>
         <tr>
           <td class="M" name="M194500" id="M194500">&nbsp;</td>
           <td class="T" name="T194500" id="T194500">&nbsp;</td>
@@ -695,7 +695,7 @@ return $tempa.":".$tempb;
           <td class="F" name="F194500" id="F194500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
-        </tr>    
+        </tr>
 
 
 
@@ -747,15 +747,15 @@ return $tempa.":".$tempb;
         <tr>
           <td class="time" rowspan="4" scope="row"><span class>21:00</span>&nbsp;</td>
           <td class="M" name="M210000" id="M210000">
-		  
-		  
+
+
 	&nbsp;</td>
           <td class="T" name="T210000" id="T210000">&nbsp;</td>
           <td class="W" name="W210000" id="W210000">&nbsp;</td>
           <td class="J" name="J210000" id="J210000">&nbsp;</td>
           <td class="F" name="F210000" id="F210000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
-          <td class="sunday">&nbsp;</td>		  
+          <td class="sunday">&nbsp;</td>
         </tr>
         <tr>
           <td class="M" name="M211500" id="M211500">&nbsp;</td>
@@ -764,7 +764,7 @@ return $tempa.":".$tempb;
           <td class="J" name="J211500" id="J211500">&nbsp;</td>
           <td class="F" name="F211500" id="F211500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
-          <td class="sunday">&nbsp;</td>      
+          <td class="sunday">&nbsp;</td>
         </tr>
         <tr>
           <td class="M" name="M213000" id="M213000">&nbsp;</td>
@@ -773,7 +773,7 @@ return $tempa.":".$tempb;
           <td class="J" name="J213000" id="J213000">&nbsp;</td>
           <td class="F" name="F213000" id="F213000">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
-          <td class="sunday">&nbsp;</td>      
+          <td class="sunday">&nbsp;</td>
         </tr>
         <tr>
           <td class="M" name="M214500" id="M214500">&nbsp;</td>
@@ -782,7 +782,7 @@ return $tempa.":".$tempb;
           <td class="J" name="J214500" id="J214500">&nbsp;</td>
           <td class="F" name="F214500" id="F214500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
-          <td class="sunday">&nbsp;</td>      
+          <td class="sunday">&nbsp;</td>
         </tr>
 
 
@@ -793,7 +793,7 @@ return $tempa.":".$tempb;
 	    </div>
 	</div>
 	</div>
-	
+
  <script>
 
 
@@ -824,24 +824,66 @@ return $tempa.":".$tempb;
 	});
 });
 
+for(var a=0;a< "<?php echo count($userSched->getListOfSemesters()[0]->getLecs())?>";a++)
+    createLecNew(a);
 
-   
- createLecNew();
-     
-function createLecNew() {
-  var title = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] ?>";
-  var fromTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime() ?>";
-  var toTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime() ?>";
-  var courseName = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getCourseName() ?>";
-  var courseSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getSection() ?>";
-  var courseSubSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getSubSection() ?>";
-  var StartHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()/10000) ?>";
-  var StartMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()%10000/100 ?>";
-  var EndHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()/10000) ?>";
-  var EndMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()%10000/100 ?>";
-   var a="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()) ?>";
-   var b="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()) ?>";
-
+function createLecNew(i) {
+  if (i==0){
+    var title = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] ?>";
+    var fromTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime() ?>";
+    var toTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime() ?>";
+    var courseName = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getCourseName() ?>";
+    var courseSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getSection() ?>";
+    var courseSubSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getSubSection() ?>";
+    var StartHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()/10000) ?>";
+    var StartMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()%10000/100 ?>";
+    var EndHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()/10000) ?>";
+    var EndMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()%10000/100 ?>";
+    var a="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()) ?>";
+    var b="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()) ?>";
+  }
+    if (i==1){
+      var title = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[1]->getDays()[0] ?>";
+      var fromTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[1]->getStartTime() ?>";
+      var toTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[1]->getEndTime() ?>";
+      var courseName = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[1]->getCourseName() ?>";
+      var courseSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[1]->getSection() ?>";
+      var courseSubSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[1]->getSubSection() ?>";
+      var StartHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[1]->getStartTime()/10000) ?>";
+      var StartMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[1]->getStartTime()%10000/100 ?>";
+      var EndHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[1]->getEndTime()/10000) ?>";
+      var EndMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[1]->getEndTime()%10000/100 ?>";
+      var a="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[1]->getStartTime()) ?>";
+      var b="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[1]->getEndTime()) ?>";
+    }
+      if (i==2){
+        var title = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[2]->getDays()[0] ?>";
+        var fromTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[2]->getStartTime() ?>";
+        var toTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[2]->getEndTime() ?>";
+        var courseName = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[2]->getCourseName() ?>";
+        var courseSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[2]->getSection() ?>";
+        var courseSubSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[2]->getSubSection() ?>";
+        var StartHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[2]->getStartTime()/10000) ?>";
+        var StartMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[2]->getStartTime()%10000/100 ?>";
+        var EndHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[2]->getEndTime()/10000) ?>";
+        var EndMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[2]->getEndTime()%10000/100 ?>";
+        var a="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[2]->getStartTime()) ?>";
+        var b="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[2]->getEndTime()) ?>";
+      }
+      if (i==3){
+      	var title = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getDays()[0] ?>";
+      	var fromTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime() ?>";
+      	var toTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getEndTime() ?>";
+      	var courseName = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getCourseName() ?>";
+      	var courseSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getSection() ?>";
+      	var courseSubSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getSubSection() ?>";
+      	var StartHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime()/10000) ?>";
+      	var StartMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime()%10000/100 ?>";
+      	var EndHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[3]->getEndTime()/10000) ?>";
+      	var EndMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getEndTime()%10000/100 ?>";
+      	var a="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime()) ?>";
+      	var b="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[3]->getEndTime()) ?>";
+      }
 document.getElementById(title + fromTimeHour).innerHTML=(courseSection + '<br>' + "Lecture" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
 document.getElementById(title + fromTimeHour).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
 document.getElementById(title + fromTimeHour).style = " color:rgb(0,0,0);background-color:rgb(102, 255, 153);text-align: center;opacity: 0.8;";
@@ -859,8 +901,10 @@ else
 	document.getElementById(title+tempTime).style.display="none";
 }
 }
+
+
  createTutNew();
-     
+
 function createTutNew() {
   var title = "<?php echo $userSched->getListOfSemesters()[0]->getTuts()[0]->getDays()[0] ?>";
   var fromTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getTuts()[0]->getStartTime() ?>";
@@ -895,7 +939,7 @@ else
 }
 
  createLabNew();
-     
+
 function createLabNew() {
   var title = "<?php echo $userSched->getListOfSemesters()[0]->getLabs()[0]->getDays()[0] ?>";
   var fromTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLabs()[0]->getStartTime() ?>";
@@ -934,5 +978,5 @@ else
 </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
- 	</body>		
-</html>	
+ 	</body>
+</html>
