@@ -55,16 +55,38 @@ class Semester
   {
     return $this->lecs;
   }
-
+  public function getMyLecs(){
+    $temp=array();
+    foreach($this->getLecs()as $lec){
+      array_push($temp,$lec->objectToArray());
+    }
+    return $temp;
+  }
   public function getTuts()
   {
     return $this->tuts;
+  }
+  public function getMyTuts(){
+    $temp=array();
+    foreach($this->getTuts()as $tut){
+      array_push($temp,$tut->objectToArray());
+    }
+    return $temp;
   }
 
   public function getLabs()
   {
     return $this->labs;
   }
+
+  public function getMyLabs(){
+    $temp=array();
+    foreach($this->getLabs()as $lab){
+      array_push($temp,$lab->objectToArray());
+    }
+    return $temp;
+  }
+
 
   public function getTimesNoClass()
   {

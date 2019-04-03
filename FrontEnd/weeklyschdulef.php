@@ -1,9 +1,9 @@
 <?php
 require_once 'backendInterface.php';
-
+set_time_limit(0);
 genNewSched();
+
 $userSched = $_SESSION['userSched'];
-var_dump($userSched);
 function getTime($time){
 $tempa=intval($time/10000);
 $tempb=intval(($time-$tempa*10000)/100);
@@ -15,7 +15,6 @@ $tempa=strval($tempa);
 $tempb=strval($tempb);
 return $tempa.":".$tempb;
 }
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -39,15 +38,11 @@ return $tempa.":".$tempb;
 	        :root{
           --mainColor: #14162B;
           --background: #2cc16a;
-
           --fadedText: #36384D;
-
           --mainButtons: rgb(241, 48, 78);
-
         }
 
 	  body {
-
           background-image: linear-gradient(to bottom, rgba(255, 255, 255,9), rgba(230, 247, 255,9)), url("concordia.jpg");
           background-image: -moz-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
           background-image: -o-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
@@ -58,8 +53,6 @@ return $tempa.":".$tempb;
             background-size: cover;
             background-attachment: fixed;
         }
-
-
 
 
 	        .container {
@@ -75,10 +68,8 @@ return $tempa.":".$tempb;
           margin: -245px -400px;
           top: 50%;
           left: 50%;
-
         }
 	 .topHeader {
-
           color: white;
           background: var(--mainColor);
           height: 80px;
@@ -88,30 +79,24 @@ return $tempa.":".$tempb;
           z-index: 30;
           box-shadow: 0px 10px 28px -11px rgba(0,0,0,0.35);
         }
-
         h1 {
           font-size: 30px;
           margin-top: 0px;
           margin-bottom: 30px;
           display: inline-block;
           font-weight: 100;
-
         }
-
         .topHeader, th {
           font-size: 15px;
         }
-
         .tableHeader th {
           color: black;
 		  font-weight:500;
 
         }
-
         table {
           width: 100%;
           border-spacing: 0px;
-
         }
         td, th {
           width: 100px;
@@ -119,8 +104,6 @@ return $tempa.":".$tempb;
         td {
           height: 12px;
           border-left: 1px solid rgba(120,120,255,0.5);
-
-
         }
 
 		tr{
@@ -132,23 +115,19 @@ return $tempa.":".$tempb;
           text-align: center;
           font-weight: 100;
 					  border:1px solid black;
-
         }
-
         tr:nth-child(2n) {
           background: rgba(120,120,255,0.06);
         }
-
 	.dropdown-menu{
 	background-color: #80ffbf;
 	opacity:0.86;
 	}
 
 
-
 	</style>
 	 <body>
-	 	<?php var_dump( $userSched->getListOfSemesters()[0]->getLecs()[0]);?>
+	 	<?php var_dump( $userSched->getListOfSemesters());?>
 
  <div class="topHeader">
         <button class="btn btn-warning" style="float:left; margin-left:20px;"><strong>Save Schedule</strong></button>
@@ -795,11 +774,8 @@ return $tempa.":".$tempb;
 	</div>
 
  <script>
-
-
-
-
-
+//var test = 	<?php echo json_encode($userSched->getListOfSemesters()); ?>
+//alert(test[4][0][0]);
 	$(document).ready(function(){
 	var i = 1;
 	$('#add').click(function(){
@@ -810,85 +786,31 @@ return $tempa.":".$tempb;
 		var button_id = $(this).attr("id");
 		$("#row"+button_id+'').remove();
 	});
-	$('#submit').click(function(){
-		$.ajax({
-			url:"name.php",
-			method:"POST",
-			data:$('add_name').serialize(),
-			success:function(data)
-			{
-				alert(data);
-				$('#add_name')[0].reset();
-			}
-		});
-	});
+
 });
+//var test = 	<?php echo json_encode($userSched->getListOfSemesters()); ?>
 
-for(var a=0;a< "<?php echo count($userSched->getListOfSemesters()[0]->getLecs())?>";a++)
-    createLecNew(a);
+ createLecNew();
 
-function createLecNew(i) {
-  if (i==0){
-    var title = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getDays()[0] ?>";
-    var fromTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime() ?>";
-    var toTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime() ?>";
-    var courseName = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getCourseName() ?>";
-    var courseSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getSection() ?>";
-    var courseSubSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getSubSection() ?>";
-    var StartHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()/10000) ?>";
-    var StartMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()%10000/100 ?>";
-    var EndHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()/10000) ?>";
-    var EndMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()%10000/100 ?>";
-    var a="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()) ?>";
-    var b="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()) ?>";
-  }
-    if (i==1){
-      var title = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[1]->getDays()[0] ?>";
-      var fromTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[1]->getStartTime() ?>";
-      var toTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[1]->getEndTime() ?>";
-      var courseName = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[1]->getCourseName() ?>";
-      var courseSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[1]->getSection() ?>";
-      var courseSubSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[1]->getSubSection() ?>";
-      var StartHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[1]->getStartTime()/10000) ?>";
-      var StartMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[1]->getStartTime()%10000/100 ?>";
-      var EndHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[1]->getEndTime()/10000) ?>";
-      var EndMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[1]->getEndTime()%10000/100 ?>";
-      var a="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[1]->getStartTime()) ?>";
-      var b="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[1]->getEndTime()) ?>";
-    }
-      if (i==2){
-        var title = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[2]->getDays()[0] ?>";
-        var fromTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[2]->getStartTime() ?>";
-        var toTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[2]->getEndTime() ?>";
-        var courseName = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[2]->getCourseName() ?>";
-        var courseSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[2]->getSection() ?>";
-        var courseSubSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[2]->getSubSection() ?>";
-        var StartHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[2]->getStartTime()/10000) ?>";
-        var StartMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[2]->getStartTime()%10000/100 ?>";
-        var EndHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[2]->getEndTime()/10000) ?>";
-        var EndMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[2]->getEndTime()%10000/100 ?>";
-        var a="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[2]->getStartTime()) ?>";
-        var b="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[2]->getEndTime()) ?>";
-      }
-      if (i==3){
-      	var title = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getDays()[0] ?>";
-      	var fromTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime() ?>";
-      	var toTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getEndTime() ?>";
-      	var courseName = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getCourseName() ?>";
-      	var courseSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getSection() ?>";
-      	var courseSubSection = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getSubSection() ?>";
-      	var StartHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime()/10000) ?>";
-      	var StartMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime()%10000/100 ?>";
-      	var EndHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLecs()[3]->getEndTime()/10000) ?>";
-      	var EndMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLecs()[3]->getEndTime()%10000/100 ?>";
-      	var a="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[3]->getStartTime()) ?>";
-      	var b="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[3]->getEndTime()) ?>";
-      }
-document.getElementById(title + fromTimeHour).innerHTML=(courseSection + '<br>' + "Lecture" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
-document.getElementById(title + fromTimeHour).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
-document.getElementById(title + fromTimeHour).style = " color:rgb(0,0,0);background-color:rgb(102, 255, 153);text-align: center;opacity: 0.8;";
+function createLecNew() {
+  var jsLec=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[0]->getMyLecs())?>');
+  for (x in jsLec){
 
-
+        var title = jsLec[x]['day'][0];
+        var fromTimeHour = jsLec[x]['startTime'];
+        var toTimeHour= jsLec[x]['endTime'];
+        var courseName= jsLec[x]['courseName'];
+        var courseSection= jsLec[x]['section'];
+        var courseSubSection=jsLec[x]['subsection'];
+        var StartHour = parseInt(fromTimeHour/10000);
+        var StartMinute = parseInt((fromTimeHour%10000)/100);
+        var EndHour = parseInt(toTimeHour/10000);
+        var EndMinute = parseInt((toTimeHour%10000)/100);
+        var a="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()) ?>";
+        var b="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()) ?>";
+        document.getElementById(title + fromTimeHour).innerHTML=(courseSection + '<br>' + "Lecture" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
+        document.getElementById(title + fromTimeHour).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
+        document.getElementById(title + fromTimeHour).style = " color:rgb(0,0,0);background-color:rgb(102, 255, 153);text-align: center;opacity: 0.8;";
 var tempTime=parseInt(fromTimeHour);
 for (var i=1;i<document.getElementById(title + fromTimeHour).rowSpan;i++)
 {
@@ -901,82 +823,55 @@ else
 	document.getElementById(title+tempTime).style.display="none";
 }
 }
-
-
+}
  createTutNew();
 
 function createTutNew() {
-  var title = "<?php echo $userSched->getListOfSemesters()[0]->getTuts()[0]->getDays()[0] ?>";
-  var fromTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getTuts()[0]->getStartTime() ?>";
-  var toTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getTuts()[0]->getEndTime() ?>";
-  var courseName = "<?php echo $userSched->getListOfSemesters()[0]->getTuts()[0]->getCourseName() ?>";
-  var courseSection = "<?php echo $userSched->getListOfSemesters()[0]->getTuts()[0]->getSection() ?>";
-  var courseSubSection = "<?php echo $userSched->getListOfSemesters()[0]->getTuts()[0]->getSubSection() ?>";
-  var StartHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getTuts()[0]->getStartTime()/10000) ?>";
-  var StartMinute = "<?php echo $userSched->getListOfSemesters()[0]->getTuts()[0]->getStartTime()%10000/100 ?>";
-  var EndHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getTuts()[0]->getEndTime()/10000) ?>";
-  var EndMinute = "<?php echo $userSched->getListOfSemesters()[0]->getTuts()[0]->getEndTime()%10000/100 ?>";
-   var a="<?php echo getTime($userSched->getListOfSemesters()[0]->getTuts()[0]->getStartTime()) ?>";
-   var b="<?php echo getTime($userSched->getListOfSemesters()[0]->getTuts()[0]->getEndTime()) ?>";
-
-document.getElementById(title + fromTimeHour).innerHTML=(courseName + "-" + courseSubSection + '<br>' + "Tutorial" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
-document.getElementById(title + fromTimeHour).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
-document.getElementById(title + fromTimeHour).style = " color:rgb(0,0,0);background-color:rgb(153, 204, 255);text-align: center;opacity: 0.8;";
-
-
-var tempTime=parseInt(fromTimeHour);
-for (var i=1;i<document.getElementById(title + fromTimeHour).rowSpan;i++)
-{
-tempTime=tempTime+1500;
-if((tempTime%10000)%6000==0)
-tempTime=tempTime+4000;
-if(tempTime<100000)
-	document.getElementById(title+'0'+tempTime).style.display="none";
-else
-	document.getElementById(title+tempTime).style.display="none";
+    var jsTut=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[0]->getMyTuts())?>')
+    for (x in jsTut)
+    {            var title = jsTut[x]['day'][0];
+                var fromTimeHour = jsTut[x]['startTime'];
+                var toTimeHour= jsTut[x]['endTime'];
+                var courseName= jsTut[x]['courseName'];
+                var courseSection= jsTut[x]['section'];
+                var courseSubSection=jsTut[x]['subsection'];
+                var StartHour = parseInt(fromTimeHour/10000);
+                var StartMinute = parseInt((fromTimeHour%10000)/100);
+                var EndHour = parseInt(toTimeHour/10000);
+                var EndMinute = parseInt((toTimeHour%10000)/100);
+       var a="<?php echo getTime($userSched->getListOfSemesters()[0]->getTuts()[0]->getStartTime()) ?>";
+       var b="<?php echo getTime($userSched->getListOfSemesters()[0]->getTuts()[0]->getEndTime()) ?>";
+    document.getElementById(title + fromTimeHour).innerHTML=(courseName + "-" + courseSubSection + '<br>' + "Tutorial" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
+    document.getElementById(title + fromTimeHour).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
+    document.getElementById(title + fromTimeHour).style = " color:rgb(0,0,0);background-color:rgb(153, 204, 255);text-align: center;opacity: 0.8;";
+    var tempTime=parseInt(fromTimeHour);
+    for (var i=1;i<document.getElementById(title + fromTimeHour).rowSpan;i++)
+    {
+    tempTime=tempTime+1500;
+    if((tempTime%10000)%6000==0)
+    tempTime=tempTime+4000;
+    if(tempTime<100000)
+    	document.getElementById(title+'0'+tempTime).style.display="none";
+    else
+    	document.getElementById(title+tempTime).style.display="none";
+    }
+  }
 }
-
-}
-
- createLabNew();
-
-function createLabNew() {
-  var title = "<?php echo $userSched->getListOfSemesters()[0]->getLabs()[0]->getDays()[0] ?>";
-  var fromTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLabs()[0]->getStartTime() ?>";
-  var toTimeHour = "<?php echo $userSched->getListOfSemesters()[0]->getLabs()[0]->getEndTime() ?>";
-  var courseName = "<?php echo $userSched->getListOfSemesters()[0]->getLabs()[0]->getCourseName() ?>";
-  var courseSection = "<?php echo $userSched->getListOfSemesters()[0]->getLabs()[0]->getSection() ?>";
-  var courseSubSection = "<?php echo $userSched->getListOfSemesters()[0]->getLabs()[0]->getSubSection() ?>";
-  var StartHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLabs()[0]->getStartTime()/10000) ?>";
-  var StartMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLabs()[0]->getStartTime()%10000/100 ?>";
-  var EndHour = "<?php echo (int)($userSched->getListOfSemesters()[0]->getLabs()[0]->getEndTime()/10000) ?>";
-  var EndMinute = "<?php echo $userSched->getListOfSemesters()[0]->getLabs()[0]->getEndTime()%10000/100 ?>";
-   var a="<?php echo getTime($userSched->getListOfSemesters()[0]->getLabs()[0]->getStartTime()) ?>";
-   var b="<?php echo getTime($userSched->getListOfSemesters()[0]->getLabs()[0]->getEndTime()) ?>";
-
-document.getElementById(title + fromTimeHour).innerHTML=(courseName + '&nbsp;'+ courseSection + '<br>' + "Laboratory" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
-document.getElementById(title + fromTimeHour).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
-document.getElementById(title + fromTimeHour).style = " color:rgb(0,0,0);background-color:rgb(255, 204, 102);text-align: center;opacity: 0.8;";
-
-
-var tempTime=parseInt(fromTimeHour);
-for (var i=1;i<document.getElementById(title + fromTimeHour).rowSpan;i++)
-{
-tempTime=tempTime+1500;
-if((tempTime%10000)%6000==0)
-tempTime=tempTime+4000;
-if(tempTime<100000)
-	document.getElementById(title+'0'+tempTime).style.display="none";
-else
-	document.getElementById(title+tempTime).style.display="none";
-}
-
-}
-
-
 
 </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
  	</body>
 </html>
+© 2019 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
