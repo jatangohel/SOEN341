@@ -4,6 +4,7 @@ set_time_limit(0);
 genNewSched();
 
 $userSched = $_SESSION['userSched'];
+
 function getTime($time){
 $tempa=intval($time/10000);
 $tempb=intval(($time-$tempa*10000)/100);
@@ -53,6 +54,8 @@ return $tempa.":".$tempb;
             background-size: cover;
             background-attachment: fixed;
         }
+
+
 
 
 	        .container {
@@ -123,6 +126,7 @@ return $tempa.":".$tempb;
 	background-color: #80ffbf;
 	opacity:0.86;
 	}
+
 
 
 	</style>
@@ -774,8 +778,13 @@ return $tempa.":".$tempb;
 	</div>
 
  <script>
+
+
 //var test = 	<?php echo json_encode($userSched->getListOfSemesters()); ?>
+
 //alert(test[4][0][0]);
+
+
 	$(document).ready(function(){
 	var i = 1;
 	$('#add').click(function(){
@@ -863,15 +872,3 @@ function createTutNew() {
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
  	</body>
 </html>
-© 2019 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
