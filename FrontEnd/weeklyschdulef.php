@@ -118,12 +118,8 @@ $userSched = $_SESSION['userSched'];
 
 	</style>
 	 <body>
-	 	 	<?php echo '<pre>';
-print_r($userSched->getListOfSemesters()[0]->getTuts());
-echo '</pre>';?>
-
  <div class="topHeader">
-        <button class="btn btn-warning" style="float:left; margin-left:20px;"><strong>Save Schedule</strong></button>
+        <button class="btn btn-warning" style="float:left; margin-left:20px;"><strong>Print Schedule</strong></button>
 
         <h1 class="text-center">Weekly Schedule</h1>
 		<div class="dropdown" style="float:right;margin-right:10px;">
@@ -1026,7 +1022,6 @@ function createLabNew() {
 		}
 	}
 }
-alert("9");
 </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
