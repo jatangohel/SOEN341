@@ -143,7 +143,7 @@ if (isset($_GET['semester'])) {
 	 <body>
 	 
  <div class="topHeader">
-        <button class="btn btn-warning" style="float:left; margin-left:20px;"><strong>Save Schedule</strong></button>
+        <button class="btn btn-warning" onclick="window.print()" style="float:left; margin-left:20px;"><strong>Print Schedule</strong></button>
 
         <h1 class="text-center">Weekly Schedule</h1>
 		<div class="dropdown" style="float:right;margin-right:10px;">
