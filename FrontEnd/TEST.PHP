@@ -3,12 +3,15 @@ require_once 'backendInterface.php';
  set_time_limit(0) ;
 genNewSched();
 $userSched = $_SESSION['userSched'];
-var_dump($userSched->getListOfSemesters()[0]->getMyLecs());
+var_dump($userSched->getListOfSemesters()[0]->getMyTuts());
 
  ?>
 <script>
-var ABCD=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[0]->getMyLecs())?>');
-console.log(ABCD[0]['day'][0]);
+var ABCD=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[0]->getMyTuts())?>');
+console.log(ABCD)   ;
+
+var ABCF=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[0]->getMyLabs())?>');
+console.log(ABCF)   ;
 </script>
 
 

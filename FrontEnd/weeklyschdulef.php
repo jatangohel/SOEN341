@@ -5,17 +5,6 @@ genNewSched();
 
 $userSched = $_SESSION['userSched'];
 
-function getTime($time){
-$tempa=intval($time/10000);
-$tempb=intval(($time-$tempa*10000)/100);
-if ($tempa<10)
-  $tempa="0".$tempa;
-if ($tempb==0)
-    $tempb="00";
-$tempa=strval($tempa);
-$tempb=strval($tempb);
-return $tempa.":".$tempb;
-}
 ?>
 <!doctype html>
 <html lang="en">
@@ -131,7 +120,8 @@ return $tempa.":".$tempb;
 
 	</style>
 	 <body>
-	 	<?php var_dump( $userSched->getListOfSemesters());?>
+	 	 	<?php echo '<pre>';
+echo '</pre>';?>
 
  <div class="topHeader">
         <button class="btn btn-warning" style="float:left; margin-left:20px;"><strong>Save Schedule</strong></button>
@@ -634,6 +624,7 @@ return $tempa.":".$tempb;
           <td class="T" name="T184500" id="T184500">&nbsp;</td>
           <td class="W" name="W184500" id="W184500">&nbsp;</td>
           <td class="J" name="J184500" id="J184500">&nbsp;</td>
+          <td class="W" name="W191500" id="W191500">&nbsp;</td>
           <td class="F" name="F184500" id="F184500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
@@ -655,7 +646,6 @@ return $tempa.":".$tempb;
         <tr>
           <td class="M" name="M191500" id="M191500">&nbsp;</td>
           <td class="T" name="T191500" id="T191500">&nbsp;</td>
-          <td class="W" name="W191500" id="W191500">&nbsp;</td>
           <td class="J" name="J191500" id="J191500">&nbsp;</td>
           <td class="F" name="F191500" id="F191500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
@@ -799,10 +789,20 @@ return $tempa.":".$tempb;
 });
 //var test = 	<?php echo json_encode($userSched->getListOfSemesters()); ?>
 
+
+function getTime(time){
+var Tempa=parseInt(time/10000);
+var Tempb=parseInt((time-Tempa*10000)/100);
+if (Tempa<10)
+  Tempa ="0"+String(Tempa);
+if (Tempb<10)
+  Tempb ="0"+String(Tempb);
+return Tempa + ":" + Tempb;
+}
  createLecNew();
 
 function createLecNew() {
-  var jsLec=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[0]->getMyLecs())?>');
+  var jsLec=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[3]->getMyLecs())?>');
   for (x in jsLec){
 
         var title = jsLec[x]['day'][0];
@@ -815,8 +815,8 @@ function createLecNew() {
         var StartMinute = parseInt((fromTimeHour%10000)/100);
         var EndHour = parseInt(toTimeHour/10000);
         var EndMinute = parseInt((toTimeHour%10000)/100);
-        var a="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[0]->getStartTime()) ?>";
-        var b="<?php echo getTime($userSched->getListOfSemesters()[0]->getLecs()[0]->getEndTime()) ?>";
+        var a=getTime(fromTimeHour);
+        var b=getTime(toTimeHour);
         document.getElementById(title + fromTimeHour).innerHTML=(courseSection + '<br>' + "Lecture" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
         document.getElementById(title + fromTimeHour).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
         document.getElementById(title + fromTimeHour).style = " color:rgb(0,0,0);background-color:rgb(102, 255, 153);text-align: center;opacity: 0.8;";
@@ -836,9 +836,10 @@ else
  createTutNew();
 
 function createTutNew() {
-    var jsTut=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[0]->getMyTuts())?>')
+    var jsTut=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[3]->getMyTuts())?>')
     for (x in jsTut)
-    {            var title = jsTut[x]['day'][0];
+    {
+         var title = jsTut[x]['day'][0];
                 var fromTimeHour = jsTut[x]['startTime'];
                 var toTimeHour= jsTut[x]['endTime'];
                 var courseName= jsTut[x]['courseName'];
@@ -848,12 +849,14 @@ function createTutNew() {
                 var StartMinute = parseInt((fromTimeHour%10000)/100);
                 var EndHour = parseInt(toTimeHour/10000);
                 var EndMinute = parseInt((toTimeHour%10000)/100);
-       var a="<?php echo getTime($userSched->getListOfSemesters()[0]->getTuts()[0]->getStartTime()) ?>";
-       var b="<?php echo getTime($userSched->getListOfSemesters()[0]->getTuts()[0]->getEndTime()) ?>";
+        var a=getTime(fromTimeHour);
+        var b=getTime(toTimeHour);
     document.getElementById(title + fromTimeHour).innerHTML=(courseName + "-" + courseSubSection + '<br>' + "Tutorial" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
     document.getElementById(title + fromTimeHour).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
     document.getElementById(title + fromTimeHour).style = " color:rgb(0,0,0);background-color:rgb(153, 204, 255);text-align: center;opacity: 0.8;";
-    var tempTime=parseInt(fromTimeHour);
+   // alert(title+fromTimeHour);
+
+  var tempTime=parseInt(fromTimeHour);
     for (var i=1;i<document.getElementById(title + fromTimeHour).rowSpan;i++)
     {
     tempTime=tempTime+1500;
@@ -863,9 +866,44 @@ function createTutNew() {
     	document.getElementById(title+'0'+tempTime).style.display="none";
     else
     	document.getElementById(title+tempTime).style.display="none";
-    }
+   }
   }
 }
+
+createLabNew();
+function createLabNew() {
+    var jsLab=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[3]->getMyLabs())?>');
+    for (x in jsLab){
+
+      var title = jsLab[x]['day'][0];
+                  var fromTimeHour = jsLab[x]['startTime'];
+                  var toTimeHour= jsLab[x]['endTime'];
+                  var courseName= jsLab[x]['courseName'];
+                  var courseSection= jsLab[x]['section'];
+                  var courseSubSection=jsLab[x]['subsection'];
+                  var StartHour = parseInt(fromTimeHour/10000);
+                  var StartMinute = parseInt((fromTimeHour%10000)/100);
+                  var EndHour = parseInt(toTimeHour/10000);
+                  var EndMinute = parseInt((toTimeHour%10000)/100);
+                  var a=getTime(fromTimeHour);
+                  var b=getTime(toTimeHour);
+      document.getElementById(title + fromTimeHour).innerHTML=(courseName + "-" + courseSubSection + '<br>' + "Laborial" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
+      document.getElementById(title + fromTimeHour).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
+      document.getElementById(title + fromTimeHour).style = " color:rgb(0,0,0);background-color:rgb(255, 153, 51);text-align: center;opacity: 0.8;";
+
+    	var tempTime=parseInt(fromTimeHour);
+      for (var i=1;i<document.getElementById(title + fromTimeHour).rowSpan;i++)
+      {
+      tempTime=tempTime+1500;
+      if((tempTime%10000)%6000==0)
+      tempTime=tempTime+4000;
+      if(tempTime<100000)
+      	document.getElementById(title+'0'+tempTime).style.display="none";
+      else
+      	document.getElementById(title+tempTime).style.display="none";
+      }
+    }
+  }
 
 </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
