@@ -102,6 +102,10 @@
           <div class="input-group">
             <button class="btn btn-primary btn-block" data-toggle="modal" data-target= "#myModal">Login</button>
             <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal2">Register</button>
+            <div style="text-align: center">
+            </br>
+                <a class="text-center"href="">Continue as Guest</a>
+                </div>
         </div>
 
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
