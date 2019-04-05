@@ -1,4 +1,15 @@
+
 <?php
+session_destroy();
+session_start();
+
+if (!array_key_exists('dispEng', $_SESSION))
+	 $_SESSION['dispEng']='1';
+
+
+
+
+var_dump($_SESSION);
 echo '<link href="css/style.css" rel="stylesheet">';
 
 //Page Info

@@ -1,19 +1,18 @@
-<?php
-	$_SESSION['dispEng'];
-?>
 <SCRIPT>
-
 function changeLanguage()
 {
 	<?php
+	echo "HELOOOOO";
+	var_dump($_SESSION);
 		if($_SESSION['dispEng'])
 			$_SESSION['dispEng']='0';
 		else
 			$_SESSION['dispEng']='1';
 	?>;
+	window.location.reload(false);
 }
-
 </SCRIPT>
+
 <footer>
 
   <div class="navbar navbar-inverse bg-dark fixed-bottom">
@@ -45,7 +44,7 @@ function changeLanguage()
 			else
 				$languageHolder="English";
 		?>
-		<input type="button" value=<?= $languageHolder?> onClick="changeLanguage(); window.location.href=window.location.href; ">
+		<input type="button" value=<?= $languageHolder?> onClick="changeLanguage();">
 	</form> 
 	<a href="#"><i class="fab fa-facebook-square"></i></a>
 	<a href="#"><i class="fab fa-google"></i></a>
