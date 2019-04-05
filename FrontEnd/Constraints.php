@@ -82,7 +82,7 @@ function cardDisp($i)
    // echo "&emsp;&emsp;&emsp;&emsp;";
 }
 session_start();
-$_SESSION['dispEng']='0';
+//$_SESSION['dispEng']='0';
 ?>
 <!doctype html>
 <html lang="en">

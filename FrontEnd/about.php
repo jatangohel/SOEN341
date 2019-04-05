@@ -3,7 +3,7 @@
   <div class="container">
 	<?php
 		session_start();
-		$_SESSION['dispEng']='0';
+		//$_SESSION['dispEng']='0';
 	?>
     <h1 >
 		<?php

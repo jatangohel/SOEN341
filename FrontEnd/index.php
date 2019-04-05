@@ -1,10 +1,6 @@
 <?php require_once __DIR__.'/../PageBuilder/header.php'; ?>
 
 <head>
-	<?php
-		session_start();
-		$_SESSION['dispEng']='0';
-	?>
    <script>
     function pwsLengthChecker(){
         //length of the password

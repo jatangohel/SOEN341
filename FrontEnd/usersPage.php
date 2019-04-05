@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start();
-$_SESSION['dispEng']='0';
+//$_SESSION['dispEng']='0';
 ?>
 
 <?php

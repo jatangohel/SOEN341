@@ -5,7 +5,7 @@
    	session_start();
 ?>
 <?php
-	$_SESSION['dispEng']='0';
+	//$_SESSION['dispEng']='0';
 	if(!isset($_SESSION['loggedin'])){
 		if($_SESSION['dispEng'])
 			echo "Login please.";

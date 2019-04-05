@@ -1,7 +1,7 @@
 <?php
 require_once 'backendInterface.php';
 session_start();
-$_SESSION['dispEng']='0';
+//$_SESSION['dispEng']='0';
 if (isset($_GET['semester'])) {
   $semester = (int)$_GET['semester'];
   echo $semester;
