@@ -9,6 +9,7 @@ function cardDisp($i)
     // '<p> Minimum Credits This Semester'.
     //   '<input type="number" min="0" max="18" id="credits1"/> &nbsp;&nbsp;<input type="button" class="btn btn-success btn-sm" name="btncredits3" id="btncredits3" value="submit"/></p>' .
       '<table class="gridtable" id="table3" border="0"onclick=window.location.href="file:///X:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.php">'.
+         '<thead>'.
           '<tr class="tableheader">'.
             '<th>Semester ';  echo $i;
             echo ' </th>'.
