@@ -87,7 +87,7 @@ session_start();
 			echo "$LoggedInUserName you're logged in!";
 
 			if(getInputtedPassed($userEmail))
-				header('Refresh: 2; URL = ../Constraints.php');
+				header('Refresh: 2; URL = ../FrontEnd/Constraints.php');
 			else
 				header('Refresh: 2; URL = ../Generate.php');
 		}

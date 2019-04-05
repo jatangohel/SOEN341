@@ -58,12 +58,8 @@ function genNewSched ()
 	}
 	$semInfo[$i] = array_slice($semInfo[$i],1);
 
-	$_SESSION['semInfo'] = $semInfo;
-
-	//var_dump($_SESSION);
-
-
-}
+	}
+$_SESSION['semInfo'] = $semInfo;
 }
 /*
 
@@ -94,9 +90,13 @@ function genNewSched ()
 
 if( empty($_POST['submitID']) )
 {
-	$_SESSION['numCoursesYearTerm']= array();
-	$_SESSION['numCoursesConstrain']= array();
-	genNewSched();
+
+	if (empty($_SESSION['semInfo']))
+	{
+		$_SESSION['numCoursesYearTerm']= array();
+		$_SESSION['numCoursesConstrain']= array();
+		genNewSched();
+	}
 }
 elseif ($_POST['submitID'] == "Submit #Courses" )  // continuing           //F
 {
