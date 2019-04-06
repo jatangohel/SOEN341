@@ -4,14 +4,15 @@ if (session_status() != PHP_SESSION_ACTIVE)
 function cardDisp($i)
 {
   $semInfoFE = $_SESSION ['semInfo'];
-  echo
-  '<div class="card card-body text-center height:400px" style="background: #F8C471" >' .
-    // '<p> Minimum Credits This Semester'.
-    //   '<input type="number" min="0" max="18" id="credits1"/> &nbsp;&nbsp;<input type="button" class="btn btn-success btn-sm" name="btncredits3" id="btncredits3" value="submit"/></p>' .
+  // echo
+  // '<div class="card card-body text-center height:400px" style="background: #F8C471" >' .
+	echo
+	'<a class="card card-body text-center height:400px" id="hello" href="weeklyschdulef.php?semester=';echo"$i";echo'"class="custom-card" style="background: #F8C471">'.
+	'<div name=';echo $i; echo' >' .
       '<table class="gridtable" id="table3" border="0"onclick=window.location.href="file:///X:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.php">'.
          '<thead>'.
           '<tr class="tableheader">'.
-            '<th>Semester ';  echo $i;
+            '<th>Semester ';  echo $i + 1;
             echo ' </th>'.
           '</tr>'.
         '</thead>'.
@@ -24,6 +25,7 @@ function cardDisp($i)
               '</td>'.
             '</tr>'.
           '<tr>';
+					if (!empty($semInfoFE[$i]))
             echo implode('</th><th>', array_keys(current($semInfoFE[$i])));
           echo '</tr>'.
       '</thead>'.
@@ -36,7 +38,8 @@ function cardDisp($i)
            endforeach;
         echo '</tbody>'.
       '</table>'.
-    '</div>';
+    '</div>' .
+		'</a>';
 } ?>
 
 
