@@ -145,62 +145,6 @@ $(document).ready(function(){
 </script>
 
 
-<!--
-<div id="card" class ="container1">
-				<h2 align="center"class="header margin-top:0px">General Course Schedule</h2>
-		<br />
-		<div  class="card-cloumns">
-      <div class = "row">
-<?php
-//for ($i = 0; $i < count ($_SESSION['semInfo']); $i++)
-  //cardDisp($i);
- ?>
-		</div>
-    </div>
-	</div>
--->
-<?php //session_end(); ?>
-
-<!--
-		Fall					Winter
-		COMP 232	3.00		COMP 232	3.00
-		COMP 248	3.50		COMP 248	3.50
-		ENGR 201	1.50		ENGR 201	1.50
-		ENGR 213	3.00		ENGR 213	3.00
-								SOEN 228	4.00
-		COMP 249	3.50
-		ENGR 233	3.00		COMP 249	3.50
-		SOEN 228	4.00		ENGR 202	1.50
-		SOEN 287	3.00		ENGR 233	3.00
-								SOEN 287	3.00
-		COMP 348	3.00
-		COMP 352	3.00		COMP 348	3.00
-		ENCS 282	3.00		COMP 352	3.00
-		ENGR 202	1.50		ELEC 275	3.50
-								ENCS 282	3.00
-		COMP 346	4.00
-		ELEC 275	3.50		COMP 346	4.00
-		ENGR 371	3.50
-		SOEN 331	3.00
-		SOEN 341	3.00
-		COMP 335	3.00
-		ENGR 391	3.00
-		SOEN 342	3.00
-		SOEN 343	3.00
-		SOEN 384	3.00
-		SOEN 344	3.00
-		SOEN 345 	3.00
-		SOEN 357	3.00
-		SOEN 390	3.00
-		ENGR 301	3.00
-		SOEN 321	3.00
-		SOEN 490	4.00
-		ENGR 392	3.00
-		SOEN 385	3.00
-		SOEN 490	4.00
--->
-
-
 <script>
 	//var i = 1;
 	var i = 1 ;
@@ -233,101 +177,56 @@ $(document).ready(function(){
 		});
 	});
 });
-				function reload(){
-    var container = document.getElementById("card");
-    var content = container.innerHTML;
-    container.innerHTML= content;
-    //setTimeout(function(){
-    	//})
-   //this line is to watch the result in console , you can remove it later
-    //console.log(content);
+
+function getTotalTerm(){
+  var z =i;
+  return z;
 }
-                        function getTotalTerm(){
-                        	var z =i;
-                        	return z;
-                        	//console.log(z);
-                        }
-						function getFirstTerm(){
-							firstTerm=document.getElementById("list1").value;
-							return firstTerm;
-						}
-                         function getSelectYearTerm(){
-									var y;
-									var selectYear=[];
-									for (y =1; y<i+1;y++){
-									selectYear1 = document.getElementById("listYear"+y).value + document.getElementById("list"+y).value;
-									//selectYear [selectYear1] = document.getElementById("number"+y).value;
-									selectYear.push(selectYear1);
-									//console.log(selectYear);
-								}
-								return selectYear;
-							//console.log(selectYear);
-								}
-                           function getNumberOfCourse(){
-                           	        var c;
-									var courseNo=[];
-									for (c=1; c<i+1;c++){
-									courseNo1 = document.getElementById("number"+c).value;
-									courseNo.push(courseNo1);
-                           }
-                           return courseNo;
-                          // console.log(courseNo);
-                         }
-  $(document).ready(function(){
-					$('#submit').click(function(){
-						$.post('backendInterface.php',{
-              submitID:"Submit #Courses",
-							numCoursesYearTerm:getSelectYearTerm(),
-							numCoursesConstrain:getNumberOfCourse()} ,
-		            function(data){
+
+function getFirstTerm(){
+	firstTerm=document.getElementById("list1").value;
+	return firstTerm;
+}
+
+function getSelectYearTerm(){
+	var y;
+	var selectYear=[];
+	for (y =1; y<i+1;y++){
+	selectYear1 = document.getElementById("listYear"+y).value + document.getElementById("list"+y).value;
+	//selectYear [selectYear1] = document.getElementById("number"+y).value;
+	selectYear.push(selectYear1);
+	//console.log(selectYear);
+}
+return selectYear;
+//console.log(selectYear);
+}
+
+function getNumberOfCourse(){
+  var c;
+	var courseNo=[];
+	for (c=1; c<i+1;c++)
+  {
+	   courseNo1 = document.getElementById("number"+c).value;
+		courseNo.push(courseNo1);
+  }
+  return courseNo;
+}
+
+$(document).ready(function(){
+	$('#submit').click(function(){
+		$.post('backendInterface.php',{
+      submitID:"Submit #Courses",
+			numCoursesYearTerm:getSelectYearTerm(),
+			numCoursesConstrain:getNumberOfCourse()} ,
+		  function(data){
 			  $('#result').html(data);
         //setTimeout(window.location.reload(false), 10000) ;
-        // $("#card").load(" #card >*");
         $("#card").load("cardsGenerator.php");
-			  //console.log(data);
 			  });
-		       });
-						//getSelectYearTerm();
-						//getNumberOfCourse();
-						//reload();
-					});
-				/*
-				$('#submit').click(function(){
-						$.POST('backendInterface.php',{
-							numCoursesTerm:getSelectYearTerm(),
-							numCoursesConstrain:getNumberOfCourse()} ,
-		            success:(function(data)){
-		            	 someFunction( data );
-                   return data;
-			 // $('#result').html(data);
-			  return (data);
-			  	},
-			  	error:(function()){
-			  		alert('Error');
-			  	});
-			  });
-	 $('#submit').click(function(){
-		$.ajax({
-        type: "POST",
-        url: 'backendInterface.php',
-        data: ({numCoursesTerm:getSelectYearTerm(),numCoursesConstrain:getNumberOfCourse()}),
-        success: function(data) {
-                // Call this function on success
-            someFunction( data );
-            return data;
-        },
-        error: function() {
-            alert('Error occured');
-        }
-    });
-});
-*/
-			function someFunction( data ) {
-				//console.log(data);
-			}
-						//getSelectYearTerm();
-						//getNumberOfCourse();
-						//reload();
+		   });
+     });
+
+
 </script>
 <script>
 	$(document).ready(function(){
