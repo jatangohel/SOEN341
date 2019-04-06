@@ -8,6 +8,7 @@ require_once 'heapSort.php';
 require_once 'User.php';
 
 $DEFAULT_COURSES_PER_SEM = 4;
+$semesters = array("Winter", "Summer","Fall");
 
 
 class UserSchedule
@@ -50,14 +51,14 @@ public function genProgramSched ($user)
 {
   global $DEFAULT_COURSES_PER_SEM;
   global $createdCourses;
-  $semesters = array("W", "S","F");
+  global $semesters;
 
   // Obtain untaken courses by the user
   if ($user->getUserName() == "GUEST")
     $untakenCourses = getUntakenCoursesFrontEnd($_POST['check_list']);
   else
     $untakenCourses = getUntakenCourses($user->getEmail());
-    
+
   // Get the key for first semester in the array of semesters
   $currentSemKey = array_search($user->getFirstSemester(), $semesters);
   $currentYear = 1;
@@ -107,7 +108,7 @@ public function genProgramSched ($user)
     }
 
     // Increment year if the current semester was fall
-    if ($semesters[$currentSemKey] == "F")
+    if ($semesters[$currentSemKey] == "Fall")
       $currentYear++;
 
     // Increment semester
