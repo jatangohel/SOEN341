@@ -30,11 +30,12 @@ function genNewSched ()
 		 }
 	}
 
-
+/*
 	$email = $_SESSION['userEmail'];
 	$userName = $_SESSION['userName'];
+*/
 	$userSched = new UserSchedule($numCoursesArr, $noClassesArr);
-	$user = new User ($userName, $email, $userSched, 'F');
+	$user = new User ("Hani",'sebhani98@gmail.com', $userSched, 'F');
 
 	$userSched->genProgramSched($user);
 
@@ -93,13 +94,14 @@ function genNewSched ()
 
 if( empty($_POST['submitID']) )
 {
-
-	if (empty($_SESSION['semInfo']))
-	{
+	echo ("khbjbkbh");
+	//if (empty($_SESSION['semInfo']))
+	//{
+		echo ("HELLO");
 		$_SESSION['numCoursesYearTerm']= array();
 		$_SESSION['numCoursesConstrain']= array();
 		genNewSched();
-	}
+	//}
 }
 elseif ($_POST['submitID'] == "Submit #Courses" )  // continuing           //F
 {
