@@ -36,7 +36,7 @@ $userSched = $_SESSION['userSched'];
           background-image: -o-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
           background-image: -ms-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
           background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255,9)), to(rgba(230, 247, 255,9))), url(../../../../../Downloads/concordia.jpg);
-          background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,0)), url(concordia.jpg);
+          background-image: -webkit-linear-gradient(top, rgba(198, 57, 244, 0.84), rgba(230, 247, 255,0)), url(concordia.jpg);
             background-repeat: no-repeat;
             background-size: cover;
             background-attachment: fixed;
@@ -63,10 +63,13 @@ $userSched = $_SESSION['userSched'];
           color: white;
           background: var(--mainColor);
           height: 80px;
-          width: 100%;
+          width: 90%;
+
           padding: 15px 0px 15px 0px;
           text-align: center;
           z-index: 30;
+		    margin-left: auto;
+			margin-right: auto;			
           box-shadow: 0px 10px 28px -11px rgba(0,0,0,0.35);
         }
         h1 {
@@ -86,7 +89,13 @@ $userSched = $_SESSION['userSched'];
         }
         table {
           width: 100%;
+		  height: 90%;
           border-spacing: 0px;
+		  float:right;
+			margin-top: auto;
+			margin-bottom: auto;
+			 border-style: double;
+			 border-width: thick;
         }
         td, th {
           width: 100px;
@@ -110,7 +119,7 @@ $userSched = $_SESSION['userSched'];
           background: rgba(120,120,255,0.06);
         }
 	.dropdown-menu{
-	background-color: #80ffbf;
+	background-color: #ffc107;
 	opacity:0.86;
 	}
 
@@ -159,7 +168,7 @@ $userSched = $_SESSION['userSched'];
 
 
       <table class="tableTimes" style=" text-align:center" >
-	          <tr >
+	          <tr class="table table-bordered">
           <th style="margin-left:20px">Time</th>
           <th>Monday</th>
           <th>Tuesday</th>
@@ -906,7 +915,7 @@ function createTutNew(){
 
 		document.getElementById(title + c).innerHTML=(courseName + "-" + courseSubSection + '<br>' + "Tutorial" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
 		document.getElementById(title + c).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
-		document.getElementById(title + c).style = " color:rgb(0,0,0);background-color:rgb(153, 204, 255);text-align: center;opacity: 0.8;";
+		document.getElementById(title + c).style = " color:rgb(0,0,0);background-color:rgb(255, 255, 51);text-align: center;opacity: 0.8;";
 
 		var tempTime=parseInt(c);
 		for (var i=1;i<document.getElementById(title + c).rowSpan;i++){
