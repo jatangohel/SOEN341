@@ -1,5 +1,6 @@
 
 <?php
+echo '<link href="../css/stylec.css" rel="stylesheet"/>';
 require_once 'backendInterface.php';
 ?>
 <!doctype html>
