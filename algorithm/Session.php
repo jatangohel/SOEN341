@@ -64,7 +64,7 @@ class Session
   }
   public function objectToArray(){
     return array(
-      'courseName'=>$this->getCourseName(),
+      'courseName'=>$this->getCourse()->getCourseName(),
       'section'=>$this->getSection(),
       'subsection'=>$this->getSubSection(),
       'startTime'=>$this->getStartTime(),

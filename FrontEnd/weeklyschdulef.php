@@ -1,11 +1,8 @@
 <?php
 require_once 'backendInterface.php';
 set_time_limit(0);
-//genNewSched();
 
 $userSched = $_SESSION['userSched'];
-//var_dump($userSched);
-var_dump($userSched);
 ?>
 <!doctype html>
 <html lang="en">
@@ -772,242 +769,241 @@ var_dump($userSched);
 	</div>
 	</div>
   <script>
- var test = 	<?php echo json_encode($userSched->getListOfSemesters()); ?>
- alert(test[4][0][0]);
- $(document).ready(function(){
- 	var i = 1;
- 	$('#add').click(function(){
- 		i++;
- 		$('#dynamic_field').append('<tr id="row'+i+'"><td><select name="Days"><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday">Friday</option><option value="Saturday">Saturday</option><option value="Sunday">Sunday</option></select>&nbsp;</td><td><input type="time" id="starting'+i+'" name="starting'+i+'">&nbsp;</td><td><input type="time" id="ending'+i+'" name="ending'+i+'">&nbsp;</td><td><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button>&nbsp;</td></tr>');
- 	});
- 	$(document).on('click','.btn_remove',function(){
- 		var button_id = $(this).attr("id");
- 		$("#row"+button_id+'').remove();
- 	});
- });
- //var test = 	<?php echo json_encode($userSched->getListOfSemesters()); ?>
- function getTime(time){
- 	var Tempa=parseInt(time/10000);
- 	var Tempb=parseInt((time-Tempa*10000)/100);
- 	if (Tempa<10)
- 		Tempa ='0'+String(Tempa);
- 	if (Tempb<10)
- 		Tempb ='0'+String(Tempb);
- 	return Tempa + ":" + Tempb;
- }
- function modTime(time){
- 	var Temp = parseInt((time%10000));
- 	if (0<=Temp && Temp<1500)
- 		Temp=parseInt(time/10000)*10000;
- 	else if(1500<=Temp && Temp<3000)
- 		Temp=parseInt(time/10000)*10000+1500;
- 	else if(3000<=Temp && Temp<4500)
- 		Temp=parseInt(time/10000)*10000+3000;
- 	else if(4500<=Temp && Temp<6000)
- 		Temp=parseInt(time/10000)*10000+4500;
- 	else if(6000<=Temp)
- 		Temp=parseInt(time/10000)*10000;
- 	if (100000>Temp)
- 		Temp = '0' + Temp;
+  alert("12345");
 
- 	return Temp;
- }
+$(document).ready(function(){
+	var i = 1;
+	$('#add').click(function(){
+		i++;
+		$('#dynamic_field').append('<tr id="row'+i+'"><td><select name="Days"><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday">Friday</option><option value="Saturday">Saturday</option><option value="Sunday">Sunday</option></select>&nbsp;</td><td><input type="time" id="starting'+i+'" name="starting'+i+'">&nbsp;</td><td><input type="time" id="ending'+i+'" name="ending'+i+'">&nbsp;</td><td><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button>&nbsp;</td></tr>');
+	});
+	$(document).on('click','.btn_remove',function(){
+		var button_id = $(this).attr("id");
+		$("#row"+button_id+'').remove();
+	});
+});
+function getTime(time){
+	var Tempa=parseInt(time/10000);
+	var Tempb=parseInt((time-Tempa*10000)/100);
+	if (Tempa<10)
+		Tempa ='0'+String(Tempa);
+	if (Tempb<10)
+		Tempb ='0'+String(Tempb);
+	return Tempa + ":" + Tempb;
+}
+function modTime(time){
+	var Temp = parseInt((time%10000));
+	if (0<=Temp && Temp<1500)
+		Temp=parseInt(time/10000)*10000;
+	else if(1500<=Temp && Temp<3000)
+		Temp=parseInt(time/10000)*10000+1500;
+	else if(3000<=Temp && Temp<4500)
+		Temp=parseInt(time/10000)*10000+3000;
+	else if(4500<=Temp && Temp<6000)
+		Temp=parseInt(time/10000)*10000+4500;
+	else if(6000<=Temp)
+		Temp=parseInt(time/10000)*10000;
+	if (100000>Temp)
+		Temp = '0' + Temp;
 
- createLecNew();
- function createLecNew() {
- 	var jsLec=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[0]->getMyLecs())?>');
- 	for (x in jsLec){
- 		var title = jsLec[x]['day'][0];
- 		var fromTimeHour = jsLec[x]['startTime'];
- 		var toTimeHour= jsLec[x]['endTime'];
- 		var courseName= jsLec[x]['courseName'];
- 		var courseSection= jsLec[x]['section'];
- 		var courseSubSection=jsLec[x]['subsection'];
- 		var StartHour = parseInt(fromTimeHour/10000);
- 		var StartMinute = parseInt((fromTimeHour%10000)/100);
- 		var EndHour = parseInt(toTimeHour/10000);
- 		var EndMinute = parseInt((toTimeHour%10000)/100);
- 		var a=getTime(fromTimeHour);
- 		var b=getTime(toTimeHour);
- 		var c=modTime(fromTimeHour);
+	return Temp;
+}
 
- 		document.getElementById(title + c).innerHTML=(courseSection + '<br>' + "Lecture" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
- 		document.getElementById(title + c).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
- 		document.getElementById(title + c).style = " color:rgb(0,0,0);background-color:rgb(102, 255, 153);text-align: center;opacity: 0.8;";
- 		var tempTime=parseInt(c);
- 		for (var i=1;i<document.getElementById(title + c).rowSpan;i++){
- 			tempTime=tempTime+1500;
- 			if((tempTime%10000)%6000==0)
- 				tempTime=tempTime+4000;
- 			if(tempTime<100000)
- 				document.getElementById(title+'0'+tempTime).style.display="none";
- 			else
- 				document.getElementById(title+tempTime).style.display="none";
- 		}
- 	}
- 	for (x in jsLec){
- 		if (jsLec[x]['day'].length === 1)
- 			continue;
- 		else{
- 			var title = jsLec[x]['day'][1];
- 			var fromTimeHour = jsLec[x]['startTime'];
- 			var toTimeHour= jsLec[x]['endTime'];
- 			var courseName= jsLec[x]['courseName'];
- 			var courseSection= jsLec[x]['section'];
- 			var courseSubSection=jsLec[x]['subsection'];
- 			var StartHour = parseInt(fromTimeHour/10000);
- 			var StartMinute = parseInt((fromTimeHour%10000)/100);
- 			var EndHour = parseInt(toTimeHour/10000);
- 			var EndMinute = parseInt((toTimeHour%10000)/100);
- 			var a=getTime(fromTimeHour);
- 			var b=getTime(toTimeHour);
- 			var c=modTime(fromTimeHour);
- 			document.getElementById(title + c).innerHTML=(courseSection + '<br>' + "Lecture" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
- 			document.getElementById(title + c).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
- 			document.getElementById(title + c).style = " color:rgb(0,0,0);background-color:rgb(102, 255, 153);text-align: center;opacity: 0.8;";
- 			var tempTime=parseInt(c);
- 			for (var i=1;i<document.getElementById(title + c).rowSpan;i++){
- 			tempTime=tempTime+1500;
- 			if((tempTime%10000)%6000==0)
- 				tempTime=tempTime+4000;
- 			if(tempTime<100000)
- 				document.getElementById(title+'0'+tempTime).style.display="none";
- 			else
- 				document.getElementById(title+tempTime).style.display="none";
- 			}
- 		}
- 	}
- }
- createTutNew();
- function createTutNew(){
-     var jsTut=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[0]->getMyTuts())?>')
-     for (x in jsTut){
- 		var title = jsTut[x]['day'][0];
- 		var fromTimeHour = jsTut[x]['startTime'];
- 		var toTimeHour= jsTut[x]['endTime'];
- 		var courseName= jsTut[x]['courseName'];
- 		var courseSection= jsTut[x]['section'];
- 		var courseSubSection=jsTut[x]['subsection'];
- 		var StartHour = parseInt(fromTimeHour/10000);
- 		var StartMinute = parseInt((fromTimeHour%10000)/100);
- 		var EndHour = parseInt(toTimeHour/10000);
- 		var EndMinute = parseInt((toTimeHour%10000)/100);
-         var a=getTime(fromTimeHour);
-         var b=getTime(toTimeHour);
-         var c=modTime(fromTimeHour);
- 		document.getElementById(title + c).innerHTML=(courseName + "-" + courseSubSection + '<br>' + "Tutorial" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
- 		document.getElementById(title + c).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
- 		document.getElementById(title + c).style = " color:rgb(0,0,0);background-color:rgb(255, 255, 51);text-align: center;opacity: 0.8;";
- 		var tempTime=parseInt(c);
- 		for (var i=1;i<document.getElementById(title + c).rowSpan;i++){
- 			tempTime=tempTime+1500;
- 			if((tempTime%10000)%6000==0)
- 				tempTime=tempTime+4000;
- 			if(tempTime<100000)
- 				document.getElementById(title+'0'+tempTime).style.display="none";
- 			else
- 				document.getElementById(title+tempTime).style.display="none";
- 		}
- 	}
- 	for (x in jsTut){
- 		if (jsTut[x]['day'].length === 1)
- 			continue;
- 		else{
- 			var title = jsTut[x]['day'][1];
- 			var fromTimeHour = jsTut[x]['startTime'];
- 			var toTimeHour= jsTut[x]['endTime'];
- 			var courseName= jsTut[x]['courseName'];
- 			var courseSection= jsTut[x]['section'];
- 			var courseSubSection=jsTut[x]['subsection'];
- 			var StartHour = parseInt(fromTimeHour/10000);
- 			var StartMinute = parseInt((fromTimeHour%10000)/100);
- 			var EndHour = parseInt(toTimeHour/10000);
- 			var EndMinute = parseInt((toTimeHour%10000)/100);
- 			var a=getTime(fromTimeHour);
- 			var b=getTime(toTimeHour);
- 			var c=modTime(fromTimeHour);
- 			document.getElementById(title + c).innerHTML=(courseName + "-" + courseSubSection + '<br>' + "Tutorial" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
- 			document.getElementById(title + c).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
- 			document.getElementById(title + c).style = " color:rgb(0,0,0);background-color:rgb(153, 204, 255);text-align: center;opacity: 0.8;";
- 			var tempTime=parseInt(c);
- 			for (var i=1;i<document.getElementById(title + c).rowSpan;i++){
- 				tempTime=tempTime+1500;
- 				if((tempTime%10000)%6000==0)
- 					tempTime=tempTime+4000;
- 				if(tempTime<100000)
- 					document.getElementById(title+'0'+tempTime).style.display="none";
- 				else
- 					document.getElementById(title+tempTime).style.display="none";
- 			}
- 		}
- 	}
- }
- createLabNew();
- function createLabNew() {
-     var jsLab=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[0]->getMyLabs())?>')
-     for (x in jsLab){
- 		var title = jsLab[x]['day'][0];
- 		var fromTimeHour = jsLab[x]['startTime'];
- 		var toTimeHour= jsLab[x]['endTime'];
- 		var courseName= jsLab[x]['courseName'];
- 		var courseSection= jsLab[x]['section'];
- 		var courseSubSection=jsLab[x]['subsection'];
- 		var StartHour = parseInt(fromTimeHour/10000);
- 		var StartMinute = parseInt((fromTimeHour%10000)/100);
- 		var EndHour = parseInt(toTimeHour/10000);
- 		var EndMinute = parseInt((toTimeHour%10000)/100);
-         var a=getTime(fromTimeHour);
-         var b=getTime(toTimeHour);
-         var c=modTime(fromTimeHour);
+createLecNew();
+function createLecNew() {
+	var jsLec=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[0]->getMyLecs())?>');
+	for (x in jsLec){
+		var title = jsLec[x]['day'][0];
+		var fromTimeHour = jsLec[x]['startTime'];
+		var toTimeHour= jsLec[x]['endTime'];
+		var courseName= jsLec[x]['courseName'];
+		var courseSection= jsLec[x]['section'];
+		var courseSubSection=jsLec[x]['subsection'];
+		var StartHour = parseInt(fromTimeHour/10000);
+		var StartMinute = parseInt((fromTimeHour%10000)/100);
+		var EndHour = parseInt(toTimeHour/10000);
+		var EndMinute = parseInt((toTimeHour%10000)/100);
+		var a=getTime(fromTimeHour);
+		var b=getTime(toTimeHour);
+		var c=modTime(fromTimeHour);
 
- 		document.getElementById(title + c).innerHTML=(courseName + "-" + courseSection + '<br>' + "Laboratory" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
- 		document.getElementById(title + c).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
- 		document.getElementById(title + c).style = " color:rgb(0,0,0);background-color:rgb(255, 153, 51);text-align: center;opacity: 0.8;";
- 		var tempTime=parseInt(c);
- 		for (var i=1;i<document.getElementById(title + c).rowSpan;i++){
- 			tempTime=tempTime+1500;
- 			if((tempTime%10000)%6000==0)
- 				tempTime=tempTime+4000;
- 			if(tempTime<100000)
- 				document.getElementById(title+'0'+tempTime).style.display="none";
- 			else
- 			document.getElementById(title+tempTime).style.display="none";
- 		}
- 	}
- 	for (x in jsLab){
- 		if (jsLab[x]['day'].length === 1)
- 			continue;
- 		else{
- 			var title = jsLab[x]['day'][1];
- 			var fromTimeHour = jsLab[x]['startTime'];
- 			var toTimeHour= jsLab[x]['endTime'];
- 			var courseName= jsLab[x]['courseName'];
- 			var courseSection= jsLab[x]['section'];
- 			var courseSubSection=jsLab[x]['subsection'];
- 			var StartHour = parseInt(fromTimeHour/10000);
- 			var StartMinute = parseInt((fromTimeHour%10000)/100);
- 			var EndHour = parseInt(toTimeHour/10000);
- 			var EndMinute = parseInt((toTimeHour%10000)/100);
- 			var a=getTime(fromTimeHour);
- 			var b=getTime(toTimeHour);
- 			var c=modTime(fromTimeHour);
+		document.getElementById(title + c).innerHTML=(courseSection + '<br>' + "Lecture" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
+		document.getElementById(title + c).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
+		document.getElementById(title + c).style = " color:rgb(0,0,0);background-color:rgb(102, 255, 153);text-align: center;opacity: 0.8;";
+		var tempTime=parseInt(c);
+		for (var i=1;i<document.getElementById(title + c).rowSpan;i++){
+			tempTime=tempTime+1500;
+			if((tempTime%10000)%6000==0)
+				tempTime=tempTime+4000;
+			if(tempTime<100000)
+				document.getElementById(title+'0'+tempTime).style.display="none";
+			else
+				document.getElementById(title+tempTime).style.display="none";
+		}
+	}
+	for (x in jsLec){
+		if (jsLec[x]['day'].length === 1)
+			continue;
+		else{
+			var title = jsLec[x]['day'][1];
+			var fromTimeHour = jsLec[x]['startTime'];
+			var toTimeHour= jsLec[x]['endTime'];
+			var courseName= jsLec[x]['courseName'];
+			var courseSection= jsLec[x]['section'];
+			var courseSubSection=jsLec[x]['subsection'];
+			var StartHour = parseInt(fromTimeHour/10000);
+			var StartMinute = parseInt((fromTimeHour%10000)/100);
+			var EndHour = parseInt(toTimeHour/10000);
+			var EndMinute = parseInt((toTimeHour%10000)/100);
+			var a=getTime(fromTimeHour);
+			var b=getTime(toTimeHour);
+			var c=modTime(fromTimeHour);
+			document.getElementById(title + c).innerHTML=(courseSection + '<br>' + "Lecture" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
+			document.getElementById(title + c).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
+			document.getElementById(title + c).style = " color:rgb(0,0,0);background-color:rgb(102, 255, 153);text-align: center;opacity: 0.8;";
+			var tempTime=parseInt(c);
+			for (var i=1;i<document.getElementById(title + c).rowSpan;i++){
+			tempTime=tempTime+1500;
+			if((tempTime%10000)%6000==0)
+				tempTime=tempTime+4000;
+			if(tempTime<100000)
+				document.getElementById(title+'0'+tempTime).style.display="none";
+			else
+				document.getElementById(title+tempTime).style.display="none";
+			}
+		}
+	}
+}
+createTutNew();
+function createTutNew(){
+    var jsTut=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[0]->getMyTuts())?>')
+    for (x in jsTut){
+		var title = jsTut[x]['day'][0];
+		var fromTimeHour = jsTut[x]['startTime'];
+		var toTimeHour= jsTut[x]['endTime'];
+		var courseName= jsTut[x]['courseName'];
+		var courseSection= jsTut[x]['section'];
+		var courseSubSection=jsTut[x]['subsection'];
+		var StartHour = parseInt(fromTimeHour/10000);
+		var StartMinute = parseInt((fromTimeHour%10000)/100);
+		var EndHour = parseInt(toTimeHour/10000);
+		var EndMinute = parseInt((toTimeHour%10000)/100);
+        var a=getTime(fromTimeHour);
+        var b=getTime(toTimeHour);
+        var c=modTime(fromTimeHour);
+		document.getElementById(title + c).innerHTML=(courseName + "-" + courseSubSection + '<br>' + "Tutorial" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
+		document.getElementById(title + c).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
+		document.getElementById(title + c).style = " color:rgb(0,0,0);background-color:rgb(255, 255, 51);text-align: center;opacity: 0.8;";
+		var tempTime=parseInt(c);
+		for (var i=1;i<document.getElementById(title + c).rowSpan;i++){
+			tempTime=tempTime+1500;
+			if((tempTime%10000)%6000==0)
+				tempTime=tempTime+4000;
+			if(tempTime<100000)
+				document.getElementById(title+'0'+tempTime).style.display="none";
+			else
+				document.getElementById(title+tempTime).style.display="none";
+		}
+	}
+	for (x in jsTut){
+		if (jsTut[x]['day'].length === 1)
+			continue;
+		else{
+			var title = jsTut[x]['day'][1];
+			var fromTimeHour = jsTut[x]['startTime'];
+			var toTimeHour= jsTut[x]['endTime'];
+			var courseName= jsTut[x]['courseName'];
+			var courseSection= jsTut[x]['section'];
+			var courseSubSection=jsTut[x]['subsection'];
+			var StartHour = parseInt(fromTimeHour/10000);
+			var StartMinute = parseInt((fromTimeHour%10000)/100);
+			var EndHour = parseInt(toTimeHour/10000);
+			var EndMinute = parseInt((toTimeHour%10000)/100);
+			var a=getTime(fromTimeHour);
+			var b=getTime(toTimeHour);
+			var c=modTime(fromTimeHour);
+			document.getElementById(title + c).innerHTML=(courseName + "-" + courseSubSection + '<br>' + "Tutorial" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
+			document.getElementById(title + c).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
+			document.getElementById(title + c).style = " color:rgb(0,0,0);background-color:rgb(153, 204, 255);text-align: center;opacity: 0.8;";
+			var tempTime=parseInt(c);
+			for (var i=1;i<document.getElementById(title + c).rowSpan;i++){
+				tempTime=tempTime+1500;
+				if((tempTime%10000)%6000==0)
+					tempTime=tempTime+4000;
+				if(tempTime<100000)
+					document.getElementById(title+'0'+tempTime).style.display="none";
+				else
+					document.getElementById(title+tempTime).style.display="none";
+			}
+		}
+	}
+}
+createLabNew();
+function createLabNew() {
+    var jsLab=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[0]->getMyLabs())?>')
+    for (x in jsLab){
+		var title = jsLab[x]['day'][0];
+		var fromTimeHour = jsLab[x]['startTime'];
+		var toTimeHour= jsLab[x]['endTime'];
+		var courseName= jsLab[x]['courseName'];
+		var courseSection= jsLab[x]['section'];
+		var courseSubSection=jsLab[x]['subsection'];
+		var StartHour = parseInt(fromTimeHour/10000);
+		var StartMinute = parseInt((fromTimeHour%10000)/100);
+		var EndHour = parseInt(toTimeHour/10000);
+		var EndMinute = parseInt((toTimeHour%10000)/100);
+        var a=getTime(fromTimeHour);
+        var b=getTime(toTimeHour);
+        var c=modTime(fromTimeHour);
 
- 			document.getElementById(title + c).innerHTML=(courseName + "-" + courseSection + '<br>' + "Laboratory" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
- 			document.getElementById(title + c).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
- 			document.getElementById(title + c).style = " color:rgb(0,0,0);background-color:rgb(255, 153, 51);text-align: center;opacity: 0.8;";
- 			var tempTime=parseInt(c);
- 			for (var i=1;i<document.getElementById(title + c).rowSpan;i++){
- 				tempTime=tempTime+1500;
- 				if((tempTime%10000)%6000==0)
- 					tempTime=tempTime+4000;
- 				if(tempTime<100000)
- 					document.getElementById(title+'0'+tempTime).style.display="none";
- 				else
- 					document.getElementById(title+tempTime).style.display="none";
- 			}
- 		}
- 	}
- }
+		document.getElementById(title + c).innerHTML=(courseName + "-" + courseSection + '<br>' + "Laboratory" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
+		document.getElementById(title + c).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
+		document.getElementById(title + c).style = " color:rgb(0,0,0);background-color:rgb(255, 153, 51);text-align: center;opacity: 0.8;";
+		var tempTime=parseInt(c);
+		for (var i=1;i<document.getElementById(title + c).rowSpan;i++){
+			tempTime=tempTime+1500;
+			if((tempTime%10000)%6000==0)
+				tempTime=tempTime+4000;
+			if(tempTime<100000)
+				document.getElementById(title+'0'+tempTime).style.display="none";
+			else
+			document.getElementById(title+tempTime).style.display="none";
+		}
+	}
+	for (x in jsLab){
+		if (jsLab[x]['day'].length === 1)
+			continue;
+		else{
+			var title = jsLab[x]['day'][1];
+			var fromTimeHour = jsLab[x]['startTime'];
+			var toTimeHour= jsLab[x]['endTime'];
+			var courseName= jsLab[x]['courseName'];
+			var courseSection= jsLab[x]['section'];
+			var courseSubSection=jsLab[x]['subsection'];
+			var StartHour = parseInt(fromTimeHour/10000);
+			var StartMinute = parseInt((fromTimeHour%10000)/100);
+			var EndHour = parseInt(toTimeHour/10000);
+			var EndMinute = parseInt((toTimeHour%10000)/100);
+			var a=getTime(fromTimeHour);
+			var b=getTime(toTimeHour);
+			var c=modTime(fromTimeHour);
+
+			document.getElementById(title + c).innerHTML=(courseName + "-" + courseSection + '<br>' + "Laboratory" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
+			document.getElementById(title + c).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
+			document.getElementById(title + c).style = " color:rgb(0,0,0);background-color:rgb(255, 153, 51);text-align: center;opacity: 0.8;";
+			var tempTime=parseInt(c);
+			for (var i=1;i<document.getElementById(title + c).rowSpan;i++){
+				tempTime=tempTime+1500;
+				if((tempTime%10000)%6000==0)
+					tempTime=tempTime+4000;
+				if(tempTime<100000)
+					document.getElementById(title+'0'+tempTime).style.display="none";
+				else
+					document.getElementById(title+tempTime).style.display="none";
+			}
+		}
+	}
+}
  </script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
