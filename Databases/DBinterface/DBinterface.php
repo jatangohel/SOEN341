@@ -545,9 +545,31 @@ function changeusername($username,$prevusername){
 }
 
 function changeemail($email,$username){
-		require('config/db.php');
-	$query = 'update users set Email = "'.$email.'" where UserName = "'.$username.'"';
-	$result = mysqli_query($conn, $query);
+
+    require('config/db.php');
+
+		$query1 = 'select UserId from users where Email="'.$email.'"';
+    $result1 = mysqli_query($conn, $query1);
+
+    //$userID = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    $data = mysqli_fetch_array($result1);
+    $userId = $data['UserId'];
+
+    //echo($userId);
+
+    //if($result1)
+
+    if(empty($userId)){
+    $query = 'update users set Email = "'.$email.'" where UserName = "'.$username.'"';
+    $result = mysqli_query($conn, $query);
+    return 1;
+    }
+
+    else{
+        echo "Can't change the email to an already existing email";
+        return 0;
+    }
 }
 
 function changepass	($password,$username){
