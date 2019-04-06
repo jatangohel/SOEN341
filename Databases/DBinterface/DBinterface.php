@@ -494,6 +494,8 @@ function getUntakenCoursesFrontEnd($ConstraintsTakenCourses)
 {
 	require('config/db.php');
 
+	global $createdCourses;
+
 	$untakenFrontEnd = array();
 
 	$query = 'select CourseName from coursesmain';
@@ -517,7 +519,18 @@ function getUntakenCoursesFrontEnd($ConstraintsTakenCourses)
 	}
 
 	for($i=0;$i<count($courses);$i++){
-		$untakenFrontEnd[$i] = $courses[$i]["CourseName"];
+		$untakenFrontEnd[$i] = getCourse($courses[$i]["CourseName"]);
+	}
+ 	// A loop to set the passed courses status as passed
+	for ($j = 0; $j <  count($ConstraintsTakenCourses); $j++)
+	{
+		foreach ($createdCourses as $c)
+		{
+			if ($c->getCourseName() == $ConstraintsTakenCourses[$j])
+			{
+				$c->setPass(true);
+			}
+		}
 	}
 
 	return $untakenFrontEnd;
