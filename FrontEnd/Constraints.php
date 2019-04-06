@@ -127,7 +127,8 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 						<td><button type="button" name="add" id="add" class="btn btn-success">Next</button></td>
 					</tr>
 				</table>
-				<input type="button" class="btn btn-primary" name="submit" id="submit" value="submit"/>
+				<input type="button" class="btn btn-primary" name="submit" id="submit" value="submit"/>&nbsp;
+        <input type="button" class="btn btn-primary" onclick="window.print()" value="Print General Course Schedule"/>
 			</form>
 			<div id="result"></div>
 		</div>
