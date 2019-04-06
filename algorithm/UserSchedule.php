@@ -53,8 +53,11 @@ public function genProgramSched ($user)
   $semesters = array("W", "S","F");
 
   // Obtain untaken courses by the user
-  $untakenCourses = getUntakenCourses($user->getEmail());
-
+  if ($user->getUserName() == "GUEST")
+    $untakenCourses = getUntakenCoursesFrontEnd($_POST['check_list']);
+  else
+    $untakenCourses = getUntakenCourses($user->getEmail());
+    
   // Get the key for first semester in the array of semesters
   $currentSemKey = array_search($user->getFirstSemester(), $semesters);
   $currentYear = 1;
@@ -98,8 +101,9 @@ public function genProgramSched ($user)
     // Exclude the taken courses from the untaken array
     foreach ($sem->getLecs() as $taken)
     {
-      $createdCourses[$taken->getCourseName()]->setPass(true);
-      deleteCourse($taken, $untakenCourses);
+      $createdCourses[$taken->getCourse()->getCourseName()]->setPass(true);
+      $course = $taken->getCourse();
+      deleteCourse($course->getCourseName(), $untakenCourses);
     }
 
     // Increment year if the current semester was fall

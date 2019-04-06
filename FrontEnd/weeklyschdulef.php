@@ -69,7 +69,7 @@ $userSched = $_SESSION['userSched'];
           text-align: center;
           z-index: 30;
 		    margin-left: auto;
-			margin-right: auto;			
+			margin-right: auto;
           box-shadow: 0px 10px 28px -11px rgba(0,0,0,0.35);
         }
         h1 {
@@ -819,14 +819,14 @@ function modTime(time){
 
 	if (100000>Temp)
 		Temp = '0' + Temp;
-	
+
 	return Temp;
 }
 
 
 
 
- 
+
 createLecNew();
 function createLecNew() {
 	var jsLec=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[0]->getMyLecs())?>');
@@ -844,7 +844,7 @@ function createLecNew() {
 		var a=getTime(fromTimeHour);
 		var b=getTime(toTimeHour);
 		var c=modTime(fromTimeHour);
-	
+
 		document.getElementById(title + c).innerHTML=(courseSection + '<br>' + "Lecture" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
 		document.getElementById(title + c).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
 		document.getElementById(title + c).style = " color:rgb(0,0,0);background-color:rgb(102, 255, 153);text-align: center;opacity: 0.8;";
@@ -862,7 +862,7 @@ function createLecNew() {
 	}
 	for (x in jsLec){
 		if (jsLec[x]['day'].length === 1)
-			continue;			
+			continue;
 		else{
 			var title = jsLec[x]['day'][1];
 			var fromTimeHour = jsLec[x]['startTime'];
@@ -882,13 +882,13 @@ function createLecNew() {
 			document.getElementById(title + c).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
 			document.getElementById(title + c).style = " color:rgb(0,0,0);background-color:rgb(102, 255, 153);text-align: center;opacity: 0.8;";
 			var tempTime=parseInt(c);
-			for (var i=1;i<document.getElementById(title + c).rowSpan;i++){	
+			for (var i=1;i<document.getElementById(title + c).rowSpan;i++){
 			tempTime=tempTime+1500;
 			if((tempTime%10000)%6000==0)
 				tempTime=tempTime+4000;
 			if(tempTime<100000)
 				document.getElementById(title+'0'+tempTime).style.display="none";
-			else	
+			else
 				document.getElementById(title+tempTime).style.display="none";
 			}
 		}
@@ -898,7 +898,7 @@ function createLecNew() {
 createTutNew();
 function createTutNew(){
     var jsTut=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[0]->getMyTuts())?>')
-    for (x in jsTut){            
+    for (x in jsTut){
 		var title = jsTut[x]['day'][0];
 		var fromTimeHour = jsTut[x]['startTime'];
 		var toTimeHour= jsTut[x]['endTime'];
@@ -910,8 +910,8 @@ function createTutNew(){
 		var EndHour = parseInt(toTimeHour/10000);
 		var EndMinute = parseInt((toTimeHour%10000)/100);
         var a=getTime(fromTimeHour);
-        var b=getTime(toTimeHour);  
-        var c=modTime(fromTimeHour);		
+        var b=getTime(toTimeHour);
+        var c=modTime(fromTimeHour);
 
 		document.getElementById(title + c).innerHTML=(courseName + "-" + courseSubSection + '<br>' + "Tutorial" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
 		document.getElementById(title + c).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
@@ -929,9 +929,9 @@ function createTutNew(){
 		}
 	}
 
-	for (x in jsTut){     
+	for (x in jsTut){
 		if (jsTut[x]['day'].length === 1)
-			continue;			
+			continue;
 		else{
 			var title = jsTut[x]['day'][1];
 			var fromTimeHour = jsTut[x]['startTime'];
@@ -944,8 +944,8 @@ function createTutNew(){
 			var EndHour = parseInt(toTimeHour/10000);
 			var EndMinute = parseInt((toTimeHour%10000)/100);
 			var a=getTime(fromTimeHour);
-			var b=getTime(toTimeHour);  
-			var c=modTime(fromTimeHour);		
+			var b=getTime(toTimeHour);
+			var c=modTime(fromTimeHour);
 
 			document.getElementById(title + c).innerHTML=(courseName + "-" + courseSubSection + '<br>' + "Tutorial" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
 			document.getElementById(title + c).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
@@ -968,7 +968,7 @@ function createTutNew(){
 createLabNew();
 function createLabNew() {
     var jsLab=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[0]->getMyLabs())?>')
-    for (x in jsLab){            
+    for (x in jsLab){
 		var title = jsLab[x]['day'][0];
 		var fromTimeHour = jsLab[x]['startTime'];
 		var toTimeHour= jsLab[x]['endTime'];
@@ -980,9 +980,9 @@ function createLabNew() {
 		var EndHour = parseInt(toTimeHour/10000);
 		var EndMinute = parseInt((toTimeHour%10000)/100);
         var a=getTime(fromTimeHour);
-        var b=getTime(toTimeHour); 
+        var b=getTime(toTimeHour);
         var c=modTime(fromTimeHour);
-		
+
 		document.getElementById(title + c).innerHTML=(courseName + "-" + courseSection + '<br>' + "Laboratory" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
 		document.getElementById(title + c).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
 		document.getElementById(title + c).style = " color:rgb(0,0,0);background-color:rgb(255, 153, 51);text-align: center;opacity: 0.8;";
@@ -997,10 +997,10 @@ function createLabNew() {
 			document.getElementById(title+tempTime).style.display="none";
 		}
 	}
-	for (x in jsLab){ 
+	for (x in jsLab){
 		if (jsLab[x]['day'].length === 1)
-			continue;			
-		else{	
+			continue;
+		else{
 			var title = jsLab[x]['day'][1];
 			var fromTimeHour = jsLab[x]['startTime'];
 			var toTimeHour= jsLab[x]['endTime'];
@@ -1012,9 +1012,9 @@ function createLabNew() {
 			var EndHour = parseInt(toTimeHour/10000);
 			var EndMinute = parseInt((toTimeHour%10000)/100);
 			var a=getTime(fromTimeHour);
-			var b=getTime(toTimeHour); 
+			var b=getTime(toTimeHour);
 			var c=modTime(fromTimeHour);
-		
+
 			document.getElementById(title + c).innerHTML=(courseName + "-" + courseSection + '<br>' + "Laboratory" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
 			document.getElementById(title + c).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
 			document.getElementById(title + c).style = " color:rgb(0,0,0);background-color:rgb(255, 153, 51);text-align: center;opacity: 0.8;";

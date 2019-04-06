@@ -1,7 +1,7 @@
 <?php
 class Session
 {
-  private $courseName;  // String
+  private $course;    // Course Object
   private $section;     // String
   private $subSection;  // String
   private $semester;    // String ("F"or"W"or"S")
@@ -10,10 +10,10 @@ class Session
   private $endTime;     // int
   private $campus;      // String
 
-  public function __construct($courseName, $section, $subSection,
+  public function __construct($course, $section, $subSection,
                               $semester, $days, $startTime, $endTime, $campus)
   {
-    $this->courseName = $courseName;
+    $this->course = $course;
     $this->section = $section;
     $this->subSection = $subSection;
     $this->semester = $semester;
@@ -23,9 +23,9 @@ class Session
     $this->campus = $campus;
   }
 
-  public function getCourseName()
+  public function getCourse()
   {
-    return $this->courseName;
+    return $this->course;
   }
 
   public function getSection()

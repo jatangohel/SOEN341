@@ -1,7 +1,6 @@
 <?php
-  //ob_start();
-if (session_status() != PHP_SESSION_ACTIVE)
-  session_start();
+   ob_start();
+   session_start();
 ?>
 <nav class="navbar navbar-expand-md navbar-dark bg-primary sticky-top">
         <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
@@ -32,13 +31,16 @@ if (session_status() != PHP_SESSION_ACTIVE)
             </div>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="#">Link 2 </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="#">Profile </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">About Us </a>
             </li>
         </ul>
-        <?php     if($_SERVER['REQUEST_URI']!='/SOEN341/'){ ?>
+
          <ul class="navbar-nav ">
                <!-- PROFILE DROPDOWN - scrolling off the page to the right -->
                <li class="nav-item dropdown">
@@ -48,7 +50,7 @@ if (session_status() != PHP_SESSION_ACTIVE)
                <?php 
                 if(isset($_SESSION['loggedin']))
                  echo ', '.$_SESSION['userName']; 
-               ?>
+               ?>!
           
            </a>
                    <div class="dropdown-menu" aria-labelledby="navDropDownLink">
@@ -58,6 +60,6 @@ if (session_status() != PHP_SESSION_ACTIVE)
                    </div>
                </li>
            </ul>
-         <?php } ?>
+
         </div>
     </nav>
