@@ -1,4 +1,5 @@
 <?php
+echo '<link href="css/fbBtmStyling.css" rel="stylesheet">';
 echo '<link href="css/style.css" rel="stylesheet">';
 
 if (session_status() == PHP_SESSION_ACTIVE)
