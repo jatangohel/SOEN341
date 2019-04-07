@@ -135,7 +135,7 @@ include '../Databases/DBinterface/DBinterface.php';
 			echo
 			'<div id="loading">
 			<img id="loading-image" src="img_loadingtrans.gif" alt="Loading..." />'.
-			'<h1 data-text="'.'Logging in '.$LoggedInUserName.'">'.' Logging in '.$LoggedInUserName.'</h1>'.'</div>';
+			'<h1 data-text="'.'Logging in...'.'">'.' Logging in...'.'</h1>'.'</div>';
 
 			//echo "$LoggedInUserName you're logged in!";
 			if(getInputtedPassed($userEmail))
