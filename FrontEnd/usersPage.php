@@ -1,11 +1,66 @@
+<html>
+<head>
+	<style>
+	#loading-image {
+		margin: 0 auto;
+		top: 100px;
+		left: 10px;
+		z-index: 100;
+
+	}
+	#loading {
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+   background-color: #E8F7FF;
+		position: fixed;
+		display: block;
+		opacity: 0.7;
+		z-index: 99;
+		text-align: center;
+	}
+
+	h1 {
+		position: absolute;
+		color: rgba(0, 0, 0, .3);
+		font-size: 5em
+		z-index: 1;
+		top:50%;
+		left: 34%;
+		width:600px;
+
+
+	}
+	h1:before {
+		content: attr(data-text);
+		z-index: 1;
+		position: absolute;
+		overflow: hidden;
+		max-width: 5em;
+		white-space: nowrap;
+		color: #1D1E22;
+		animation: loading 2s linear;
+	}
+	@keyframes loading {
+		0% {
+			max-width: 0;
+		}
+	}
+</style>
+</head>
+<body>
+	
+</body>
+</html>
 <?php
 ob_start();
 session_start();
 ?>
 
 <?php
-	include '../Databases/DBinterface/config/db.php';
-	include '../Databases/DBinterface/DBinterface.php';
+include '../Databases/DBinterface/config/db.php';
+include '../Databases/DBinterface/DBinterface.php';
 /*
 	$path='PHPMailer\examples\EmailSender.php';
 	require $path;
@@ -72,7 +127,12 @@ session_start();
 			$_SESSION['userName'] = $LoggedInUserName;
 			$_SESSION['userEmail'] = $userEmail;
 			$_SESSION['flagPrevPage'] = true;
-			echo "$LoggedInUserName you're logged in!";
+			echo
+			'<div id="loading">
+			<img id="loading-image" src="img_loadingtrans.gif" alt="Loading..." />'.
+			'<h1 data-text="'.'Logging in '.$LoggedInUserName.'">'.' Logging in '.$LoggedInUserName.'</h1>'.'</div>';
+
+			//echo "$LoggedInUserName you're logged in!";
 			if(getInputtedPassed($userEmail))
 				header('Refresh: 2; URL = ../FrontEnd/Constraints.php');
 			else
