@@ -23,17 +23,17 @@ function getLectureSections($course, $semester){
 
 	switch ($semester)
 	{
-		case 'F':
+		case 'Fall':
 		global $table;
 		$table = 'flec';
 		$loadedSessions = &$flec;
 		break;
-		case 'W':
+		case 'Winter':
 		global $table;
 		$table = 'wlec';
 		$loadedSessions = &$wlec;
 		break;
-		case 'S':
+		case 'Summer':
 		global $table;
 		$table = 'slec';
 		$loadedSessions = &$slec;
@@ -105,17 +105,17 @@ function getTutorialSection($course, $semester, $section){
 
 	switch ($semester)
 	{
-		case 'F':
+		case 'Fall':
 		global $table;
 		$table = 'ftut';
 		$loadedSessions = &$ftut;
 		break;
-		case 'W':
+		case 'Winter':
 		global $table;
 		$table = 'wtut';
 		$loadedSessions = &$wtut;
 		break;
-		case 'S':
+		case 'Summer':
 		global $table;
 		$table = 'stut';
 		$loadedSessions = &$stut;
@@ -184,17 +184,17 @@ function getLabSection($course, $semester){
 
 	switch ($semester)
 	{
-		case 'F':
+		case 'Fall':
 		global $table;
 		$table = 'flab';
 		$loadedSessions = &$flab;
 		break;
-		case 'W':
+		case 'Winter':
 		global $table;
 		$table = 'wlab';
 		$loadedSessions = &$wlab;
 		break;
-		case 'S':
+		case 'Summer':
 		global $table;
 		$table = 'slab';
 		$loadedSessions = &$slab;
@@ -258,15 +258,15 @@ function getPermittedCourses($remainingCourses,  $semester)
 	static $table;
 	switch ($semester)
 	{
-		case 'F':
+		case 'Fall':
 		global $table;
 		$table = 'flec';
 		break;
-		case 'W':
+		case 'Winter':
 		global $table;
 		$table = 'wlec';
 		break;
-		case 'S':
+		case 'Summer':
 		global $table;
 		$table = 'slec';
 		break;

@@ -294,19 +294,19 @@
                     <p><b><u>Kindly select your start semester in order to continue!</u></b></p>
 
                     <div class="custom-control custom-radio">
-                  <input type="radio" class="custom-control-input" id="fall" name="intake" value="F" required>
+                  <input type="radio" class="custom-control-input" id="fall" name="intake" value="Fall" required>
                     <label for="fall" class="custom-control-label">Fall Intake</label></div>
                 &nbsp;&nbsp;&nbsp;&nbsp;
 
 
                     <div class="custom-control custom-radio">
-                 <input type="radio" class="custom-control-input" id="winter" name="intake" value="W" required>
+                 <input type="radio" class="custom-control-input" id="winter" name="intake" value="Winter" required>
                         <label for="winter" class="custom-control-label">Winter Intake</label></div>
                 &nbsp;&nbsp;&nbsp;&nbsp;
 
 
                         <div class="custom-control custom-radio">
-				 <input type="radio" class="custom-control-input" id="summer" name="intake" value="S" required>
+				 <input type="radio" class="custom-control-input" id="summer" name="intake" value="Summer" required>
                             <label for="summer" class="custom-control-label">Summer Intake</label></div>
                 &nbsp;&nbsp;&nbsp;&nbsp;
 
