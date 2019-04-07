@@ -81,7 +81,7 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 }
 
 #loading-image {
-  position: absolute;
+  margin: 0 auto;
   top: 100px;
   left: 240px;
   z-index: 100;
