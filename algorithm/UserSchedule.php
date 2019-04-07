@@ -69,9 +69,6 @@ public function genProgramSched ($user)
   $currentYear = 1;
   $flag=false;
 
-  var_dump ($user->getFirstSemester());
-  var_dump($currentSemKey);
-
   while (count($untakenCourses) != 0)
   {
     $semCode = $currentYear.$semesters[$currentSemKey]; //used in coursesPerSem array as an index
