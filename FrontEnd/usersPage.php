@@ -1,6 +1,7 @@
 <html>
 <head>
 	<style>
+
 	#loading-image {
 		margin: 0 auto;
 		top: 100px;
@@ -13,9 +14,9 @@
 		height: 100%;
 		top: 0;
 		left: 0;
-   background-color: #E8F7FF;
-		position: fixed;
-		display: block;
+		background-color: #E8F7FF;
+		position: relative;
+		display:inline-block;;
 		opacity: 0.7;
 		z-index: 99;
 		text-align: center;
@@ -24,17 +25,21 @@
 	h1 {
 		position: absolute;
 		color: rgba(0, 0, 0, .3);
-		font-size: 5em
-		z-index: 1;
-		top:50%;
-		left: 34%;
-		width:600px;
+		font-size: 3em;
+		z-index: 999;
+		margin: 0 auto;
+        left: 0;
+        right: 0;
+        top: 50%;
+        text-align: center;
+		width:60%;
 
 
 	}
 	h1:before {
 		content: attr(data-text);
 		z-index: 1;
+		text-align: center;
 		position: absolute;
 		overflow: hidden;
 		max-width: 5em;
