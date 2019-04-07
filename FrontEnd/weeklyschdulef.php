@@ -2,7 +2,10 @@
 require_once 'backendInterface.php';
 set_time_limit(0);
 
+$semIndex = $_GET['semester'];
+
 $userSched = $_SESSION['userSched'];
+var_dump($userSched->getListOfSemesters()[$semIndex]->getMyLecs());
 ?>
 <!doctype html>
 <html lang="en">
@@ -769,7 +772,6 @@ $userSched = $_SESSION['userSched'];
 	</div>
 	</div>
   <script>
-  alert("12345");
 
 $(document).ready(function(){
 	var i = 1;
@@ -811,7 +813,7 @@ function modTime(time){
 
 createLecNew();
 function createLecNew() {
-	var jsLec=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[0]->getMyLecs())?>');
+	var jsLec=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[$semIndex]->getMyLecs())?>');
 	for (x in jsLec){
 		var title = jsLec[x]['day'][0];
 		var fromTimeHour = jsLec[x]['startTime'];
@@ -876,7 +878,7 @@ function createLecNew() {
 }
 createTutNew();
 function createTutNew(){
-    var jsTut=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[0]->getMyTuts())?>')
+    var jsTut=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[$semIndex]->getMyTuts())?>')
     for (x in jsTut){
 		var title = jsTut[x]['day'][0];
 		var fromTimeHour = jsTut[x]['startTime'];
@@ -940,7 +942,7 @@ function createTutNew(){
 }
 createLabNew();
 function createLabNew() {
-    var jsLab=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[0]->getMyLabs())?>')
+    var jsLab=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[$semIndex]->getMyLabs())?>')
     for (x in jsLab){
 		var title = jsLab[x]['day'][0];
 		var fromTimeHour = jsLab[x]['startTime'];

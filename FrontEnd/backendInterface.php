@@ -24,15 +24,14 @@ function genNewSched ()
 	}
 	$email = $_SESSION['userEmail'];
 	$userName = $_SESSION['userName'];
+
 	$userSched = new UserSchedule($numCoursesArr, $noClassesArr);
 	$user = new User ($userName, $email, $userSched, 'F');
 	$userSched->genProgramSched($user);
-	$numSemesters = count($userSched->getListOfSemesters());
+
 	$semInfo = array();
 	for ($i =0;$i<count($userSched->getListOfSemesters());$i++){
 	$semInfo[$i]= array (array());
-	//$semInfo[1]= array (array());
-	//$semInfo[2]= array (array());
 	foreach ($userSched->getListOfSemesters()[$i]->getLecs() as $lec)
 	{
 	  $courseInfo = array();
@@ -43,28 +42,9 @@ function genNewSched ()
 	$semInfo[$i] = array_slice($semInfo[$i],1);
 	}
 $_SESSION['semInfo'] = $semInfo;
+$_SESSION['userSched'] = $userSched;
 }
-/*
-	foreach ($userSched->getListOfSemesters()[1]->getLecs() as $lec)
-	{
-	  $courseInfo = array();
-	  $courseInfo['Course Name'] = $lec->getCourseName();
-	  $courseInfo['Credits'] = 3;
-	  array_push($semInfo[1],$courseInfo);
-	}
-	$semInfo[1] = array_slice($semInfo[1],1);
-	foreach ($userSched->getListOfSemesters()[2]->getLecs() as $lec)
-	{
-	  $courseInfo = array();
-	  $courseInfo['Course Name'] = $lec->getCourseName();
-	  $courseInfo['Credits'] = 3;
-	  array_push($semInfo[2],$courseInfo);
-	}
-	$semInfo[2] = array_slice($semInfo[2],1);
-	$_SESSION['semInfo'] = $semInfo;
-//var_dump (count($semInfo));
-}
-*/
+
 if( empty($_POST['submitID']) )
 {
 	if (empty($_SESSION['semInfo']))
