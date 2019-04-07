@@ -1,6 +1,12 @@
 <?php
 echo '<link href="css/style.css" rel="stylesheet">';
 
+if (session_status() == PHP_SESSION_ACTIVE)
+	session_destroy();
+
+session_start();
+
+
 //Page Info
 $page_name = "error 404 - Main page";
 $page_keywords = "Error404";

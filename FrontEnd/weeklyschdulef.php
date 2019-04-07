@@ -5,7 +5,6 @@ set_time_limit(0);
 $semIndex = $_GET['semester'];
 
 $userSched = $_SESSION['userSched'];
-var_dump($userSched->getListOfSemesters()[$semIndex]->getMyLecs());
 ?>
 <!doctype html>
 <html lang="en">
