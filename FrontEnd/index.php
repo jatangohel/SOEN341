@@ -97,16 +97,14 @@
             <br><br><br><br><br><br><br><br>
             <p class="text-center">
               Please Login if you have your credentails or Kindly Register yourself.
-          </p>
+            </p>
 
-          <div class="input-group">
+          <div class="input-group" style="width:55%;  position: relative; top: 15%; left: 50%; transform: translate(-50%,-50%)">
             <button class="btn btn-primary btn-block" data-toggle="modal" data-target= "#myModal">Login</button>
-            <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal2">Register</button>
-            <div style="text-align: center">
-            </br>
-                <a class="text-center"href="">Continue as Guest</a>
-                </div>
-        </div>
+            <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal2">Register</button></br>
+            
+            <a class="text-center"href="">Continue as Guest</a>
+          </div>
 
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -137,6 +135,11 @@
                      </div>
                  </div>
 
+                <h2 style="width: 100%; text-align: center; border-bottom: 1px solid #000; line-height: 0.1em; margin-top: 22px; margin-bottom: 26px; 0 20px;">
+                  <span style="background:#fff; padding:0 10px; font-size: 13px">OR</span>
+                </h2>
+
+                <button onclick="alert('Hello!')" class="loginBtn loginBtn--facebook" style="top: 12; left: 50%; transform: translate(-50%,-50%);">Login with Facebook</button>
              </div>
              <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
