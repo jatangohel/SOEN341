@@ -4,6 +4,24 @@
 if (session_status() != PHP_SESSION_ACTIVE)
 	session_start();
 ?>
+
+<?php
+changeLanguage();
+
+function changeLanguage()
+{ 
+  if(isset($_GET['Lang'])){
+    if($_GET['Lang'] == 'Fr')
+      $_SESSION['dispEng'] = 0;
+    else
+      $_SESSION['dispEng'] = 1;
+  }
+
+  //default language
+  if(!isset($_SESSION['dispEng']))
+  	$_SESSION['dispEng'];
+}
+?>
 <nav class="navbar navbar-expand-md navbar-dark bg-primary sticky-top">
 	<button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
 		<span class="navbar-toggler-icon"></span>
@@ -106,3 +124,14 @@ if (session_status() != PHP_SESSION_ACTIVE)
 
  </div>
 </nav>
+
+<script>
+   function LangURLChanger(Lang){
+        var currentPage = window.location.href;
+          
+        if(currentPage == currentPage.replace('Lang','x'))
+          window.location.href = currentPage+'?Lang='+Lang;
+        else
+          window.location.href = currentPage.substring(0,currentPage.length-2)+Lang;
+        }
+</script>

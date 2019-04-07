@@ -1,24 +1,8 @@
-<SCRIPT>
-function changeLanguage()
-{
-	<?php
-	echo "HELOOOOO";
-	var_dump($_SESSION);
-		if($_SESSION['dispEng'])
-			$_SESSION['dispEng']='0';
-		else
-			$_SESSION['dispEng']='1';
-	?>;
-	window.location.reload(false);
-}
-</SCRIPT>
-
 <footer>
-
   <div class="navbar navbar-inverse bg-dark fixed-bottom">
   <div class="navbar-text text-white pull-left">
     <p>
-		<?php
+		<?php 
 			if($_SESSION['dispEng'])
 				echo "Copyright 2019 Error404 Team";
 			else
@@ -44,7 +28,11 @@ function changeLanguage()
 			else
 				$languageHolder="English";
 		?>
-		<input type="button" value=<?= $languageHolder?> onClick="changeLanguage();">
+		
+		<!-- <input type="button" value=<?= $languageHolder?> onClick=""> -->
+		<a href="javascript:LangURLChanger('En')">English</a><span style="color:blue;"> - </span> 
+		<a href="javascript:LangURLChanger('Fr');">Français</a>
+
 	</form> 
 	<a href="#"><i class="fab fa-facebook-square"></i></a>
 	<a href="#"><i class="fab fa-google"></i></a>

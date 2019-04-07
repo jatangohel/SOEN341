@@ -4,9 +4,6 @@ require_once __DIR__.'/../Databases/DBinterface/DBinterface.php';
 require_once __DIR__.'/../PageBuilder/header.php';
 require_once 'backendInterface.php';
 
-
-
-
 /*
 Summary:
 
@@ -81,8 +78,7 @@ function cardDisp($i)
 	'</a>';
    // echo "&emsp;&emsp;&emsp;&emsp;";
 }
-session_start();
-//$_SESSION['dispEng']='0';
+
 ?>
 <!doctype html>
 <html lang="en">
