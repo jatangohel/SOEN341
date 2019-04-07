@@ -6,6 +6,9 @@ require_once "sessionfns.php";
 if (session_status() != PHP_SESSION_ACTIVE)
 	session_start();
 
+	var_dump ($_SESSION);
+
+
 function processNumCoursesConstraint()
 {
 	for ($i=0; $i < count($_POST['numCoursesYearTerm']); $i++)
@@ -30,11 +33,21 @@ function genNewSched ()
 		 }
 	}
 
-
 	$email = $_SESSION['userEmail'];
 	$userName = $_SESSION['userName'];
+
+	if ($userName == "GUEST")
+		$firstSem = $_POST['intake'];
+
+	else
+		$firstSem = getFirstSemester($email);
+
+		var_dump ($_POST);
+		var_dump ($firstSem);
+
+
 	$userSched = new UserSchedule($numCoursesArr, $noClassesArr);
-	$user = new User ($userName, $email, $userSched, 'F');
+	$user = new User ($userName, $email, $userSched, $firstSem);
 
 	$userSched->genProgramSched($user);
 
@@ -70,9 +83,9 @@ $_SESSION['userSched'] = $userSched;
 
 if( empty($_POST['submitID']) )
 {
-
 	if (empty($_SESSION['semInfo']))
 	{
+		echo "Generated new schedule";
 		$_SESSION['numCoursesYearTerm']= array();
 		$_SESSION['numCoursesConstrain']= array();
 		genNewSched();

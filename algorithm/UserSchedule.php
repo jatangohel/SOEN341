@@ -55,7 +55,12 @@ public function genProgramSched ($user)
 
   // Obtain untaken courses by the user
   if ($user->getUserName() == "GUEST")
-    $untakenCourses = getUntakenCoursesFrontEnd($_POST['check_list']);
+  {
+    if (!empty($_POST['check_list']))
+      $untakenCourses = getUntakenCoursesFrontEnd($_POST['check_list']);
+    else
+      $untakenCourses = getUntakenCoursesFrontEnd(array());
+  }
   else
     $untakenCourses = getUntakenCourses($user->getEmail());
 
@@ -63,6 +68,9 @@ public function genProgramSched ($user)
   $currentSemKey = array_search($user->getFirstSemester(), $semesters);
   $currentYear = 1;
   $flag=false;
+
+  var_dump ($user->getFirstSemester());
+  var_dump($currentSemKey);
 
   while (count($untakenCourses) != 0)
   {

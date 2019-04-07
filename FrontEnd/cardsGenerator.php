@@ -2,7 +2,10 @@
 require_once __DIR__.'/../algorithm/Semester.php';
 
 if (session_status() != PHP_SESSION_ACTIVE)
+{
+	ob_start();
 	session_start();
+}
 function cardDisp($i)
 {
   $semInfoFE = $_SESSION ['semInfo'];
@@ -10,9 +13,7 @@ function cardDisp($i)
 	$semNameFE = $_SESSION ['semName'];
 
 	$userSched = $_SESSION ['userSched'];
-	var_dump ($userSched);
-  // echo
-  // '<div class="card card-body text-center height:400px" style="background: #F8C471" >' .
+
   echo
   '<a class="card card-body text-center height:400px" id="hello" href="weeklyschdulef.php?semester=';echo"$i";echo'"class="custom-card" style="background: #F8C471">'.
   '<thead>'.

@@ -2,6 +2,8 @@
 <?php
 echo '<link href="../css/stylec.css" rel="stylesheet"/>';
 require_once 'backendInterface.php';
+
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -101,9 +103,9 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 						<td>
                 <h2 style="font-size: 15px" align="center">Choose Semester</h2>
               <select id = "list1",name="Term">
-							<option value="S" selected>Summer Term</option>
-							<option value="F">Fall Term</option>
-							<option value="W">Winter Term</option>
+							<option value="Summer" selected>Summer Term</option>
+							<option value="Fall">Fall Term</option>
+							<option value="Winter">Winter Term</option>
 							</select>
 
 						</td>
