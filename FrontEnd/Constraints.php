@@ -67,6 +67,25 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
   background-size: cover;
   background-attachment: fixed;
 }
+#loading {
+   width: 100%;
+   height: 100%;
+   top: 0;
+   left: 0;
+   position: fixed;
+   display: block;
+   opacity: 0.7;
+   background-color: #fff;
+   z-index: 99;
+   text-align: center;
+}
+
+#loading-image {
+  position: absolute;
+  top: 100px;
+  left: 240px;
+  z-index: 100;
+}
 	</style>
   </head>
  <body>
@@ -135,6 +154,9 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 		</div>
 	</div>
 
+<div id="loading">
+  <img id="loading-image" src="img_loading.gif" alt="Loading..." />
+</div>
 
 <div id="card" class ="container1">
 </div>
@@ -213,7 +235,11 @@ function getNumberOfCourse(){
 }
 
 $(document).ready(function(){
+		var x = document.getElementById("loading");
+		  x.style.display = "none";
 	$('#submit').click(function(){
+		 var x = document.getElementById("loading");
+		  x.style.display = "block";
 		$.post('backendInterface.php',{
       submitID:"Submit #Courses",
 			numCoursesYearTerm:getSelectYearTerm(),
@@ -222,6 +248,7 @@ $(document).ready(function(){
 			  $('#result').html(data);
         //setTimeout(window.location.reload(false), 10000) ;
         $("#card").load("cardsGenerator.php");
+        $('#loading').hide();
 			  });
 		   });
      });
