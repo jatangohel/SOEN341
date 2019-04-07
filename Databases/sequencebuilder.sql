@@ -651,12 +651,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`UserId`, `UserName`, `Password`, `Email`, `Activated`, `InputtedPassed`, `FirstSemester`) VALUES
-(1, 'Hani Sabsoob', 'HaniSX100234', 'sebhani98@gmail.com', 1, 1, 'R'),
-(2, 'John Malik', '123456789', 'JohnMalik@hotmail.com', 0, 0, 'R'),
-(3, 'Obama', '123123123', 'test@t.com', 1, 1, 'R'),
-(4, 'hdhsfc', '123123123', 'htest@hh.com', 1, 0, 'F'),
-(5, 'Obama', '12345678', 'jatan@h.com', 1, 0, 'R'),
-(6, 'Hani Sabsoob', 'hani100234', 'hani-111-222@hotmail.com', 1, 0, 'R');
+(1, 'Hani Sabsoob', 'HaniSX100234', 'sebhani98@gmail.com', 1, 1, 'Fall'),
+(2, 'John Malik', '123456789', 'JohnMalik@hotmail.com', 0, 0, 'Winter'),
+(3, 'Obama', '123123123', 'test@t.com', 1, 1, 'Fall'),
+(4, 'hdhsfc', '123123123', 'htest@hh.com', 1, 0, 'Summer'),
+(5, 'Obama', '12345678', 'jatan@h.com', 1, 0, 'Fall'),
+(6, 'Hani Sabsoob', 'hani100234', 'hani-111-222@hotmail.com', 1, 0, 'Winter');
 
 -- --------------------------------------------------------
 
