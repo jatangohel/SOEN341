@@ -45,7 +45,7 @@
 		max-width: 5em;
 		white-space: nowrap;
 		color: #1D1E22;
-		animation: loading 1.8s linear;
+		animation: loading 2s linear;
 	}
 	@keyframes loading {
 		0% {
