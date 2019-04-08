@@ -97,13 +97,13 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
     <h2 align="center">Add Costraints</h2>
 
 
-		<div class="form-group">
+		<div style="background-color:#bf893d"class="form-group p-3 mb-2 rounded">
       <!-- <div class="center"> -->
 			<form name="add_name" id="add_name">
-				<table class="table table-bordered" id="dynamic_field">
+				<table class="table table-borderless" id="dynamic_field">
 					 <tr>
 						<td>
-              <h2 style="font-size: 15px" align="center">Choose Year</h2>
+              <h2 style="font-size: 15px" align="left">Choose Year</h2>
               <!-- <div class="ceter"> -->
                 <select id= "listYear1",name="Years" >
                 <option value="1" selected>First Year</option>
@@ -118,7 +118,7 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 
 						</td>
 						<td>
-                <h2 style="font-size: 15px" align="center">Choose Semester</h2>
+                <h2 style="font-size: 15px" align="left">Choose Semester</h2>
               <select id = "list1",name="Term">
 							<option value="S" selected>Summer Term</option>
 							<option value="F">Fall Term</option>
@@ -126,7 +126,7 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 							</select>
 
 						</td>
-						<td><h2 style="font-size: 15px" align="center">Maximum Classes This Semester </h2>
+						<td><h2 style="font-size: 15px" align="left">Maximum Classes This Semester </h2>
 
               <select name="Number" id="number1">
 							<option value="0" selected>0</option>
@@ -141,7 +141,7 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
             <!-- <td>
               <p>  Minimum Credits This Semester </p> </td> -->
                   <td>
-                    <h2 style="font-size: 15px" align="center">Minimum Credits This Semester </h2>
+                    <h2 style="font-size: 15px" align="left">Minimum Credits This Semester </h2>
               <input type="number" min="0" max="18" id="credits1"/> &nbsp;&nbsp;
             </td>
 						<td><button type="button" name="add" id="add" class="btn btn-success">Next</button></td>
