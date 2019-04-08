@@ -1,3 +1,11 @@
+<?php
+if (session_status() != PHP_SESSION_ACTIVE)
+{
+  ob_start();
+  session_start();
+}
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -16,7 +24,14 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 
-<title>Profile Page</title>
+<title>
+  <?php
+		if($_SESSION['dispEng'])
+			echo "Profile page";
+		else
+			echo "Profil";
+	?>
+</title>
   <style>
 
 
@@ -139,7 +154,7 @@ opacity:0.96;
   </head>
 
   <body>
-  
+
 
 
 
@@ -151,17 +166,33 @@ opacity:0.96;
 
       <img src="https://www.qualiscare.com/wp-content/uploads/2017/08/default-user.png" alt="avatar" width="100" height="100">
 
-          <h1>Profile Information</h1>
-
-
+          <h1>
+            <?php
+      				if($_SESSION['dispEng'])
+      					echo "Your Profile";
+      				else
+      					echo "Votre Profil";
+            ?>
+          </h1>
       <form>
-
           <br>
-
-          <p>Current Username</p>
+          <p>
+            <?php
+      				if($_SESSION['dispEng'])
+      					echo "Username";
+      				else
+      					echo "Nom d'utilisateur";
+      			?>
+          </p>
 
           <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Change
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+              <?php
+      					if($_SESSION['dispEng'])
+      						echo "Change";
+      					else
+      						echo "Changer";
+      				?>
               <span class="caret"></span></button>
               <ul class="dropdown-menu">
                 <input type="text" name="" value="new username" ><br>
@@ -174,7 +205,13 @@ opacity:0.96;
           <p>Current Email Address</p>
 
           <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Change
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+              <?php
+      					if($_SESSION['dispEng'])
+      						echo "Change";
+      					else
+      						echo "Changer";
+      				?>
               <span class="caret"></span></button>
               <ul class="dropdown-menu">
                 <input type="text" name="" value="new Email" ><br>
@@ -187,7 +224,13 @@ opacity:0.96;
           <p>Password</p>
 
           <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Change
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+              <?php
+      					if($_SESSION['dispEng'])
+      						echo "Change";
+      					else
+      						echo "Changer";
+      				?>
               <span class="caret"></span></button>
               <ul class="dropdown-menu">
                 <input type="text" name="" value="new Password" ><br>
@@ -199,46 +242,23 @@ opacity:0.96;
 
 
 
-            <button class="submit-button btn-lg btn-primary" id="submit" name="submit"> Submit </button>
+            <button class="submit-button btn-lg btn-primary" id="submit" name="submit">
+              <?php
+      					if($_SESSION['dispEng'])
+      						echo "Submit";
+      					else
+      						echo "Soumettre";
+      				?>
+            </button>
 
         </div>
 
      </form>
       </div>
-
 <br><br>
-
     </center>
 
-
-
-
 	<br><br><br><br><br>
-    <footer>
-
-      <div class="navbar navbar-inverse bg-dark fixed-bottom">
-      <div class="navbar-text text-white pull-left">
-        <p> Copyright Error404 Team 2019</p>
-      </div>
-      <div class="navbar-text text-success text-center">
-        <p> Please Share this Website to your friends, thanks!</p>
-      </div>
-      <div class="navbar-text pull-right">
-      <a href="#"><i class="fab fa-facebook-square"></i></a>
-      <a href="#"><i class="fab fa-google"></i></a>
-      <a href="#"><i class="fab fa-twitter-square"></i></a>
-      <a href="#"><i class="fas fa-share-square"></i></a>
-      </div>
-    </div>
-
-      </footer>
-
-  <script>
-
-
-
-
-     </script>
 
 
   </body>
