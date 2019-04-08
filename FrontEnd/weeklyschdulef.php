@@ -21,7 +21,14 @@ $userSched = $_SESSION['userSched'];
 
 
 
-	<title>SOEN Course Stream</title></head>
+	<title>
+    <?php
+  		if($_SESSION['dispEng'])
+  			echo "SOEN Course Stream";
+  		else
+  			echo "Cours SOEN";
+  	?>
+  </title></head>
 	<style>
 	        :root{
           --mainColor: #14162B;
@@ -130,9 +137,23 @@ $userSched = $_SESSION['userSched'];
  <div class="topHeader">
         <button class="btn btn-warning" style="float:left; margin-left:20px;"><strong>Print Schedule</strong></button>
 
-        <h1 class="text-center">Weekly Schedule</h1>
+        <h1 class="text-center">
+          <?php
+    				if($_SESSION['dispEng'])
+    					echo "Weekly Schedule";
+    				else
+    					echo "Horaire hebdomadaire";
+    			?>
+        </h1>
 		<div class="dropdown" style="float:right;margin-right:10px;">
-			<button class="btn btn-primary dropdown-toggle" name="btndropdown"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add Time Constrain</button>
+			<button class="btn btn-primary dropdown-toggle" name="btndropdown"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <?php
+					if($_SESSION['dispEng'])
+						echo "Add Time Constraint";
+					else
+						echo "Ajouter contrainte";
+				?>
+      </button>
 				<div class="dropdown-menu dropdown-menu-right">
 					<div class="form-group">
 						<form name="add_name" id="add_name">
@@ -758,9 +779,9 @@ $userSched = $_SESSION['userSched'];
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
-		
-		
-		
+
+
+
 		<tr>
           <td class="time" rowspan="4" scope="row"><span class>22:00</span>&nbsp;</td>
           <td class="M" name="M220000" id="M220000">&nbsp;</td>
