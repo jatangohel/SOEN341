@@ -17,10 +17,6 @@ if (session_status() != PHP_SESSION_ACTIVE)
 
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="dropdown_target" href="#">
-                    Dropdown
-                    <span class="caret"></span>
-                </a>
             <div class="dropdown-menu" aria-labelledby="dropdown_target">
                 <ul class="navbar-nav">
                 <a class="dropdown-item">Item 1</a>
