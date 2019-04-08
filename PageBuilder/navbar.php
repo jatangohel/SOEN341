@@ -62,7 +62,7 @@ function changeLanguage()
             </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="FrontEnd/profilePage.php">
                   <?php
             				if($_SESSION['dispEng'])
             					echo "Profile";
@@ -72,7 +72,7 @@ function changeLanguage()
                  </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="FrontEnd/about.php">
                   <?php
             				if($_SESSION['dispEng'])
             					echo "About us";

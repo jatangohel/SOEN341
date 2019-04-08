@@ -1,12 +1,17 @@
 <?php
-	ob_start();
-   session_start();
-?>
-<?php
+if (session_status() != PHP_SESSION_ACTIVE)
+{
+  ob_start();
+  session_start();
+}
 
 	echo $_SESSION['userName'];
-	echo ", you've successfully logged out";
-	
+
+	if($_SESSION['dispEng'])
+		echo "You have been successfully logged out.";
+	else
+		echo "Vous avez été déconnecté avec succès.";
+
 	session_destroy();
 	header('Refresh: 2; URL = ../index.php');
 
