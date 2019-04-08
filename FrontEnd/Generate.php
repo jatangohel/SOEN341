@@ -6,7 +6,10 @@
 ?>
 <?php
 	if(!isset($_SESSION['loggedin'])){
-		echo "Login please!";
+    if($_SESSION['dispEng'])
+      echo "Login please.";
+    else
+      echo "Inscrivez-vous s'il vous plait.";
 		header('Refresh: 2; URL = index.php');
 	}
 
@@ -21,7 +24,14 @@
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
-	 <title>SOEN Course Stream</title>
+	 <title>
+     <?php
+   			if($_SESSION['dispEng'])
+   				echo "SOEN Course Stream";
+   			else
+   				echo "Cours SOEN";
+     ?>
+   </title>
 <style>
 
     tr{
@@ -154,14 +164,26 @@
 -->
 
 
-
+<?php
+  if($_SESSION['dispEng'])
+    $passHolder = "PASS";
+  else
+    $passHolder = "PASSÉ";
+?>
 	<div class="container" id="container">
         <form id="generatecourse" action="/SOEN341/FrontEnd/Constraints.php" method="POST">
 		<table class="gridtable" id="tableMain" border="0">
 			<thead>
 				<tr class="tableheader">
-					<th>Course Name</th>
-					<th>Pass To Check</th>
+					<th>
+						<?php
+							if($_SESSION['dispEng'])
+								echo "Course Name";
+							else
+								echo "Nom du cours";
+						?>
+          </th>
+					<th>Check Passed</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -170,17 +192,22 @@
 				<tbody class="labels" data-toggle="collapse" href="#data_3"  aria-expanded="true">
 					<tr>
 						<td colspan="2">
-							<label for="Electrics">Electrics &nbsp;&nbsp;&nbsp;<i class="fas fa-angle-down"></i></label>
+							<label for="Electrics">
+                <?php
+									if($_SESSION['dispEng'])
+										echo "Electrical";
+									else
+										echo "Électrique";
+								?>
+                 &nbsp;&nbsp;&nbsp;<i class="fas fa-angle-down"></i></label>
 <!--							<input type="checkbox" name="Electrics" id="Electrics" data-toggle="toggle">-->
 						</td>
 					</tr>
 				</tbody>
 				<tbody class="collapse" id="data_3">
-					<tr class="hide"><td>ELEC 275</td><td> <label for="ELEC275">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>ELEC 275</td><td> <label for="ELEC275"> <?php echo $passHolder ?> &nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox" id="ELEC275" name="check_list[]" value="ELEC275"> </td></tr>
 				</tbody>
-
-
 
 
 
@@ -189,13 +216,20 @@
 				<tbody class="labels" data-toggle="collapse" href="#data_4"  aria-expanded="true">
 					<tr>
 						<td colspan="2">
-							<label for="ENCS">Engineering and Computer Science&nbsp;&nbsp;&nbsp;<i class="fas fa fa-angle-down"></i></label>
+							<label for="ENCS">
+                <?php
+									if($_SESSION['dispEng'])
+										echo "Engineering and Computer Science";
+									else
+										echo "Ingénierie et informatique";
+                ?>
+                &nbsp;&nbsp;&nbsp;<i class="fas fa fa-angle-down"></i></label>
 <!--							<input type="checkbox" name="ENCS" id="ENCS" data-toggle="toggle">-->
 						</td>
 					</tr>
 				</tbody>
 				<tbody class="collapse" id="data_4">
-					<tr class="hide"><td>ENCS 282</td><td> <label for="ENCS282">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>ENCS 282</td><td> <label for="ENCS282"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox" id="ENCS282" name="check_list[]" value="ENCS282"> </td></tr>
 				</tbody>
 
@@ -204,115 +238,171 @@
 				<tbody class="labels" data-toggle="collapse" data-target="#data_5" aria-expanded="true">
 					<tr>
 						<td colspan="2">
-							<label for="Engineering">Engineering &nbsp;&nbsp;&nbsp;<i class="fas fa-angle-down"></i></label>
+							<label for="Engineering">
+                <?php
+									if($_SESSION['dispEng'])
+										echo "Engineering";
+									else
+										echo "Ingénierie";
+                ?>
+                 &nbsp;&nbsp;&nbsp;<i class="fas fa-angle-down"></i></label>
 <!--							<input type="checkbox" name="Engineering" id="Engineering" data-toggle="toggle">-->
 						</td>
 					</tr>
 				</tbody>
 				<tbody class="collapse" id="data_5">
-					<tr class="hide"><td>ENGR 201</td><td> <label for="ENGR201">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>ENGR 201</td><td> <label for="ENGR201"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox"  id="ENGR201" name="check_list[]" value="ENGR201"> </td></tr>
-					<tr class="hide"><td>ENGR 202</td><td> <label for="ENGR202">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>ENGR 202</td><td> <label for="ENGR202"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox" id="ENGR202" name="check_list[]" value="ENGR202"> </td></tr>
-					<tr class="hide"><td>ENGR 213</td><td> <label for="ENGR213">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>ENGR 213</td><td> <label for="ENGR213"> <?php echo $passHolder ?>  &nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox"  id="ENGR213" name="check_list[]" value="ENGR213"> </td></tr>
-					<tr class="hide"><td>ENGR 233</td><td> <label for="ENGR233">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>ENGR 233</td><td> <label for="ENGR233"> <?php echo $passHolder ?>  &nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox"  id="ENGR233" name="check_list[]" value="ENGR233"> </td></tr>
-					<tr class="hide"><td>ENGR 301</td><td> <label for="ENGR301">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>ENGR 301</td><td> <label for="ENGR301"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox"  id="ENGR301" name="check_list[]" value="ENGR301"> </td></tr>
-					<tr class="hide"><td>ENGR 371</td><td> <label for="ENGR371">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>ENGR 371</td><td> <label for="ENGR371"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox"  id="ENGR371" name="check_list[]" value="ENGR371"> </td></tr>
 				</tbody>
 
 				<tbody class="labels" data-toggle="collapse" data-target="#data_6" aria-expanded="true">
 					<tr>
 						<td colspan="2">
-							<label for="Computer">Computer &nbsp;&nbsp;&nbsp;<i class="fas fa-angle-down"></i></label>
+							<label for="Computer">
+                <?php
+									if($_SESSION['dispEng'])
+										echo "Computer";
+									else
+										echo "Ordinateurs";
+								?>
+                 &nbsp;&nbsp;&nbsp;<i class="fas fa-angle-down"></i></label>
 <!--							<input type="checkbox" name="Computer" id="Computer" data-toggle="toggle">-->
 						</td>
 					</tr>
 				</tbody>
 				<tbody class="collapse" id="data_6">
-					<tr class="hide"><td>COMP 232</td><td> <label for="COMP232">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>COMP 232</td><td> <label for="COMP232"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox" id="COMP232" name="check_list[]" value="COMP232"> </td></tr>
-					<tr class="hide"><td>COMP 248</td><td> <label for="COMP248">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>COMP 248</td><td> <label for="COMP248"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox" id="COMP248" name="check_list[]" value="COMP248"> </td></tr>
-					<tr class="hide"><td>COMP 249</td><td> <label for="COMP249">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>COMP 249</td><td> <label for="COMP249"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox" id="COMP249" name="check_list[]" value="COMP249"> </td></tr>
-					<tr class="hide"><td>COMP 335</td><td> <label for="COMP335">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>COMP 335</td><td> <label for="COMP335"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox" id="COMP335" name="check_list[]" value="COMP335"> </td></tr>
-					<tr class="hide"><td>COMP 346</td><td> <label for="COMP346">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>COMP 346</td><td> <label for="COMP346"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox" id="COMP346" name="check_list[]" value="COMP346"> </td></tr>
-					<tr class="hide"><td>COMP 348</td><td> <label for="COMP348">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>COMP 348</td><td> <label for="COMP348"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox" id="COMP348" name="check_list[]" value="COMP348"> </td></tr>
-					<tr class="hide"><td>COMP 352</td><td> <label for="COMP352">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>COMP 352</td><td> <label for="COMP352"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox" id="COMP352" name="check_list[]" value="COMP352"> </td></tr>
 				</tbody>
 
 				<tbody class="labels" data-toggle="collapse" data-target="#data_7" aria-expanded="true">
 					<tr>
 						<td colspan="2">
-							<label for="SOEN">Software Engineering &nbsp;&nbsp;&nbsp;<i class="fas fa-angle-down"></i></label>
+							<label for="SOEN">
+                <?php
+									if($_SESSION['dispEng'])
+										echo "Software Engineering";
+									else
+										echo "Génie informatique";
+								?>
+                &nbsp;&nbsp;&nbsp;<i class="fas fa-angle-down"></i></label>
 <!--							<input type="checkbox" name="SOEN" id="SOEN" data-toggle="toggle">-->
 						</td>
 					</tr>
 				</tbody>
 				<tbody class="collapse" id="data_7">
-					<tr class="hide"><td>SOEN 228</td><td> <label for="SOEN228">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>SOEN 228</td><td> <label for="SOEN228"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox" id="SOEN228" name="check_list[]" value="SOEN228"> </td></tr>
-					<tr class="hide"><td>SOEN 287</td><td> <label for="SOEN287">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>SOEN 287</td><td> <label for="SOEN287"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox" id="SOEN287" name="check_list[]" value="SOEN287"> </td></tr>
-					<tr class="hide"><td>SOEN 321</td><td> <label for="SOEN321">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>SOEN 321</td><td> <label for="SOEN321"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox" id="SOEN321" name="check_list[]" value="SOEN321"> </td></tr>
-					<tr class="hide"><td>SOEN 331</td><td> <label for="SOEN331">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>SOEN 331</td><td> <label for="SOEN331"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox" id="SOEN331" name="check_list[]" value="SOEN331"> </td></tr>
-					<tr class="hide"><td>SOEN 341</td><td> <label for="SOEN341">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>SOEN 341</td><td> <label for="SOEN341"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox" id="SOEN341" name="check_list[]" value="SOEN341"> </td></tr>
-					<tr class="hide"><td>SOEN 342</td><td> <label for="SOEN342">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>SOEN 342</td><td> <label for="SOEN342"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox" id="SOEN342" name="check_list[]" value="SOEN342"> </td></tr>
-					<tr class="hide"><td>SOEN 343</td><td> <label for="SOEN343">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>SOEN 343</td><td> <label for="SOEN343"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox" id="SOEN343" name="check_list[]" value="SOEN343"> </td></tr>
-					<tr class="hide"><td>SOEN 344</td><td> <label for="SOEN344">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>SOEN 344</td><td> <label for="SOEN344"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox" id="SOEN344" name="check_list[]" value="SOEN344"> </td></tr>
-					<tr class="hide"><td>SOEN 345</td><td> <label for="SOEN345">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>SOEN 345</td><td> <label for="SOEN345"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox" id="SOEN345" name="check_list[]" value="SOEN345"> </td></tr>
-					<tr class="hide"><td>SOEN 357</td><td> <label for="SOEN357">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>SOEN 357</td><td> <label for="SOEN357"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox" id="SOEN357" name="check_list[]"value="SOEN357"> </td></tr>
-					<tr class="hide"><td>SOEN 384</td><td> <label for="SOEN384">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>SOEN 384</td><td> <label for="SOEN384"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox" id="SOEN384" name="check_list[]" value="SOEN384"> </td></tr>
-					<tr class="hide"><td>SOEN 385</td><td> <label for="SOEN385">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>SOEN 385</td><td> <label for="SOEN385"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox" id="SOEN385" name="check_list[]" value="SOEN385"> </td></tr>
-					<tr class="hide"><td>SOEN 390</td><td> <label for="SOEN390">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>SOEN 390</td><td> <label for="SOEN390"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox" id="SOEN390" name="check_list[]" value="SOEN390"> </td></tr>
-					<tr class="hide"><td>SOEN 490</td><td> <label for="SOEN490">PASS&nbsp;&nbsp;&nbsp;
+					<tr class="hide"><td>SOEN 490</td><td> <label for="SOEN490"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox" id="SOEN490" name="check_list[]" value="SOEN490"> </td></tr>
 				</tbody>
 		</table>
         	<center>
                 <div class="radio_buttons">
 
-                    <p><b><u>Kindly select your start semester in order to continue!</u></b></p>
+                    <p><b><u>
+                      <?php
+          							if($_SESSION['dispEng'])
+          								echo "Select your starting semester to continue";
+          							else
+          								echo "Choisissez votre semestre de départ pour continuer";
+          						?>
+                    </u></b></p>
 
                     <div class="custom-control custom-radio">
                   <input type="radio" class="custom-control-input" id="fall" name="intake" value="Fall" required>
-                    <label for="fall" class="custom-control-label">Fall Intake</label></div>
+                    <label for="fall" class="custom-control-label">
+                      <?php
+          							if($_SESSION['dispEng'])
+          								echo "Fall";
+          							else
+          								echo "Automne";
+          						?>
+                    </label></div>
                 &nbsp;&nbsp;&nbsp;&nbsp;
 
 
                     <div class="custom-control custom-radio">
                  <input type="radio" class="custom-control-input" id="winter" name="intake" value="Winter" required>
-                        <label for="winter" class="custom-control-label">Winter Intake</label></div>
+                        <label for="winter" class="custom-control-label">
+                          <?php
+            								if($_SESSION['dispEng'])
+            									echo "Winter";
+            								else
+            									echo "Hiver";
+            							?>
+                        </label></div>
                 &nbsp;&nbsp;&nbsp;&nbsp;
 
 
                         <div class="custom-control custom-radio">
 				 <input type="radio" class="custom-control-input" id="summer" name="intake" value="Summer" required>
-                            <label for="summer" class="custom-control-label">Summer Intake</label></div>
+                            <label for="summer" class="custom-control-label">
+                              <?php
+              									if($_SESSION['dispEng'])
+              										echo "Summer";
+              									else
+              										echo "Été";
+                              ?>
+                            </label></div>
                 &nbsp;&nbsp;&nbsp;&nbsp;
 
                 <br>
 
-                <button class="submit-button btn-lg btn-primary" id="generate" name="generate"> Generate </button>
+                <button class="submit-button btn-lg btn-primary" id="generate" name="generate">
+                  <?php
+        						if($_SESSION['dispEng'])
+        							echo "Generate";
+        						else
+        							echo "Générer";
+                  ?>
+                 </button>
 
                 </div>
 
