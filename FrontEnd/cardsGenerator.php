@@ -17,8 +17,39 @@ function cardDisp($i)
   '<thead>'.
   '<tr class="tableheader">'.
   '<th><strong>';
-	echo 'Year '; echo $semYearFE[$i]; echo ', ';
-	echo $semNameFE[$i]; echo ' Semester';
+
+	if ($_SESSION['dispEng'])
+		echo 'Year ';
+	else
+		echo 'Année ';
+
+	echo $semYearFE[$i]; echo ', ';
+
+	if ($_SESSION['dispEng'])
+		echo $semNameFE[$i];
+	else
+	{
+		switch ($semNameFE[$i])
+		{
+			case "Fall":
+				echo "Automne";
+			break;
+
+			case "Winter":
+				echo "Hiver";
+			break;
+
+			case "Summer":
+				echo "Été";
+			break;
+		}
+	}
+
+	if ($_SESSION['dispEng'])
+		echo ' Semester';
+	else
+		echo ' Semestre';
+
   echo ' </th>'.
   '</tr></strong>'.
   '</thead>'.
@@ -46,7 +77,14 @@ function cardDisp($i)
 
 <div id="card" class ="container1">
 	<!-- <div id="card"  class="jumbotron jumbotron-fluid" > -->
-    <h2 align="center"class="header margin-top:0px">General Course Schedule</h2>
+    <h2 align="center"class="header margin-top:0px">
+			<?php
+				if($_SESSION['dispEng'])
+					echo "General Course Schedule";
+				else
+					echo "Horaire des cours";
+			?>
+		</h2>
     <br />
     <div  class="card-cloumns">
       <div class = "row">

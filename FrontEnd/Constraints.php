@@ -3,7 +3,6 @@
 echo '<link href="../css/stylec.css" rel="stylesheet"/>';
 require_once 'backendInterface.php';
 
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -108,23 +107,91 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
               <h2 style="font-size: 15px" align="center">Choose Year</h2>
               <!-- <div class="ceter"> -->
                 <select id= "listYear1",name="Years" >
-                <option value="1" selected>First Year</option>
-                <option value="2">Second Year</option>
-                <option value="3">Third Year</option>
-                <option value="4">Fourth Year</option>
-                <option value="5">Fifth Year</option>
-                <option value="6">Sixth Year</option>
+                <option value="1" selected>
+                  <?php
+                  	if($_SESSION['dispEng'])
+  										echo "First Year";
+  									else
+  										echo "Première année";
+  								?>
+                </option>
+
+                <option value="2">
+                  <?php
+									if($_SESSION['dispEng'])
+										echo "Second Year";
+									else
+										echo "Deuxième année";
+								  ?>
+                </option>
+
+                <option value="3">
+                  <?php
+									if($_SESSION['dispEng'])
+										echo "Third Year";
+									else
+										echo "Troisième année";
+								  ?>
+                </option>
+
+                <option value="4">
+                  <?php
+									if($_SESSION['dispEng'])
+										echo "Fourth Year";
+									else
+										echo "Quatrième année";
+								  ?>
+                </option>
+
+                <option value="5">
+                  <?php
+  									if($_SESSION['dispEng'])
+  										echo "Fifth Year";
+  									else
+  										echo "Cinqième année";
+								  ?>
+                </option>
+
+                <option value="6">
+                  <?php
+  									if($_SESSION['dispEng'])
+  										echo "Sixth Year";
+  									else
+  										echo "Sixième année";
+  								?>
+                </option>
                 </select>
               <!-- </div> -->
 
 
 						</td>
 						<td>
-                <h2 style="font-size: 15px" align="center">Choose Semester</h2>
+                <h2 style="font-size: 15px" align="center">Semester</h2>
               <select id = "list1",name="Term">
-							<option value="Summer" selected>Summer Term</option>
-							<option value="Fall">Fall Term</option>
-							<option value="Winter">Winter Term</option>
+							<option value="Summer" selected>
+                <?php
+									if($_SESSION['dispEng'])
+										echo "Summer Term";
+									else
+										echo "Session d'été";
+								?>
+              </option>
+							<option value="Fall">
+                <?php
+									if($_SESSION['dispEng'])
+										echo "Fall Term";
+									else
+										echo "Session d'automne";
+								?>
+              </option>
+							<option value="Winter">
+                <?php
+									if($_SESSION['dispEng'])
+										echo "Winter Term";
+									else
+										echo "Session d'hiver";
+								?>
+              </option>
 							</select>
 
 						</td>
@@ -143,13 +210,32 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
             <!-- <td>
               <p>  Minimum Credits This Semester </p> </td> -->
                   <td>
-                    <h2 style="font-size: 15px" align="center">Minimum Credits This Semester </h2>
+                    <h2 style="font-size: 15px" align="center">
+                      <?php
+                        if ($_SESSION['dispEng'])
+                        	echo 'Minimum credits this semester';
+                        else
+                        	echo 'Crédits minimum pour ce semestre';
+                      ?>
+                    </h2>
               <input type="number" min="0" max="18" id="credits1"/> &nbsp;&nbsp;
             </td>
-						<td><button type="button" name="add" id="add" class="btn btn-success">Next</button></td>
+						<td><button type="button" name="add" id="add" class="btn btn-success">
+              <?php
+								if($_SESSION['dispEng'])
+									echo "Next";
+								else
+									echo "Suivant";
+							?>
+            </button></td>
 					</tr>
 				</table>
-				<input type="button" class="btn btn-primary" name="submit" id="submit" value="submit"/>&nbsp;
+        <?php
+          if ($_SESSION['dispEng'])
+        		echo '<input type="button" class="btn btn-success btn-sm" name="submit" id="submit" value="Submit"/></p>';
+        	else
+        		echo '<input type="button" class="btn btn-success btn-sm" name="submit" id="submit" value="Soumettre"/></p>';
+        ?>
         <input type="button" class="btn btn-primary" onclick="window.print()" value="Print General Course Schedule"/>
 			</form>
 			<div id="result"></div>
