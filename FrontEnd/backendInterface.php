@@ -22,31 +22,16 @@ function genNewSched ()
 			$numCoursesArr[$term] = $_SESSION['numCoursesConstrain'][$i];
 		 }
 	}
-
 	$email = $_SESSION['userEmail'];
 	$userName = $_SESSION['userName'];
 
-	if ($userName == "GUEST")
-		$firstSem = $_POST['intake'];
-
-	else
-		$firstSem = getFirstSemester($email);
-
-
 	$userSched = new UserSchedule($numCoursesArr, $noClassesArr);
-	$user = new User ($userName, $email, $userSched, $firstSem);
-
+	$user = new User ($userName, $email, $userSched, 'F');
 	$userSched->genProgramSched($user);
 
 	$semInfo = array();
-	$semYear = array();
-	$semName = array();
-
 	for ($i =0;$i<count($userSched->getListOfSemesters());$i++){
 	$semInfo[$i]= array (array());
-	$semYear[$i]= $userSched->getListOfSemesters()[$i]->getYear();
-	$semName[$i]= $userSched->getListOfSemesters()[$i]->getName();
-
 	foreach ($userSched->getListOfSemesters()[$i]->getLecs() as $lec)
 	{
 	  $courseInfo = array();
@@ -57,11 +42,8 @@ function genNewSched ()
 	$semInfo[$i] = array_slice($semInfo[$i],1);
 	}
 $_SESSION['semInfo'] = $semInfo;
-$_SESSION['semYear'] = $semYear;
-$_SESSION['semName'] = $semName;
 $_SESSION['userSched'] = $userSched;
 }
-
 
 if( empty($_POST['submitID']) )
 {
