@@ -160,8 +160,7 @@
 		<table class="gridtable" id="tableMain" border="0">
 			<thead>
 				<tr class="tableheader">
-					<th>Course Name</th>
-					<th>Pass To Check</th>
+					<th><h3>Select Passed Courses</h3></th>
 				</tr>
 			</thead>
 			<tbody>
