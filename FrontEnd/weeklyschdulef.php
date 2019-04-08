@@ -159,20 +159,90 @@ $userSched = $_SESSION['userSched'];
 						<form name="add_name" id="add_name">
 							<table class="table table-bordered" id="dynamic_field">
 								<tr>
-									<th class="text-center">Days</th>
-									<th class="text-center">Start Time</th>
-									<th class="text-center">End Time</th>
+									<th class="text-center">
+                    <?php
+											if($_SESSION['dispEng'])
+												echo "Days";
+											else
+												echo "Jours";
+										?>
+                  </th>
+									<th class="text-center">
+                    <?php
+											if($_SESSION['dispEng'])
+												echo "Start Time";
+											else
+												echo "Début";
+										?>
+                  </th>
+									<th class="text-center">
+                    <?php
+											if($_SESSION['dispEng'])
+												echo "End Time";
+											else
+												echo "Fin";
+										?>
+                  </th>
 									<th class="text-center">Status</th>
 								</tr>
 								<tr>
 									<td><select name="Days" style="text-align:center;">
-										<option value="Monday">Monday</option>
-										<option value="Tuesday">Tuesday</option>
-										<option value="Wednesday">Wednesday</option>
-										<option value="Thursday">Thursday</option>
-										<option value="Friday">Friday</option>
-										<option value="Saturday">Saturday</option>
-										<option value="Sunday">Sunday</option>
+										<option value="Monday">
+                      <?php
+												if($_SESSION['dispEng'])
+													echo "Monday";
+												else
+													echo "Lundi";
+											?>
+                    </option>
+										<option value="Tuesday">
+                      <?php
+												if($_SESSION['dispEng'])
+													echo "Tuesday";
+												else
+													echo "Mardi";
+											?>
+                    </option>
+										<option value="Wednesday">
+                      <?php
+												if($_SESSION['dispEng'])
+													echo "Wednesday";
+												else
+													echo "Mercredi";
+											?>
+                    </option>
+										<option value="Thursday">
+                      <?php
+												if($_SESSION['dispEng'])
+													echo "Thursday";
+												else
+													echo "Jeudi";
+											?>
+                    </option>
+										<option value="Friday">
+                      <?php
+												if($_SESSION['dispEng'])
+													echo "Friday";
+												else
+													echo "Vendredi";
+											?>
+                    </option>
+										<option value="Saturday">
+                      <?php
+												if($_SESSION['dispEng'])
+													echo "Saturday";
+												else
+													echo "Samedi";
+											?>
+                      </option>
+										<option value="Sunday">
+                      <?php
+												if($_SESSION['dispEng'])
+													echo "Sunday";
+												else
+													echo "Dimanche";
+											?>
+                    </option>
 									</td>
 
 									<td></select><input type="time" id="starting1" name="starting1" placeholder="Starting Time"></td>
@@ -190,14 +260,70 @@ $userSched = $_SESSION['userSched'];
 
       <table class="tableTimes" style=" text-align:center" >
 	          <tr class="table table-bordered">
-          <th style="margin-left:20px">Time</th>
-          <th>Monday</th>
-          <th>Tuesday</th>
-          <th>Wednesday</th>
-          <th>Thursday</th>
-          <th>Friday</th>
-          <th>Saturday</th>
-          <th>Sunday</th>
+          <th style="margin-left:20px">
+            <?php
+    					if($_SESSION['dispEng'])
+    						echo "Time";
+    					else
+    						echo "Heures";
+    				?>
+          </th>
+          <th>
+            <?php
+            if($_SESSION['dispEng'])
+              echo "Monday";
+            else
+              echo "Lundi";
+            ?>
+          </th>
+          <th>
+            <?php
+              if($_SESSION['dispEng'])
+                echo "Tuesday";
+              else
+                echo "Mardi";
+            ?>
+          </th>
+          <th>
+            <?php
+              if($_SESSION['dispEng'])
+                echo "Wednesday";
+              else
+                echo "Mercredi";
+            ?>
+          </th>
+          <th>
+            <?php
+              if($_SESSION['dispEng'])
+                echo "Thursday";
+              else
+                echo "Jeudi";
+            ?>
+          </th>
+          <th>
+            <?php
+              if($_SESSION['dispEng'])
+                echo "Friday";
+              else
+                echo "Vendredi";
+            ?>
+          </th>
+          <th>
+            <?php
+              if($_SESSION['dispEng'])
+                echo "Saturday";
+              else
+                echo "Samedi";
+            ?>
+          </th>
+          <th>
+            <?php
+              if($_SESSION['dispEng'])
+                echo "Sunday";
+              else
+                echo "Dimanche";
+            ?>
+          </th>
         </tr>
 
         <tr style="border-top: 2px solid black; ">
