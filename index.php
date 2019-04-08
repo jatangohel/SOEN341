@@ -12,7 +12,6 @@ $page_author = "Error404";
 
 //Construct Page
 include 'FrontEnd/sessionfns.php';
-include 'PageBuilder/navbar.php';
 if (session_status() != PHP_SESSION_NONE)
 {
   //session_destroy();
@@ -21,7 +20,9 @@ if (session_status() != PHP_SESSION_NONE)
   $_SESSION = array();
   ob_start();
   session_start();
+  $_SESSION['dispEng']='1';
 }
+include 'PageBuilder/navbar.php';
 include 'FrontEnd/index.php';
 include 'PageBuilder/header.php';
 include 'PageBuilder/footer.php';

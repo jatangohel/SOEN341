@@ -84,7 +84,14 @@
         <div class="page-header">
             <br><br><br>
             <div class="typewriter">
-              <h1>Welcome to Concordia Course Scheduler.</h1>
+              <h1>
+                <?php
+      					     if($_SESSION['dispEng'])
+      						         echo "Welcome to the Concordia University Course Scheduler.";
+      					     else
+      						         echo "Bienvenue au planificateur de cours de l'université Concordia";
+				        ?>
+            </h1>
           </div>
 
       </div>
@@ -96,12 +103,31 @@
         <div class="col-xs-12 col-md-12">
             <br><br><br><br><br><br><br><br>
             <p class="text-center">
-              Please Login if you have your credentails or Kindly Register yourself.
+              <?php
+      					if($_SESSION['dispEng'])
+      						echo "Please Login if you have an account or kindly register";
+      					else
+      						echo "Veuillez vous connecter si vous avez un accompte ou vous inscrire";
+              ?>
             </p>
 
           <div class="input-group" style="width:55%;  position: relative; top: 15%; left: 50%; transform: translate(-50%,-50%)">
-            <button class="btn btn-primary btn-block" data-toggle="modal" data-target= "#myModal">Login</button>
-            <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal2">Register</button>
+            <button class="btn btn-primary btn-block" data-toggle="modal" data-target= "#myModal">
+              <?php
+      					if($_SESSION['dispEng'])
+      						echo "Login";
+      					else
+      						echo "Connexion";
+              ?>
+            </button>
+            <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal2">
+              <?php
+      					if($_SESSION['dispEng'])
+      						echo "Register";
+      					else
+      						echo "S'inscrire";
+              ?>
+            </button>
             <div style="text-align: center">
             </br>
                  <a class="text-center" href="FrontEnd/usersPage.php?login=true&LoggedInUserName=GUEST">Continue as Guest</a>
@@ -115,7 +141,14 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 
                         </button>
-                        <h4 class="modal-title" id="myModalLabel">Login form</h4>
+                        <h4 class="modal-title" id="myModalLabel">
+                          <?php
+            								if($_SESSION['dispEng'])
+            									echo "Login form";
+            								else
+            									echo "Formulaire de connexion";
+                          ?>
+                        </h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <!-- login form -->
@@ -123,16 +156,44 @@
                      <div class="modal-body">
 
                        <div class="form-group">
-                          <label for="email">Email address</label>
+                          <label for="email">
+                            <?php
+            									if($_SESSION['dispEng'])
+            										echo "E-mail address";
+            									else
+            										echo "Adresse courriel";
+                            ?>
+                          </label>
                           <div class="input-group pb-modalreglog-input-group">
-                             <input type="email" name="userEmail" class="form-control" id="email" placeholder="Email" required>
+                             <input type="email" name="userEmail" class="form-control" id="email" placeholder=
+                             <?php
+                               if($_SESSION['dispEng'])
+                                 echo "E-mail address";
+                               else
+                                 echo "Adresse courriel";
+                              ?>
+                              required>
                              <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                          </div>
                      </div>
                      <div class="form-group">
-                      <label for="password">Password</label>
+                      <label for="password">
+                        <?php
+          								if($_SESSION['dispEng'])
+          									echo "Password";
+          								else
+          									echo "Mot_de_passe";
+                        ?>
+                      </label>
                       <div class="input-group pb-modalreglog-input-group">
-                         <input name="userPassword" type="password" class="form-control" id="pws" placeholder="Password" required>
+                         <input name="userPassword" type="password" class="form-control" id="pws" placeholder=
+                         <?php
+           								if($_SESSION['dispEng'])
+           									echo "Password";
+           								else
+           									echo "Mot_de_passe";
+                         ?>
+                          required>
                          <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                      </div>
                  </div>
@@ -144,8 +205,22 @@
                 <button onclick="alert('Hello!')" class="loginBtn loginBtn--facebook" style="top: 12; left: 50%; transform: translate(-50%,-50%);">Login with Facebook</button>
              </div>
              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <input name="login" value="Login "type="submit" class="btn btn-primary"/>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                  <?php
+        						if($_SESSION['dispEng'])
+        							echo "Close";
+        						else
+        							echo "Fermer";
+                  ?>
+                </button>
+                <input name="login" value=
+                  <?php
+          					if($_SESSION['dispEng'])
+          						echo "Login";
+          					else
+          						echo "Connexion";
+                  ?>
+                type="submit" class="btn btn-primary"/>
             </div>
         </form>
     </div>
@@ -158,7 +233,14 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 
                 </button>
-                <h4 class="modal-title" id="myModalLabel">Registration form</h4>
+                <h4 class="modal-title" id="myModalLabel">
+                  <?php
+      							if($_SESSION['dispEng'])
+      								echo "Registration form";
+      							else
+      								echo "Formulaire d'inscription";
+                  ?>
+                </h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <!-- Register form -->
@@ -169,21 +251,56 @@
                   <div id="pb-modalreglog-progressbar"></div>
               </div>
               <div class="form-group">
-                  <label for="Name">Name</label>
+                  <label for="Name">
+                    <?php
+        							if($_SESSION['dispEng'])
+        								echo "Name";
+        							else
+        								echo "Nom";
+                    ?>
+                  </label>
                   <div class="input-group pb-modalreglog-input-group">
                      <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                     <input name="userName" type="text" class="form-control" id="name" placeholder="Name" required>
+                     <input name="userName" type="text" class="form-control" id="name" placeholder=
+                     <?php
+        							if($_SESSION['dispEng'])
+        								echo "Name";
+        							else
+        								echo "Nom";
+						         ?>
+                     required>
                  </div>
              </div>
              <div class="form-group">
-              <label for="email">Email address</label>
+              <label for="email">
+                <?php
+      						if($_SESSION['dispEng'])
+      							echo "E-mail address";
+      						else
+      							echo "Adresse couriel";
+                ?>
+              </label>
               <div class="input-group pb-modalreglog-input-group">
                  <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                 <input name="userEmail" type="email" class="form-control" id="inputEmail" placeholder="Email" required>
+                 <input name="userEmail" type="email" class="form-control" id="inputEmail" placeholder=
+                 <?php
+       						if($_SESSION['dispEng'])
+       							echo "E-mail address";
+       						else
+       							echo "Adresse couriel";
+                 ?>
+                  required>
              </div>
          </div>
          <div class="form-group">
-          <label for="password">Password</label>
+          <label for="password">
+            <?php
+    					if($_SESSION['dispEng'])
+    						echo "Password";
+    					else
+    						echo "Mot de passe";
+            ?>
+          </label>
           <div class="input-group pb-modalreglog-input-group">
              <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
              <input name="userPassword" type="password" class="form-control" id="inputPws" placeholder="Password" onkeyup="pwsLengthChecker()" required><!-- onkeyup is the only event works b/c it detects the length not (-1) like onkeydown -->
@@ -194,8 +311,22 @@
      </div>
  </div>
  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    <input name="register" id="register1" type="submit" value="Register" class="btn btn-primary"/>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+      <?php
+  			if($_SESSION['dispEng'])
+  				echo "Close";
+  			else
+  				echo "Fermer";
+      ?>
+    </button>
+    <input name="register" id="register1" type="submit" value=
+      <?php
+        if($_SESSION['dispEng'])
+    			echo "Register";
+    		else
+    			echo "S'enregistrer";
+      ?>
+     class="btn btn-primary"/>
 </div>
 </form>
 </div>
@@ -204,8 +335,6 @@
 </div>
 </div>
 </div>
-
-
 
 
 
