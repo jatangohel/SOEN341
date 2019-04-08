@@ -107,9 +107,10 @@ public function genProgramSched ($user)
     // Exclude the taken courses from the untaken array
     foreach ($sem->getLecs() as $taken)
     {
-      $createdCourses[$taken->getCourse()->getCourseName()]->setPass(true);
       $course = $taken->getCourse();
-      deleteCourse($course->getCourseName(), $untakenCourses);
+      $courseName = $course->getCourseName();
+      $createdCourses[$courseName]->setPass(true);
+      deleteCourse($courseName, $untakenCourses);
     }
 
     // Increment year if the current semester was fall

@@ -9,7 +9,6 @@ $page_keywords = "Error404";
 $page_description = "Error404";
 $page_author = "Error404";
 
-
 //Construct Page
 include 'FrontEnd/sessionfns.php';
 if (session_status() != PHP_SESSION_NONE)
@@ -22,6 +21,13 @@ if (session_status() != PHP_SESSION_NONE)
   session_start();
   $_SESSION['dispEng']='1';
 }
+else
+{
+  ob_start();
+  session_start();
+  $_SESSION['dispEng']='1';
+}
+
 include 'PageBuilder/navbar.php';
 include 'FrontEnd/index.php';
 include 'PageBuilder/header.php';
