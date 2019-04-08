@@ -723,7 +723,10 @@ $userSched = $_SESSION['userSched'];
 
         <tr>
           <td class="time" rowspan="4" scope="row"><span class>21:00</span>&nbsp;</td>
-          <td class="M" name="M210000" id="M210000">&nbsp;</td>
+          <td class="M" name="M210000" id="M210000">
+
+
+	&nbsp;</td>
           <td class="T" name="T210000" id="T210000">&nbsp;</td>
           <td class="W" name="W210000" id="W210000">&nbsp;</td>
           <td class="J" name="J210000" id="J210000">&nbsp;</td>
@@ -755,46 +758,6 @@ $userSched = $_SESSION['userSched'];
           <td class="W" name="W214500" id="W214500">&nbsp;</td>
           <td class="J" name="J214500" id="J214500">&nbsp;</td>
           <td class="F" name="F214500" id="F214500">&nbsp;</td>
-          <td class="saturday">&nbsp;</td>
-          <td class="sunday">&nbsp;</td>
-        </tr>
-		
-		
-		
-		<tr>
-          <td class="time" rowspan="4" scope="row"><span class>22:00</span>&nbsp;</td>
-          <td class="M" name="M220000" id="M220000">&nbsp;</td>
-          <td class="T" name="T220000" id="T220000">&nbsp;</td>
-          <td class="W" name="W220000" id="W220000">&nbsp;</td>
-          <td class="J" name="J220000" id="J220000">&nbsp;</td>
-          <td class="F" name="F220000" id="F220000">&nbsp;</td>
-          <td class="saturday">&nbsp;</td>
-          <td class="sunday">&nbsp;</td>
-        </tr>
-        <tr>
-          <td class="M" name="M221500" id="M221500">&nbsp;</td>
-          <td class="T" name="T221500" id="T221500">&nbsp;</td>
-          <td class="W" name="W221500" id="W221500">&nbsp;</td>
-          <td class="J" name="J221500" id="J221500">&nbsp;</td>
-          <td class="F" name="F221500" id="F221500">&nbsp;</td>
-          <td class="saturday">&nbsp;</td>
-          <td class="sunday">&nbsp;</td>
-        </tr>
-        <tr>
-          <td class="M" name="M223000" id="M223000">&nbsp;</td>
-          <td class="T" name="T223000" id="T223000">&nbsp;</td>
-          <td class="W" name="W223000" id="W223000">&nbsp;</td>
-          <td class="J" name="J223000" id="J223000">&nbsp;</td>
-          <td class="F" name="F223000" id="F223000">&nbsp;</td>
-          <td class="saturday">&nbsp;</td>
-          <td class="sunday">&nbsp;</td>
-        </tr>
-        <tr>
-          <td class="M" name="M224500" id="M224500">&nbsp;</td>
-          <td class="T" name="T224500" id="T224500">&nbsp;</td>
-          <td class="W" name="W224500" id="W224500">&nbsp;</td>
-          <td class="J" name="J224500" id="J224500">&nbsp;</td>
-          <td class="F" name="F224500" id="F224500">&nbsp;</td>
           <td class="saturday">&nbsp;</td>
           <td class="sunday">&nbsp;</td>
         </tr>
