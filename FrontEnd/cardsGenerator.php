@@ -1,15 +1,24 @@
 <?php
+require_once __DIR__.'/../algorithm/Semester.php';
+
 if (session_status() != PHP_SESSION_ACTIVE)
+{
+	ob_start();
 	session_start();
+}
 function cardDisp($i)
 {
   $semInfoFE = $_SESSION ['semInfo'];
-  
+	$semYearFE = $_SESSION ['semYear'];
+	$semNameFE = $_SESSION ['semName'];
+
   echo
   '<a class="card card-body text-center height:400px" id="hello" href="weeklyschdulef.php?semester=';echo"$i";echo'"class="custom-card" style="background: #F8C471">'.
   '<thead>'.
   '<tr class="tableheader">'.
-  '<th><strong>Semester ';  echo $i + 1;
+  '<th><strong>';
+	echo 'Year '; echo $semYearFE[$i]; echo ', ';
+	echo $semNameFE[$i]; echo ' Semester';
   echo ' </th>'.
   '</tr></strong>'.
   '</thead>'.
