@@ -11,8 +11,6 @@ $_POST['startTime'][0] = (int) "80000";
 $_POST['endTime'][0] = (int) "90000";
 $_POST['days'][0] = "M";
 
-var_dump($_POST);
-
 
 function processNumCoursesConstraint()
 {
@@ -26,7 +24,7 @@ function processNumCoursesConstraint()
 
 function processTimingConstraint()
 {
-	var_dump ($_POST);
+	//var_dump ($_POST);
 	for ($i=0; $i < count($_POST['startTime']); $i++)
 	{
 		$_SESSION['startTime'][$i] = (int) $_POST['startTime'][$i];
@@ -50,7 +48,7 @@ function genNewSched ()
 
 	if (count($_SESSION ['startTime']) != 0)
 	{
-		var_dump($_SESSION);
+		//var_dump($_SESSION);
 		// Do another loop to take the different semesters
 		for ($i=0; $i < count($_SESSION ['startTime']); $i++) {
 			$term = "1F";  // Replace with real semester

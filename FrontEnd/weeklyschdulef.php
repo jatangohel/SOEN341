@@ -16,8 +16,8 @@ $userSched = $_SESSION['userSched'];
 	    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<!-- Font awesome -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
 
 
@@ -1260,6 +1260,7 @@ return days;
 }
 
 // Listener for timing constraints submit button
+/*
 $(document).ready(function(){
 		var x = document.getElementById("loading");
 		  x.style.display = "none";
@@ -1279,8 +1280,19 @@ $(document).ready(function(){
 			  });
 		   });
      });
+*/
+$(document).ready(function(){
+  var x = document.getElementById("loading");
+    x.style.display = "none";
+	$('#submit').click(function(){
+		$.post('backendInterface.php')
+		   });
+     });
 
-
+     window.onerror = function(msg, url, linenumber) {
+         alert('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
+         return true;
+     }
  </script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
