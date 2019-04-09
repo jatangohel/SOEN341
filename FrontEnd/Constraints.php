@@ -1,10 +1,27 @@
+<?php
+   ob_start();
 
+   if(!isset($_SESSION))
+   	session_start();
+?>
 <?php
 echo '<link href="../css/stylec.css" rel="stylesheet"/>';
 require_once 'backendInterface.php';
+require_once '../Databases/DBinterface/DBinterface.php';
 
 ?>
-<!doctype html>
+
+<?php
+if(isset($_POST['check_list'])){
+	foreach($_POST['check_list'] as $courseName){
+		updateTakenCourses($_SESSION['userEmail'],$courseName);
+	}
+
+	updateInputtedPassed($_SESSION['userEmail']);
+}
+
+?>
+
 <html lang="en">
   <head>
     <!-- Required meta tags -->
