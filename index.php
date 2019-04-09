@@ -13,21 +13,27 @@ $page_author = "Error404";
 include 'FrontEnd/sessionfns.php';
 if (session_status() != PHP_SESSION_NONE)
 {
-  //session_destroy();
   session_end();
-  unset($_SESSION);
-  $_SESSION = array();
   ob_start();
   session_start();
+  foreach ($_SESSION as $key=>$data)
+  {
+    unset($_SESSION[$key]);
+    $_SESSION=array_values($_SESSION);
+  }
   $_SESSION['dispEng']='1';
 }
 else
 {
   ob_start();
   session_start();
+  foreach ($_SESSION as $key=>$data)
+  {
+    unset($_SESSION[$key]);
+    $_SESSION=array_values($_SESSION);
+  }
   $_SESSION['dispEng']='1';
 }
-
 include 'PageBuilder/navbar.php';
 include 'FrontEnd/index.php';
 include 'PageBuilder/header.php';
