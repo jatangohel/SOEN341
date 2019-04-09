@@ -97,7 +97,7 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
     <h2 align="center">Add Costraints</h2>
 
 
-		<div style="background-color:#49bee5"class="form-group p-3 mb-2 rounded">
+		<div style="background-color:#72c8e5"class="form-group p-3 mb-2 rounded">
       <!-- <div class="center"> -->
 			<form name="add_name" id="add_name">
 				<table class="table table-borderless" id="dynamic_field">
