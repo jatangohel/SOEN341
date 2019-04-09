@@ -1,16 +1,8 @@
-<script>
-alert (1);
-</script>
 <?php
 require_once __DIR__.'/../algorithm/UserSchedule.php';
 require_once "sessionfns.php";
 if (session_status() != PHP_SESSION_ACTIVE)
 	session_start();
-
-$_POST['startTime'][0] = (int) "80000";
-$_POST['endTime'][0] = (int) "90000";
-$_POST['days'][0] = "M";
-
 
 function processNumCoursesConstraint()
 {
@@ -24,12 +16,11 @@ function processNumCoursesConstraint()
 
 function processTimingConstraint()
 {
-	//var_dump ($_POST);
-	for ($i=0; $i < count($_POST['startTime']); $i++)
+	for ($i=0; $i < count($_POST['days']); $i++)
 	{
-		$_SESSION['startTime'][$i] = (int) $_POST['startTime'][$i];
-		$_SESSION['endTime'][$i] = (int) $_POST['endTime'][$i];
-		$_SESSION['days'][$i] = $_POST['days'][$i];
+		$_SESSION['startTimes'][$i] = $_POST['startTimes'][$i];
+		$_SESSION['endTimes'][$i] = $_POST['endTimes'][$i];
+		$_SESSION['days'][$i] = array($_POST['days'][$i]);
 	}
 
 }
@@ -37,8 +28,8 @@ function processTimingConstraint()
 function genNewSched ()
 {
 	$numCoursesArr = array();
-	$noClassesArr=array(array());
-	if (count($_SESSION ['numCoursesConstrain']) != 0)
+	$noClassesArr=array();
+	if (array_key_exists("numCoursesConstrain", $_SESSION))
 	{
 		for ($i=0; $i < count($_SESSION ['numCoursesConstrain']); $i++) {
 			$term = $_SESSION ['numCoursesYearTerm'][$i];
@@ -46,14 +37,16 @@ function genNewSched ()
 		 }
 	}
 
-	if (count($_SESSION ['startTime']) != 0)
+	if (array_key_exists("days", $_SESSION))
 	{
-		//var_dump($_SESSION);
 		// Do another loop to take the different semesters
-		for ($i=0; $i < count($_SESSION ['startTime']); $i++) {
-			$term = "1F";  // Replace with real semester
-			$noClassesArr[$term] = new Session ("NoClass", null, null, $term, $_SESSION ['days'][$i],
-			 																		$_SESSION ['startTime'][$i], $_SESSION ['endTime'][$i], null);
+		$term = "1Fall";  // Replace with real semester
+		$noClassesArr[$term] = array();
+
+		for ($i=0; $i < count($_SESSION ['days']); $i++) {
+			$noClassesInterval = new Session ("NoClass", null, null, "Fall", $_SESSION ['days'][$i],
+			 																	$_SESSION ['startTimes'][$i], $_SESSION ['endTimes'][$i], null);
+			array_push($noClassesArr[$term], $noClassesInterval);
 		 }
 	}
 
@@ -103,19 +96,20 @@ if( empty($_POST['submitID']) )
 	{
 		$_SESSION['numCoursesYearTerm']= array();
 		$_SESSION['numCoursesConstrain']= array();
-		processTimingConstraint();
 		genNewSched();
 	}
 }
-elseif ($_POST['submitID'] == "Submit #Courses" )
+elseif ($_POST['submitID'] == "Submit#Courses" )
 {
   processNumCoursesConstraint();
 	genNewSched();
 }
 
-elseif ($_POST['submitID'] == "Submit Timing Constraints")
+elseif ($_POST['submitID'] == "SubmitTimingConstraints")
 {
+	var_dump($_POST);
 	processTimingConstraint();
+	genNewSched();
 }
 
  ?>

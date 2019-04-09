@@ -318,7 +318,7 @@ $(document).ready(function(){
 		 var x = document.getElementById("loading");
 		  x.style.display = "block";
 		$.post('backendInterface.php',{
-      submitID:"Submit #Courses",
+      submitID:"Submit#Courses",
 			numCoursesYearTerm:getSelectYearTerm(),
 			numCoursesConstrain:getNumberOfCourse()} ,
 		  function(data){
