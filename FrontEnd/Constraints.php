@@ -274,18 +274,7 @@ $(document).ready(function(){
 		alert("Please delet from the last one.");
 	}
 	});
-	$('#submit').click(function(){
-		$.ajax({
-			url:"name.php",
-			method:"POST",
-			data:$('add_name').serialize(),
-			success:function(data)
-			{
-				alert(data);
-				$('#add_name')[0].reset();
-			}
-		});
-	});
+
 });
 
 function getTotalTerm(){

@@ -50,7 +50,25 @@ $userSched = $_SESSION['userSched'];
         }
 
 
+        #loading {
+           width: 100%;
+           height: 100%;
+           top: 0;
+           left: 0;
+           position: fixed;
+           display: block;
+           opacity: 0.7;
+           background-color: #fff;
+           z-index: 99;
+           text-align: center;
+        }
 
+        #loading-image {
+          margin: 0 auto;
+          top: 100px;
+          left: 240px;
+          z-index: 100;
+        }
 
 	        .container {
           font-family: 'Montserrat', sans-serif;
@@ -186,7 +204,7 @@ $userSched = $_SESSION['userSched'];
 									<th class="text-center">Status</th>
 								</tr>
 								<tr>
-									<td><select name="Days" style="text-align:center;">
+									<td><select id="day1" name="Days" style="text-align:center;">
 										<option value="Monday">
                       <?php
 												if($_SESSION['dispEng'])
@@ -247,15 +265,20 @@ $userSched = $_SESSION['userSched'];
 
 									<td></select><input type="time" id="starting1" name="starting1" placeholder="Starting Time"></td>
 									<td><input type="time" id="ending1" name="ending1" placeholder="Ending Time"></td>
-									<td><button type="button" name="add" id="add" class="btn btn-secondary">Next</button></td>
+									<td><button type="button" name="add" id="add" class="btn btn-secondary">Add</button></td>
 								</tr>
-								<input type="button" class="btn btn-success btn-sm"style="float:right; margin-right:20px;" value="submit"/>
+								<input type="button" class="btn btn-success btn-sm"style="float:right; margin-right:20px;" name="submit" id="submit" value="Submit"/>
 							</table>
 						</form>
 					</div>
 				</div>
 	</div>
-	  <div class="scheduleArea">
+
+  <div id="loading">
+    <img id="loading-image" src="img_loading.gif" alt="Loading..." />
+  </div>
+
+	  <div id="scheduleArea" class="scheduleArea">
 
 
       <table class="tableTimes" style=" text-align:center" >
@@ -956,11 +979,11 @@ $userSched = $_SESSION['userSched'];
 	</div>
   <script>
 
+var timingConstraintsNum = 1;
 $(document).ready(function(){
-	var i = 1;
 	$('#add').click(function(){
-		i++;
-		$('#dynamic_field').append('<tr id="row'+i+'"><td><select name="Days"><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday">Friday</option><option value="Saturday">Saturday</option><option value="Sunday">Sunday</option></select>&nbsp;</td><td><input type="time" id="starting'+i+'" name="starting'+i+'">&nbsp;</td><td><input type="time" id="ending'+i+'" name="ending'+i+'">&nbsp;</td><td><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button>&nbsp;</td></tr>');
+		timingConstraintsNum++;
+		$('#dynamic_field').append('<tr id="row'+timingConstraintsNum+'"><td><select id="day'+timingConstraintsNum+'"name="Days"><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday">Friday</option><option value="Saturday">Saturday</option><option value="Sunday">Sunday</option></select>&nbsp;</td><td><input type="time" id="starting'+timingConstraintsNum+'" name="starting'+timingConstraintsNum+'">&nbsp;</td><td><input type="time" id="ending'+timingConstraintsNum+'" name="ending'+timingConstraintsNum+'">&nbsp;</td><td><button name="remove" id="'+timingConstraintsNum+'" class="btn btn-danger btn_remove">X</button>&nbsp;</td></tr>');
 	});
 	$(document).on('click','.btn_remove',function(){
 		var button_id = $(this).attr("id");
@@ -1189,6 +1212,75 @@ function createLabNew() {
 		}
 	}
 }
+
+function getStartTimes(){
+	var y;
+	var startTimes=[];
+	for (y =1; y<timingConstraintsNum+1;y++){
+	var startTime = document.getElementById("starting"+y).value;
+
+  // Remove the colons and pad two zeros to be compatible with the time format from db
+  startTime = startTime.replace(':','') + "00";
+	startTimes.push(startTime);
+}
+return startTimes;
+}
+
+function getEndTimes(){
+	var y;
+	var endTimes=[];
+	for (y =1; y<timingConstraintsNum+1;y++){
+	endTime = document.getElementById("ending"+y).value;
+
+  // Remove the colons and pad two zeros to be compatible with the time format from db
+  endTime = endTime.replace(':','') + "00";
+	endTimes.push(endTime);
+}
+return endTimes;
+}
+
+function getDays()
+{
+  var y;
+  var days=[];
+  for (y =1; y<timingConstraintsNum+1;y++){
+    day = document.getElementById("day"+y).value;
+
+    // Take only first letter of the day to make it compatible with db
+    if (day == "Thursday")
+      day = 'J';
+    else
+      day = day[0];
+
+    days.push(day);
+  }
+
+console.log(days);
+return days;
+}
+
+// Listener for timing constraints submit button
+$(document).ready(function(){
+		var x = document.getElementById("loading");
+		  x.style.display = "none";
+	$('#submit').click(function(){
+		 var x = document.getElementById("loading");
+		  x.style.display = "block";
+		$.post('backendInterface.php',{
+      submitID:"Submit Timing Constraints",
+      days:getDays(),
+			startTimes: getStartTimes(),
+			endTimes:getEndTimes()} ,
+		  function(data){
+        $('#result').html(data);
+        //setTimeout(window.location.reload(false), 10000) ;
+        $("#scheduleArea").load("> #scheduleArea");
+        $('#loading').hide();
+			  });
+		   });
+     });
+
+
  </script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
