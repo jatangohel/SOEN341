@@ -870,7 +870,10 @@ $userSched = $_SESSION['userSched'];
 
         <tr>
           <td class="time" rowspan="4" scope="row"><span class>21:00</span>&nbsp;</td>
-          <td class="M" name="M210000" id="M210000">&nbsp;</td>
+          <td class="M" name="M210000" id="M210000">
+
+
+	&nbsp;</td>
           <td class="T" name="T210000" id="T210000">&nbsp;</td>
           <td class="W" name="W210000" id="W210000">&nbsp;</td>
           <td class="J" name="J210000" id="J210000">&nbsp;</td>

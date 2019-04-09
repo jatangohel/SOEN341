@@ -1,9 +1,8 @@
 <?php
+  //ob_start();
 if (session_status() != PHP_SESSION_ACTIVE)
-{
-  ob_start();
   session_start();
-}
+
 
 
 changeLanguage();
@@ -22,11 +21,11 @@ function changeLanguage()
 
 ?>
 <nav class="navbar navbar-expand-md navbar-dark bg-primary sticky-top">
-        <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
-            <span class="navbar-toggler-icon"></span>
+  <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
+    <span class="navbar-toggler-icon"></span>
 
 
-        </button>
+  </button>
 
         <span class="navbar-text">
           <?php
@@ -41,36 +40,6 @@ function changeLanguage()
 
 
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="dropdown_target" href="#">
-                  <?php
-                    if($_SESSION['dispEng'])
-                      echo "Dropdown";
-                    else
-                      echo "Menu";
-                  ?>
-                  <span class="caret"></span>
-                </a>
-            <div class="dropdown-menu" aria-labelledby="dropdown_target">
-                <ul class="navbar-nav">
-                <a class="dropdown-item">Item 1</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item">Item 2</a>
-                <a class="dropdown-item">Item 3</a>
-                <a class="dropdown-item">Item 4</a>
-                </ul>
-            </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="FrontEnd/profilePage.php">
-                  <?php
-            				if($_SESSION['dispEng'])
-            					echo "Profile";
-            				else
-            					echo "Profil";
-            			?>
-                 </a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link" href="FrontEnd/about.php">
                   <?php
@@ -82,7 +51,8 @@ function changeLanguage()
                 </a>
             </li>
         </ul>
-        <?php     if($_SERVER['REQUEST_URI']!='/SOEN341/'){ ?>
+        <?php
+         if( ($_SERVER['REQUEST_URI']!='/SOEN341/') && ($_SERVER['REQUEST_URI']!='/SOEN341/index.php')){ ?>
          <ul class="navbar-nav ">
                <!-- PROFILE DROPDOWN - scrolling off the page to the right -->
                <li class="nav-item dropdown">
@@ -110,6 +80,8 @@ function changeLanguage()
                        </a>
                        <div class="dropdown-divider"></div>
                        <a class="dropdown-item" href="FrontEnd/logout.php">Logout</a>
+                       <div class="dropdown-divider"></div>
+                       <a class="dropdown-item" href="#">Profile</a>
                    </div>
                </li>
            </ul>

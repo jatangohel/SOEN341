@@ -1,9 +1,7 @@
 <?php
-require_once __DIR__.'/../algorithm/Semester.php';
-
 if (session_status() != PHP_SESSION_ACTIVE)
 {
-	//ob_start();
+	ob_start();
 	session_start();
 }
 function cardDisp($i)
