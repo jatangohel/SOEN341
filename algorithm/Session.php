@@ -23,6 +23,13 @@ class Session
     $this->campus = $campus;
   }
 
+  public function createSession($course, $section, $subSection,
+                              $semester, $days, $startTime, $endTime, $campus) : self
+  {
+    return new self($course, $section, $subSection,
+                                $semester, $days, $startTime, $endTime, $campus);
+  }
+  
   public function getCourse()
   {
     return $this->course;
