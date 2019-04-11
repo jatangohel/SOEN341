@@ -23,23 +23,36 @@ function changeLanguage()
 <nav class="navbar navbar-expand-md navbar-dark bg-primary sticky-top">
   <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
     <span class="navbar-toggler-icon"></span>
-
-
   </button>
 
-        <span class="navbar-text">
-          <?php
-      			if($_SESSION['dispEng'])
-      				echo "CourseSequence";
-      			else
-      				echo "SéquenceDesCours";
-          ?>
-        </span>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link font-weight-bold" href="../Soen341/index.php">
+                  <?php
+                    if($_SESSION['dispEng'])
+                      echo "CourseSequence";
+                    else
+                      echo "SéquenceDesCours";
+                  ?>
+                </a>
+            </li>
+        </ul>
+
         <div class="collapse navbar-collapse" id="collapse_target">
 
-
-
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+         <?php if( ($_SERVER['REQUEST_URI']!='/SOEN341/') && ($_SERVER['REQUEST_URI']!='/SOEN341/index.php')){ ?>
+          <li class="nav-item">
+                <a class="nav-link" href="FrontEnd/generate.php">
+                  <?php
+                    if($_SESSION['dispEng'])
+                      echo "ScheduleRegenerator";
+                    else
+                      echo "FILL PLEASE";
+                  ?>
+                </a>
+            </li>
+          <?php } ?>
             <li class="nav-item">
                 <a class="nav-link" href="FrontEnd/about.php">
                   <?php
@@ -51,6 +64,8 @@ function changeLanguage()
                 </a>
             </li>
         </ul>
+
+
         <?php
          if( ($_SERVER['REQUEST_URI']!='/SOEN341/') && ($_SERVER['REQUEST_URI']!='/SOEN341/index.php')){ ?>
          <ul class="navbar-nav ">
@@ -81,7 +96,7 @@ function changeLanguage()
                        <div class="dropdown-divider"></div>
                        <a class="dropdown-item" href="FrontEnd/logout.php">Logout</a>
                        <div class="dropdown-divider"></div>
-                       <a class="dropdown-item" href="#">Profile</a>
+                       <a class="dropdown-item" href="../Soen341/FrontEnd/profilepage.php">Profile</a>
                    </div>
                </li>
            </ul>
