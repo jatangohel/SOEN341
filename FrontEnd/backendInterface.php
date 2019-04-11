@@ -115,7 +115,6 @@ elseif ($_POST['submitID'] == "Submit#Courses" )
 
 elseif ($_POST['submitID'] == "SubmitTimingConstraints")
 {
-	var_dump($_POST);
 	processTimingConstraint();
 	genNewSched();
 }
