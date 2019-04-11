@@ -1,8 +1,10 @@
 
 <?php
+/*
 require_once __DIR__.'/../PageBuilder/header.php';
 require_once __DIR__.'/../PageBuilder/navbar.php';
-require_once __DIR__.'/../PageBuilder/footer.php'; ?>
+require_once __DIR__.'/../PageBuilder/footer.php';
+*/ ?>
 <?php
 if (session_status() != PHP_SESSION_ACTIVE)
 {
@@ -126,7 +128,7 @@ if (session_status() != PHP_SESSION_ACTIVE)
     <div class="row">
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-75">
-          <img class="card-img-top" src="../images/KHALID.jpg" >
+          <img class="card-img-top" src="images/KHALID.jpg" >
           <div class="card-body">
             <h4 class="card-title">
               <p class="card-text">Khalid Hassanain</p>
@@ -144,7 +146,7 @@ if (session_status() != PHP_SESSION_ACTIVE)
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-75 ">
-          <img class="card-img-top" src="../images/HANI.jpg" >
+          <img class="card-img-top" src="images/HANI.jpg" >
           <div class="card-body">
             <h4 class="card-title">
               <p class="card-text">Hani Sabsoob</p>
@@ -162,7 +164,7 @@ if (session_status() != PHP_SESSION_ACTIVE)
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-75">
-          <img class="card-img-top" src="../images/JATAN.jpg" >
+          <img class="card-img-top" src="images/JATAN.jpg" >
           <div class="card-body">
             <h4 class="card-title">
               <p class="card-text">Jatan Gohel</p>
@@ -182,7 +184,7 @@ if (session_status() != PHP_SESSION_ACTIVE)
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-75">
-          <img class="card-img-top" src="../images/KECHENG.png" >
+          <img class="card-img-top" src="images/KECHENG.png" >
           <div class="card-body">
             <h4 class="card-title">
               <p class="card-text">Kecheng Yao</p>
@@ -200,7 +202,7 @@ if (session_status() != PHP_SESSION_ACTIVE)
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-75">
-          <img class="card-img-top" src="../images/MARIO2.jpg" >
+          <img class="card-img-top" src="images/MARIO2.jpg" >
           <div class="card-body">
             <h4 class="card-title">
               <p class="card-text">Mario Gaudio</p>
@@ -218,7 +220,7 @@ if (session_status() != PHP_SESSION_ACTIVE)
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-75">
-          <img class="card-img-top" src="../images/OSAMA.jpg" >
+          <img class="card-img-top" src="images/OSAMA.jpg" >
           <div class="card-body">
             <h4 class="card-title">
               <p class="card-text">Mohammad Osama Qalam</p>
@@ -237,7 +239,7 @@ if (session_status() != PHP_SESSION_ACTIVE)
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-75">
-          <img class="card-img-top" src="../images/HEFNY.jpg" >
+          <img class="card-img-top" src="images/HEFNY.jpg" >
           <div class="card-body">
             <h4 class="card-title">
               <p class="card-text">Mohamed Hefny</p>
@@ -255,7 +257,7 @@ if (session_status() != PHP_SESSION_ACTIVE)
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-75">
-          <img class="card-img-top" src="../images/LAITH.jpg" >
+          <img class="card-img-top" src="images/LAITH.jpg" >
           <div class="card-body">
             <h4 class="card-title">
               <p class="card-text">Mhd Laith Awad</p>
@@ -273,7 +275,7 @@ if (session_status() != PHP_SESSION_ACTIVE)
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-75">
-          <img class="card-img-top" src="../images/MINHAO.jpg" >
+          <img class="card-img-top" src="images/MINHAO.jpg" >
           <div class="card-body">
             <h4 class="card-title">
               <p class="card-text">Minhao Yu</p>
@@ -291,7 +293,7 @@ if (session_status() != PHP_SESSION_ACTIVE)
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-75">
-          <img class="card-img-top" src="../images/NOOR2.jpg" >
+          <img class="card-img-top" src="images/NOOR2.jpg" >
           <div class="card-body">
             <h4 class="card-title">
               <p class="card-text">Noor Al-Musleh</p>
@@ -309,7 +311,7 @@ if (session_status() != PHP_SESSION_ACTIVE)
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-75 ">
-          <img class="card-img-top" src="../images/YIFAN.jpg" >
+          <img class="card-img-top" src="images/YIFAN.jpg" >
           <div class="card-body">
             <h4 class="card-title">
               <p class="card-text">Yifan Yang</p>
