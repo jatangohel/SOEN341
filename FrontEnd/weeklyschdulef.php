@@ -4,8 +4,8 @@ set_time_limit(0);
 
 $semIndex = $_GET['semIndex'];
 $userSched = unserialize($_SESSION['userSched']);
-$noClassesArr =  $userSched->getListOfSemesters()[$semIndex]->getMyTimesNoClass();
-var_dump($noClassesArr);
+//$noClassesArr =  $userSched->getListOfSemesters()[$semIndex]->getMyTimesNoClass();
+//var_dump($noClassesArr);
 ?>
 
 
@@ -1241,7 +1241,7 @@ function createNoClassNew(){
         var a=getTime(fromTimeHour);
         var b=getTime(toTimeHour);
         var c=modTime(fromTimeHour);
-		document.getElementById(title + c).innerHTML=("no Class");
+		document.getElementById(title + c).innerHTML=("No Classes");
 		document.getElementById(title + c).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
 		document.getElementById(title + c).style = " color:rgb(0,0,0);background-color:rgb(155,155,153);text-align: center;opacity: 0.8;";
 		var tempTime=parseInt(c);
