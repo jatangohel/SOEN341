@@ -65,12 +65,12 @@ function cardDisp($i)
   '<table class="gridtable" id="table3" border="0"onclick=window.location.href="file:///X:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.php">'.
   '<tbody>';
   if (!empty($semInfoFE[$i]))
-    echo implode('<left> ', array_keys(current($semInfoFE[$i])));
+    echo implode('<left>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', array_keys(current($semInfoFE[$i])));
   '</thead>'.
   '<tbody>';
     foreach ($semInfoFE[$i] as $row): array_map('htmlentities', $row);
     echo'<tr>'.
-    '<td>'.implode('<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',$row);
+    '<td>'.implode('<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;',$row);
     echo '</td>'.
     '</tr>';
   endforeach;
