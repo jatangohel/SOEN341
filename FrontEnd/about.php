@@ -291,7 +291,7 @@ if (session_status() != PHP_SESSION_ACTIVE)
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-75">
-          <img class="card-img-top" src="../images/NOOR2.jpg" >
+          <img class="card-img-top" src="../images/NOOR.jpg" >
           <div class="card-body">
             <h4 class="card-title">
               <p class="card-text">Noor Al-Musleh</p>
@@ -309,7 +309,7 @@ if (session_status() != PHP_SESSION_ACTIVE)
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-75 ">
-          <img class="card-img-top" src="../images/YIFAN.jpg" >
+          <img class="card-img-top" src="../images/YIFAN.png" >
           <div class="card-body">
             <h4 class="card-title">
               <p class="card-text">Yifan Yang</p>
