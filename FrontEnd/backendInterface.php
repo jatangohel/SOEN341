@@ -101,7 +101,7 @@ $_SESSION['userSched'] = serialize($userSched);
 
 if( empty($_POST['submitID']) )
 {
-	//if (empty($_SESSION['semInfo']))
+	if (empty($_SESSION['semInfo']))
 	{
 		$_SESSION['numCoursesYearTerm']= array();
 		$_SESSION['numCoursesConstrain']= array();

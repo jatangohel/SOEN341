@@ -189,8 +189,8 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 
 						</td>
 						<td>
-                <h2 style="font-size: 15px" align="center">Semester</h2>
-              <select id = "list1" align="center" name="Term">
+                <h2 style="font-size: 15px" align="left">Semester</h2>
+              <select id = "list1" m align="center" name="Term">
 							<option value="Summer" selected>
                 <?php
 									if($_SESSION['dispEng'])
