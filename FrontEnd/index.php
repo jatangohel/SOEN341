@@ -87,7 +87,7 @@
               <h1>
                 <?php
       					     if($_SESSION['dispEng'])
-      						         echo "Welcome to the Concordia University Course Scheduler.";
+      						         echo "Welcome to Concordia's Course Scheduler.";
       					     else
       						         echo "Bienvenue au planificateur de cours de l'université Concordia";
 				        ?>
@@ -261,7 +261,7 @@
                   </label>
                   <div class="input-group pb-modalreglog-input-group">
                      <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                     <input name="userName" type="text" class="form-control" id="name" placeholder=
+                     <input name="userName"  type="text" class="form-control" id="name" placeholder=
                      <?php
         							if($_SESSION['dispEng'])
         								echo "Name";
@@ -282,7 +282,7 @@
               </label>
               <div class="input-group pb-modalreglog-input-group">
                  <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                 <input name="userEmail" type="email" class="form-control" id="inputEmail" placeholder=
+                 <input name="userEmail" type="email" class="form-control" id="inputEmail"  placeholder=
                  <?php
        						if($_SESSION['dispEng'])
        							echo "E-mail address";
@@ -303,7 +303,7 @@
           </label>
           <div class="input-group pb-modalreglog-input-group">
              <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-             <input name="userPassword" type="password" class="form-control" id="inputPws" placeholder="Password" onkeyup="pwsLengthChecker()" required><!-- onkeyup is the only event works b/c it detects the length not (-1) like onkeydown -->
+             <input name="userPassword" type="password" autocomplete = "new-password" class="form-control" id="inputPws" placeholder="Password" onkeyup="pwsLengthChecker()" required><!-- onkeyup is the only event works b/c it detects the length not (-1) like onkeydown -->
          </div>
          <p id="pwsLengthErr">
 
