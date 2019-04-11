@@ -21,7 +21,7 @@ function cardDisp($i)
 	$semNameFE = $_SESSION ['semName'];
 
   echo
-  '<a class="card card-body text-center height:400px" id="hello" href="weeklyschdulef.php?semester=';echo"$i";echo'"class="custom-card" style="background: #F8C471">'.
+  '<a class="card  text-center height:400px" id="hello" href="weeklyschdulef.php?semester=';echo"$i";echo'"class="custom-card" style="background: #F8C471">'.
   '<thead>'.
   '<tr class="tableheader">'.
   '<th><strong>';
@@ -67,15 +67,13 @@ function cardDisp($i)
   if (!empty($semInfoFE[$i]))
     echo implode('<left> ', array_keys(current($semInfoFE[$i])));
   '</thead>'.
-  '<tbody>'.
-  '<center>';
-  foreach ($semInfoFE[$i] as $row): array_map('htmlentities', $row);
+  '<tbody>';
+    foreach ($semInfoFE[$i] as $row): array_map('htmlentities', $row);
     echo'<tr>'.
-    '<td>'.implode('<td>&nbsp;&nbsp;',$row);
+    '<td>'.implode('<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',$row);
     echo '</td>'.
     '</tr>';
   endforeach;
-  '</center>';
   echo '</tbody>'.
   '</table>'.
   '</div>' .
