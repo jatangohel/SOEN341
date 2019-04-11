@@ -1,3 +1,8 @@
+
+<?php
+require_once __DIR__.'/../PageBuilder/header.php';
+require_once __DIR__.'/../PageBuilder/navbar.php';
+require_once __DIR__.'/../PageBuilder/footer.php'; ?>
 <?php
 if (session_status() != PHP_SESSION_ACTIVE)
 {
@@ -5,6 +10,37 @@ if (session_status() != PHP_SESSION_ACTIVE)
   session_start();
 }
 ?>
+
+<head>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <style>
+
+  body {
+    /* padding-top: 56px; */
+  }
+
+  .carousel-item {
+    height: 65vh;
+    min-height: 300px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  .portfolio-item {
+    margin-bottom: 30px;
+  }
+
+
+ }
+  </style>
+</head>
+
+<body>
 
   <!-- Page Content -->
   <div class="container">
@@ -89,8 +125,8 @@ if (session_status() != PHP_SESSION_ACTIVE)
 
     <div class="row">
       <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+        <div class="card h-75">
+          <img class="card-img-top" src="../images/KHALID.jpg" >
           <div class="card-body">
             <h4 class="card-title">
               <p class="card-text">Khalid Hassanain</p>
@@ -107,8 +143,8 @@ if (session_status() != PHP_SESSION_ACTIVE)
         </div>
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+        <div class="card h-75 ">
+          <img class="card-img-top" src="../images/HANI.jpg" >
           <div class="card-body">
             <h4 class="card-title">
               <p class="card-text">Hani Sabsoob</p>
@@ -125,8 +161,8 @@ if (session_status() != PHP_SESSION_ACTIVE)
         </div>
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+        <div class="card h-75">
+          <img class="card-img-top" src="../images/JATAN.jpg" >
           <div class="card-body">
             <h4 class="card-title">
               <p class="card-text">Jatan Gohel</p>
@@ -145,8 +181,8 @@ if (session_status() != PHP_SESSION_ACTIVE)
         </div>
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+        <div class="card h-75">
+          <img class="card-img-top" src="../images/KECHENG.png" >
           <div class="card-body">
             <h4 class="card-title">
               <p class="card-text">Kecheng Yao</p>
@@ -163,8 +199,8 @@ if (session_status() != PHP_SESSION_ACTIVE)
         </div>
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+        <div class="card h-75">
+          <img class="card-img-top" src="../images/MARIO2.jpg" >
           <div class="card-body">
             <h4 class="card-title">
               <p class="card-text">Mario Gaudio</p>
@@ -181,8 +217,8 @@ if (session_status() != PHP_SESSION_ACTIVE)
         </div>
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+        <div class="card h-75">
+          <img class="card-img-top" src="../images/OSAMA.jpg" >
           <div class="card-body">
             <h4 class="card-title">
               <p class="card-text">Mohammad Osama Qalam</p>
@@ -200,8 +236,8 @@ if (session_status() != PHP_SESSION_ACTIVE)
         </div>
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+        <div class="card h-75">
+          <img class="card-img-top" src="../images/HEFNY.jpg" >
           <div class="card-body">
             <h4 class="card-title">
               <p class="card-text">Mohamed Hefny</p>
@@ -218,8 +254,8 @@ if (session_status() != PHP_SESSION_ACTIVE)
         </div>
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+        <div class="card h-75">
+          <img class="card-img-top" src="../images/LAITH.jpg" >
           <div class="card-body">
             <h4 class="card-title">
               <p class="card-text">Mhd Laith Awad</p>
@@ -236,8 +272,8 @@ if (session_status() != PHP_SESSION_ACTIVE)
         </div>
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+        <div class="card h-75">
+          <img class="card-img-top" src="../images/MINHAO.jpg" >
           <div class="card-body">
             <h4 class="card-title">
               <p class="card-text">Minhao Yu</p>
@@ -254,8 +290,8 @@ if (session_status() != PHP_SESSION_ACTIVE)
         </div>
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+        <div class="card h-75">
+          <img class="card-img-top" src="../images/NOOR2.jpg" >
           <div class="card-body">
             <h4 class="card-title">
               <p class="card-text">Noor Al-Musleh</p>
@@ -272,8 +308,8 @@ if (session_status() != PHP_SESSION_ACTIVE)
         </div>
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+        <div class="card h-75 ">
+          <img class="card-img-top" src="../images/YIFAN.jpg" >
           <div class="card-body">
             <h4 class="card-title">
               <p class="card-text">Yifan Yang</p>
@@ -291,7 +327,7 @@ if (session_status() != PHP_SESSION_ACTIVE)
       </div>
     </div>
 
-    <hr>
+
 
 
 
