@@ -1,3 +1,13 @@
+<style>
+
+#table3 {
+    border-radius: 5px;
+    width: 50%;
+    margin: 0px auto;
+    float: none;
+}
+</style>
+
 <?php
 if (session_status() != PHP_SESSION_ACTIVE)
 {
@@ -55,17 +65,17 @@ function cardDisp($i)
   '<table class="gridtable" id="table3" border="0"onclick=window.location.href="file:///X:/xampp/htdocs/SOEN341/FrontEnd/weeklySchedule.php">'.
   '<tbody>';
   if (!empty($semInfoFE[$i]))
-    echo implode('&nbsp;&nbsp;&nbsp;&nbsp;', array_keys(current($semInfoFE[$i])));
+    echo implode('<left> ', array_keys(current($semInfoFE[$i])));
   '</thead>'.
-  '<tbody>';
+  '<tbody>'.
+  '<center>';
   foreach ($semInfoFE[$i] as $row): array_map('htmlentities', $row);
     echo'<tr>'.
-    '<td>'.'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp'; echo implode('<td>&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', $row);
+    '<td>'.implode('<td>&nbsp;&nbsp;',$row);
     echo '</td>'.
     '</tr>';
   endforeach;
+  '</center>';
   echo '</tbody>'.
   '</table>'.
   '</div>' .
@@ -73,7 +83,7 @@ function cardDisp($i)
 } ?>
 
 
-<div id="card" class ="container1">
+<div id="card" class ="container">
 	<!-- <div id="card"  class="jumbotron jumbotron-fluid" > -->
     <h2 align="center"class="header margin-top:0px">
 			<?php
