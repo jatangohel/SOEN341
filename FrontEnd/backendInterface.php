@@ -51,7 +51,7 @@ function genNewSched ()
 
 			// Looping through the timing constraints for a semester
 			for ($i=0; $i < count($_SESSION ['days'][$j]); $i++) {
-				$noClassesInterval = new Session ("NoClass", null, null, "Fall", $_SESSION ['days'][$j][$i],
+				$noClassesInterval = new Session ("NoClass", null, null, null, $_SESSION ['days'][$j][$i],
 				 																	$_SESSION ['startTimes'][$j][$i], $_SESSION ['endTimes'][$j][$i], null);
 				array_push($noClassesArr[$semIndex], $noClassesInterval);
 		 }

@@ -4,6 +4,7 @@ set_time_limit(0);
 
 $semIndex = $_GET['semIndex'];
 $userSched = $_SESSION['userSched'];
+$noClassesArr =  $userSched->getListOfSemesters()[$semIndex]->getTimesNoClass();
 ?>
 
 
