@@ -40,10 +40,12 @@
     }
 
     .radio_buttons {
+      width: 750px;
         padding-top: 20px;
         padding-bottom: 20px;
-        background-color: rgb(45, 45, 45);
-        color:white;
+        background-color: #DDDDDD;
+        /* background-color: rgb(45, 45, 45); */
+        color:black;
     }
     body
   {
@@ -346,14 +348,14 @@
         	<center>
                 <div class="radio_buttons">
 
-                    <p><b><u>
+                    <p><b>
                       <?php
           							if($_SESSION['dispEng'])
           								echo "Select your starting semester to continue";
           							else
           								echo "Choisissez votre semestre de départ pour continuer";
           						?>
-                    </u></b></p>
+                    </b></p>
 
                     <div class="custom-control custom-radio">
                   <input type="radio" class="custom-control-input" id="fall" name="intake" value="Fall" required>
