@@ -3,13 +3,6 @@ require_once 'backendInterface.php';
 set_time_limit(0);
 
 $semIndex = $_GET['semIndex'];
-$semYear = $_GET['semYear'];
-$semName = $_GET['semName'];
-$semYear_Name = $_GET['semYear'].$_GET['semName'];
-
-
-
-
 $userSched = $_SESSION['userSched'];
 ?>
 
@@ -988,10 +981,7 @@ $userSched = $_SESSION['userSched'];
 	</div>
 
   <script>
-  <?php
-  echo
-    "semYear_Name = $semYear_Name";
-  ?>
+
 
 var timingConstraintsNum = 1;
 $(document).ready(function(){
@@ -1283,7 +1273,7 @@ $(document).ready(function(){
 		  x.style.display = "block";
 		$.post('backendInterface.php',{
       submitID:"SubmitTimingConstraints",
-      semYearName: semYear_Name,
+      semIndex: <?php echo $semIndex ?>,
       days:getDays(),
 			startTimes: getStartTimes(),
 			endTimes:getEndTimes()},

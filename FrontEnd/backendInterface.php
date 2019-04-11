@@ -16,11 +16,13 @@ function processNumCoursesConstraint()
 
 function processTimingConstraint()
 {
+	$semIndex = $_POST['semIndex'];
+
 	for ($i=0; $i < count($_POST['days']); $i++)
 	{
-		$_SESSION['startTimes'][$i] = $_POST['startTimes'][$i];
-		$_SESSION['endTimes'][$i] = $_POST['endTimes'][$i];
-		$_SESSION['days'][$i] = array($_POST['days'][$i]);
+		$_SESSION['startTimes'][$semIndex][$i] = $_POST['startTimes'][$i];
+		$_SESSION['endTimes'][$semIndex][$i] = $_POST['endTimes'][$i];
+		$_SESSION['days'][$semIndex][$i] = array($_POST['days'][$i]);
 	}
 
 }
@@ -37,17 +39,23 @@ function genNewSched ()
 		 }
 	}
 
-	if (array_key_exists("days", $_SESSION))
+	if (!empty($_SESSION['days']))
 	{
-		// Do another loop to take the different semesters
-		$term = "1Fall";  // Replace with real semester
-		$noClassesArr[$term] = array();
+		$oldUserSched = $_SESSION ['userSched'];
 
-		for ($i=0; $i < count($_SESSION ['days']); $i++) {
-			$noClassesInterval = new Session ("NoClass", null, null, "Fall", $_SESSION ['days'][$i],
-			 																	$_SESSION ['startTimes'][$i], $_SESSION ['endTimes'][$i], null);
-			array_push($noClassesArr[$term], $noClassesInterval);
+		// Looping through the semesters having constraints
+		for ($j=0; $j < count($_SESSION ['days']); $j++)
+		{
+			$semIndex = $oldUserSched->getListOfSemesters()[$j]->getYear().$oldUserSched->getListOfSemesters()[$j]->getName();
+			$noClassesArr[$semIndex] = array();
+
+			// Looping through the timing constraints for a semester
+			for ($i=0; $i < count($_SESSION ['days'][$j]); $i++) {
+				$noClassesInterval = new Session ("NoClass", null, null, "Fall", $_SESSION ['days'][$j][$i],
+				 																	$_SESSION ['startTimes'][$j][$i], $_SESSION ['endTimes'][$j][$i], null);
+				array_push($noClassesArr[$semIndex], $noClassesInterval);
 		 }
+	 }
 	}
 
 	$email = $_SESSION['userEmail'];
