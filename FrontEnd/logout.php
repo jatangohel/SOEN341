@@ -67,10 +67,16 @@ if (session_status() != PHP_SESSION_ACTIVE)
 }
 
 	
-	echo
+	if($_SESSION['dispEng'])
+        echo
 			'<div id="loading">
 			<img id="loading-image" src="img_loadingtrans.gif" alt="Loading..." />'.
 			'<h1 data-text="'.'Logging out..'.'">'.' Logging out..'.'</h1>'.'</div>';
+    else
+        echo 
+			'<div id="loading">
+			<img id="loading-image" src="img_loadingtrans.gif" alt="Chargement..." />'.
+			'<h1 data-text="'.'Déconnexion..'.'">'.' Déconnexion..'.'</h1>'.'</div>';
 	session_destroy();
 	header('Refresh: 2; URL = ../index.php');
 

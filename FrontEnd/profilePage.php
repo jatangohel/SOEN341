@@ -27,7 +27,7 @@ if (session_status() != PHP_SESSION_ACTIVE)
 <title>
   <?php
 		if($_SESSION['dispEng'])
-			echo "Profile page";
+			echo "Profile Page";
 		else
 			echo "Profil";
 	?>
@@ -202,7 +202,14 @@ opacity:0.96;
 
           <br><br>
 
-          <p>Current Email Address</p>
+			<p>
+				<?php
+      				if($_SESSION['dispEng'])
+      					echo "Current e-mail address";
+      				else
+      					echo "Présente adresse courriel";
+      			?>
+			</p>
 
           <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
@@ -221,7 +228,14 @@ opacity:0.96;
 <br><br>
 
 
-          <p>Password</p>
+			<p>
+				<?php
+      				if($_SESSION['dispEng'])
+      					echo "Password";
+      				else
+      					echo "Mot de passe";
+      			?>
+			</p>
 
           <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">

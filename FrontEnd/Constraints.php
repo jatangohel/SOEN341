@@ -43,7 +43,14 @@ if (session_status() != PHP_SESSION_ACTIVE)
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<script src="jquery.js"></script>
 
-	<title>SOEN Course Stream</title>
+	<title>
+		<?php
+			if($_SESSION['dispEng'])
+  				echo "SOEN Course Stream";
+  			else
+  				echo "Séquence des cours SOEN";
+  		?>
+	</title>
 	<style>
 		table.gridtable {
 			padding: 10px;
@@ -118,7 +125,14 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 		<br />
 
 		<!-- <h2 align="center">Distrubte your courses for each semester (0-6 courses)</h2> -->
-    <h2 align="center">Add Costraints</h2>
+		<h2 align="center">
+			<?php
+				if($_SESSION['dispEng'])
+  					echo "Add Costraints";
+  				else
+  					echo "Ajouter contraintes";
+  			?>
+		</h2>
 
 
 		<div style="background-color:#72c8e5"class="form-group p-3 mb-2 rounded">
@@ -127,13 +141,20 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 				<table class="table table-borderless" id="dynamic_field">
 					 <tr>
 						<td>
-              <h2 style="color:#500c8c; font-size: 15px" align="left" style="color:#a3291b;">Choose Year</h2>
+				<h2 style="color:#500c8c; font-size: 15px" align="left" style="color:#a3291b;">
+					<?php
+						if($_SESSION['dispEng'])
+  							echo "Choose Year";
+  						else
+  							echo "Choisir année";
+  					?>
+				</h2>
               <!-- <div class="ceter"> -->
                 <select id= "listYear1",name="Years" >
                 <option value="1" selected>
                   <?php
                   	if($_SESSION['dispEng'])
-  										echo "First Year";
+  										echo "First year";
   									else
   										echo "Première année";
   								?>
@@ -142,7 +163,7 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
                 <option value="2">
                   <?php
 									if($_SESSION['dispEng'])
-										echo "Second Year";
+										echo "Second year";
 									else
 										echo "Deuxième année";
 								  ?>
@@ -151,7 +172,7 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
                 <option value="3">
                   <?php
 									if($_SESSION['dispEng'])
-										echo "Third Year";
+										echo "Third year";
 									else
 										echo "Troisième année";
 								  ?>
@@ -160,7 +181,7 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
                 <option value="4">
                   <?php
 									if($_SESSION['dispEng'])
-										echo "Fourth Year";
+										echo "Fourth year";
 									else
 										echo "Quatrième année";
 								  ?>
@@ -169,7 +190,7 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
                 <option value="5">
                   <?php
   									if($_SESSION['dispEng'])
-  										echo "Fifth Year";
+  										echo "Fifth year";
   									else
   										echo "Cinqième année";
 								  ?>
@@ -178,7 +199,7 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
                 <option value="6">
                   <?php
   									if($_SESSION['dispEng'])
-  										echo "Sixth Year";
+  										echo "Sixth year";
   									else
   										echo "Sixième année";
   								?>
@@ -189,7 +210,14 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 
 						</td>
 						<td>
-                <h2 style="font-size: 15px" align="center">Semester</h2>
+                <h2 style="font-size: 15px" align="center">
+					<?php
+						if($_SESSION['dispEng'])
+							echo "Semester";
+						else
+							echo "Semestre";
+					?>
+				</h2>
               <select id = "list1",name="Term">
 							<option value="Summer" selected>
                 <?php
@@ -218,7 +246,13 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 							</select>
 
 						</td>
-						<td><h2 style="color:#500c8c; font-size: 15px" align="left">Maximum Classes This Semester </h2>
+						<td><h2 style="color:#500c8c; font-size: 15px" align="left">
+							<?php
+								if($_SESSION['dispEng'])
+									echo "Maximum number classes this semester";
+								else
+									echo "Nombre maximum de cours ce semestre";
+							?></h2>
 
               <select name="Number" id="number1">
 							<option value="0" selected>0</option>
@@ -259,7 +293,14 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
         	else
         		echo '<input type="button" class="btn btn-success btn-sm" name="submit" id="submit" value="Soumettre"/></p>';
         ?>
-        <input type="button" class="btn btn-primary" onclick="window.print()" value="Print General Course Schedule"/>
+        <input type="button" class="btn btn-primary" onclick="window.print()" value=
+				<?php
+					if($_SESSION['dispEng'])
+						echo "Print general course schedule";
+					else
+						echo "Imprimer horaire des cours";
+				?>
+				/>
 			</form>
 			<div id="result"></div>
 		</div>
@@ -294,7 +335,7 @@ $(document).ready(function(){
 		$("#row"+button_id+'').remove();
 	}
 	else{
-		alert("Please delet from the last one.");
+		alert("Please delete from the last one.");
 	}
 	});
 	$('#submit').click(function(){

@@ -4,7 +4,14 @@
      -->
 <html lang = "en">
   <head>
-    <title>SOEN Course Stream</title>
+    <title>
+		<?php
+			if($_SESSION['dispEng'])
+  				echo "SOEN Course Stream";
+  			else
+  				echo "Sequence des cours SOEN";
+  		?>
+	</title>
     <meta charset = "utf-8" />
     <style type = "text/css">
       td, th, table {border: thin solid black;}
@@ -74,7 +81,13 @@
 
 // Return the results to the browser in a table
     ?>
-    <h4> Passed Courses: </h4>
+    <h4>
+		<?php
+			if($_SESSION['dispEng'])
+  				echo "Passed courses";
+  			else
+  				echo "Cours passés;
+  		?></h4>
     <?php
 
 if(isset($_POST["PHYS204"])){

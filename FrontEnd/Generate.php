@@ -25,12 +25,12 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 	 <title>
-     <?php
-   			if($_SESSION['dispEng'])
-   				echo "SOEN Course Stream";
-   			else
-   				echo "Cours SOEN";
-     ?>
+		<?php
+			if($_SESSION['dispEng'])
+  				echo "SOEN Course Stream";
+  			else
+  				echo "Séquence des cours SOEN";
+  		?>
    </title>
 <style>
 
@@ -178,12 +178,19 @@
 					<th>
 						<?php
 							if($_SESSION['dispEng'])
-								echo "Course Name";
+								echo "Course name";
 							else
 								echo "Nom du cours";
 						?>
           </th>
-					<th>Check Passed</th>
+					<th>
+						<?php
+							if($_SESSION['dispEng'])
+								echo "Check passed";
+							else
+								echo "Vérifier passé";
+						?>
+					</th>
 				</tr>
 			</thead>
 			<tbody>

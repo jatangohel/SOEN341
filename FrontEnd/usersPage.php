@@ -75,11 +75,22 @@ include '../Databases/DBinterface/DBinterface.php';
 	*/
 	function sendActivationEmail($activationLink,$userEmail){
 		// the message
-		$msg = "Welcome Sequence Builder...<br/>If you registered in the coolest website ever *SEQUENCE BUILDER*, click the following link to activate your account <br/> $activationLink <br/>Otherwise, ignore our email please!";
-		// use wordwrap() if lines are longer than 70 characters
-		$msg = wordwrap($msg,70);
-		// send email
-		mail($userEmail,"Activation Email",$msg);
+		if($_SESSION['dispEng'])
+		{
+			$msg = "Welcome to Sequence Builder...<br/>If you have registered for the coolest website ever *SEQUENCE BUILDER*, click the following link to activate your account <br/> $activationLink <br/>Otherwise, please ignore our e-mail!";
+			// use wordwrap() if lines are longer than 70 characters
+			$msg = wordwrap($msg,70);
+			// send email
+			mail($userEmail,"Activation E-mail",$msg);
+		}
+		else
+		{
+			$msg = "Bienvenue dans Sequence Builder...<br/>Si vous avez enregistré pour le site le plus cool *SEQUENCE BUILDER*, clickez sur le lien ci-dessous pour activer votre compte <br/> $activationLink <br/>Sinon, veuillez ignorer notre courriel!";
+			// use wordwrap() if lines are longer than 70 characters
+			$msg = wordwrap($msg,70);
+			// send email
+			mail($userEmail,"Courriel d'activation",$msg);
+		}
 	}
 	//db info
 	$dbServerName = 'localhost';
@@ -135,10 +146,16 @@ include '../Databases/DBinterface/DBinterface.php';
 			$_SESSION['userName'] = $LoggedInUserName;
 			$_SESSION['userEmail'] = $userEmail;
 			$_SESSION['flagPrevPage'] = true;
-			echo
-			'<div id="loading">
-			<img id="loading-image" src="img_loadingtrans.gif" alt="Loading..." />'.
-			'<h1 data-text="'.'Logging in...'.'">'.' Logging in...'.'</h1>'.'</div>';
+			if($_SESSION['dispEng'])
+				echo
+					'<div id="loading">
+					<img id="loading-image" src="img_loadingtrans.gif" alt="Loading..." />'.
+					'<h1 data-text="'.'Logging in...'.'">'.' Logging in...'.'</h1>'.'</div>';
+			else
+				echo 
+					'<div id="loading">
+					<img id="loading-image" src="img_loadingtrans.gif" alt="Chargement..." />'.
+					'<h1 data-text="'.'Connexion..'.'">'.' Connexion..'.'</h1>'.'</div>';
 
 			//echo "$LoggedInUserName you're logged in!";
 			if(getInputtedPassed($userEmail))
@@ -147,7 +164,10 @@ include '../Databases/DBinterface/DBinterface.php';
 				header('Refresh: 2; URL = ../Generate.php');
 		}
 		else{
-			echo "Invalid email or password has been used";
+			if($_SESSION['dispEng'])
+				echo "Invalid e-mail or password has been used";
+			else
+				echo "Une adresse courriel ou mot de passe non-valide a été utilisé";
 			header('Refresh: 2; URL = ../index.php');
 		}
 /*			echo "<br/>Activation status: ";
@@ -196,9 +216,15 @@ include '../Databases/DBinterface/DBinterface.php';
 			//str_replace is used to remove @ sign since it ruins the link
 			$activationLink = 'activateAccount.php?conf='.$userPws.'1430'.substr($userEmail,0,3)."&userEmail=".str_replace("@","remat",$userEmail);
 //			sendActivationEmail($activationLink,$userEmail);
-			echo 'An activation email has been sent to you!<br/>You will be directed to the home page...';
+			if($_SESSION['dispEng'])
+				echo "An activation e-mail has been sent to you!<br/>You will be redirected to the home page...";
+			else
+				echo "Un courriel d'activation vous a été envoyé!<br/>Vous serez redirigé à la page d'accueil ...";
 			header('Refresh: 2; URL = ../index.php');
 		}else
-		echo (!empty($userEmail) && !empty($userPws)) ? "$userEmail is already registered!": "Enter your info properly!";
+			if($_SESSION['dispEng'])
+				echo (!empty($userEmail) && !empty($userPws)) ? "$userEmail is already registered!": "Enter your info properly!";
+			else
+				echo (!empty($userEmail) && !empty($userPws)) ? "$userEmail est déjà enregistré!": "Entrez vos infos correctement!";
 	}
 	?>

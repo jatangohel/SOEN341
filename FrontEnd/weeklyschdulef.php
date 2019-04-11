@@ -135,7 +135,14 @@ $userSched = $_SESSION['userSched'];
 	</style>
 	 <body>
  <div class="topHeader">
-        <button class="btn btn-warning" onclick="window.print()" style="float:left; margin-left:20px;"><strong>Print Schedule</strong></button>
+        <button class="btn btn-warning" onclick="window.print()" style="float:left; margin-left:20px;"><strong>
+			<?php
+    			if($_SESSION['dispEng'])
+    				echo "Print Schedule";
+    			else
+    				echo "Imprimer horaire";
+    		?>
+		</strong></button>
 
         <h1 class="text-center">
           <?php
@@ -247,7 +254,14 @@ $userSched = $_SESSION['userSched'];
 
 									<td></select><input type="time" id="starting1" name="starting1" placeholder="Starting Time"></td>
 									<td><input type="time" id="ending1" name="ending1" placeholder="Ending Time"></td>
-									<td><button type="button" name="add" id="add" class="btn btn-secondary">Next</button></td>
+									<td><button type="button" name="add" id="add" class="btn btn-secondary">
+										<?php
+											if($_SESSION['dispEng'])
+												echo "Next";
+											else
+												echo "Suivant";
+										?></button>
+									</td>
 								</tr>
 								<input type="button" class="btn btn-success btn-sm"style="float:right; margin-right:20px;" value="submit"/>
 							</table>

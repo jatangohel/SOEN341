@@ -8,8 +8,11 @@
 
         if(pwsLength < 8){
             document.getElementById("register1").disabled = true;
-            document.getElementById("pwsLengthErr").innerHTML = "Your password must be eight or more characters!";
-            document.getElementById("pwsLengthErr").setAttribute("style", "color: red;");
+			if($_GET['Lang'] == 'Fr')
+				document.getElementById("pwsLengthErr").innerHTML = "Votre mot de passe doit avoir huit caractères ou plus!";
+            else
+				document.getElementById("pwsLengthErr").innerHTML = "Your password must be eight or more characters!";
+			document.getElementById("pwsLengthErr").setAttribute("style", "color: red;");
         } else{ //an else clause must exist. Otherwise, a warnning message will always be displayed
             document.getElementById("register1").disabled = false;
             document.getElementById("pwsLengthErr").innerHTML = "";
@@ -130,7 +133,20 @@
             </button>
             <div style="text-align: center">
             </br>
-                 <a class="text-center" href="FrontEnd/usersPage.php?login=true&LoggedInUserName=GUEST">Continue as Guest</a>
+				<?php
+					if($_SESSION['dispEng'])
+						echo "Login";
+					else
+						echo "Connexion";
+				?>
+                <a class="text-center" href="FrontEnd/usersPage.php?login=true&LoggedInUserName=GUEST">
+					<?php
+						if($_SESSION['dispEng'])
+							echo "Continue as Guest";
+						else
+							echo "Continuer come visiteur";
+					?>
+				</a>
             </div>
         </div>
 
@@ -172,7 +188,7 @@
                                else
                                  echo "Adresse courriel";
                               ?>
-                              required>
+							  required>
                              <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                          </div>
                      </div>
@@ -199,10 +215,24 @@
                  </div>
 
                 <h2 style="width: 100%; text-align: center; border-bottom: 1px solid #000; line-height: 0.1em; margin-top: 22px; margin-bottom: 26px; 0 20px;">
-                  <span style="background:#fff; padding:0 10px; font-size: 13px">OR</span>
+					<span style="background:#fff; padding:0 10px; font-size: 13px">
+                        <?php
+           								if($_SESSION['dispEng'])
+           									echo "OR";
+           								else
+           									echo "OU";
+                        ?>
+					</span>
                 </h2>
 
-                <button onclick="alert('Hello!')" class="loginBtn loginBtn--facebook" style="top: 12; left: 50%; transform: translate(-50%,-50%);">Login with Facebook</button>
+                <button onclick="alert('Hello!')" class="loginBtn loginBtn--facebook" style="top: 12; left: 50%; transform: translate(-50%,-50%);">
+					<?php
+           				if($_SESSION['dispEng'])
+           					echo "Login with Facebook";
+           				else
+           					echo "Se connecter avec Facebook";
+                    ?>
+				</button>
              </div>
              <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -284,10 +314,10 @@
                  <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                  <input name="userEmail" type="email" class="form-control" id="inputEmail" placeholder=
                  <?php
-       						if($_SESSION['dispEng'])
-       							echo "E-mail address";
-       						else
-       							echo "Adresse couriel";
+       				if($_SESSION['dispEng'])
+       					echo "E-mail address";
+       				else
+       					echo "Adresse couriel";
                  ?>
                   required>
              </div>
@@ -295,15 +325,22 @@
          <div class="form-group">
           <label for="password">
             <?php
-    					if($_SESSION['dispEng'])
-    						echo "Password";
-    					else
-    						echo "Mot de passe";
+    			if($_SESSION['dispEng'])
+					echo "Password";
+    			else
+					echo "Mot de passe";
             ?>
           </label>
           <div class="input-group pb-modalreglog-input-group">
              <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-             <input name="userPassword" type="password" class="form-control" id="inputPws" placeholder="Password" onkeyup="pwsLengthChecker()" required><!-- onkeyup is the only event works b/c it detects the length not (-1) like onkeydown -->
+             <input name="userPassword" type="password" class="form-control" id="inputPws" placeholder=
+                <?php
+					if($_SESSION['dispEng'])
+           				echo "Password";
+           			else
+           				echo "Mot_de_passe";
+                ?>
+				onkeyup="pwsLengthChecker()" required><!-- onkeyup is the only event works b/c it detects the length not (-1) like onkeydown -->
          </div>
          <p id="pwsLengthErr">
 
