@@ -1,11 +1,14 @@
 <?php
 require_once 'backendInterface.php';
- set_time_limit(0) ;
-genNewSched();
-$userSched = $_SESSION['userSched'];
-var_dump($userSched->getListOfSemesters()[0]->getMyLecs());
+set_time_limit(0);
 
- ?>
+$semIndex = $_GET['semIndex'];
+$userSched = unserialize($_SESSION['userSched']);
+
+$noClassesArr =  $userSched->getListOfSemesters()[$semIndex]->getTimesNoClass();
+var_dump($noClassesArr);
+?>
+
 <script>
 var ABCD=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[0]->getMyLecs())?>');
 console.log(ABCD[0]['day'][0]);

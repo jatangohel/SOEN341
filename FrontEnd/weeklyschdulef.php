@@ -4,7 +4,8 @@ set_time_limit(0);
 
 $semIndex = $_GET['semIndex'];
 $userSched = unserialize($_SESSION['userSched']);
-$noClassesArr =  $userSched->getListOfSemesters()[$semIndex]->getTimesNoClass();
+$noClassesArr =  $userSched->getListOfSemesters()[$semIndex]->getMyTimesNoClass();
+var_dump($noClassesArr);
 ?>
 
 
@@ -1220,6 +1221,41 @@ function createLabNew() {
 			}
 		}
 	}
+}
+
+
+createNoClassNew();
+function createNoClassNew(){
+    var jsNoClass=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[$semIndex]->getMyTimesNoClass())?>')
+    for (x in jsNoClass){
+		var title = jsNoClass[x]['day'][0];
+		var fromTimeHour = jsNoClass[x]['startTime'];
+		var toTimeHour= jsNoClass[x]['endTime'];
+		var courseName= jsNoClass[x]['courseName'];
+		var courseSection= jsNoClass[x]['section'];
+		var courseSubSection=jsNoClass[x]['subsection'];
+		var StartHour = parseInt(fromTimeHour/10000);
+		var StartMinute = parseInt((fromTimeHour%10000)/100);
+		var EndHour = parseInt(toTimeHour/10000);
+		var EndMinute = parseInt((toTimeHour%10000)/100);
+        var a=getTime(fromTimeHour);
+        var b=getTime(toTimeHour);
+        var c=modTime(fromTimeHour);
+		document.getElementById(title + c).innerHTML=("no Class");
+		document.getElementById(title + c).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
+		document.getElementById(title + c).style = " color:rgb(0,0,0);background-color:rgb(155,155,153);text-align: center;opacity: 0.8;";
+		var tempTime=parseInt(c);
+		for (var i=1;i<document.getElementById(title + c).rowSpan;i++){
+			tempTime=tempTime+1500;
+			if((tempTime%10000)%6000==0)
+				tempTime=tempTime+4000;
+			if(tempTime<100000)
+				document.getElementById(title+'0'+tempTime).style.display="none";
+			else
+				document.getElementById(title+tempTime).style.display="none";
+		}
+	}
+
 }
 
 function getStartTimes(){

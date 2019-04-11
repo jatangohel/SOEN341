@@ -72,6 +72,16 @@ class Session
       'day'=>$this->getDays()
     );
   }
+  public function noClassobjectToArray(){
+    return array(
+      'courseName'=>"noClass",
+      'section'=>$this->getSection(),
+      'subsection'=>$this->getSubSection(),
+      'startTime'=>$this->getStartTime(),
+      'endTime'=>$this->getEndTime(),
+      'day'=>$this->getDays()
+    );
+  }
   public function dispInfo ()
   {
     echo "Course name: " . $this->getCourseName() . " section: " . $this->getSection()  .
