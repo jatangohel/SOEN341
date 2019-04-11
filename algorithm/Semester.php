@@ -90,7 +90,7 @@ class Semester
 
   public function getTimesNoClass()
   {
-    return $this->getTimesNoClass;
+    return $this->timesNoClass;
   }
 
   public function getStatus()

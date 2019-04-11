@@ -297,18 +297,7 @@ $(document).ready(function(){
 		alert("Please delet from the last one.");
 	}
 	});
-	$('#submit').click(function(){
-		$.ajax({
-			url:"name.php",
-			method:"POST",
-			data:$('add_name').serialize(),
-			success:function(data)
-			{
-				alert(data);
-				$('#add_name')[0].reset();
-			}
-		});
-	});
+
 });
 
 function getTotalTerm(){
@@ -352,7 +341,7 @@ $(document).ready(function(){
 		 var x = document.getElementById("loading");
 		  x.style.display = "block";
 		$.post('backendInterface.php',{
-      submitID:"Submit #Courses",
+      submitID:"Submit#Courses",
 			numCoursesYearTerm:getSelectYearTerm(),
 			numCoursesConstrain:getNumberOfCourse()} ,
 		  function(data){
