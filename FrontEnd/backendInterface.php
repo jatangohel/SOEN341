@@ -44,15 +44,16 @@ function genNewSched ()
 		$oldUserSched = unserialize($_SESSION ['userSched']);
 
 		// Looping through the semesters having constraints
-		for ($j=0; $j < count($_SESSION ['days']); $j++)
+		//for ($j=0; $j < count($_SESSION ['days']); $j++)
+		foreach ($_SESSION ['days'] as $key => $val)
 		{
-			$semIndex = $oldUserSched->getListOfSemesters()[$j]->getYear().$oldUserSched->getListOfSemesters()[$j]->getName();
+			$semIndex = $oldUserSched->getListOfSemesters()[$key]->getYear().$oldUserSched->getListOfSemesters()[$key]->getName();
 			$noClassesArr[$semIndex] = array();
 
 			// Looping through the timing constraints for a semester
-			for ($i=0; $i < count($_SESSION ['days'][$j]); $i++) {
-				$noClassesInterval = new Session ("NoClass", null, null, null, $_SESSION ['days'][$j][$i],
-				 																	$_SESSION ['startTimes'][$j][$i], $_SESSION ['endTimes'][$j][$i], null);
+			for ($i=0; $i < count($_SESSION ['days'][$key]); $i++) {
+				$noClassesInterval = new Session ("NoClass", null, null, null, $_SESSION ['days'][$key][$i],
+				 																	$_SESSION ['startTimes'][$key][$i], $_SESSION ['endTimes'][$key][$i], null);
 				array_push($noClassesArr[$semIndex], $noClassesInterval);
 		 }
 	 }
