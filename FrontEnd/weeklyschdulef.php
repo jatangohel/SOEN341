@@ -267,8 +267,8 @@ $userSched = unserialize($_SESSION['userSched']);
                     </option>
 									</td>
 
-									<td></select><input type="time" id="starting1" name="starting1" placeholder="Starting Time"></td>
-									<td><input type="time" id="ending1" name="ending1" placeholder="Ending Time"></td>
+									<td></select><input type="time" id="starting1" name="starting1" value="00:00" placeholder="Starting Time"></td>
+									<td><input type="time" id="ending1" name="ending1" value = "00:00" placeholder="Ending Time"></td>
 									<td><button type="button" name="add" id="add" class="btn btn-secondary">Add</button></td>
 								</tr>
 								<input type="button" class="btn btn-success btn-sm"style="float:right; margin-right:20px;" name="submit" id="submit" value="Submit"/>
@@ -992,7 +992,7 @@ var timingConstraintsNum = 1;
 $(document).ready(function(){
 	$('#add').click(function(){
 		timingConstraintsNum++;
-		$('#dynamic_field').append('<tr id="row'+timingConstraintsNum+'"><td><select id="day'+timingConstraintsNum+'"name="Days"><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday">Friday</option><option value="Saturday">Saturday</option><option value="Sunday">Sunday</option></select>&nbsp;</td><td><input type="time" id="starting'+timingConstraintsNum+'" name="starting'+timingConstraintsNum+'">&nbsp;</td><td><input type="time" id="ending'+timingConstraintsNum+'" name="ending'+timingConstraintsNum+'">&nbsp;</td><td><button name="remove" id="'+timingConstraintsNum+'" class="btn btn-danger btn_remove">X</button>&nbsp;</td></tr>');
+		$('#dynamic_field').append('<tr id="row'+timingConstraintsNum+'"><td><select id="day'+timingConstraintsNum+'"name="Days"><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday">Friday</option><option value="Saturday">Saturday</option><option value="Sunday">Sunday</option></select>&nbsp;</td><td><input type="time" id="starting'+timingConstraintsNum+'"value = 00:00 name="starting'+timingConstraintsNum+'">&nbsp;</td><td><input type="time" id="ending'+timingConstraintsNum+'"value=00:00 name="ending'+timingConstraintsNum+'">&nbsp;</td><td><button name="remove" id="'+timingConstraintsNum+'" class="btn btn-danger btn_remove">X</button>&nbsp;</td></tr>');
 	});
 	$(document).on('click','.btn_remove',function(){
 		var button_id = $(this).attr("id");
@@ -1227,6 +1227,7 @@ function createLabNew() {
 createNoClassNew();
 function createNoClassNew(){
     var jsNoClass=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[$semIndex]->getMyTimesNoClass())?>')
+    console.log(jsNoClass );
     for (x in jsNoClass){
 		var title = jsNoClass[x]['day'][0];
 		var fromTimeHour = jsNoClass[x]['startTime'];
@@ -1276,7 +1277,6 @@ function getEndTimes(){
 	var endTimes=[];
 	for (y =1; y<timingConstraintsNum+1;y++){
 	endTime = document.getElementById("ending"+y).value;
-
   // Remove the colons and pad two zeros to be compatible with the time format from db
   endTime = endTime.replace(':','') + "00";
 	endTimes.push(endTime);
