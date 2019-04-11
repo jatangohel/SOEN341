@@ -7,11 +7,12 @@
 <body>
   <div>
     <?php
+
 /*
 test for updateTakenCourses function
 
 
-require_once 'UserSchedule.php';
+
 
 $x = array('COMP352','SOEN341');
 
@@ -20,6 +21,8 @@ updateTakenCourses('sebhani98@gmail.com',$x);
 echo 'done yo sucker!';
 
 */
+
+require_once 'UserSchedule.php';
 ini_set('max_execution_time', 300);
 
 $numCoursesArr = array();
@@ -50,23 +53,28 @@ array_push($noSem1, $no4);
 array_push($noSem1, $no5);
 //$noClassesArr['2F']=$noSem1;
 //$noClassesArr['2W']=$noSem1;
-$userSched = new UserSchedule($numCoursesArr, $noClassesArr);
-$testUser = new user("hani","osama.qalam@hotmail.com" , "hani123", $userSched, "F");
-$userSched->genProgramSched($testUser);
+//$userSched = new UserSchedule($numCoursesArr, $noClassesArr);
+//$testUser = new user("hani","osama.qalam@hotmail.com" , "hani123", $userSched, "F");
+//$userSched->genProgramSched($testUser);
 
-$userSched->dispUserSchedule();
+//$userSched->dispUserSchedule();
 
 $A =new Course ("A", null, null, 3, true, false);
 $B =new Course ("B", null, null, 3, true, false);
 $C =new Course ("C", null, null, 3, true, false);
-$D =new Course ("D", null, array($A, $B), 3, true, false);
+$D =new Course ("D", null, null, 3, true, false);
+$E =new Course ("E", null, null, 3, true, false);
+$F =new Course ("F", null, null, 3, true, false);
+$G =new Course ("G", null, array($A, $B), 3, true, false);
 
-$temp = array ($A, $C, $D);
+$temp = array ($A, $C, $D, $E, $F, $G);
 $startTime = 0.0;
 $endTime = 0.0;
 $startTime = microtime(true);
-var_dump(coReqsSatisfied($temp));
+//var_dump(creditsCombinations($temp));
 $endTime = microtime(true);
+$sem1= new Semester(null, null, null, null);
+var_dump($sem1->creditsCombinations($temp, 12.0));
 
 //var_dump(microtime(true));
 
@@ -87,6 +95,7 @@ $untaken =  array ($comp248,$comp249,$comp352,$engr201,$engr202,$engr213,$engr23
 updateAllPriority($untaken);
 
 var_dump($untaken);
+*/
     ?>
   </div>
 </body>

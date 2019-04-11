@@ -189,6 +189,32 @@ class Semester
     return $temp;
   }
 
+  public function creditsCombinations($array,$credits){
+    $results = array(array( ));
+    foreach ($array as $element){
+      foreach ($results as $combination)
+      {
+          array_push($results, array_merge(array($element), $combination));
+      }
+    }
+
+    $temp = array();
+
+    foreach ($results as $r)
+    {
+      $totalCredits = 0;
+      foreach ($r as $course)
+      {
+        $totalCredits+= $course->getCredits();
+        if ($totalCredits >= $credits && $totalCredits<= $credits+1.5 )
+          array_push($temp, $r);
+      }
+
+    }
+
+    return $temp;
+  }
+
   function combination_sort(&$combination){
 
   $temp_combination=array();
