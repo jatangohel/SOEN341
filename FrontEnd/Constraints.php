@@ -121,13 +121,13 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
     <h2 align="center">Add Costraints</h2>
 
 
-		<div style="background-color:#72c8e5"class="form-group p-3 mb-2 rounded">
+		<div style="background-color:#9cd8ed"class="form-group p-3 mb-2 rounded">
       <!-- <div class="center"> -->
 			<form name="add_name" id="add_name">
 				<table class="table table-borderless" id="dynamic_field">
 					 <tr>
 						<td>
-              <h2 style="color:#500c8c; font-size: 15px" align="left" style="color:#a3291b;">Choose Year</h2>
+              <h2 style="color:#000000; font-size: 15px" align="left" style="color:#000000;">Choose Year</h2>
               <!-- <div class="ceter"> -->
                 <select id= "listYear1",name="Years" >
                 <option value="1" selected>
@@ -189,8 +189,8 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 
 						</td>
 						<td>
-                <h2 style="font-size: 15px" align="center">Semester</h2>
-              <select id = "list1",name="Term">
+                <h2 style="font-size: 15px" align="left">Semester</h2>
+              <select id = "list1" m align="center" name="Term">
 							<option value="Summer" selected>
                 <?php
 									if($_SESSION['dispEng'])
@@ -218,7 +218,7 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 							</select>
 
 						</td>
-						<td><h2 style="color:#500c8c; font-size: 15px" align="left">Maximum Classes This Semester </h2>
+						<td><h2 style="color:#000000; font-size: 15px" align="left">Maximum Classes This Semester </h2>
 
               <select name="Number" id="number1">
 							<option value="0" selected>0</option>
@@ -233,7 +233,7 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
             <!-- <td>
               <p>  Minimum Credits This Semester </p> </td> -->
                   <td>
-                    <h2 style="color:#500c8c; font-size: 15px" align="left">
+                    <h2 style="color:#000000; font-size: 15px" align="left">
                       <?php
                         if ($_SESSION['dispEng'])
                         	echo 'Minimum credits this semester';
@@ -297,18 +297,7 @@ $(document).ready(function(){
 		alert("Please delet from the last one.");
 	}
 	});
-	$('#submit').click(function(){
-		$.ajax({
-			url:"name.php",
-			method:"POST",
-			data:$('add_name').serialize(),
-			success:function(data)
-			{
-				alert(data);
-				$('#add_name')[0].reset();
-			}
-		});
-	});
+
 });
 
 function getTotalTerm(){
@@ -352,7 +341,7 @@ $(document).ready(function(){
 		 var x = document.getElementById("loading");
 		  x.style.display = "block";
 		$.post('backendInterface.php',{
-      submitID:"Submit #Courses",
+      submitID:"Submit#Courses",
 			numCoursesYearTerm:getSelectYearTerm(),
 			numCoursesConstrain:getNumberOfCourse()} ,
 		  function(data){

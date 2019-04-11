@@ -41,7 +41,7 @@ function changeLanguage()
 
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
-                <a class="nav-link" href="FrontEnd/about.php">
+                <a class="nav-link" href="about.php">
                   <?php
             				if($_SESSION['dispEng'])
             					echo "About us";

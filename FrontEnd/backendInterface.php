@@ -3,6 +3,7 @@ require_once __DIR__.'/../algorithm/UserSchedule.php';
 require_once "sessionfns.php";
 if (session_status() != PHP_SESSION_ACTIVE)
 	session_start();
+
 function processNumCoursesConstraint()
 {
 	for ($i=0; $i < count($_POST['numCoursesYearTerm']); $i++)
@@ -10,17 +11,52 @@ function processNumCoursesConstraint()
 		$_SESSION['numCoursesYearTerm'][$i] = $_POST['numCoursesYearTerm'][$i];
 		$_SESSION['numCoursesConstrain'][$i] = (int) $_POST['numCoursesConstrain'][$i];
 	}
+
 }
+
+function processTimingConstraint()
+{
+	$semIndex = $_POST['semIndex'];
+
+	for ($i=0; $i < count($_POST['days']); $i++)
+	{
+		$_SESSION['startTimes'][$semIndex][$i] = $_POST['startTimes'][$i];
+		$_SESSION['endTimes'][$semIndex][$i] = $_POST['endTimes'][$i];
+		$_SESSION['days'][$semIndex][$i] = array($_POST['days'][$i]);
+	}
+
+}
+
 function genNewSched ()
 {
 	$numCoursesArr = array();
-	$noClassesArr=array(array());
-	if (count($_SESSION ['numCoursesConstrain']) != 0)
+	$noClassesArr=array();
+	if (array_key_exists("numCoursesConstrain", $_SESSION))
 	{
 		for ($i=0; $i < count($_SESSION ['numCoursesConstrain']); $i++) {
 			$term = $_SESSION ['numCoursesYearTerm'][$i];
 			$numCoursesArr[$term] = $_SESSION['numCoursesConstrain'][$i];
 		 }
+	}
+
+	if (!empty($_SESSION['days']))
+	{
+		$oldUserSched = unserialize($_SESSION ['userSched']);
+
+		// Looping through the semesters having constraints
+		//for ($j=0; $j < count($_SESSION ['days']); $j++)
+		foreach ($_SESSION ['days'] as $key => $val)
+		{
+			$semIndex = $oldUserSched->getListOfSemesters()[$key]->getYear().$oldUserSched->getListOfSemesters()[$key]->getName();
+			$noClassesArr[$semIndex] = array();
+
+			// Looping through the timing constraints for a semester
+			for ($i=0; $i < count($_SESSION ['days'][$key]); $i++) {
+				$noClassesInterval = new Session ("NoClass", null, null, null, $_SESSION ['days'][$key][$i],
+				 																	$_SESSION ['startTimes'][$key][$i], $_SESSION ['endTimes'][$key][$i], null);
+				array_push($noClassesArr[$semIndex], $noClassesInterval);
+		 }
+	 }
 	}
 
 	$email = $_SESSION['userEmail'];
@@ -59,7 +95,7 @@ function genNewSched ()
 $_SESSION['semInfo'] = $semInfo;
 $_SESSION['semYear'] = $semYear;
 $_SESSION['semName'] = $semName;
-$_SESSION['userSched'] = $userSched;
+$_SESSION['userSched'] = serialize($userSched);
 }
 
 
@@ -72,9 +108,16 @@ if( empty($_POST['submitID']) )
 		genNewSched();
 	}
 }
-elseif ($_POST['submitID'] == "Submit #Courses" )  // continuing           //F
+elseif ($_POST['submitID'] == "Submit#Courses" )
 {
   processNumCoursesConstraint();
-	genNewSched();                                           //G
+	genNewSched();
 }
+
+elseif ($_POST['submitID'] == "SubmitTimingConstraints")
+{
+	processTimingConstraint();
+	genNewSched();
+}
+
  ?>

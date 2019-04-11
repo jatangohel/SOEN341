@@ -90,9 +90,19 @@ class Semester
 
   public function getTimesNoClass()
   {
-    return $this->getTimesNoClass;
+    return $this->timesNoClass;
   }
 
+  public function getMyTimesNoClass(){
+    $temp=array();
+    if(!empty($this->getTimesNoClass()))
+    {
+      foreach($this->getTimesNoClass()as $tnc){
+        array_push($temp,$tnc->noClassobjectToArray());
+      }
+    }
+    return $temp;
+  }
   public function getStatus()
   {
     return $this->status;
