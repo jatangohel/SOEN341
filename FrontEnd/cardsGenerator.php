@@ -13,7 +13,7 @@ function cardDisp($i)
 	$semNameFE = $_SESSION ['semName'];
 
   echo
-  '<a class="card card-body text-center height:400px" id="hello" href="weeklyschdulef.php?semester=';echo"$i";echo'"class="custom-card" style="background: #F8C471">'.
+  '<a class="card card-body text-center height:400px" id="hello" href="weeklyschdulef.php?semIndex=';echo"$i";echo "&semYear=";echo $semYearFE[$i]; echo"&semName="; echo $semNameFE[$i]; echo'"class="custom-card" style="background: #F8C471">'.
   '<thead>'.
   '<tr class="tableheader">'.
   '<th><strong>';
