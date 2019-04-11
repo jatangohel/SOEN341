@@ -138,15 +138,14 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 
                         </button>
                         <h4 class="modal-title" id="myModalLabel">
                           <?php
             								if($_SESSION['dispEng'])
-            									echo "Login form";
+            									echo "Login Form";
             								else
-            									echo "Formulaire de connexion";
+            									echo "Formulaire De Connexion";
                           ?>
                         </h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -159,18 +158,18 @@
                           <label for="email">
                             <?php
             									if($_SESSION['dispEng'])
-            										echo "E-mail address";
+            										echo "E-mail Address";
             									else
-            										echo "Adresse courriel";
+            										echo "Adresse Courriel";
                             ?>
                           </label>
                           <div class="input-group pb-modalreglog-input-group">
                              <input type="email" name="userEmail" class="form-control" id="email" placeholder=
                              <?php
                                if($_SESSION['dispEng'])
-                                 echo "E-mail address";
+                                 echo "E-mail Address";
                                else
-                                 echo "Adresse courriel";
+                                 echo "Adresse Courriel";
                               ?>
                               required>
                              <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
@@ -198,21 +197,13 @@
                      </div>
                  </div>
 
-                <h2 style="width: 100%; text-align: center; border-bottom: 1px solid #000; line-height: 0.1em; margin-top: 22px; margin-bottom: 26px; 0 20px;">
-                  <span style="background:#fff; padding:0 10px; font-size: 13px">OR</span>
+                <h2>
+                  <span style="background:#fff;  font-size: 13px"></span>
                 </h2>
 
                 <button onclick="alert('Hello!')" class="loginBtn loginBtn--facebook" style="top: 12; left: 50%; transform: translate(-50%,-50%);">Login with Facebook</button>
              </div>
              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                  <?php
-        						if($_SESSION['dispEng'])
-        							echo "Close";
-        						else
-        							echo "Fermer";
-                  ?>
-                </button>
                 <input name="login" value=
                   <?php
           					if($_SESSION['dispEng'])
@@ -220,7 +211,7 @@
           					else
           						echo "Connexion";
                   ?>
-                type="submit" class="btn btn-primary"/>
+                type="submit" class="btn btn-primary center-block"/>
             </div>
         </form>
     </div>
@@ -230,13 +221,12 @@
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 
                 </button>
                 <h4 class="modal-title" id="myModalLabel">
                   <?php
       							if($_SESSION['dispEng'])
-      								echo "Registration form";
+      								echo "Registration Form";
       							else
       								echo "Formulaire d'inscription";
                   ?>
@@ -275,9 +265,9 @@
               <label for="email">
                 <?php
       						if($_SESSION['dispEng'])
-      							echo "E-mail address";
+      							echo "E-mail Address";
       						else
-      							echo "Adresse couriel";
+      							echo "Adresse Couriel";
                 ?>
               </label>
               <div class="input-group pb-modalreglog-input-group">
@@ -285,9 +275,9 @@
                  <input name="userEmail" type="email" class="form-control" id="inputEmail" placeholder=
                  <?php
        						if($_SESSION['dispEng'])
-       							echo "E-mail address";
+       							echo "E-mail Address";
        						else
-       							echo "Adresse couriel";
+       							echo "Adresse Couriel";
                  ?>
                   required>
              </div>
@@ -311,14 +301,6 @@
      </div>
  </div>
  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-      <?php
-  			if($_SESSION['dispEng'])
-  				echo "Close";
-  			else
-  				echo "Fermer";
-      ?>
-    </button>
     <input name="register" id="register1" type="submit" value=
       <?php
         if($_SESSION['dispEng'])
