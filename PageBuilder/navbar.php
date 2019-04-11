@@ -27,7 +27,7 @@ function changeLanguage()
 
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link font-weight-bold" href="../Soen341/index.php">
+                <a class="nav-link font-weight-bold" href="../Soen341/">
                   <?php
                     if($_SESSION['dispEng'])
                       echo "CourseSequence";
@@ -41,7 +41,9 @@ function changeLanguage()
         <div class="collapse navbar-collapse" id="collapse_target">
 
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-         <?php if( ($_SERVER['REQUEST_URI']!='/SOEN341/') && ($_SERVER['REQUEST_URI']!='/SOEN341/index.php')){ ?>
+
+         <?php
+          if( ($_SERVER['REQUEST_URI']!='/SOEN341/') &&($_SERVER['REQUEST_URI']!='/Soen341/')&& ($_SERVER['REQUEST_URI']!='/SOEN341/index.php')){ ?>
           <li class="nav-item">
                 <a class="nav-link" href="FrontEnd/generate.php">
                   <?php
