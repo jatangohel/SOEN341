@@ -387,8 +387,9 @@ function updateTakenCourses($email,$courseName)
 	if($found===true){
 		$query = 'insert into pass (UserId, CourseName) values ('.$userId.',"'.$courseName.'")';
 		$result = mysqli_query($conn, $query);
+		return true;
 	}else{
-		return;
+		return false;
 	}
 
 }
@@ -567,7 +568,7 @@ function changeemail($email,$username){
     }
 
     else{
-        echo "Can't change the email to an already existing email";
+        //echo "Can't change the email to an already existing email";
         return 0;
     }
 }
