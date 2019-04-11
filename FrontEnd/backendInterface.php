@@ -41,7 +41,7 @@ function genNewSched ()
 
 	if (!empty($_SESSION['days']))
 	{
-		$oldUserSched = $_SESSION ['userSched'];
+		$oldUserSched = unserialize($_SESSION ['userSched']);
 
 		// Looping through the semesters having constraints
 		for ($j=0; $j < count($_SESSION ['days']); $j++)
@@ -94,7 +94,7 @@ function genNewSched ()
 $_SESSION['semInfo'] = $semInfo;
 $_SESSION['semYear'] = $semYear;
 $_SESSION['semName'] = $semName;
-$_SESSION['userSched'] = $userSched;
+$_SESSION['userSched'] = serialize($userSched);
 }
 
 
