@@ -1,11 +1,15 @@
 <style type="text/css">
-  body {height: 100%;}
+  body {height: 100%;
+
+
+  }
 
 </style>
 
 <body>
     <div id="wrapper">
 <?php
+echo '<link href="css/bgstyling.css" rel="stylesheet"/>';
 //Page Info
 $page_name = "error 404 - Main page";
 $page_keywords = "Error404";

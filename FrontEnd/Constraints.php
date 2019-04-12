@@ -23,7 +23,7 @@ if(isset($_POST['check_list'])){
 	function changeAllSem(){
 		var selector = document.getElementById("listYear1");
     	var value = selector[selector.selectedIndex].value;
-    			
+
     	if(value == 'ALL')
 			document.getElementById("list1").selectedIndex = 0;
 }
@@ -79,18 +79,7 @@ if(isset($_POST['check_list'])){
   display: table;
   clear: both;
 }
-body
-{
-background-image: linear-gradient(to bottom, rgba(255, 255, 255,9), rgba(230, 247, 255,9)), url("concordia.jpg");
-background-image: -moz-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
-background-image: -o-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
-background-image: -ms-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
-background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255,9)), to(rgba(230, 247, 255,9))), url(../../../../../Downloads/concordia.jpg);
-background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,0)), url(concordia.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-}
+
 #loading {
    width: 100%;
    height: 100%;
