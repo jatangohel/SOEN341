@@ -36,27 +36,25 @@ function cardDisp($i)
 	if ($_SESSION['dispEng'])
 		echo $semNameFE[$i];
 	else
-	{
-		switch ($semNameFE[$i])
-		{
-			case "Fall":
-				echo "Automne";
-			break;
-
-			case "Winter":
-				echo "Hiver";
-			break;
-
-			case "Summer":
-				echo "Été";
-			break;
-		}
-	}
+		echo 'semestre';
 
 	if ($_SESSION['dispEng'])
 		echo ' Semester';
 	else
-		echo ' Semestre';
+		switch ($semNameFE[$i])
+		{
+			case "Fall":
+				echo " d'automne";
+			break;
+
+			case "Winter":
+				echo " d'hiver";
+			break;
+
+			case "Summer":
+				echo " d'été";
+			break;
+		}
 
   echo ' </th>'.
   '</tr></strong>'.

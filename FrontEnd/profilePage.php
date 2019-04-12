@@ -180,14 +180,36 @@ opacity:0.96;
       				?>
               </button>
               <ul class="dropdown-menu">
-                <input id="newUserName" type="text" name="" placeholder="New Username" ><br>
-                <input id="changeUserNameButton" type="button" class="btn btn-success btn-sm"style="color:#FFFFFF; float:right; margin-right:20px;" value="Submit"/>
+                <input id="newUserName" type="text" name="" placeholder=
+					"<?php
+      					if($_SESSION['dispEng'])
+      						echo "New username";
+      					else
+      						echo "Nouveau nom d'utilisateur";
+					?>"
+					>
+				<br>
+                <input id="changeUserNameButton" type="button" class="btn btn-success btn-sm"style="color:#FFFFFF; float:right; margin-right:20px;" value=
+					"
+					<?php
+      					if($_SESSION['dispEng'])
+      						echo "Submit";
+      					else
+      						echo "Soumettre";
+      				?>"/>
               </ul>
             </div>
 
           <br><br>
 
-          <p>Current Email Address</p>
+          <p>
+			<?php
+    			if($_SESSION['dispEng'])
+    				echo "Current e-mail address";
+    			else
+    				echo "Adresse courriel actuel";
+    		?>
+		  </p>
 
           <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
@@ -199,14 +221,36 @@ opacity:0.96;
       				?>
               </button>
               <ul class="dropdown-menu">
-                <input id="newEmail" type="text" name="" placeholder="New Email" ><br>
-                <input id="changeEmailButton" type="button" class="btn btn-success btn-sm"style="color:#FFFFFF; float:right; margin-right:20px;" value="Submit"/>
+                <input id="newEmail" type="text" name="" placeholder=
+					"<?php
+      					if($_SESSION['dispEng'])
+      						echo "New e-mail address";
+      					else
+      						echo "Nouvelle adresse courriel";
+					?>"
+					>
+				<br>
+                <input id="changeEmailButton" type="button" class="btn btn-success btn-sm"style="color:#FFFFFF; float:right; margin-right:20px;" value=
+					"<?php
+      					if($_SESSION['dispEng'])
+      						echo "Submit";
+      					else
+      						echo "Soumettre";
+					?>"
+				/>
               </ul>
             </div>
 <br><br>
 
 
-          <p>Password</p>
+          <p>
+			<?php
+    			if($_SESSION['dispEng'])
+    				echo "Password";
+    			else
+    				echo "Mot de passe";
+    		?>
+		  </p>
 
           <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
@@ -218,9 +262,33 @@ opacity:0.96;
       				?>
               </button>
               <ul class="dropdown-menu">
-                <input type="text" name="" placeholder="New Password" ><br>
-                <input id="newPassword" type="text" name="" placeholder="Confirm Password"s ><br>
-                <input id="changePasswordButton" type="button" class="btn btn-success btn-sm"style="color:#FFFFFF; float:right; margin-right:20px;" value="Submit"/>
+                <input type="text" name="" placeholder=
+					"<?php
+      					if($_SESSION['dispEng'])
+      						echo "New password";
+      					else
+      						echo "Nouveau mot de passe";
+					?>"
+					>
+				<br>
+                <input id="newPassword" type="text" name="" placeholder=
+					"<?php
+      					if($_SESSION['dispEng'])
+      						echo "Confirm password";
+      					else
+      						echo "Confirmer mot de passe";
+					?>"
+					>
+				<br>
+                <input id="changePasswordButton" type="button" class="btn btn-success btn-sm"style="color:#FFFFFF; float:right; margin-right:20px;" value=
+					"
+					<?php
+      					if($_SESSION['dispEng'])
+      						echo "Submit";
+      					else
+      						echo "Soumettre";
+					?>"
+				/>
               </ul>
             </div>
 <br><br><br><br>

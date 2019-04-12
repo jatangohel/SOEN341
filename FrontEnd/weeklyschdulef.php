@@ -11,7 +11,14 @@ $userSched = unserialize($_SESSION['userSched']);
 <!doctype html>
 <html lang="en">
   <head>
-    <title> Weekly Schedule </title>
+    <title>
+        <?php
+    		if($_SESSION['dispEng'])
+    			echo "Weekly Schedule";
+    		else
+    			echo "Horaire hebdomadaire";
+		?>
+	</title>
 
     <!-- Required meta tags -->
   
@@ -259,11 +266,42 @@ $userSched = unserialize($_SESSION['userSched']);
                     </option>
 									</td>
 
-									<td></select><input oninput="checkValidTime()" type="time" id="starting1" name="starting1" value="12:00" placeholder="Starting Time"></td>
-									<td><input oninput="checkValidTime()" type="time" id="ending1" name="ending1" value = "13:00" placeholder="Ending Time"></td>
-									<td><button type="button" name="add" id="add" class="btn btn-secondary">Add</button></td>
+									<td></select><input oninput="checkValidTime()" type="time" id="starting1" name="starting1" value="12:00" placeholder=
+										"
+										<?php
+											if($_SESSION['dispEng'])
+												echo "Start time";
+											else
+												echo "Début";
+										?>"
+										>
+									</td>
+									<td><input oninput="checkValidTime()" type="time" id="ending1" name="ending1" value = "13:00" placeholder=
+										"<?php
+											if($_SESSION['dispEng'])
+												echo "End time";
+											else
+												echo "Fin";
+										?>"
+										>
+									</td>
+									<td><button type="button" name="add" id="add" class="btn btn-secondary">
+										<?php
+											if($_SESSION['dispEng'])
+												echo "Add";
+											else
+												echo "Ajouter";
+										?>
+									</button></td>
 								</tr>
-								<input type="button" class="btn btn-success btn-sm"style="float:right; margin-right:20px;" name="submit" id="submit" value="Submit"/>
+								<input type="button" class="btn btn-success btn-sm"style="float:right; margin-right:20px;" name="submit" id="submit" value=
+									"<?php
+										if($_SESSION['dispEng'])
+											echo "Submit";
+										else
+											echo "Soumettre";
+									?>"
+								/>
 							</table>
 						</form>
 					</div>
@@ -271,7 +309,14 @@ $userSched = unserialize($_SESSION['userSched']);
 	</div>
 
   <div id="loading">
-    <img id="loading-image" src="img_loading.gif" alt="Loading..." />
+    <img id="loading-image" src="img_loading.gif" alt=
+		"<?php
+				if($_SESSION['dispEng'])
+					echo "Loasding...";
+				else
+					echo "Chargement...";
+		 ?>"
+	 />
   </div>
 
 	  <div id="scheduleArea" class="scheduleArea">

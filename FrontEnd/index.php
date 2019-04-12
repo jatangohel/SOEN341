@@ -89,7 +89,7 @@
       					     if($_SESSION['dispEng'])
       						         echo "Welcome to Concordia's Course Scheduler.";
       					     else
-      						         echo "Bienvenue au planificateur de cours de l'université Concordia";
+      						         echo "Bienvenue au planificateur de cours de Concordia";
 				        ?>
             </h1>
           </div>
@@ -130,7 +130,14 @@
             </button>
             <div style="text-align: center">
             </br>
-                 <a class="text-center font-weight-bold"" href="FrontEnd/usersPage.php?login=true&LoggedInUserName=GUEST">Continue as Guest</a>
+                 <a class="text-center font-weight-bold"" href="FrontEnd/usersPage.php?login=true&LoggedInUserName=GUEST">
+                    <?php
+            			if($_SESSION['dispEng'])
+							echo "Continue as Guest";
+						else
+							echo "Continuer comme invité";
+					?>
+				 </a>
             </div>
         </div>
 
@@ -165,12 +172,12 @@
                           </label>
                           <div class="input-group pb-modalreglog-input-group">
                              <input type="email" name="userEmail" class="form-control" id="email" placeholder=
-                             <?php
+                             "<?php
                                if($_SESSION['dispEng'])
                                  echo "E-mail Address";
                                else
                                  echo "Adresse Courriel";
-                              ?>
+                              ?>"
                               required>
                              <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                          </div>
@@ -181,17 +188,17 @@
           								if($_SESSION['dispEng'])
           									echo "Password";
           								else
-          									echo "Mot_de_passe";
+          									echo "Mot de passe";
                         ?>
                       </label>
                       <div class="input-group pb-modalreglog-input-group">
                          <input name="userPassword" type="password" class="form-control" id="pws" placeholder=
-                         <?php
+                         "<?php
            								if($_SESSION['dispEng'])
            									echo "Password";
            								else
-           									echo "Mot_de_passe";
-                         ?>
+           									echo "Mot de passe";
+                         ?>"
                           required>
                          <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                      </div>
@@ -201,7 +208,14 @@
                   <span style="background:#fff;  font-size: 13px"></span>
                 </h2>
 
-                <button onclick="alert('Hello!')" class="loginBtn loginBtn--facebook" style="top: 12; left: 50%; transform: translate(-50%,-50%);">Login with Facebook</button>
+                <button onclick="alert('Hello!')" class="loginBtn loginBtn--facebook" style="top: 12; left: 50%; transform: translate(-50%,-50%);">
+					<?php
+								if($_SESSION['dispEng'])
+									echo "Login with Facebook";
+								else
+									echo "Se connecter avec Facebook";
+					?>
+				</button>
              </div>
              <div class="modal-footer">
                 <input name="login" value=
@@ -273,12 +287,12 @@
               <div class="input-group pb-modalreglog-input-group">
                  <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                  <input name="userEmail" type="email" class="form-control" id="inputEmail"  placeholder=
-                 <?php
+                 "<?php
        						if($_SESSION['dispEng'])
        							echo "E-mail Address";
        						else
        							echo "Adresse Couriel";
-                 ?>
+                 ?>"
                   required>
              </div>
          </div>
@@ -293,7 +307,14 @@
           </label>
           <div class="input-group pb-modalreglog-input-group">
              <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-             <input name="userPassword" type="password" autocomplete = "new-password" class="form-control" id="inputPws" placeholder="Password" onkeyup="pwsLengthChecker()" required><!-- onkeyup is the only event works b/c it detects the length not (-1) like onkeydown -->
+             <input name="userPassword" type="password" autocomplete = "new-password" class="form-control" id="inputPws" placeholder=
+				"<?php
+							if($_SESSION['dispEng'])
+								echo "Password";
+							else
+								echo "Mot de passe";
+				?>"
+				onkeyup="pwsLengthChecker()" required><!-- onkeyup is the only event works b/c it detects the length not (-1) like onkeydown -->
          </div>
          <p id="pwsLengthErr">
 

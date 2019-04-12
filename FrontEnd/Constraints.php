@@ -52,7 +52,13 @@ if(isset($_POST['check_list'])){
 </script>
 
   <head>
-    <title> Program Schedule </title>
+    <title>
+        <?php
+			if($_SESSION['dispEng'])
+				echo "Program Schedule";
+			else
+				echo "Horraire du programme";
+		?></title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -65,7 +71,14 @@ if(isset($_POST['check_list'])){
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-	<title>SOEN Course Stream</title>
+	<title>
+     <?php
+   			if($_SESSION['dispEng'])
+   				echo "SOEN Course Stream";
+   			else
+   				echo "Cours SOEN";
+     ?>
+	</title>
 	<style>
 		table.gridtable {
 			padding: 10px;
@@ -139,7 +152,14 @@ if(isset($_POST['check_list'])){
 
     	<a href="javascript:showhide('uniquename')">
     		    <div class="col text-center">
-   			 <h2 type="button" class="btn btn-primary" id="centernow">Add Costraints</h2>
+   			 <h2 type="button" class="btn btn-primary" id="centernow">
+					<?php
+									if($_SESSION['dispEng'])
+										echo "Add constraints";
+									else
+										echo "Ajouter contraintes";
+								?>
+			</h2>
    			 	</div>
     	</a>
 
@@ -151,7 +171,14 @@ if(isset($_POST['check_list'])){
 				<table class="table table-borderless" id="dynamic_field">
 					 <tr>
 						<td>
-              <h2 style="color:#000000; font-size: 15px" align="left" style="color:#000000;">Year</h2>
+              <h2 style="color:#000000; font-size: 15px" align="left" style="color:#000000;">
+					<?php
+						if($_SESSION['dispEng'])
+							echo "Year";
+						else
+							echo "Année";
+					?>
+				</h2>
               <!-- <div class="ceter"> -->
                 <select id= "listYear1" name="Years" onChange="changeAllSem(); disableSubmitWhenAll();">
                 	<option value="ALL">
@@ -159,7 +186,7 @@ if(isset($_POST['check_list'])){
 							if($_SESSION['dispEng'])
 								echo "ALL";
 							else
-								echo "ALL";
+								echo "TOUS";
 						?>
 					</option>
                 	<?php
@@ -184,14 +211,21 @@ if(isset($_POST['check_list'])){
 
 						</td>
 						<td>
-                <h2 style="font-size: 15px" align="left">Semester</h2>
+                <h2 style="font-size: 15px" align="left">
+								<?php
+									if($_SESSION['dispEng'])
+										echo "Semester";
+									else
+										echo "Session";
+								?>
+				</h2>
               <select id = "list1" name="Term">
 							<option value="ALL">
 							 <?php
 									if($_SESSION['dispEng'])
 										echo "ALL";
 									else
-										echo "ALL";
+										echo "TOUS";
 								?>
 							</option>
 							<option value="Summer">
@@ -221,7 +255,14 @@ if(isset($_POST['check_list'])){
 							</select>
 
 						</td>
-						<td><h2 style="color:#000000; font-size: 15px" align="left">Number of Courses </h2>
+						<td><h2 style="color:#000000; font-size: 15px" align="left">
+							<?php
+								if($_SESSION['dispEng'])
+									echo "Number of courses";
+								else
+									echo "Nombre de cours";
+							?>
+						</h2>
 
               <select name="Number" id="number1" onChange="disableSubmitWhenAll();">
 							<option value="0" selected>0</option>
@@ -260,7 +301,14 @@ if(isset($_POST['check_list'])){
 
 
 <div id="loading">
-  <img id="loading-image" src="images/img_loading.gif" alt="Loading..." />
+  <img id="loading-image" src="images/img_loading.gif" alt=
+    <?php
+		if($_SESSION['dispEng'])
+			echo "Loading...";
+		else
+			echo "Chargement...";
+	?>
+  />
 </div>
 
 <div id="card" class ="container1">
@@ -268,7 +316,14 @@ if(isset($_POST['check_list'])){
 
 </br>
 <div class="col text-center">
-<input type="button" class="btn btn-primary" onclick="window.print()" value="  Print  "/>
+<input type="button" class="btn btn-primary" onclick="window.print()" value=
+    "<?php
+		if($_SESSION['dispEng'])
+			echo "Print";
+		else
+			echo "Imprimer";
+	?>"
+/>
 </div>
 
 </br></br>
@@ -284,11 +339,15 @@ $(document).ready(function(){
 <script>
 	//var i = 1;
 	var i = 1 ;
+	var lang = '<%= session.getAttribute("dispEng") %>';
 $(document).ready(function(){
 	//var i = 1;
 	$('#add').click(function(){
 		i++;
-		$('#dynamic_field').append('<tr id="row'+i+'"><td><select name="Years" " id="listYear'+i+'" ><option value="1" selected>First Year</option><option value="2">Second Year</option><option value="3">Third Year</option><option value="4">Fourth Year</option><option value="5">Fifth Year</option><option value="6">Sixth Year</option></select></td><td><select name="Term" " id="list'+i+'"><option value="Summer" selected>Summer Term</option><option value="Fall">Fall Term</option><option value="Winter">Winter Term</option></select></td><td><select name="Credits" id="number'+i+'" ><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select><td><button type="remove" id='+i+' class="btn btn-danger btn_remove">X</button></td></tr>');
+		if(lang == 1)
+			$('#dynamic_field').append('<tr id="row'+i+'"><td><select name="Years" " id="listYear'+i+'" ><option value="1" selected>First year</option><option value="2">Second Year</option><option value="3">Third Year</option><option value="4">Fourth Year</option><option value="5">Fifth Year</option><option value="6">Sixth Year</option></select></td><td><select name="Term" " id="list'+i+'"><option value="Summer" selected>Summer Term</option><option value="Fall">Fall Term</option><option value="Winter">Winter Term</option></select></td><td><select name="Credits" id="number'+i+'" ><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select><td><button type="remove" id='+i+' class="btn btn-danger btn_remove">X</button></td></tr>');
+		else
+			$('#dynamic_field').append('<tr id="row'+i+'"><td><select name="Années" " id="listYear'+i+'" ><option value="1" selected>Première année</option><option value="2">Deuxième année</option><option value="3">Troisième année</option><option value="4">Quatrième année</option><option value="5">Cinqième année</option><option value="6">Sixième année</option></select></td><td><select name="Session" " id="list'+i+'"><option value="Summer" selected>Session d`été</option><option value="Fall">Session d`automne</option><option value="Winter">Session d`hiver</option></select></td><td><select name="Crédits" id="number'+i+'" ><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select><td><button type="remove" id='+i+' class="btn btn-danger btn_remove">X</button></td></tr>');
 	});
 	$(document).on('click','.btn_remove',function(){
 		var button_id = $(this).attr("id");

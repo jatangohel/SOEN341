@@ -37,9 +37,15 @@
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute([$userEmail]);
 
-			echo 'Your account has been activated. Welcome on-board!';
+			if($_SESSION['dispEng'])
+      			echo 'Your account has been activated.  Welcome aboard!';
+      		else
+      			echo "Votre compte a été activé.  Bienvenue à bord!";
 		}else{
-			echo 'Yo get a life sucker!';
+			if($_SESSION['dispEng'])
+      			echo 'Account activation failed.';
+      		else
+      			echo "L'activation de votre compte a échoué.";
 
 		}
 

@@ -50,9 +50,9 @@ function changeLanguage()
                 <a class="nav-link" href="Generate.php">
                   <?php
                     if($_SESSION['dispEng'])
-                      echo "ScheduleRegenerator";
+                      echo "ScheduleGenerator";
                     else
-                      echo "FILL PLEASE";
+                      echo "GénérateurD'horaire";
                   ?>
                 </a>
             </li>
@@ -62,7 +62,7 @@ function changeLanguage()
                     if($_SESSION['dispEng'])
                       echo "ProgramSchedule";
                     else
-                      echo "FILL PLEASE";
+                      echo "HoraireDuProgram";
                   ?>
                 </a>
             </li>
@@ -100,9 +100,23 @@ function changeLanguage()
            </a>
                    <div class="dropdown-menu" aria-labelledby="navDropDownLink">
 
-                     <a class="dropdown-item" href="profilePage.php">Profile</a>
+                     <a class="dropdown-item" href="profilePage.php">
+						<?php
+							if($_SESSION['dispEng'])
+								echo "Profile";
+							else
+								echo "Profil";
+						?>
+					 </a>
                        <div class="dropdown-divider"></div>
-                       <a class="dropdown-item" href="FrontEnd/logout.php">Logout</a>
+                       <a class="dropdown-item" href="FrontEnd/logout.php">
+							<?php
+								if($_SESSION['dispEng'])
+									echo "Logout";
+								else
+									echo "Déconnexion";
+							?>
+					   </a>
                    </div>
                </li>
            </ul>

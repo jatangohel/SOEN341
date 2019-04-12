@@ -173,8 +173,15 @@
 							else
 								echo "Nom du cours";
 						?>
-          </th>
-					<th>Check Passed</th>
+					</th>
+					<th>
+						<?php
+							if($_SESSION['dispEng'])
+								echo "Check if passed";
+							else
+								echo "Cocher si passé";
+						?>
+					</th>
 				</tr>
 			</thead>
 			<tbody>
