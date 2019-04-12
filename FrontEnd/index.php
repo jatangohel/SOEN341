@@ -130,7 +130,7 @@
             </button>
             <div style="text-align: center">
             </br>
-                 <a class="text-center" href="FrontEnd/usersPage.php?login=true&LoggedInUserName=GUEST">Continue as Guest</a>
+                 <a class="text-center font-weight-bold"" href="FrontEnd/usersPage.php?login=true&LoggedInUserName=GUEST">Continue as Guest</a>
             </div>
         </div>
 
