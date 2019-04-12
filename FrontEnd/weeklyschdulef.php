@@ -14,6 +14,8 @@ $userSched = unserialize($_SESSION['userSched']);
     <title> Weekly Schedule </title>
 
     <!-- Required meta tags -->
+  
+</body>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -158,8 +160,12 @@ $userSched = unserialize($_SESSION['userSched']);
 	</style>
 	 <body>
  <div class="topHeader">
-        <button class="btn btn-warning" onclick="window.print()" style="float:left; margin-left:20px;"><strong>Print Schedule</strong></button>
 
+<body>
+
+
+        <span  id="button" action="action" onclick="window.history.go(-1); return false;" type="span" style='float:left;font-size:50px;margin-left:5px; position: relative; bottom: 23px;'>&#8678;</span> 
+        <button class="btn btn-warning" onclick="window.print()" style="float:left; margin-left:5px;"><strong>Print Schedule</strong></button>
         <h1 class="text-center">
           <?php
     				if($_SESSION['dispEng'])
