@@ -47,10 +47,20 @@ function changeLanguage()
          <?php
           if($validserver2){ ?>
           <li class="nav-item">
-                <a class="nav-link" href="FrontEnd/generate.php">
+                <a class="nav-link" href="../Soen341/generate.php">
                   <?php
                     if($_SESSION['dispEng'])
                       echo "ScheduleRegenerator";
+                    else
+                      echo "FILL PLEASE";
+                  ?>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../Soen341/constraints.php">
+                  <?php
+                    if($_SESSION['dispEng'])
+                      echo "ProgramSchedule";
                     else
                       echo "FILL PLEASE";
                   ?>
