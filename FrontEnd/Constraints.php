@@ -14,11 +14,13 @@ if(isset($_POST['check_list'])){
 		updateTakenCourses($_SESSION['userEmail'],$courseName);
 	}
 }
-if(isset($_POST['intake']))
-{
-	updateInputtedPassed($_SESSION['userEmail']);
-	updatedFirstSemester($_SESSION['userEmail'],$_POST['intake']);
-}
+// if(isset($_POST['intake']))
+// {
+// 	updateInputtedPassed($_SESSION['userEmail']);
+// 	updatedFirstSemester($_SESSION['userEmail'],$_POST['intake']);
+// }
+
+
 ?>
 <!--The ALL option-->
 <script type="text/javascript">

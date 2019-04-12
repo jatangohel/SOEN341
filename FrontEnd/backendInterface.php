@@ -111,10 +111,19 @@ $_SESSION['userSched'] = serialize($userSched);
 
 if( empty($_POST['submitID']) )
 {
-	if (!empty($_POST['intake']))
+	if (isset($_POST['intake']))
 	{
 		$_SESSION['intake'] = $_POST['intake'];
+    updateInputtedPassed($_SESSION['userEmail']);
+  	updatedFirstSemester($_SESSION['userEmail'],$_POST['intake']);
 	}
+
+  if(isset($_POST['check_list'])){
+  	foreach($_POST['check_list'] as $courseName){
+  		updateTakenCourses($_SESSION['userEmail'],$courseName);
+  	}
+  }
+
 	if (empty($_SESSION['semInfo']))
 	{
 		$_SESSION['numCoursesYearTerm']= array();
