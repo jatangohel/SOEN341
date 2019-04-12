@@ -259,8 +259,8 @@ $userSched = unserialize($_SESSION['userSched']);
                     </option>
 									</td>
 
-									<td></select><input type="time" id="starting1" name="starting1" value="00:00" placeholder="Starting Time"></td>
-									<td><input type="time" id="ending1" name="ending1" value = "00:00" placeholder="Ending Time"></td>
+									<td></select><input oninput="checkValidTime()" type="time" id="starting1" name="starting1" value="12:00" placeholder="Starting Time"></td>
+									<td><input oninput="checkValidTime()" type="time" id="ending1" name="ending1" value = "13:00" placeholder="Ending Time"></td>
 									<td><button type="button" name="add" id="add" class="btn btn-secondary">Add</button></td>
 								</tr>
 								<input type="button" class="btn btn-success btn-sm"style="float:right; margin-right:20px;" name="submit" id="submit" value="Submit"/>
@@ -1324,6 +1324,25 @@ $(document).ready(function(){
          alert('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
          return true;
      }
+
+      function checkValidTime(){
+        var starttime = document.getElementById("starting1").value;
+        var endtime = document.getElementById("ending1").value;
+
+        var starthours = starttime.substring(0,2);
+        var startmin = starttime.substring(3,5);
+
+        var endhours = endtime.substring(0,2);
+        var endmin = endtime.substring(3,5);
+
+        if(starthours>=8 && endhours<=22 && starthours<endhours || (starthours==endhours && startmin!=endmin)){
+          document.getElementById("submit").disabled = false;
+          document.getElementById("add").disabled = false;
+        }else {
+          document.getElementById("submit").disabled = true;
+          document.getElementById("add").disabled = true;
+        }
+      }
 
  </script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
