@@ -229,7 +229,12 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 
 <div id="card" class ="container1">
 </div>
-<input type="button" class="btn btn-primary" onclick="window.print()" value="Print General Course Schedule"/>
+
+</br>
+<div class="col text-center">
+<input type="button" class="btn btn-primary" onclick="window.print()" value="Print"/>
+</div>
+
 </br></br>
 
 
