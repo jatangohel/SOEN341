@@ -76,6 +76,10 @@
 
 */
 
+.lll{
+
+display: inline;
+}
 
 /*
     body{
@@ -113,7 +117,9 @@
 		display: block;
 	}
 
-
+#111{
+text-align:center !important;
+}
 
 
 
@@ -177,15 +183,16 @@
 		<table class="gridtable" id="tableMain" border="0">
 			<thead>
 				<tr class="tableheader">
-					<th>
+					<th id="111" class="text-align:center !important">
 						<?php
 							if($_SESSION['dispEng'])
-								echo "Course Name";
+								echo "Course Category";
 							else
-								echo "Nom du cours";
+								echo "Catégorie du cours";
 						?>
-          </th>
-					<th>Check Passed</th>
+					</th>
+					<th>&nbsp;
+					</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -197,9 +204,9 @@
 							<label for="Electrics">
                 <?php
 									if($_SESSION['dispEng'])
-										echo "Electrical";
+										echo "Electrical Engineering ";
 									else
-										echo "Électrique";
+										echo "Électrique Ingénierie";
 								?>
                  &nbsp;&nbsp;&nbsp;<i class="fas fa-angle-down"></i></label>
 <!--							<input type="checkbox" name="Electrics" id="Electrics" data-toggle="toggle">-->
@@ -213,26 +220,8 @@
 
 
 
-
-
-				<tbody class="labels" data-toggle="collapse" href="#data_4"  aria-expanded="true">
-					<tr>
-						<td colspan="2">
-							<label for="ENCS">
-                <?php
-									if($_SESSION['dispEng'])
-										echo "Engineering and Computer Science";
-									else
-										echo "Ingénierie et informatique";
-                ?>
-                &nbsp;&nbsp;&nbsp;<i class="fas fa fa-angle-down"></i></label>
-<!--							<input type="checkbox" name="ENCS" id="ENCS" data-toggle="toggle">-->
-						</td>
-					</tr>
-				</tbody>
 				<tbody class="collapse" id="data_4">
-					<tr class="hide"><td>ENCS 282</td><td> <label for="ENCS282"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="ENCS282" name="check_list[]" value="ENCS282"> </td></tr>
+					
 				</tbody>
 
 
@@ -243,9 +232,9 @@
 							<label for="Engineering">
                 <?php
 									if($_SESSION['dispEng'])
-										echo "Engineering";
+										echo "General Engineering";
 									else
-										echo "Ingénierie";
+										echo "Général Ingénierie";
                 ?>
                  &nbsp;&nbsp;&nbsp;<i class="fas fa-angle-down"></i></label>
 <!--							<input type="checkbox" name="Engineering" id="Engineering" data-toggle="toggle">-->
@@ -253,6 +242,8 @@
 					</tr>
 				</tbody>
 				<tbody class="collapse" id="data_5">
+					<tr class="hide"><td>ENCS 282</td><td> <label for="ENCS282"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
+                        </label><input type="checkbox" id="ENCS282" name="check_list[]" value="ENCS282"> </td></tr>
 					<tr class="hide"><td>ENGR 201</td><td> <label for="ENGR201"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox"  id="ENGR201" name="check_list[]" value="ENGR201"> </td></tr>
 					<tr class="hide"><td>ENGR 202</td><td> <label for="ENGR202"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
@@ -273,9 +264,9 @@
 							<label for="Computer">
                 <?php
 									if($_SESSION['dispEng'])
-										echo "Computer";
+										echo "Computer Science";
 									else
-										echo "Ordinateurs";
+										echo "Ordinateurs informatique";
 								?>
                  &nbsp;&nbsp;&nbsp;<i class="fas fa-angle-down"></i></label>
 <!--							<input type="checkbox" name="Computer" id="Computer" data-toggle="toggle">-->
@@ -357,7 +348,7 @@
           						?>
                     </b></p>
 
-                    <div class="custom-control custom-radio">
+                    <div class="lll col-3 custom-radio">
                   <input type="radio" class="custom-control-input" id="fall" name="intake" value="Fall" required>
                     <label for="fall" class="custom-control-label">
                       <?php
@@ -367,10 +358,10 @@
           								echo "Automne";
           						?>
                     </label></div>
-                &nbsp;&nbsp;&nbsp;&nbsp;
 
 
-                    <div class="custom-control custom-radio">
+
+                    <div class="lll col-3 custom-radio">
                  <input type="radio" class="custom-control-input" id="winter" name="intake" value="Winter" required>
                         <label for="winter" class="custom-control-label">
                           <?php
@@ -380,10 +371,10 @@
             									echo "Hiver";
             							?>
                         </label></div>
-                &nbsp;&nbsp;&nbsp;&nbsp;
 
 
-                        <div class="custom-control custom-radio">
+
+                        <div class="lll col-3 custom-radio">
 				 <input type="radio" class="custom-control-input" id="summer" name="intake" value="Summer" required>
                             <label for="summer" class="custom-control-label">
                               <?php
@@ -393,9 +384,9 @@
               										echo "Été";
                               ?>
                             </label></div>
-                &nbsp;&nbsp;&nbsp;&nbsp;
 
-                <br>
+
+                <br><br>
 
                 <button class="submit-button btn-lg btn-primary" id="generate" name="generate">
                   <?php
