@@ -265,7 +265,7 @@ if (session_status() != PHP_SESSION_ACTIVE)
             <p class="card-text">
               <?php
       					if($_SESSION['dispEng'])
-      						echo "Development team member, Software Engineering Student, Imaging applications specialist, participated in multiple coding competitions.";
+      						echo "Development team member, Software Engineering Student, a member of Mensa high IQ society, Imaging applications specialist, participated in multiple coding competitions.";
       					else
       						echo "Membre de l'équipe de développement, étudiant en génie logiciel, spécialiste en imagerie, a participé à plusieurs compétitions de programmation.";
       				?>
