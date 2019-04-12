@@ -70,18 +70,10 @@ function changeLanguage()
 
            </a>
                    <div class="dropdown-menu" aria-labelledby="navDropDownLink">
-                       <a class="dropdown-item" href="#">
-                         <?php
-                 					if($_SESSION['dispEng'])
-                 						echo "Preferences";
-                 					else
-                 						echo "Préferences";
-                 				 ?>
-                       </a>
+
+                     <a class="dropdown-item" href="FrontEnd/profilePage.php">Profile</a>
                        <div class="dropdown-divider"></div>
                        <a class="dropdown-item" href="FrontEnd/logout.php">Logout</a>
-                       <div class="dropdown-divider"></div>
-                       <a class="dropdown-item" href="#">Profile</a>
                    </div>
                </li>
            </ul>
