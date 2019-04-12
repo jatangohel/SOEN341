@@ -232,18 +232,8 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 						</td>
             <!-- <td>
               <p>  Minimum Credits This Semester </p> </td> -->
-                  <td>
-                    <h2 style="color:#000000; font-size: 15px" align="left">
-                      <?php
-                        if ($_SESSION['dispEng'])
-                        	echo 'Minimum credits this semester';
-                        else
-                        	echo 'Crédits minimum pour ce semestre';
-                      ?>
-                    </h2>
-              <input type="number" min="0" max="18" id="credits1"/> &nbsp;&nbsp;
-            </td>
-						<td><button type="button" name="add" id="add" class="btn btn-success">
+
+						<td><button type="button" name="add" id="add" class="btn btn-success" >
               <?php
 								if($_SESSION['dispEng'])
 									echo "Next";
@@ -285,7 +275,7 @@ $(document).ready(function(){
 	//var i = 1;
 	$('#add').click(function(){
 		i++;
-		$('#dynamic_field').append('<tr id="row'+i+'"><td><select name="Years" " id="listYear'+i+'" ><option value="1" selected>First Year</option><option value="2">Second Year</option><option value="3">Third Year</option><option value="4">Fourth Year</option><option value="5">Fifth Year</option><option value="6">Sixth Year</option></select></td><td><select name="Term" " id="list'+i+'"><option value="S" selected>Summer Term</option><option value="F">Fall Term</option><option value="W">Winter Term</option></select></td><td><select name="Credits" id="number'+i+'" ><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select><td><input type="number" min="0" max="18" id="credits1'+i+'"/></td><td><button type="remove" id='+i+' class="btn btn-danger btn_remove">X</button></td></tr>');
+		$('#dynamic_field').append('<tr id="row'+i+'"><td><select name="Years" " id="listYear'+i+'" ><option value="1" selected>First Year</option><option value="2">Second Year</option><option value="3">Third Year</option><option value="4">Fourth Year</option><option value="5">Fifth Year</option><option value="6">Sixth Year</option></select></td><td><select name="Term" " id="list'+i+'"><option value="S" selected>Summer Term</option><option value="F">Fall Term</option><option value="W">Winter Term</option></select></td><td><select name="Credits" id="number'+i+'" ><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select><td><button type="remove" id='+i+' class="btn btn-danger btn_remove">X</button></td></tr>');
 	});
 	$(document).on('click','.btn_remove',function(){
 		var button_id = $(this).attr("id");
@@ -294,7 +284,7 @@ $(document).ready(function(){
 		$("#row"+button_id+'').remove();
 	}
 	else{
-		alert("Please delet from the last one.");
+		alert("Please delete from the last one.");
 	}
 	});
 
