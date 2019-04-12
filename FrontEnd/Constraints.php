@@ -7,7 +7,6 @@
 <?php
 echo '<link href="../css/stylec.css" rel="stylesheet"/>';
 require_once 'backendInterface.php';
-require_once '../Databases/DBinterface/DBinterface.php';
 
 ?>
 
@@ -256,14 +255,14 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 	</div>
 
 <div id="loading">
-  <img id="loading-image" src="img_loading.gif" alt="Loading..." />
+  <img id="loading-image" src="images/img_loading.gif" alt="Loading..." />
 </div>
 
 <div id="card" class ="container1">
 </div>
 <script>
 $(document).ready(function(){
-  $("#card").load("cardsGenerator.php");
+  $("#card").load("FrontEnd/cardsGenerator.php");
 });
 </script>
 
@@ -330,14 +329,14 @@ $(document).ready(function(){
 	$('#submit').click(function(){
 		 var x = document.getElementById("loading");
 		  x.style.display = "block";
-		$.post('backendInterface.php',{
+		$.post('FrontEnd/backendInterface.php',{
       submitID:"Submit#Courses",
 			numCoursesYearTerm:getSelectYearTerm(),
 			numCoursesConstrain:getNumberOfCourse()} ,
 		  function(data){
 			  $('#result').html(data);
         //setTimeout(window.location.reload(false), 10000) ;
-        $("#card").load("cardsGenerator.php");
+        $("#card").load("FrontEnd/cardsGenerator.php");
         $('#loading').hide();
 			  });
 		   });
