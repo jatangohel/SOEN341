@@ -118,7 +118,7 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 		<br />
 
 		<!-- <h2 align="center">Distrubte your courses for each semester (0-6 courses)</h2> -->
-    <h2 align="center">Add Costraints</h2>
+    <h2 align="center">Add Constraints</h2>
 
 
 		<div style="background-color:#9cd8ed"class="form-group p-3 mb-2 rounded">
