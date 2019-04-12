@@ -199,6 +199,9 @@ include '../Databases/DBinterface/DBinterface.php';
 			echo 'An activation email has been sent to you!<br/>You will be directed to the home page...';
 			header('Refresh: 2; URL = ../index.php');
 		}else
-		echo (!empty($userEmail) && !empty($userPws)) ? "$userEmail is already registered!": "Enter your info properly!";
+		{
+			echo (!empty($userEmail) && !empty($userPws)) ? "$userEmail is already registered!": "Enter your info properly!";
+			header('Refresh: 2; URL = ../index.php');
+		}
 	}
 	?>
