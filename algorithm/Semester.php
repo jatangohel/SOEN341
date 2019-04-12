@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>SOEN341-TreeDepth.php</title>
 </head>
 <body>
   <div>

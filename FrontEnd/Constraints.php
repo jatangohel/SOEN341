@@ -1,16 +1,14 @@
 <?php
-   ob_start();
 
-   if(!isset($_SESSION))
-   	session_start();
-?>
-<?php
+if (session_status() != PHP_SESSION_ACTIVE)
+{
+	ob_start();
+	session_start();
+}
+
 echo '<link href="../css/stylec.css" rel="stylesheet"/>';
 require_once 'backendInterface.php';
 
-?>
-
-<?php
 if(isset($_POST['check_list'])){
 	foreach($_POST['check_list'] as $courseName){
 		updateTakenCourses($_SESSION['userEmail'],$courseName);
@@ -20,16 +18,11 @@ if(isset($_POST['check_list'])){
 	updatedFirstSemester($_SESSION['userEmail'],$_POST['intake']);
 }
 
-if (session_status() != PHP_SESSION_ACTIVE)
-{
-	ob_start();
-	session_start();
-}
-
 ?>
 
 <html lang="en">
   <head>
+    <title> Program Schedule </title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
