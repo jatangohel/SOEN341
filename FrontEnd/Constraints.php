@@ -103,6 +103,13 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
   left: 240px;
   z-index: 100;
 }
+
+#center-now {
+    border-radius: 5px;
+    width: 50%;
+    margin: 0px auto;
+    float: none;
+}
 	</style>
   </head>
  <body>
@@ -111,8 +118,14 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 		<br />
 
 		<!-- <h2 align="center">Distrubte your courses for each semester (0-6 courses)</h2> -->
-    <h2 align="center">Add Constraints</h2>
 
+    	<a href="javascript:showhide('uniquename')">
+    		    <div class="col text-center">
+   			 <h2 type="button" class="btn btn-primary" id="centernow">Add Costraints</h2>
+   			 	</div>
+    	</a>
+
+    	<div id="uniquename" style="display:none;">
 
 		<div style="background-color:#9cd8ed"class="form-group p-3 mb-2 rounded">
       <!-- <div class="center"> -->
@@ -183,7 +196,7 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 						</td>
 						<td>
                 <h2 style="font-size: 15px" align="left">Semester</h2>
-              <select id = "list1" m align="center" name="Term">
+              <select id = "list1",name="Term">
 							<option value="Summer" selected>
                 <?php
 									if($_SESSION['dispEng'])
@@ -245,6 +258,9 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 			<div id="result"></div>
 		</div>
 	</div>
+	    	</div>
+
+
 
 <div id="loading">
   <img id="loading-image" src="images/img_loading.gif" alt="Loading..." />
@@ -355,6 +371,12 @@ $(document).ready(function(){
 				},200);
 			}
 		});
+</script>
+<script >
+	     function showhide(id) {
+       	var e = document.getElementById(id);
+       	e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+     }
 </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

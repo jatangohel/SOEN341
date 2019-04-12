@@ -5,6 +5,8 @@ if (session_status() != PHP_SESSION_ACTIVE)
 
 
 
+$validserver=($_SERVER['REQUEST_URI']!='/SOEN341/') && ($_SERVER['REQUEST_URI']!='/SOEN341/index.php')&&($_SERVER['REQUEST_URI']!='/Soen341/')&& ($_SERVER['REQUEST_URI']!='/soEN341/') && ($_SERVER['REQUEST_URI']!='/SOEN341/?Lang=En') && ($_SERVER['REQUEST_URI']!='/SOEN341/?Lang=Fr');
+$validserver2=($_SERVER['REQUEST_URI']!='/SOEN341/') &&($_SERVER['REQUEST_URI']!='/Soen341/')&& ($_SERVER['REQUEST_URI']!='/SOEN341/index.php')&& ($_SERVER['REQUEST_URI']!='/soEN341/')&& ($_SERVER['REQUEST_URI']!='/SOEN341/?Lang=En') && ($_SERVER['REQUEST_URI']!='/SOEN341/?Lang=Fr');
 changeLanguage();
 function changeLanguage()
 {
@@ -23,23 +25,38 @@ function changeLanguage()
 <nav class="navbar navbar-expand-md navbar-dark bg-primary sticky-top">
   <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
     <span class="navbar-toggler-icon"></span>
-
-
   </button>
 
-        <span class="navbar-text">
-          <?php
-      			if($_SESSION['dispEng'])
-      				echo "CourseSequence";
-      			else
-      				echo "SéquenceDesCours";
-          ?>
-        </span>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link font-weight-bold" href="../Soen341/">
+                  <?php
+                    if($_SESSION['dispEng'])
+                      echo "CourseSequence";
+                    else
+                      echo "SéquenceDesCours";
+                  ?>
+                </a>
+            </li>
+        </ul>
+
         <div class="collapse navbar-collapse" id="collapse_target">
 
-
-
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+         <?php
+          if($validserver2){ ?>
+          <li class="nav-item">
+                <a class="nav-link" href="FrontEnd/generate.php">
+                  <?php
+                    if($_SESSION['dispEng'])
+                      echo "ScheduleRegenerator";
+                    else
+                      echo "FILL PLEASE";
+                  ?>
+                </a>
+            </li>
+          <?php } ?>
             <li class="nav-item">
                 <a class="nav-link" href="about.php">
                   <?php
@@ -51,8 +68,10 @@ function changeLanguage()
                 </a>
             </li>
         </ul>
+
+
         <?php
-         if( ($_SERVER['REQUEST_URI']!='/SOEN341/') && ($_SERVER['REQUEST_URI']!='/SOEN341/index.php')){ ?>
+         if($validserver){ ?>
          <ul class="navbar-nav ">
                <!-- PROFILE DROPDOWN - scrolling off the page to the right -->
                <li class="nav-item dropdown">
@@ -91,3 +110,6 @@ function changeLanguage()
         window.location.href = currentPage.substring(0,currentPage.length-2)+Lang;
       }
 </script>
+<?php
+
+ ?>
