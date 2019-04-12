@@ -537,11 +537,13 @@ function getUntakenCoursesFrontEnd($ConstraintsTakenCourses)
 }
 
 // user change functions
-function changeusername($username,$prevusername){
+function changeusername($prevusername,$username){
 	require('config/db.php');
 
-	$query = 'update users set UserName = "'.$prevusername.'" where UserName = "'.$username.'"';
+	$query = 'update users set UserName = "'.$username.'" where UserName = "'.$prevusername.'"';
 	$result = mysqli_query($conn, $query);
+
+	$_SESSION['userName'] = $username;
 }
 
 function changeemail($email,$username){
@@ -563,6 +565,9 @@ function changeemail($email,$username){
     if(empty($userId)){
     $query = 'update users set Email = "'.$email.'" where UserName = "'.$username.'"';
     $result = mysqli_query($conn, $query);
+
+		$_SESSION['userEmail'] = $email;
+
     return 1;
     }
 

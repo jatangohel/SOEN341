@@ -164,7 +164,7 @@ opacity:0.96;
 
 
 
-      
+
           <h1>
             <?php
       				if($_SESSION['dispEng'])
@@ -194,8 +194,8 @@ opacity:0.96;
       				?>
               <span class="caret"></span></button>
               <ul class="dropdown-menu">
-                <input type="text" name="" value="new username" ><br>
-                <input type="button" class="btn btn-success btn-sm"style="float:right; margin-right:20px;" value="submit"/>
+                <input id="newUserName" type="text" name="" value="new username" ><br>
+                <input id="changeUserNameButton" type="button" class="btn btn-success btn-sm"style="float:right; margin-right:20px;" value="submit"/>
               </ul>
             </div>
 
@@ -213,8 +213,8 @@ opacity:0.96;
       				?>
               <span class="caret"></span></button>
               <ul class="dropdown-menu">
-                <input type="text" name="" value="new Email" ><br>
-                <input type="button" class="btn btn-success btn-sm"style="float:right; margin-right:20px;" value="submit"/>
+                <input id="newEmail" type="text" name="" value="new Email" ><br>
+                <input id="changeEmailButton" type="button" class="btn btn-success btn-sm"style="float:right; margin-right:20px;" value="submit"/>
               </ul>
             </div>
 <br><br>
@@ -233,13 +233,11 @@ opacity:0.96;
               <span class="caret"></span></button>
               <ul class="dropdown-menu">
                 <input type="text" name="" value="new Password" ><br>
-                <input type="text" name="" value="Cofirm Password" ><br>
-                <input type="button" class="btn btn-success btn-sm"style="float:right; margin-right:20px;" value="submit"/>
+                <input id="newPassword" type="text" name="" value="Cofirm Password" ><br>
+                <input id="changePasswordButton" type="button" class="btn btn-success btn-sm"style="float:right; margin-right:20px;" value="submit"/>
               </ul>
             </div>
 <br><br><br><br>
-
-
 
             <button class="submit-button btn-lg btn-primary" id="submit" name="submit">
               <?php
@@ -262,3 +260,34 @@ opacity:0.96;
 
   </body>
   <html>
+
+  <script>
+  $(document).ready(function(){
+  	$('#changeUserNameButton').click(function(){
+  		$.post('FrontEnd/backendInterface.php',{
+        submitID:"SubmitNewUserName",
+        oldUserName:"<?php echo $_SESSION['userName'];?>",
+  			newUserName:document.getElementById("newUserName").value});
+  		   });
+       });
+
+   $(document).ready(function(){
+   	$('#changeEmailButton').click(function(){
+   		$.post('FrontEnd/backendInterface.php',{
+         submitID:"SubmitNewEmail",
+         newEmail:document.getElementById("newEmail").value,
+         userName:"<?php echo $_SESSION['userName'];?>"
+   			 });
+   		   });
+        });
+
+    $(document).ready(function(){
+    	$('#changePasswordButton').click(function(){
+    		$.post('FrontEnd/backendInterface.php',{
+          submitID:"SubmitNewPassword",
+          newPassword:document.getElementById("newPassword").value,
+          userName:"<?php echo $_SESSION['userName'];?>"
+    			 });
+    		   });
+         });
+  </script>

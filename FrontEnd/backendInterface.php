@@ -134,4 +134,17 @@ elseif ($_POST['submitID'] == "SubmitTimingConstraints")
 	genNewSched();
 }
 
- ?>
+///////////// Profile Page Changes
+elseif ($_POST['submitID'] == "SubmitNewUserName")
+{
+	changeusername($_POST['oldUserName'], $_POST['newUserName']);
+}
+elseif ($_POST['submitID'] == "SubmitNewEmail")
+{
+	changeemail($_POST['newEmail'], $_POST['userName']);
+}
+elseif ($_POST['submitID'] == "SubmitNewPassword")
+{
+	changepass($_POST['newPassword'], $_POST['userName']);
+}
+?>

@@ -134,7 +134,6 @@ include '../Databases/DBinterface/DBinterface.php';
 			$_SESSION['loggedin'] = true;
 			$_SESSION['userName'] = $LoggedInUserName;
 			$_SESSION['userEmail'] = $userEmail;
-			$_SESSION['flagPrevPage'] = true;
 			echo
 			'<div id="loading">
 			<img id="loading-image" src="img_loadingtrans.gif" alt="Loading..." />'.
