@@ -11,6 +11,15 @@ if (session_status() != PHP_SESSION_ACTIVE)
   ob_start();
   session_start();
 }
+
+if(!isset($_SESSION['loggedin'])){
+  if($_SESSION['dispEng'])
+    echo "Login please.";
+  else
+    echo "Inscrivez-vous s'il vous plait.";
+  header('Refresh: 2; URL = index.php');
+}
+
 echo '<link href="css/bgstyling.css" rel="stylesheet"/>';
 
 	//Page Info

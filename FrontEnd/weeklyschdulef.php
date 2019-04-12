@@ -1,4 +1,5 @@
 <?php
+
 require_once 'backendInterface.php';
 set_time_limit(0);
 
@@ -14,7 +15,7 @@ $userSched = unserialize($_SESSION['userSched']);
     <title> Weekly Schedule </title>
 
     <!-- Required meta tags -->
-  
+
 </body>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -149,7 +150,7 @@ $userSched = unserialize($_SESSION['userSched']);
 <body>
 
 
-        <span  id="button" action="action" onclick="window.history.go(-1); return false;" type="span" style='float:left;font-size:50px;margin-left:5px; position: relative; bottom: 23px; cursor:pointer;'>&#x2BAA;</span> 
+        <span  id="button" action="action" onclick="window.history.go(-1); return false;" type="span" style='float:left;font-size:50px;margin-left:5px; position: relative; bottom: 23px; cursor:pointer;'>&#x2BAA;</span>
         <button class="btn btn-warning" onclick="window.print()" style="float:left; margin-left:5px;"><strong>Print Schedule</strong></button>
         <h1 class="text-center">
           <?php

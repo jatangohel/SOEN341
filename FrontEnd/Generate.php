@@ -442,6 +442,9 @@ for (i = 0; i < acc.length; i++) {
   });
 }
 
+$(document).ready(function(){
+
+});
     </script>
 
 <script type="text/javascript">
