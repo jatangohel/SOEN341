@@ -231,7 +231,7 @@ function updateAllPriority ($courses)
     // HACK for making SOEN490_2 follow after SOEN490_1
     if ($c->getCourseName() == "SOEN490_2" && $createdCourses['SOEN490_1']->getPass() == true)
     {
-      $c->setPriority(-20);
+      $c->setPriority(-30);
     }
   }
 }

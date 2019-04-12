@@ -219,6 +219,20 @@ class Semester
   //var_dump($combination);
 
 }
+
+private function capstone2Satisfied($combs)
+{
+  $results = array ();
+  foreach ($combs as $comb)
+  {
+    foreach ($comb as $c)
+    {
+      if ($c->getCourseName() == 'SOEN490_2')
+        array_push($results, $comb);
+    }
+  }
+  return $results;
+}
   //$tempPermittedCourses will be an array of strings which represent course names.
   //return vector of (vector lectures, vector tutorials, vector labs)
   private function semesterScheduling ($tempPermittedCourses)
@@ -408,6 +422,7 @@ class Semester
     global $MAX_PERMS;
     global $MAX_COMBS;
     global $studentCredits;
+    global $createdCourses;
    $status = $SUCCESSFUL;
 
     // Handle the case where there are no allowd courses to be taken in a semester by returning immediately
@@ -432,13 +447,18 @@ class Semester
     // Eliminate the combinations that don't satisfy coReq
     $combsArray = coReqsSatisfiedCombs($combsArray);
 
+    if ( $createdCourses['SOEN490_1']->getPass() and !$createdCourses['SOEN490_2']->getPass() )
+      $combsArray = $this->capstone2Satisfied($combsArray);
+
     //Check the credits requirement with tolerance of 1.5 credit
+    /*
     $combsArray = creditsSatisfied ($combsArray, $studentCredits, $numberOfCourses);
     if(sizeof($combsArray) < $this->numCourses)
         $this->status = -1;
       else {
         $this->status = 1;
       }
+  */
   //    echo($this->status."\n");
 
     // Sort the combinations based on sum of priority

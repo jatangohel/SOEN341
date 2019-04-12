@@ -13,7 +13,9 @@ if(isset($_POST['check_list'])){
 	foreach($_POST['check_list'] as $courseName){
 		updateTakenCourses($_SESSION['userEmail'],$courseName);
 	}
-
+}
+if(isset($_POST['intake']))
+{
 	updateInputtedPassed($_SESSION['userEmail']);
 	updatedFirstSemester($_SESSION['userEmail'],$_POST['intake']);
 }
@@ -25,7 +27,7 @@ if(isset($_POST['check_list'])){
 		var selector = document.getElementById("listYear1");
     	var value = selector[selector.selectedIndex].value;
 
-    	
+
     	if(value == 'ALL'){
 			document.getElementById("list1").selectedIndex = 0;
     	}
@@ -36,7 +38,7 @@ if(isset($_POST['check_list'])){
 		//get the value of Number of Courses option set
 			var Num1selector = document.getElementById("number1");
     		var numOfCourses = Num1selector[Num1selector.selectedIndex].value;
-			
+
 			var Yearselector = document.getElementById("listYear1");
 	    	var yearNum = Yearselector[Yearselector.selectedIndex].value;
 
