@@ -47,7 +47,7 @@ function changeLanguage()
          <?php
           if($validserver2){ ?>
           <li class="nav-item">
-                <a class="nav-link" href="FrontEnd/generate.php">
+                <a class="nav-link" href="Generate.php">
                   <?php
                     if($_SESSION['dispEng'])
                       echo "ScheduleRegenerator";

@@ -3,15 +3,16 @@
 
    if(!isset($_SESSION))
    	session_start();
-?>
-<?php
+
 	if(!isset($_SESSION['loggedin'])){
     if($_SESSION['dispEng'])
       echo "Login please.";
     else
       echo "Inscrivez-vous s'il vous plait.";
 		header('Refresh: 2; URL = index.php');
-	}
+  }
+  // Clear the semInfo in session upon entry to the page
+  unset($_SESSION['semInfo']);
 
 ?>
 <html lang="en">
@@ -173,7 +174,7 @@
     $passHolder = "PASSÉ";
 ?>
 	<div class="container" id="container">
-        <form id="generatecourse" action="/SOEN341/FrontEnd/Constraints.php" method="POST">
+        <form id="generatecourse" action="Constraints.php" method="POST">
 		<table class="gridtable" id="tableMain" border="0">
 			<thead>
 				<tr class="tableheader">
