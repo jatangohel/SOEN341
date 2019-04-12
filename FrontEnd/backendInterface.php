@@ -1,4 +1,4 @@
-<?php
+ <?php
 require_once __DIR__.'/../algorithm/UserSchedule.php';
 require_once "sessionfns.php";
 if (session_status() != PHP_SESSION_ACTIVE)
@@ -6,12 +6,18 @@ if (session_status() != PHP_SESSION_ACTIVE)
 
 function processNumCoursesConstraint()
 {
-	//var_dump ($_SESSION);
+
 	unset($_SESSION['numCoursesYearTerm']);
 	unset($_SESSION['numCoursesConstrain']);
 
 	for ($i=0; $i < count($_POST['numCoursesYearTerm']); $i++)
 	{
+		if ($_POST['numCoursesYearTerm'][$i] == 'ALLALL')
+		{
+			global $DEFAULT_COURSES_PER_SEM;
+			$DEFAULT_COURSES_PER_SEM = (int) $_POST['numCoursesConstrain'][$i];
+		}
+
 		$_SESSION['numCoursesYearTerm'][$i] = $_POST['numCoursesYearTerm'][$i];
 		$_SESSION['numCoursesConstrain'][$i] = (int) $_POST['numCoursesConstrain'][$i];
 	}
