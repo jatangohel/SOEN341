@@ -130,7 +130,7 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 				<table class="table table-borderless" id="dynamic_field">
 					 <tr>
 						<td>
-              <h2 style="color:#000000; font-size: 15px" align="left" style="color:#000000;">Choose Year</h2>
+              <h2 style="color:#000000; font-size: 15px" align="left" style="color:#000000;">Year</h2>
               <!-- <div class="ceter"> -->
                 <select id= "listYear1",name="Years" >
                 	<?php
@@ -185,7 +185,7 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 							</select>
 
 						</td>
-						<td><h2 style="color:#000000; font-size: 15px" align="left">Maximum Classes This Semester </h2>
+						<td><h2 style="color:#000000; font-size: 15px" align="left">Number of Courses </h2>
 
               <select name="Number" id="number1">
 							<option value="0" selected>0</option>
@@ -232,7 +232,7 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 
 </br>
 <div class="col text-center">
-<input type="button" class="btn btn-primary" onclick="window.print()" value="Print"/>
+<input type="button" class="btn btn-primary" onclick="window.print()" value="  Print  "/>
 </div>
 
 </br></br>
