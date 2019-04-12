@@ -1,6 +1,6 @@
 <footer>
 
-  <div class="navbar navbar-inverse bg-dark fixed-bottom">
+  <div class="navbar navbar-inverse bg-dark">
   <div class="navbar-text text-white pull-left">
     <p>
       <?php
@@ -24,7 +24,7 @@
   <div class="navbar-text pull-right">
     <form>
 
-  		<a href="javascript:LangURLChanger('En')">English</a><span style="color:blue;"> - </span> 
+  		<a href="javascript:LangURLChanger('En')">English</a><span style="color:blue;"> - </span>
   		<a href="javascript:LangURLChanger('Fr');">Français</a>
 
     </form>

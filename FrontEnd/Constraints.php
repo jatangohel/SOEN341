@@ -241,7 +241,6 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
         	else
         		echo '<input type="button" class="btn btn-success btn-sm" name="submit" id="submit" value="Soumettre"/></p>';
         ?>
-        <input type="button" class="btn btn-primary" onclick="window.print()" value="Print General Course Schedule"/>
 			</form>
 			<div id="result"></div>
 		</div>
@@ -253,6 +252,9 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 
 <div id="card" class ="container1">
 </div>
+
+<input type="button" class="btn btn-primary" onclick="window.print()" value="Print General Course Schedule"/>
+
 <script>
 $(document).ready(function(){
   $("#card").load("FrontEnd/cardsGenerator.php");
