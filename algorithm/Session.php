@@ -4,7 +4,7 @@ class Session
   private $course;    // Course Object
   private $section;     // String
   private $subSection;  // String
-  private $semester;    // String ("F"or"W"or"S")
+  private $semester;    // String ("Fall"or"Winter"or"Summer")
   private $days;        // array of strings ("M","T","W","J","F")
   private $startTime;   // int
   private $endTime;     // int

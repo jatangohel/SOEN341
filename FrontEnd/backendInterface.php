@@ -63,7 +63,7 @@ function genNewSched ()
 	$userName = $_SESSION['userName'];
 
 	if ($userName == "GUEST")
-		$firstSem = $_POST['intake'];
+		$firstSem = $_SESSION['intake'] ;
 
 	else
 		$firstSem = getFirstSemester($email);
@@ -101,6 +101,10 @@ $_SESSION['userSched'] = serialize($userSched);
 
 if( empty($_POST['submitID']) )
 {
+	if (!empty($_POST['intake']))
+	{
+		$_SESSION['intake'] = $_POST['intake'];
+	}
 	if (empty($_SESSION['semInfo']))
 	{
 		$_SESSION['numCoursesYearTerm']= array();
