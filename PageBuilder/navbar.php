@@ -56,6 +56,16 @@ function changeLanguage()
                   ?>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../Soen341/constraints.php">
+                  <?php
+                    if($_SESSION['dispEng'])
+                      echo "ProgramSchedule";
+                    else
+                      echo "FILL PLEASE";
+                  ?>
+                </a>
+            </li>
           <?php } ?>
             <li class="nav-item">
                 <a class="nav-link" href="about.php">

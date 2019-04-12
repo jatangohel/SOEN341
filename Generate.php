@@ -1,3 +1,10 @@
+<style type="text/css">
+  body {height: 100%;}
+
+</style>
+
+<body>
+    <div id="wrapper">
 <?php
 //Page Info
 $page_name = "error 404 - Main page";

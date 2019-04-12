@@ -1,3 +1,10 @@
+<style type="text/css">
+  body {height: 100%;}
+
+</style>
+
+<body>
+    <div id="wrapper">
 <?php
 ob_start();
 session_start();
@@ -16,7 +23,7 @@ echo '<link href="css/stylec.css" rel="stylesheet"/>';
 	//require_once 'FrontEnd/backendInterface.php';
 	include 'PageBuilder/navbar.php';
 	include 'FrontEnd/Constraints.php';
-	include 'PageBuilder/header.php';
+	//include 'PageBuilder/header.php';
 	include 'PageBuilder/footer.php';
 	//include 'FrontEnd/usersPage.php';
 ?>

@@ -1,3 +1,10 @@
+<style type="text/css">
+  body {height: 100%;}
+
+</style>
+
+<body>
+    <div id="wrapper">
 <?php
 if (session_status() != PHP_SESSION_ACTIVE)
 {
