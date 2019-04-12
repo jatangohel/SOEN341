@@ -18,6 +18,7 @@ if(isset($_POST['check_list'])){
 	}
 
 	updateInputtedPassed($_SESSION['userEmail']);
+	updatedFirstSemester($_SESSION['userEmail'],$_POST['intake']);
 }
 
 if (session_status() != PHP_SESSION_ACTIVE)
