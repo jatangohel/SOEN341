@@ -254,6 +254,10 @@
                         </label><input type="checkbox"  id="ENGR301" name="check_list[]" value="ENGR301"> </td></tr>
 					<tr class="hide"><td>ENGR 371</td><td> <label for="ENGR371"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox"  id="ENGR371" name="check_list[]" value="ENGR371"> </td></tr>
+          <tr class="hide"><td>ENGR 391</td><td> <label for="ENGR391"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
+                        </label><input type="checkbox"  id="ENGR391" name="check_list[]" value="ENGR391"> </td></tr>
+          <tr class="hide"><td>ENGR 392</td><td> <label for="ENGR392"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
+                        </label><input type="checkbox"  id="ENGR392" name="check_list[]" value="ENGR392"> </td></tr>
 				</tbody>
 
 				<tbody class="labels" data-toggle="collapse" data-target="#data_6" aria-expanded="true">
@@ -330,8 +334,10 @@
                         </label><input type="checkbox" id="SOEN385" name="check_list[]" value="SOEN385"> </td></tr>
 					<tr class="hide"><td>SOEN 390</td><td> <label for="SOEN390"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
                         </label><input type="checkbox" id="SOEN390" name="check_list[]" value="SOEN390"> </td></tr>
-					<tr class="hide"><td>SOEN 490</td><td> <label for="SOEN490"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
-                        </label><input type="checkbox" id="SOEN490" name="check_list[]" value="SOEN490"> </td></tr>
+					<tr class="hide"><td>SOEN 490_1</td><td> <label for="SOEN490_1"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
+                        </label><input type="checkbox" id="SOEN490_1" name="check_list[]" value="SOEN490_1"> </td></tr>
+          <tr class="hide"><td>SOEN 490_2</td><td> <label for="SOEN490_2"> <?php echo $passHolder ?>&nbsp;&nbsp;&nbsp;
+                        </label><input type="checkbox" id="SOEN490_2" name="check_list[]" value="SOEN490_2"> </td></tr>
 				</tbody>
 		</table>
         	<center>
