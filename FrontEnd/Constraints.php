@@ -172,8 +172,8 @@ if(isset($_POST['check_list'])){
 					</option>
                 	<?php
                 	//determine the language for ranks (first, second,..)
-					$rankEn = array("First","Second","Third","Fourth","Fifth","Sixth");
-					$rankFr = array("Première","Deuxième","Troisième","Quatrième","Cinqième","Sixième");
+					$rankEn = array("First","Second","Third","Fourth","Fifth","Sixth","Seventh","Eighth","Ninth","Tenth","Eleventh","Twelveth","Thirteenth","Fourteenth");
+					$rankFr = array("Première","Deuxième","Troisième","Quatrième","Cinqième","Sixième","Septième", "Huitième", "Neuvième", "Dixième", "Onzième","Douze", "treizième", "quatorzième");
 					$rank = $rankFr;
 					if($_SESSION['dispEng'])
 						$rank = $rankEn;
