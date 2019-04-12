@@ -53,44 +53,6 @@ $userSched = unserialize($_SESSION['userSched']);
             background-attachment: fixed;
         }
 
-  .startTime{
-    background-color: white;
-    display: inline-flex;
-    border: 1px solid #ccc;
-    color: #555;
-  }
-  .endTime{
-    background-color: white;
-    display: inline-flex;
-    border: 1px solid #ccc;
-    color: #555;
-  }
-  
-  .startHour{
-    border: none;
-    color: #555;
-    text-align: center;
-    width: 40px;
-  }
-  .startMinute{
-    border: none;
-    color: #555;
-    text-align: center;
-    width: 40px;
-  }
-  .endHour{
-    border: none;
-    color: #555;
-    text-align: center;
-    width: 40px;
-  }
-  .endMinute {
-    border: none;
-    color: #555;
-    text-align: center;
-    width: 40px;
-  }
-
 
         #loading {
            width: 100%;
@@ -303,16 +265,10 @@ $userSched = unserialize($_SESSION['userSched']);
 													echo "Dimanche";
 											?>
                     </option>
-									</select></td>
+									</td>
 
-									<td><div class="startTime" id="startTime1">
-											<input class="startHour" type="number" id="startHour1"  min="08" max="22" placeholder="08">:
-											<input class="startMinute" type="number" id="startMinute1" min="0" max="59" placeholder="00">
-										</div></td>
-									<td><div class="endTime" id ="endTime1">
-											<input class="endHour"  type="number" id="endHour1"  min="08" max="22" placeholder="22">:
-											<input class="endMinute" type="number" id="endMinute1" min="0" max="59" placeholder="00">
-										</div></td>
+									<td></select><input type="time" id="starting1" name="starting1" value="00:00" placeholder="Starting Time"></td>
+									<td><input type="time" id="ending1" name="ending1" value = "00:00" placeholder="Ending Time"></td>
 									<td><button type="button" name="add" id="add" class="btn btn-secondary">Add</button></td>
 								</tr>
 								<input type="button" class="btn btn-success btn-sm"style="float:right; margin-right:20px;" name="submit" id="submit" value="Submit"/>
@@ -1030,21 +986,13 @@ $userSched = unserialize($_SESSION['userSched']);
 	</div>
 
   <script>
-document.querySelectorAll('input[type=number]')
-  .forEach(e => e.oninput = () => {
-    // Always 2 digits
-    if (e.value.length >= 2) e.value = e.value.slice(0, 2);
-    // 0 on the left (doesn't work on FF)
-    if (e.value.length === 1) e.value = '0' + e.value;
-    // Avoiding letters on FF
-    if (!e.value) e.value = '00';
-  });
+
 
 var timingConstraintsNum = 1;
 $(document).ready(function(){
 	$('#add').click(function(){
 		timingConstraintsNum++;
-		$('#dynamic_field').append('<tr id="row'+timingConstraintsNum+'"><td><select id="day'+timingConstraintsNum+'"name="Days"><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday">Friday</option><option value="Saturday">Saturday</option><option value="Sunday">Sunday</option></select>&nbsp;</td><td><div class="startTime" id="startTime1"><input class="startHour" type="number" id="startHour1"  min="08" max="22" placeholder="08">:<input class="startMinute" type="number" id="startMinute1" min="0" max="59" placeholder="00"></div></td><td><div class="endTime" id ="endTime'+timingConstraintsNum+'"><input class="endHour"  type="number" id="endHour'+timingConstraintsNum+'"  min="08" max="22" placeholder="22">:<input class="endMinute" type="number" id="endMinute'+timingConstraintsNum+'" min="0" max="59" placeholder="00"></div></td><td><button name="remove" id="'+timingConstraintsNum+'" class="btn btn-danger btn_remove">X</button>&nbsp;</td></tr>');
+		$('#dynamic_field').append('<tr id="row'+timingConstraintsNum+'"><td><select id="day'+timingConstraintsNum+'"name="Days"><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday">Friday</option><option value="Saturday">Saturday</option><option value="Sunday">Sunday</option></select>&nbsp;</td><td><input type="time" id="starting'+timingConstraintsNum+'"value = 00:00 name="starting'+timingConstraintsNum+'">&nbsp;</td><td><input type="time" id="ending'+timingConstraintsNum+'"value=00:00 name="ending'+timingConstraintsNum+'">&nbsp;</td><td><button name="remove" id="'+timingConstraintsNum+'" class="btn btn-danger btn_remove">X</button>&nbsp;</td></tr>');
 	});
 	$(document).on('click','.btn_remove',function(){
 		var button_id = $(this).attr("id");

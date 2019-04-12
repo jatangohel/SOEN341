@@ -83,7 +83,7 @@
     <div class="container">
         <div class="page-header">
             <br><br><br>
-            <div class="line-2 typewriter size:1sp">
+            <div class="typewriter">
               <h1>
                 <?php
       					     if($_SESSION['dispEng'])
