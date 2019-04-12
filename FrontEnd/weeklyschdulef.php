@@ -6,6 +6,7 @@ set_time_limit(0);
 $semIndex = $_GET['semester'];
 $userSched = unserialize($_SESSION['userSched']);
 
+//var_dump($userSched->getListOfSemesters()[$semIndex]->getLecs());
 ?>
 
 
@@ -970,6 +971,45 @@ $userSched = unserialize($_SESSION['userSched']);
         </tr>
 
 
+    <tr>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">23:00</span>&nbsp;</td>
+          <td class="M" name="M230000" id="M230000">&nbsp;</td>
+          <td class="T" name="T230000" id="T230000">&nbsp;</td>
+          <td class="W" name="W230000" id="W230000">&nbsp;</td>
+          <td class="J" name="J230000" id="J230000">&nbsp;</td>
+          <td class="F" name="F230000" id="F230000">&nbsp;</td>
+          <td class="saturday">&nbsp;</td>
+          <td class="sunday">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="M" name="M231500" id="M231500">&nbsp;</td>
+          <td class="T" name="T231500" id="T231500">&nbsp;</td>
+          <td class="W" name="W231500" id="W231500">&nbsp;</td>
+          <td class="J" name="J231500" id="J231500">&nbsp;</td>
+          <td class="F" name="F231500" id="F231500">&nbsp;</td>
+          <td class="saturday">&nbsp;</td>
+          <td class="sunday">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="M" name="M233000" id="M233000">&nbsp;</td>
+          <td class="T" name="T233000" id="T233000">&nbsp;</td>
+          <td class="W" name="W233000" id="W233000">&nbsp;</td>
+          <td class="J" name="J233000" id="J233000">&nbsp;</td>
+          <td class="F" name="F233000" id="F233000">&nbsp;</td>
+          <td class="saturday">&nbsp;</td>
+          <td class="sunday">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="M" name="M234500" id="M234500">&nbsp;</td>
+          <td class="T" name="T234500" id="T234500">&nbsp;</td>
+          <td class="W" name="W234500" id="W234500">&nbsp;</td>
+          <td class="J" name="J234500" id="J234500">&nbsp;</td>
+          <td class="F" name="F234500" id="F234500">&nbsp;</td>
+          <td class="saturday">&nbsp;</td>
+          <td class="sunday">&nbsp;</td>
+        </tr>
+
+
       </table>
 
 	</div>
@@ -1024,6 +1064,9 @@ createLecNew();
 function createLecNew() {
 	var jsLec=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[$semIndex]->getMyLecs())?>');
 	for (x in jsLec){
+    if (jsLec[x]['day']=='ONLINE')
+      continue;
+
 		var title = jsLec[x]['day'][0];
 		var fromTimeHour = jsLec[x]['startTime'];
 		var toTimeHour= jsLec[x]['endTime'];
@@ -1053,7 +1096,7 @@ function createLecNew() {
 		}
 	}
 	for (x in jsLec){
-		if (jsLec[x]['day'].length === 1)
+		if ((jsLec[x]['day'].length === 1) || (jsLec[x]['day']=='ONLINE'))
 			continue;
 		else{
 			var title = jsLec[x]['day'][1];
@@ -1117,7 +1160,7 @@ function createTutNew(){
 		}
 	}
 	for (x in jsTut){
-		if (jsTut[x]['day'].length === 1)
+		if (jsTut[x]['day'].length === 1 )
 			continue;
 		else{
 			var title = jsTut[x]['day'][1];
