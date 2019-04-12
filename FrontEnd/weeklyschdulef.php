@@ -149,7 +149,7 @@ $userSched = unserialize($_SESSION['userSched']);
 <body>
 
 
-        <span  id="button" action="action" onclick="window.history.go(-1); return false;" type="span" style='float:left;font-size:50px;margin-left:5px; position: relative; bottom: 23px;'>&#8678;</span> 
+        <span  id="button" action="action" onclick="window.history.go(-1); return false;" type="span" style='float:left;font-size:50px;margin-left:5px; position: relative; bottom: 23px; cursor:pointer;'>&#x2BAA;</span> 
         <button class="btn btn-warning" onclick="window.print()" style="float:left; margin-left:5px;"><strong>Print Schedule</strong></button>
         <h1 class="text-center">
           <?php
