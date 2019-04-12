@@ -6,6 +6,10 @@ if (session_status() != PHP_SESSION_ACTIVE)
 
 function processNumCoursesConstraint()
 {
+	//var_dump ($_SESSION);
+	unset($_SESSION['numCoursesYearTerm']);
+	unset($_SESSION['numCoursesConstrain']);
+
 	for ($i=0; $i < count($_POST['numCoursesYearTerm']); $i++)
 	{
 		$_SESSION['numCoursesYearTerm'][$i] = $_POST['numCoursesYearTerm'][$i];
