@@ -1,3 +1,10 @@
+<style type="text/css">
+  body {height: 100%;}
+
+</style>
+
+<body>
+    <div id="wrapper">
 <?php
 ob_start();
 session_start();
