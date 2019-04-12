@@ -164,8 +164,7 @@ opacity:0.96;
 
 
 
-      <img src="https://www.qualiscare.com/wp-content/uploads/2017/08/default-user.png" alt="avatar" width="100" height="100">
-
+      
           <h1>
             <?php
       				if($_SESSION['dispEng'])
