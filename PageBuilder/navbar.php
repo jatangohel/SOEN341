@@ -5,7 +5,7 @@ if (session_status() != PHP_SESSION_ACTIVE)
 
 
 
-$validserver=($_SERVER['REQUEST_URI']!='/SOEN341/') && ($_SERVER['REQUEST_URI']!='/Soen341/index.php') && ($_SERVER['REQUEST_URI']!='/SOEN341/index.php')&&($_SERVER['REQUEST_URI']!='/Soen341/')&& ($_SERVER['REQUEST_URI']!='/soEN341/') && ($_SERVER['REQUEST_URI']!='/SOEN341/?Lang=En') && ($_SERVER['REQUEST_URI']!='/SOEN341/?Lang=Fr');
+$validserver=($_SERVER['REQUEST_URI']!='/SOEN341/') && ($_SERVER['REQUEST_URI']!='/Soen341/index.php') && ($_SERVER['REQUEST_URI']!='/SOEN341/index.php')&&($_SERVER['REQUEST_URI']!='/Soen341/')&& ($_SERVER['REQUEST_URI']!='/soEN341/') && ($_SERVER['REQUEST_URI']!='/SOEN341/?Lang=En') && ($_SERVER['REQUEST_URI']!='/SOEN341/?Lang=Fr') && ($_SESSION['userName'] != 'GUEST');
 $validserver2=($_SERVER['REQUEST_URI']!='/SOEN341/')&& ($_SERVER['REQUEST_URI']!='/Soen341/index.php') &&($_SERVER['REQUEST_URI']!='/Soen341/')&& ($_SERVER['REQUEST_URI']!='/SOEN341/index.php')&& ($_SERVER['REQUEST_URI']!='/soEN341/')&& ($_SERVER['REQUEST_URI']!='/SOEN341/?Lang=En') && ($_SERVER['REQUEST_URI']!='/SOEN341/?Lang=Fr');
 changeLanguage();
 function changeLanguage()
@@ -57,7 +57,7 @@ function changeLanguage()
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../Soen341/constraints.php">
+                <a class="nav-link" href="Constraints.php">
                   <?php
                     if($_SESSION['dispEng'])
                       echo "ProgramSchedule";
