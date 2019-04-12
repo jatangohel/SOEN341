@@ -18,7 +18,17 @@ if(isset($_POST['check_list'])){
 	updatedFirstSemester($_SESSION['userEmail'],$_POST['intake']);
 }
 ?>
-<html lang="en">
+<!--The ALL option-->
+<script type="text/javascript">
+	function changeAllSem(){
+		var selector = document.getElementById("listYear1");
+    	var value = selector[selector.selectedIndex].value;
+    			
+    	if(value == 'ALL')
+			document.getElementById("list1").selectedIndex = 0;
+}
+</script>
+
   <head>
     <title> Program Schedule </title>
     <!-- Required meta tags -->
@@ -133,7 +143,15 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 						<td>
               <h2 style="color:#000000; font-size: 15px" align="left" style="color:#000000;">Choose Year</h2>
               <!-- <div class="ceter"> -->
-                <select id= "listYear1",name="Years" >
+                <select id= "listYear1" name="Years" onChange="changeAllSem();";>
+                	<option value="ALL">
+						<?php
+							if($_SESSION['dispEng'])
+								echo "ALL";
+							else
+								echo "ALL";
+						?>
+					</option>
                 	<?php
                 	//determine the language for ranks (first, second,..)
 					$rankEn = array("First","Second","Third","Fourth","Fifth","Sixth");
@@ -144,7 +162,6 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 
 					//determine the Year language
 					$yearLang = $_SESSION['dispEng']?"Year":"année";
-
 					for($i=0;$i<$_SESSION['semYear'][sizeof($_SESSION['semYear'])-1];$i++){
 						echo '<option value="'.($i+1).'"><br/>';
 					    echo $rank[$i].' '.$yearLang.'<br/>';
@@ -158,8 +175,16 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 						</td>
 						<td>
                 <h2 style="font-size: 15px" align="left">Semester</h2>
-              <select id = "list1",name="Term">
-							<option value="Summer" selected>
+              <select id = "list1" name="Term">
+							<option value="ALL">
+							 <?php
+									if($_SESSION['dispEng'])
+										echo "ALL";
+									else
+										echo "ALL";
+								?>
+							</option>
+							<option value="Summer">
                 <?php
 									if($_SESSION['dispEng'])
 										echo "Summer Term";
