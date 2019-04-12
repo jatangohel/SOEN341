@@ -2,7 +2,7 @@
 require_once 'backendInterface.php';
 set_time_limit(0);
 
-$semIndex = $_GET['semIndex'];
+$semIndex = $_GET['semester'];
 $userSched = unserialize($_SESSION['userSched']);
 
 ?>
