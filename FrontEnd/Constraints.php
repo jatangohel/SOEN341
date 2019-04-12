@@ -20,15 +20,7 @@ if(isset($_POST['check_list'])){
 	updateInputtedPassed($_SESSION['userEmail']);
 	updatedFirstSemester($_SESSION['userEmail'],$_POST['intake']);
 }
-
-if (session_status() != PHP_SESSION_ACTIVE)
-{
-	ob_start();
-	session_start();
-}
-
 ?>
-
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -131,59 +123,23 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
               <h2 style="color:#000000; font-size: 15px" align="left" style="color:#000000;">Choose Year</h2>
               <!-- <div class="ceter"> -->
                 <select id= "listYear1",name="Years" >
-                <option value="1" selected>
-                  <?php
-                  	if($_SESSION['dispEng'])
-  										echo "First Year";
-  									else
-  										echo "Première année";
-  								?>
-                </option>
+                	<?php
+                	//determine the language for ranks (first, second,..)
+					$rankEn = array("First","Second","Third","Fourth","Fifth","Sixth");
+					$rankFr = array("Première","Deuxième","Troisième","Quatrième","Cinqième","Sixième");
+					$rank = $rankFr;
+					if($_SESSION['dispEng'])
+						$rank = $rankEn;
 
-                <option value="2">
-                  <?php
-									if($_SESSION['dispEng'])
-										echo "Second Year";
-									else
-										echo "Deuxième année";
-								  ?>
-                </option>
+					//determine the Year language
+					$yearLang = $_SESSION['dispEng']?"Year":"année";
 
-                <option value="3">
-                  <?php
-									if($_SESSION['dispEng'])
-										echo "Third Year";
-									else
-										echo "Troisième année";
-								  ?>
-                </option>
-
-                <option value="4">
-                  <?php
-									if($_SESSION['dispEng'])
-										echo "Fourth Year";
-									else
-										echo "Quatrième année";
-								  ?>
-                </option>
-
-                <option value="5">
-                  <?php
-  									if($_SESSION['dispEng'])
-  										echo "Fifth Year";
-  									else
-  										echo "Cinqième année";
-								  ?>
-                </option>
-
-                <option value="6">
-                  <?php
-  									if($_SESSION['dispEng'])
-  										echo "Sixth Year";
-  									else
-  										echo "Sixième année";
-  								?>
-                </option>
+					for($i=0;$i<$_SESSION['semYear'][sizeof($_SESSION['semYear'])-1];$i++){
+						echo '<option value="'.($i+1).'"><br/>';
+					    echo $rank[$i].' '.$yearLang.'<br/>';
+					    echo '</option><br/>';
+					}
+                	?>
                 </select>
               <!-- </div> -->
 
