@@ -87,7 +87,7 @@
               <h1>
                 <?php
       					     if($_SESSION['dispEng'])
-      						         echo "Welcome to the Concordia University Course Scheduler.";
+      						         echo "Welcome to Concordia's Course Scheduler.";
       					     else
       						         echo "Bienvenue au planificateur de cours de l'université Concordia";
 				        ?>
