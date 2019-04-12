@@ -232,7 +232,6 @@ background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 
 						</td>
             <!-- <td>
               <p>  Minimum Credits This Semester </p> </td> -->
-
 						<td><button type="button" name="add" id="add" class="btn btn-success" >
               <?php
 								if($_SESSION['dispEng'])
