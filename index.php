@@ -1,3 +1,10 @@
+<style type="text/css">
+  body {height: 100%;}
+
+</style>
+
+<body>
+    <div id="wrapper">
 <?php
 echo '<link href="css/fbBtmStyling.css" rel="stylesheet">';
 echo '<link href="css/style.css" rel="stylesheet">';

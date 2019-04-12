@@ -1,4 +1,10 @@
-<footer>
+<style type="text/css">
+    #wrapper {min-height:100%;margin-bottom:-85px;}
+  #push, #footer {height:85px;}
+</style>
+<div id="push"></div>
+</div>
+<div id="footer">
 
   <div class="navbar navbar-inverse bg-dark">
   <div class="navbar-text text-white pull-left">
@@ -35,4 +41,5 @@
   </div>
 </div>
 
-  </footer>
+</div>
+</body>
