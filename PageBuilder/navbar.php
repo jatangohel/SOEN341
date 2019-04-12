@@ -4,8 +4,11 @@ if (session_status() != PHP_SESSION_ACTIVE)
   session_start();
 
 
+//if (isset($_SESSION['userName']))
+  $validserver=($_SERVER['REQUEST_URI']!='/SOEN341/') && ($_SERVER['REQUEST_URI']!='/Soen341/index.php') && ($_SERVER['REQUEST_URI']!='/SOEN341/index.php')&&($_SERVER['REQUEST_URI']!='/Soen341/')&& ($_SERVER['REQUEST_URI']!='/soEN341/') && ($_SERVER['REQUEST_URI']!='/SOEN341/?Lang=En') && ($_SERVER['REQUEST_URI']!='/SOEN341/?Lang=Fr') && (isset($_SESSION['userName']) && ($_SESSION['userName'] != 'GUEST'));
+// else
+//   $validserver=($_SERVER['REQUEST_URI']!='/SOEN341/') && ($_SERVER['REQUEST_URI']!='/Soen341/index.php') && ($_SERVER['REQUEST_URI']!='/SOEN341/index.php')&&($_SERVER['REQUEST_URI']!='/Soen341/')&& ($_SERVER['REQUEST_URI']!='/soEN341/') && ($_SERVER['REQUEST_URI']!='/SOEN341/?Lang=En') && ($_SERVER['REQUEST_URI']!='/SOEN341/?Lang=Fr');
 
-$validserver=($_SERVER['REQUEST_URI']!='/SOEN341/') && ($_SERVER['REQUEST_URI']!='/Soen341/index.php') && ($_SERVER['REQUEST_URI']!='/SOEN341/index.php')&&($_SERVER['REQUEST_URI']!='/Soen341/')&& ($_SERVER['REQUEST_URI']!='/soEN341/') && ($_SERVER['REQUEST_URI']!='/SOEN341/?Lang=En') && ($_SERVER['REQUEST_URI']!='/SOEN341/?Lang=Fr') && ($_SESSION['userName'] != 'GUEST');
 $validserver2=($_SERVER['REQUEST_URI']!='/SOEN341/')&& ($_SERVER['REQUEST_URI']!='/Soen341/index.php') &&($_SERVER['REQUEST_URI']!='/Soen341/')&& ($_SERVER['REQUEST_URI']!='/SOEN341/index.php')&& ($_SERVER['REQUEST_URI']!='/soEN341/')&& ($_SERVER['REQUEST_URI']!='/SOEN341/?Lang=En') && ($_SERVER['REQUEST_URI']!='/SOEN341/?Lang=Fr');
 changeLanguage();
 function changeLanguage()

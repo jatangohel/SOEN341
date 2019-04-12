@@ -447,9 +447,11 @@ private function capstone2Satisfied($combs)
     // Eliminate the combinations that don't satisfy coReq
     $combsArray = coReqsSatisfiedCombs($combsArray);
 
-    if ( $createdCourses['SOEN490_1']->getPass() and !$createdCourses['SOEN490_2']->getPass() )
-      $combsArray = $this->capstone2Satisfied($combsArray);
-
+    if (array_key_exists('SOEN490_1',$createdCourses) && array_key_exists('SOEN490_2',$createdCourses) )
+    {
+      if ( $createdCourses['SOEN490_1']->getPass() and !$createdCourses['SOEN490_2']->getPass() )
+        $combsArray = $this->capstone2Satisfied($combsArray);
+    }
     //Check the credits requirement with tolerance of 1.5 credit
     /*
     $combsArray = creditsSatisfied ($combsArray, $studentCredits, $numberOfCourses);

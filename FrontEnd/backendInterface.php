@@ -73,7 +73,12 @@ function genNewSched ()
 	$userName = $_SESSION['userName'];
 
 	if ($userName == "GUEST")
-		$firstSem = $_SESSION['intake'] ;
+  {
+    if (!empty($_SESSION['intake']))
+		  $firstSem = $_SESSION['intake'];
+    else
+      $firstSem = "Fall";
+  }
 
 	else
 		$firstSem = getFirstSemester($email);

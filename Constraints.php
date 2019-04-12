@@ -8,12 +8,18 @@
 <?php
 ob_start();
 session_start();
-?>
 
-<?php
-echo '<link href="css/stylec.css" rel="stylesheet"/>';
-echo '<link href="css/bgstyling.css" rel="stylesheet"/>';
+if(!isset($_SESSION['loggedin'])){
+  if($_SESSION['dispEng'])
+    echo "Login please.";
+  else
+    echo "Inscrivez-vous s'il vous plait.";
+  header('Refresh: 2; URL = index.php');
+}
 
+else {
+  echo '<link href="css/stylec.css" rel="stylesheet"/>';
+  echo '<link href="css/bgstyling.css" rel="stylesheet"/>';
 
 	//Page Info
 	$page_name = "error 404 - Main page";
@@ -28,4 +34,7 @@ echo '<link href="css/bgstyling.css" rel="stylesheet"/>';
 	//include 'PageBuilder/header.php';
 	include 'PageBuilder/footer.php';
 	//include 'FrontEnd/usersPage.php';
+}
+
+
 ?>

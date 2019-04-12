@@ -202,7 +202,7 @@ if (session_status() != PHP_SESSION_ACTIVE)
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-75">
-          <img class="card-img-top" src="images/MARIO2.jpg" >
+          <img class="card-img-top" src="images/MARIO.png" >
           <div class="card-body">
             <h4 class="card-title">
               <p class="card-text">Mario Gaudio</p>

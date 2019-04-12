@@ -6,6 +6,14 @@ if (session_status() != PHP_SESSION_ACTIVE)
 	session_start();
 }
 
+if(!isset($_SESSION['loggedin'])){
+	if($_SESSION['dispEng'])
+		echo "Login please.";
+	else
+		echo "Inscrivez-vous s'il vous plait.";
+	header('Refresh: 2; URL = index.php');
+}
+
 echo '<link href="../css/stylec.css" rel="stylesheet"/>';
 require_once 'backendInterface.php';
 
@@ -191,8 +199,8 @@ if(isset($_POST['check_list'])){
 					</option>
                 	<?php
                 	//determine the language for ranks (first, second,..)
-					$rankEn = array("First","Second","Third","Fourth","Fifth","Sixth");
-					$rankFr = array("Première","Deuxième","Troisième","Quatrième","Cinqième","Sixième");
+					$rankEn = array("First","Second","Third","Fourth","Fifth","Sixth","Seventh","Eighth","Ninth","Tenth","Eleventh","Twelveth","Thirteenth","Fourteenth");
+					$rankFr = array("Première","Deuxième","Troisième","Quatrième","Cinqième","Sixième","Septième", "Huitième", "Neuvième", "Dixième", "Onzième","Douze", "treizième", "quatorzième");
 					$rank = $rankFr;
 					if($_SESSION['dispEng'])
 						$rank = $rankEn;
