@@ -32,7 +32,7 @@ function changeLanguage()
                 <a class="nav-link font-weight-bold" href="../Soen341/">
                   <?php
                     if($_SESSION['dispEng'])
-                      echo "CourseSequence";
+                      echo "SequenceBuilder";
                     else
                       echo "SéquenceDesCours";
                   ?>

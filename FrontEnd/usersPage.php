@@ -2,6 +2,19 @@
 <head>
 	<style>
 
+	body
+	{
+		background-image: linear-gradient(to bottom, rgba(255, 255, 255,9), rgba(230, 247, 255,9)), url("https://i.postimg.cc/258L0Rhy/Concordia.jpg");
+		background-image: -moz-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url('https://i.postimg.cc/258L0Rhy/Concordia.jpg');
+		background-image: -o-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url('https://i.postimg.cc/258L0Rhy/Concordia.jpg');
+		background-image: -ms-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url('https://i.postimg.cc/258L0Rhy/Concordia.jpg');
+		background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255,9)), to(rgba(230, 247, 255,9))), url(https://i.postimg.cc/258L0Rhy/Concordia.jpg);
+		background-image: -webkit-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,0)), url('https://i.postimg.cc/258L0Rhy/Concordia.jpg');
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-attachment: fixed;
+	}
+
 	#loading-image {
 		margin: 0 auto;
 		top: 100px;
@@ -28,10 +41,10 @@
 		font-size: 3em;
 		z-index: 999;
 		margin: 0 auto;
-        left: 0;
-        right: 0;
-        top: 50%;
-        text-align: center;
+		left: 0;
+		right: 0;
+		top: 50%;
+		text-align: center;
 		width:60%;
 
 

@@ -37,23 +37,9 @@ $userSched = unserialize($_SESSION['userSched']);
 	<style>
 	        :root{
           --mainColor: #14162B;
-          --background: #2cc16a;
           --fadedText: #36384D;
           --mainButtons: rgb(241, 48, 78);
         }
-
-	  body {
-          background-image: linear-gradient(to bottom, rgba(255, 255, 255,9), rgba(230, 247, 255,9)), url("concordia.jpg");
-          background-image: -moz-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
-          background-image: -o-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
-          background-image: -ms-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
-          background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255,9)), to(rgba(230, 247, 255,9))), url(../../../../../Downloads/concordia.jpg);
-          background-image: -webkit-linear-gradient(top, rgba(198, 57, 244, 0.84), rgba(230, 247, 255,0)), url(concordia.jpg);
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-        }
-
 
         #loading {
            width: 100%;
@@ -355,7 +341,7 @@ $userSched = unserialize($_SESSION['userSched']);
         </tr>
 
         <tr style="border-top: 2px solid black; ">
-          <td class="time" rowspan="4" scope="row"><span class>8:00</span></td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">8:00</span></td>
 
           <td class="M" name="M080000" id="M080000">&nbsp;</td>
           <td class="T" name="T080000" id="T080000">&nbsp;</td>
@@ -401,7 +387,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
         <tr>
-          <td class="time" rowspan="4" scope="row"><span class>9:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">9:00</span>&nbsp;</td>
           <td class="M" name="M090000" id="M090000">&nbsp;</td>
           <td class="T" name="T090000" id="T090000" >&nbsp;</td>
           <td class="W" name="W090000" id="W090000">&nbsp;</td>
@@ -441,7 +427,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
         <tr>
-          <td class="time" rowspan="4" scope="row"><span class>10:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">10:00</span>&nbsp;</td>
           <td class="M" name="M100000" id="M100000">&nbsp;</td>
           <td class="T" name="T100000" id="T100000">&nbsp;</td>
           <td class="W" name="W100000" id="W100000">&nbsp;</td>
@@ -483,7 +469,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
         <tr>
-          <td class="time" rowspan="4" scope="row"><span class>11:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">11:00</span>&nbsp;</td>
           <td class="M" name="M110000" id="M110000">&nbsp;</td>
           <td class="T" name="T110000" id="T110000">&nbsp;</td>
           <td class="W" name="W110000" id="W110000">&nbsp;</td>
@@ -524,7 +510,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
         <tr>
-          <td class="time" rowspan="4" scope="row"><span class>12:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">12:00</span>&nbsp;</td>
           <td class="M" name="M120000" id="M120000">&nbsp;</td>
           <td class="T" name="T120000" id="T120000">&nbsp;</td>
           <td class="W" name="W120000" id="W120000">&nbsp;</td>
@@ -565,7 +551,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
         <tr>
-          <td class="time" rowspan="4" scope="row"><span class>13:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">13:00</span>&nbsp;</td>
           <td class="M" name="M130000" id="M130000">&nbsp;</td>
           <td class="T" name="T130000" id="T130000">&nbsp;</td>
           <td class="W" name="W130000" id="W130000">&nbsp;</td>
@@ -606,7 +592,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
         <tr>
-          <td class="time" rowspan="4" scope="row"><span class>14:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">14:00</span>&nbsp;</td>
           <td class="M" name="M140000" id="M140000">&nbsp;</td>
           <td class="T" name="T140000" id="T140000">&nbsp;</td>
           <td class="W" name="W140000" id="W140000">&nbsp;</td>
@@ -647,7 +633,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
         <tr>
-          <td class="time" rowspan="4" scope="row"><span class>15:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">15:00</span>&nbsp;</td>
           <td class="M" name="M150000" id="M150000">&nbsp;</td>
           <td class="T" name="T150000" id="T150000">&nbsp;</td>
           <td class="W" name="W150000" id="W150000">&nbsp;</td>
@@ -689,7 +675,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
         <tr>
-          <td class="time" rowspan="4" scope="row"><span class>16:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">16:00</span>&nbsp;</td>
           <td class="M" name="M160000" id="M160000">&nbsp;</td>
           <td class="T" name="T160000" id="T160000">&nbsp;</td>
           <td class="W" name="W160000" id="W160000">&nbsp;</td>
@@ -730,7 +716,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
         <tr>
-          <td class="time" rowspan="4" scope="row"><span class>17:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">17:00</span>&nbsp;</td>
           <td class="M" name="M170000" id="M170000">&nbsp;</td>
           <td class="T" name="T170000" id="T170000">&nbsp;</td>
           <td class="W" name="W170000" id="W170000">&nbsp;</td>
@@ -771,7 +757,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
         <tr>
-          <td class="time" rowspan="4" scope="row"><span class>18:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">18:00</span>&nbsp;</td>
           <td class="M" name="M180000" id="M180000">&nbsp;</td>
           <td class="T" name="T180000" id="T180000">&nbsp;</td>
           <td class="W" name="W180000" id="W180000">&nbsp;</td>
@@ -812,7 +798,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
         <tr>
-          <td class="time" rowspan="4" scope="row"><span class>19:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">19:00</span>&nbsp;</td>
           <td class="M" name="M190000" id="M190000">&nbsp;</td>
           <td class="T" name="T190000" id="T190000">&nbsp;</td>
           <td class="W" name="W190000" id="W190000">&nbsp;</td>
@@ -854,7 +840,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
         <tr>
-          <td class="time" rowspan="4" scope="row"><span class>20:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">19:00</span>&nbsp;</td>
           <td class="M" name="M200000" id="M200000">&nbsp;</td>
           <td class="T" name="T200000" id="T200000">&nbsp;</td>
           <td class="W" name="W200000" id="W200000">&nbsp;</td>
@@ -897,7 +883,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
         <tr>
-          <td class="time" rowspan="4" scope="row"><span class>21:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">21:00</span>&nbsp;</td>
           <td class="M" name="M210000" id="M210000">
 
 
@@ -940,7 +926,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
 		<tr>
-          <td class="time" rowspan="4" scope="row"><span class>22:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">22:00</span>&nbsp;</td>
           <td class="M" name="M220000" id="M220000">&nbsp;</td>
           <td class="T" name="T220000" id="T220000">&nbsp;</td>
           <td class="W" name="W220000" id="W220000">&nbsp;</td>
@@ -1343,5 +1329,6 @@ $(document).ready(function(){
 </br></br></br></br></br></br>
 </br></br></br></br></br></br>
 </br></br></br></br></br></br>
+</br></br></br></br>
   	</body>
  </html>

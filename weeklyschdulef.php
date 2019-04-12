@@ -11,8 +11,7 @@ if (session_status() != PHP_SESSION_ACTIVE)
   ob_start();
   session_start();
 }
-
-echo '<link href="css/stylec.css" rel="stylesheet"/>';
+echo '<link href="css/bgstyling.css" rel="stylesheet"/>';
 
 	//Page Info
 	$page_name = "error 404 - Main page";
