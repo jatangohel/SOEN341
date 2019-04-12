@@ -145,34 +145,20 @@ display: block;
 background-color: #00b38f;
 opacity:0.96;
 }
-
-
-
-
   </style>
 
   </head>
-
   <body>
-
-
-
-
 <center>
-
 <div class="infobox">
-
-
-
-
-          <h1>
-            <?php
-      				if($_SESSION['dispEng'])
-      					echo "Your Profile";
-      				else
-      					echo "Votre Profil";
-            ?>
-          </h1>
+  <h1>
+    <?php
+			if($_SESSION['dispEng'])
+				echo "Your Profile";
+			else
+				echo "Votre Profil";
+    ?>
+  </h1>
       <form>
           <br>
           <p>
@@ -192,10 +178,10 @@ opacity:0.96;
       					else
       						echo "Changer";
       				?>
-              <span class="caret"></span></button>
+              </button>
               <ul class="dropdown-menu">
-                <input id="newUserName" type="text" name="" value="new username" ><br>
-                <input id="changeUserNameButton" type="button" class="btn btn-success btn-sm"style="float:right; margin-right:20px;" value="submit"/>
+                <input id="newUserName" type="text" name="" placeholder="New Username" ><br>
+                <input id="changeUserNameButton" type="button" class="btn btn-success btn-sm"style="color:#FFFFFF; float:right; margin-right:20px;" value="Submit"/>
               </ul>
             </div>
 
@@ -211,10 +197,10 @@ opacity:0.96;
       					else
       						echo "Changer";
       				?>
-              <span class="caret"></span></button>
+              </button>
               <ul class="dropdown-menu">
-                <input id="newEmail" type="text" name="" value="new Email" ><br>
-                <input id="changeEmailButton" type="button" class="btn btn-success btn-sm"style="float:right; margin-right:20px;" value="submit"/>
+                <input id="newEmail" type="text" name="" placeholder="New Email" ><br>
+                <input id="changeEmailButton" type="button" class="btn btn-success btn-sm"style="color:#FFFFFF; float:right; margin-right:20px;" value="Submit"/>
               </ul>
             </div>
 <br><br>
@@ -230,22 +216,15 @@ opacity:0.96;
       					else
       						echo "Changer";
       				?>
-              <span class="caret"></span></button>
+              </button>
               <ul class="dropdown-menu">
-                <input type="text" name="" value="new Password" ><br>
-                <input id="newPassword" type="text" name="" value="Cofirm Password" ><br>
-                <input id="changePasswordButton" type="button" class="btn btn-success btn-sm"style="float:right; margin-right:20px;" value="submit"/>
+                <input type="text" name="" placeholder="New Password" ><br>
+                <input id="newPassword" type="text" name="" placeholder="Confirm Password"s ><br>
+                <input id="changePasswordButton" type="button" class="btn btn-success btn-sm"style="color:#FFFFFF; float:right; margin-right:20px;" value="Submit"/>
               </ul>
             </div>
 <br><br><br><br>
 
-            <button class="submit-button btn-lg btn-primary" id="submit" name="submit">
-              <?php
-      					if($_SESSION['dispEng'])
-      						echo "Submit";
-      					else
-      						echo "Soumettre";
-      				?>
             </button>
 
         </div>
@@ -267,7 +246,10 @@ opacity:0.96;
   		$.post('FrontEnd/backendInterface.php',{
         submitID:"SubmitNewUserName",
         oldUserName:"<?php echo $_SESSION['userName'];?>",
-  			newUserName:document.getElementById("newUserName").value});
+  			newUserName:document.getElementById("newUserName").value},
+      function(data){
+        location.reload(false);
+      });
   		   });
        });
 
