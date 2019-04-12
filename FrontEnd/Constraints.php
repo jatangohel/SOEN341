@@ -20,13 +20,31 @@ if(isset($_POST['check_list'])){
 ?>
 <!--The ALL option-->
 <script type="text/javascript">
+	disableSubmitWhenAll();
 	function changeAllSem(){
 		var selector = document.getElementById("listYear1");
     	var value = selector[selector.selectedIndex].value;
 
-    	if(value == 'ALL')
+    	
+    	if(value == 'ALL'){
 			document.getElementById("list1").selectedIndex = 0;
-}
+    	}
+	}
+
+	function disableSubmitWhenAll(){
+
+		//get the value of Number of Courses option set
+			var Num1selector = document.getElementById("number1");
+    		var numOfCourses = Num1selector[Num1selector.selectedIndex].value;
+			
+			var Yearselector = document.getElementById("listYear1");
+	    	var yearNum = Yearselector[Yearselector.selectedIndex].value;
+
+			if(numOfCourses == 0 && yearNum == 'ALL')
+				document.getElementById("submit").disabled = true;
+			else
+				document.getElementById("submit").disabled = false;
+	}
 </script>
 
   <head>
@@ -108,7 +126,7 @@ if(isset($_POST['check_list'])){
 }
 	</style>
   </head>
- <body>
+ <body onload="disableSubmitWhenAll();">
 	<div class="container">
 		<br />
 		<br />
@@ -131,7 +149,7 @@ if(isset($_POST['check_list'])){
 						<td>
               <h2 style="color:#000000; font-size: 15px" align="left" style="color:#000000;">Year</h2>
               <!-- <div class="ceter"> -->
-                <select id= "listYear1" name="Years" onChange="changeAllSem();";>
+                <select id= "listYear1" name="Years" onChange="changeAllSem(); disableSubmitWhenAll();">
                 	<option value="ALL">
 						<?php
 							if($_SESSION['dispEng'])
@@ -201,7 +219,7 @@ if(isset($_POST['check_list'])){
 						</td>
 						<td><h2 style="color:#000000; font-size: 15px" align="left">Number of Courses </h2>
 
-              <select name="Number" id="number1">
+              <select name="Number" id="number1" onChange="disableSubmitWhenAll();">
 							<option value="0" selected>0</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
