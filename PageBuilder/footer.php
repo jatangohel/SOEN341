@@ -1,6 +1,6 @@
 <style type="text/css">
-    #wrapper {min-height:100%;margin-bottom:-85px;}
-  #push, #footer {height:85px;}
+    #wrapper {min-height:100%;margin-bottom:-45px;}
+  #push, #footer {height:45px;}
 </style>
 <div id="push"></div>
 </div>
