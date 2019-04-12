@@ -5,6 +5,8 @@ if (session_status() != PHP_SESSION_ACTIVE)
 
 
 
+$validserver=($_SERVER['REQUEST_URI']!='/SOEN341/') && ($_SERVER['REQUEST_URI']!='/SOEN341/index.php')&&($_SERVER['REQUEST_URI']!='/Soen341/')&& ($_SERVER['REQUEST_URI']!='/soEN341/') && ($_SERVER['REQUEST_URI']!='/SOEN341/?Lang=En') && ($_SERVER['REQUEST_URI']!='/SOEN341/?Lang=Fr');
+$validserver2=($_SERVER['REQUEST_URI']!='/SOEN341/') &&($_SERVER['REQUEST_URI']!='/Soen341/')&& ($_SERVER['REQUEST_URI']!='/SOEN341/index.php')&& ($_SERVER['REQUEST_URI']!='/soEN341/')&& ($_SERVER['REQUEST_URI']!='/SOEN341/?Lang=En') && ($_SERVER['REQUEST_URI']!='/SOEN341/?Lang=Fr');
 changeLanguage();
 function changeLanguage()
 {
@@ -43,7 +45,7 @@ function changeLanguage()
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
          <?php
-          if( ($_SERVER['REQUEST_URI']!='/SOEN341/') &&($_SERVER['REQUEST_URI']!='/Soen341/')&& ($_SERVER['REQUEST_URI']!='/SOEN341/index.php')){ ?>
+          if($validserver2){ ?>
           <li class="nav-item">
                 <a class="nav-link" href="FrontEnd/generate.php">
                   <?php
@@ -69,7 +71,7 @@ function changeLanguage()
 
 
         <?php
-         if( ($_SERVER['REQUEST_URI']!='/SOEN341/') && ($_SERVER['REQUEST_URI']!='/SOEN341/index.php')){ ?>
+         if($validserver){ ?>
          <ul class="navbar-nav ">
                <!-- PROFILE DROPDOWN - scrolling off the page to the right -->
                <li class="nav-item dropdown">
@@ -116,3 +118,6 @@ function changeLanguage()
         window.location.href = currentPage.substring(0,currentPage.length-2)+Lang;
       }
 </script>
+<?php 
+
+ ?>
