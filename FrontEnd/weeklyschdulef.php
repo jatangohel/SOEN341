@@ -273,7 +273,7 @@ $userSched = unserialize($_SESSION['userSched']);
 	</div>
 
   <div id="loading">
-    <img id="loading-image" src="img_loading.gif" alt="Loading..." />
+    <img id="loading-image" src="images/img_loading.gif" alt="Loading..." />
   </div>
 
 	  <div id="scheduleArea" class="scheduleArea">
@@ -1348,7 +1348,7 @@ $(document).ready(function(){
 	$('#submit').click(function(){
 		 var x = document.getElementById("loading");
 		  x.style.display = "block";
-		$.post('backendInterface.php',{
+		$.post('FrontEnd/backendInterface.php',{
       submitID:"SubmitTimingConstraints",
       semIndex: <?php echo $semIndex ?>,
       days:getDays(),
