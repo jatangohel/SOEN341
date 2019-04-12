@@ -314,7 +314,7 @@ $userSched = unserialize($_SESSION['userSched']);
     <img id="loading-image" src="img_loading.gif" alt=
 		"<?php
 				if($_SESSION['dispEng'])
-					echo "Loasding...";
+					echo "Loading...";
 				else
 					echo "Chargement...";
 		 ?>"
