@@ -89,7 +89,7 @@
       					     if($_SESSION['dispEng'])
       						         echo "Welcome to Concordia's Course Scheduler.";
       					     else
-      						         echo "Bienvenue au planificateur de cours de l'université Concordia";
+      						         echo "Bienvenue au planificateur de cours de   Concordia";
 				        ?>
             </h1>
           </div>
@@ -130,7 +130,7 @@
             </button>
             <div style="text-align: center">
             </br>
-                 <a class="text-center font-weight-bold" style="color:#2462a5" "href="FrontEnd/usersPage.php?login=true&LoggedInUserName=GUEST">Continue as Guest</a>
+                 <a class="text-center font-weight-bold" style="color:#2462a5" href="FrontEnd/usersPage.php?login=true&LoggedInUserName=GUEST">Continue as Guest</a>
             </div>
         </div>
 
@@ -201,7 +201,7 @@
                   <span style="background:#fff;  font-size: 13px"></span>
                 </h2>
 
-                <button onclick="alert('Hello!')" class="loginBtn loginBtn--facebook" style="top: 12; left: 50%; transform: translate(-50%,-50%);">Login with Facebook</button>
+              <!--   <button onclick="alert('Hello!')" class="loginBtn loginBtn--facebook" style="top: 12; left: 50%; transform: translate(-50%,-50%);">Login with Facebook</button> -->
              </div>
              <div class="modal-footer">
                 <input name="login" value=

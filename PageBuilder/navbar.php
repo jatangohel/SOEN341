@@ -53,9 +53,9 @@ function changeLanguage()
                 <a class="nav-link" href="Generate.php">
                   <?php
                     if($_SESSION['dispEng'])
-                      echo "ScheduleRegenerator";
+                      echo "ScheduleGenerator";
                     else
-                      echo "FILL PLEASE";
+                      echo "GénérateurD'horaire";
                   ?>
                 </a>
             </li>
@@ -65,7 +65,7 @@ function changeLanguage()
                     if($_SESSION['dispEng'])
                       echo "ProgramSchedule";
                     else
-                      echo "FILL PLEASE";
+                      echo "HoraireDuProgramme";
                   ?>
                 </a>
             </li>
