@@ -1,28 +1,32 @@
 <?php
+
 require_once 'backendInterface.php';
 set_time_limit(0);
 
-$semIndex = $_GET['semIndex'];
+$semIndex = $_GET['semester'];
 $userSched = unserialize($_SESSION['userSched']);
-//$noClassesArr =  $userSched->getListOfSemesters()[$semIndex]->getMyTimesNoClass();
-//var_dump($noClassesArr);
+
+//var_dump($userSched->getListOfSemesters()[$semIndex]->getLecs());
 ?>
 
 
 <!doctype html>
 <html lang="en">
   <head>
+    <title> Weekly Schedule </title>
+
     <!-- Required meta tags -->
+
+</body>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 	    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<!-- Font awesome -->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.min.js"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
 
 	<title>
@@ -36,61 +40,9 @@ $userSched = unserialize($_SESSION['userSched']);
 	<style>
 	        :root{
           --mainColor: #14162B;
-          --background: #2cc16a;
           --fadedText: #36384D;
           --mainButtons: rgb(241, 48, 78);
         }
-
-	  body {
-          background-image: linear-gradient(to bottom, rgba(255, 255, 255,9), rgba(230, 247, 255,9)), url("concordia.jpg");
-          background-image: -moz-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
-          background-image: -o-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
-          background-image: -ms-linear-gradient(top, rgba(230, 247, 255,9), rgba(230, 247, 255,9)), url(concordia.jpg);
-          background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255,9)), to(rgba(230, 247, 255,9))), url(../../../../../Downloads/concordia.jpg);
-          background-image: -webkit-linear-gradient(top, rgba(198, 57, 244, 0.84), rgba(230, 247, 255,0)), url(concordia.jpg);
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-        }
-
-  .startTime{
-    background-color: white;
-    display: inline-flex;
-    border: 1px solid #ccc;
-    color: #555;
-  }
-  .endTime{
-    background-color: white;
-    display: inline-flex;
-    border: 1px solid #ccc;
-    color: #555;
-  }
-  
-  .startHour{
-    border: none;
-    color: #555;
-    text-align: center;
-    width: 40px;
-  }
-  .startMinute{
-    border: none;
-    color: #555;
-    text-align: center;
-    width: 40px;
-  }
-  .endHour{
-    border: none;
-    color: #555;
-    text-align: center;
-    width: 40px;
-  }
-  .endMinute {
-    border: none;
-    color: #555;
-    text-align: center;
-    width: 40px;
-  }
-
 
         #loading {
            width: 100%;
@@ -195,8 +147,12 @@ $userSched = unserialize($_SESSION['userSched']);
 	</style>
 	 <body>
  <div class="topHeader">
-        <button class="btn btn-warning" onclick="window.print()" style="float:left; margin-left:20px;"><strong>Print Schedule</strong></button>
 
+<body>
+
+
+        <span  id="button" action="action" onclick="window.history.go(-1); return false;" type="span" style='float:left;font-size:50px;margin-left:5px; position: relative; bottom: 23px; cursor:pointer;'>&#x2BAA;</span>
+        <button class="btn btn-warning" onclick="window.print()" style="float:left; margin-left:5px;"><strong>Print Schedule</strong></button>
         <h1 class="text-center">
           <?php
     				if($_SESSION['dispEng'])
@@ -303,16 +259,10 @@ $userSched = unserialize($_SESSION['userSched']);
 													echo "Dimanche";
 											?>
                     </option>
-									</select></td>
+									</td>
 
-									<td><div class="startTime" id="startTime1">
-											<input class="startHour" type="number" id="startHour1"  min="08" max="22" placeholder="08">:
-											<input class="startMinute" type="number" id="startMinute1" min="0" max="59" placeholder="00">
-										</div></td>
-									<td><div class="endTime" id ="endTime1">
-											<input class="endHour"  type="number" id="endHour1"  min="08" max="22" placeholder="22">:
-											<input class="endMinute" type="number" id="endMinute1" min="0" max="59" placeholder="00">
-										</div></td>
+									<td></select><input oninput="checkValidTime()" type="time" id="starting1" name="starting1" value="12:00" placeholder="Starting Time"></td>
+									<td><input oninput="checkValidTime()" type="time" id="ending1" name="ending1" value = "13:00" placeholder="Ending Time"></td>
 									<td><button type="button" name="add" id="add" class="btn btn-secondary">Add</button></td>
 								</tr>
 								<input type="button" class="btn btn-success btn-sm"style="float:right; margin-right:20px;" name="submit" id="submit" value="Submit"/>
@@ -323,7 +273,7 @@ $userSched = unserialize($_SESSION['userSched']);
 	</div>
 
   <div id="loading">
-    <img id="loading-image" src="img_loading.gif" alt="Loading..." />
+    <img id="loading-image" src="images/img_loading.gif" alt="Loading..." />
   </div>
 
 	  <div id="scheduleArea" class="scheduleArea">
@@ -398,7 +348,7 @@ $userSched = unserialize($_SESSION['userSched']);
         </tr>
 
         <tr style="border-top: 2px solid black; ">
-          <td class="time" rowspan="4" scope="row"><span class>8:00</span></td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">8:00</span></td>
 
           <td class="M" name="M080000" id="M080000">&nbsp;</td>
           <td class="T" name="T080000" id="T080000">&nbsp;</td>
@@ -444,7 +394,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
         <tr>
-          <td class="time" rowspan="4" scope="row"><span class>9:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">9:00</span>&nbsp;</td>
           <td class="M" name="M090000" id="M090000">&nbsp;</td>
           <td class="T" name="T090000" id="T090000" >&nbsp;</td>
           <td class="W" name="W090000" id="W090000">&nbsp;</td>
@@ -484,7 +434,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
         <tr>
-          <td class="time" rowspan="4" scope="row"><span class>10:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">10:00</span>&nbsp;</td>
           <td class="M" name="M100000" id="M100000">&nbsp;</td>
           <td class="T" name="T100000" id="T100000">&nbsp;</td>
           <td class="W" name="W100000" id="W100000">&nbsp;</td>
@@ -526,7 +476,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
         <tr>
-          <td class="time" rowspan="4" scope="row"><span class>11:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">11:00</span>&nbsp;</td>
           <td class="M" name="M110000" id="M110000">&nbsp;</td>
           <td class="T" name="T110000" id="T110000">&nbsp;</td>
           <td class="W" name="W110000" id="W110000">&nbsp;</td>
@@ -567,7 +517,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
         <tr>
-          <td class="time" rowspan="4" scope="row"><span class>12:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">12:00</span>&nbsp;</td>
           <td class="M" name="M120000" id="M120000">&nbsp;</td>
           <td class="T" name="T120000" id="T120000">&nbsp;</td>
           <td class="W" name="W120000" id="W120000">&nbsp;</td>
@@ -608,7 +558,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
         <tr>
-          <td class="time" rowspan="4" scope="row"><span class>13:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">13:00</span>&nbsp;</td>
           <td class="M" name="M130000" id="M130000">&nbsp;</td>
           <td class="T" name="T130000" id="T130000">&nbsp;</td>
           <td class="W" name="W130000" id="W130000">&nbsp;</td>
@@ -649,7 +599,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
         <tr>
-          <td class="time" rowspan="4" scope="row"><span class>14:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">14:00</span>&nbsp;</td>
           <td class="M" name="M140000" id="M140000">&nbsp;</td>
           <td class="T" name="T140000" id="T140000">&nbsp;</td>
           <td class="W" name="W140000" id="W140000">&nbsp;</td>
@@ -690,7 +640,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
         <tr>
-          <td class="time" rowspan="4" scope="row"><span class>15:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">15:00</span>&nbsp;</td>
           <td class="M" name="M150000" id="M150000">&nbsp;</td>
           <td class="T" name="T150000" id="T150000">&nbsp;</td>
           <td class="W" name="W150000" id="W150000">&nbsp;</td>
@@ -732,7 +682,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
         <tr>
-          <td class="time" rowspan="4" scope="row"><span class>16:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">16:00</span>&nbsp;</td>
           <td class="M" name="M160000" id="M160000">&nbsp;</td>
           <td class="T" name="T160000" id="T160000">&nbsp;</td>
           <td class="W" name="W160000" id="W160000">&nbsp;</td>
@@ -773,7 +723,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
         <tr>
-          <td class="time" rowspan="4" scope="row"><span class>17:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">17:00</span>&nbsp;</td>
           <td class="M" name="M170000" id="M170000">&nbsp;</td>
           <td class="T" name="T170000" id="T170000">&nbsp;</td>
           <td class="W" name="W170000" id="W170000">&nbsp;</td>
@@ -814,7 +764,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
         <tr>
-          <td class="time" rowspan="4" scope="row"><span class>18:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">18:00</span>&nbsp;</td>
           <td class="M" name="M180000" id="M180000">&nbsp;</td>
           <td class="T" name="T180000" id="T180000">&nbsp;</td>
           <td class="W" name="W180000" id="W180000">&nbsp;</td>
@@ -855,7 +805,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
         <tr>
-          <td class="time" rowspan="4" scope="row"><span class>19:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">19:00</span>&nbsp;</td>
           <td class="M" name="M190000" id="M190000">&nbsp;</td>
           <td class="T" name="T190000" id="T190000">&nbsp;</td>
           <td class="W" name="W190000" id="W190000">&nbsp;</td>
@@ -897,7 +847,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
         <tr>
-          <td class="time" rowspan="4" scope="row"><span class>20:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">19:00</span>&nbsp;</td>
           <td class="M" name="M200000" id="M200000">&nbsp;</td>
           <td class="T" name="T200000" id="T200000">&nbsp;</td>
           <td class="W" name="W200000" id="W200000">&nbsp;</td>
@@ -940,7 +890,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
         <tr>
-          <td class="time" rowspan="4" scope="row"><span class>21:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">21:00</span>&nbsp;</td>
           <td class="M" name="M210000" id="M210000">
 
 
@@ -983,7 +933,7 @@ $userSched = unserialize($_SESSION['userSched']);
 
 
 		<tr>
-          <td class="time" rowspan="4" scope="row"><span class>22:00</span>&nbsp;</td>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">22:00</span>&nbsp;</td>
           <td class="M" name="M220000" id="M220000">&nbsp;</td>
           <td class="T" name="T220000" id="T220000">&nbsp;</td>
           <td class="W" name="W220000" id="W220000">&nbsp;</td>
@@ -1021,6 +971,45 @@ $userSched = unserialize($_SESSION['userSched']);
         </tr>
 
 
+    <tr>
+          <td class="time" rowspan="4" scope="row"><span class="font-weight-bold">23:00</span>&nbsp;</td>
+          <td class="M" name="M230000" id="M230000">&nbsp;</td>
+          <td class="T" name="T230000" id="T230000">&nbsp;</td>
+          <td class="W" name="W230000" id="W230000">&nbsp;</td>
+          <td class="J" name="J230000" id="J230000">&nbsp;</td>
+          <td class="F" name="F230000" id="F230000">&nbsp;</td>
+          <td class="saturday">&nbsp;</td>
+          <td class="sunday">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="M" name="M231500" id="M231500">&nbsp;</td>
+          <td class="T" name="T231500" id="T231500">&nbsp;</td>
+          <td class="W" name="W231500" id="W231500">&nbsp;</td>
+          <td class="J" name="J231500" id="J231500">&nbsp;</td>
+          <td class="F" name="F231500" id="F231500">&nbsp;</td>
+          <td class="saturday">&nbsp;</td>
+          <td class="sunday">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="M" name="M233000" id="M233000">&nbsp;</td>
+          <td class="T" name="T233000" id="T233000">&nbsp;</td>
+          <td class="W" name="W233000" id="W233000">&nbsp;</td>
+          <td class="J" name="J233000" id="J233000">&nbsp;</td>
+          <td class="F" name="F233000" id="F233000">&nbsp;</td>
+          <td class="saturday">&nbsp;</td>
+          <td class="sunday">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="M" name="M234500" id="M234500">&nbsp;</td>
+          <td class="T" name="T234500" id="T234500">&nbsp;</td>
+          <td class="W" name="W234500" id="W234500">&nbsp;</td>
+          <td class="J" name="J234500" id="J234500">&nbsp;</td>
+          <td class="F" name="F234500" id="F234500">&nbsp;</td>
+          <td class="saturday">&nbsp;</td>
+          <td class="sunday">&nbsp;</td>
+        </tr>
+
+
       </table>
 
 	</div>
@@ -1030,21 +1019,13 @@ $userSched = unserialize($_SESSION['userSched']);
 	</div>
 
   <script>
-document.querySelectorAll('input[type=number]')
-  .forEach(e => e.oninput = () => {
-    // Always 2 digits
-    if (e.value.length >= 2) e.value = e.value.slice(0, 2);
-    // 0 on the left (doesn't work on FF)
-    if (e.value.length === 1) e.value = '0' + e.value;
-    // Avoiding letters on FF
-    if (!e.value) e.value = '00';
-  });
+
 
 var timingConstraintsNum = 1;
 $(document).ready(function(){
 	$('#add').click(function(){
 		timingConstraintsNum++;
-		$('#dynamic_field').append('<tr id="row'+timingConstraintsNum+'"><td><select id="day'+timingConstraintsNum+'"name="Days"><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday">Friday</option><option value="Saturday">Saturday</option><option value="Sunday">Sunday</option></select>&nbsp;</td><td><div class="startTime" id="startTime1"><input class="startHour" type="number" id="startHour1"  min="08" max="22" placeholder="08">:<input class="startMinute" type="number" id="startMinute1" min="0" max="59" placeholder="00"></div></td><td><div class="endTime" id ="endTime'+timingConstraintsNum+'"><input class="endHour"  type="number" id="endHour'+timingConstraintsNum+'"  min="08" max="22" placeholder="22">:<input class="endMinute" type="number" id="endMinute'+timingConstraintsNum+'" min="0" max="59" placeholder="00"></div></td><td><button name="remove" id="'+timingConstraintsNum+'" class="btn btn-danger btn_remove">X</button>&nbsp;</td></tr>');
+		$('#dynamic_field').append('<tr id="row'+timingConstraintsNum+'"><td><select id="day'+timingConstraintsNum+'"name="Days"><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday">Friday</option><option value="Saturday">Saturday</option><option value="Sunday">Sunday</option></select>&nbsp;</td><td><input type="time" id="starting'+timingConstraintsNum+'"value = 00:00 name="starting'+timingConstraintsNum+'">&nbsp;</td><td><input type="time" id="ending'+timingConstraintsNum+'"value=00:00 name="ending'+timingConstraintsNum+'">&nbsp;</td><td><button name="remove" id="'+timingConstraintsNum+'" class="btn btn-danger btn_remove">X</button>&nbsp;</td></tr>');
 	});
 	$(document).on('click','.btn_remove',function(){
 		var button_id = $(this).attr("id");
@@ -1083,6 +1064,9 @@ createLecNew();
 function createLecNew() {
 	var jsLec=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[$semIndex]->getMyLecs())?>');
 	for (x in jsLec){
+    if (jsLec[x]['day']=='ONLINE')
+      continue;
+
 		var title = jsLec[x]['day'][0];
 		var fromTimeHour = jsLec[x]['startTime'];
 		var toTimeHour= jsLec[x]['endTime'];
@@ -1112,7 +1096,7 @@ function createLecNew() {
 		}
 	}
 	for (x in jsLec){
-		if (jsLec[x]['day'].length === 1)
+		if ((jsLec[x]['day'].length === 1) || (jsLec[x]['day']=='ONLINE'))
 			continue;
 		else{
 			var title = jsLec[x]['day'][1];
@@ -1176,7 +1160,7 @@ function createTutNew(){
 		}
 	}
 	for (x in jsTut){
-		if (jsTut[x]['day'].length === 1)
+		if (jsTut[x]['day'].length === 1 )
 			continue;
 		else{
 			var title = jsTut[x]['day'][1];
@@ -1364,7 +1348,7 @@ $(document).ready(function(){
 	$('#submit').click(function(){
 		 var x = document.getElementById("loading");
 		  x.style.display = "block";
-		$.post('backendInterface.php',{
+		$.post('FrontEnd/backendInterface.php',{
       submitID:"SubmitTimingConstraints",
       semIndex: <?php echo $semIndex ?>,
       days:getDays(),
@@ -1385,9 +1369,36 @@ $(document).ready(function(){
          return true;
      }
 
+      function checkValidTime(){
+        var starttime = document.getElementById("starting1").value;
+        var endtime = document.getElementById("ending1").value;
+
+        var starthours = starttime.substring(0,2);
+        var startmin = starttime.substring(3,5);
+
+        var endhours = endtime.substring(0,2);
+        var endmin = endtime.substring(3,5);
+
+        if(starthours>=8 && endhours<=22 && starthours<endhours || (starthours==endhours && startmin!=endmin)){
+          document.getElementById("submit").disabled = false;
+          document.getElementById("add").disabled = false;
+        }else {
+          document.getElementById("submit").disabled = true;
+          document.getElementById("add").disabled = true;
+        }
+      }
+
  </script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
+</br></br></br></br></br>
+</br></br></br></br></br>
+</br></br></br></br></br></br>
+</br></br></br></br></br></br>
+</br></br></br></br></br></br>
+</br></br></br></br></br></br>
+</br></br></br></br>
+</br></br></br></br></br></br>
+</br></br></br></br></br></br>
   	</body>
  </html>
