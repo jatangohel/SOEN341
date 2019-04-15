@@ -44,8 +44,17 @@ function createLecNew() {
 <html>
    <body>
       
-    <iframe src="demo_iframe.htm" height="200" width="300"></iframe>
-
-      
+    <h1>Pagination CSS Counter</h1>
+    <section>
+      <h2>Jump to page:</h2>
+      <a href="#"></a>
+      <a href="#"></a>
+      <a href="#"></a>
+      <a href="#"></a>
+      <a href="#"></a>
+      <a href="#"></a>
+      <a href="#"></a>
+      <a href="#"></a>
+    </section>
    </body>
 </html>
