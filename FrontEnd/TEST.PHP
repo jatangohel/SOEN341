@@ -52,7 +52,16 @@ function myMethod() {
      var pet = 'dog';
      console.log(pet);
  }
+var height = 5;
+var radius = 3;
+var volume;
+// declare and immediately call anonymous function to create scope
+(function () {/*from w  w  w  . j  av a  2 s  . c  o m*/
+     var pir2 = Math.PI * radius * radius;   // temp var
+     volume = (pir2 * height) / 3;
+})();
 
+console.log(volume);
 myMethod();
 console.log(pet);
 function myData() { 
