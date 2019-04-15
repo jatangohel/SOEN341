@@ -47,7 +47,9 @@ function createLecNew() {
 
       console.clear();
 var pet = 'cat';
-
+console.log(console === global.console); // true 
+console.log(setTimeout === global.setTimeout); // true 
+console.log(process === global.process); // true
 function myMethod() {
      var pet = 'dog';
      console.log(pet);
