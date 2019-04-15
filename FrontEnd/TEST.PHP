@@ -43,7 +43,15 @@ function createLecNew() {
 
 <html>
    <head>
-    
+    <script>
+      if (!action) {
+  if (displayedNum === '0') {
+    display.textContent = keyContent
+  } else {
+    display.textContent = displayedNum + keyContent
+  }
+}
+    </script>
    </head>
    <body>
  <div class="calculator__keys">
