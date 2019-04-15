@@ -52,12 +52,5 @@ function createLecNew() {
    Last name: <input type="text" name="lname"><br>
 </form>
 
-    <form action="/action_page.php" method="get" id="form2">
-  First name: <input type="text" name="fname"><br>
-   Last name: <input type="text" name="lname"><br>
-</form>
-
-<button type="submit" form="form1" value="Submit">Submit</button>
-<button type="submit" form="form2" value="Submit">Submit</button>
    </body>
 </html>
