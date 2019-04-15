@@ -53,10 +53,6 @@ function createLecNew() {
   <button class="key--operator" data-action="multiply">&times;</button>
   <button class="key--operator" data-action="divide">÷</button
 
-  <button>6</button>
-  <button>1</button>
-  <button>2</button>
-  <button>3</button>
 
 </div>
 <form action="action_page.php">
