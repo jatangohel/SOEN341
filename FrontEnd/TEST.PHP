@@ -44,13 +44,23 @@ function createLecNew() {
 <html>
    <head>
     <script>
-      if (!action) {
-  if (displayedNum === '0') {
-    display.textContent = keyContent
-  } else {
-    display.textContent = displayedNum + keyContent
+const calculator = document.querySelector('.calculator')
+// ...
+keys.addEventListener('click', e => {
+  if (e.target.matches('button')) {
+    // ...
+    if (
+      action === 'add' ||
+      action === 'subtract' ||
+      action === 'multiply' ||
+      action === 'divide'
+    ) {
+      key.classList.add('is-depressed')
+      // Add custom attribute
+      calculator.dataset.previousKeyType = 'operator'
+    }
   }
-}
+})
     </script>
    </head>
    <body>
