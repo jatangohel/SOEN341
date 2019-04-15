@@ -52,6 +52,11 @@ function myData() {
 } 
 console.log(myData()); // 123 
 
+function hello(name) {
+     console.log("hello " + name);
+}
+hello();
+hello("CSS", "HTML", "AAA", 4);
 function myValue() { 
 } 
 console.log(myValue()); // undefined 
