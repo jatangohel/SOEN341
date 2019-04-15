@@ -283,7 +283,35 @@ html,body {
       -webkit-transition: all .3s ease;
     }
     
- 
+    &.slide-up .center {
+      top: 10%;
+      -webkit-transform: translate(-50%, 0%);
+      -webkit-transition: all .3s ease;
+    }
+    
+    &.slide-up .form-holder,
+    &.slide-up .submit-btn {
+      opacity: 0;
+      visibility: hidden;
+      -webkit-transition: all .3s ease;
+    }
+    
+    &.slide-up .form-title {
+      font-size: 1em;
+      margin: 0;
+      padding: 0;
+      cursor: pointer;
+      -webkit-transition: all .3s ease;
+    }
+    
+    &.slide-up .form-title span {
+      margin-right: 5px;
+      opacity: 1;
+      visibility: visible;
+      -webkit-transition: all .3s ease;
+    }
+  }
+}
      </script>
    </head>
    <body>
