@@ -44,8 +44,17 @@ function createLecNew() {
 <html>
    <head>
     <script type="text/javascript">
+
       console.clear();
 
+function myData() { 
+   return 123; 
+} 
+console.log(myData()); // 123 
+
+function myValue() { 
+} 
+console.log(myValue()); // undefined 
 const loginBtn = document.getElementById('login');
 const signupBtn = document.getElementById('signup');
 
@@ -160,14 +169,7 @@ body {
     }
   }
 }
-function myData() { 
-   return 123; 
-} 
-console.log(myData()); // 123 
 
-function myValue() { 
-} 
-console.log(myValue()); // undefined 
 
 @include keyframes (wawes) {
   from { @include transform(rotate(0)); }
