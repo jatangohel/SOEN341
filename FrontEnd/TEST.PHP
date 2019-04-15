@@ -46,7 +46,15 @@ function createLecNew() {
     <script type="text/javascript">
 
       console.clear();
+var pet = 'cat';
 
+function myMethod() {
+     var pet = 'dog';
+     console.log(pet);
+ }
+
+myMethod();
+console.log(pet);
 function myData() { 
    return 123; 
 } 
