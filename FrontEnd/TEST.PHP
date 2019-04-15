@@ -143,5 +143,12 @@ And here’s my CSS:
   <button data-action="clear">AC</button>
   <button class="key--equal" data-action="calculate">=</button>
 </div>
+<div class="container">
+    <h1>Register</h1>
+    <p>Please fill in this form to create an account.</p>
+    <hr>
+
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="email" required>
    </body>
 </html>
