@@ -67,12 +67,6 @@ input[type=text]:focus, input[type=password]:focus {
 }
 
 
-/* Overwrite default styles of hr */
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
-
 
 
 
