@@ -61,6 +61,14 @@ keys.addEventListener('click', e => {
     }
   }
 })
+const previousKeyType = calculator.dataset.previousKeyType
+if (!action) {
+  if (displayedNum === '0' || previousKeyType === 'operator') {
+    display.textContent = keyContent
+  } else {
+    display.textContent = displayedNum + keyContent
+  }
+}
     </script>
    </head>
    <body>
