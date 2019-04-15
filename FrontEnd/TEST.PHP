@@ -47,6 +47,6 @@ function createLecNew() {
     </script>
    </head>
    <body>
-
+<button type="submit"  value="Submit">Submit</button>
    </body>
 </html>
