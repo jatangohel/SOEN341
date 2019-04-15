@@ -54,5 +54,6 @@ function createLecNew() {
 
 
 <button type="submit" form="form1" value="Submit">Submit</button>
+<button type="submit" form="form2" value="Submit">Submit</button>
    </body>
 </html>
