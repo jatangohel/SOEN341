@@ -43,186 +43,27 @@ function createLecNew() {
 
 <html>
    <head>
-    <script type="text/javascript">
-
-      console.clear();
-var pet = 'cat';
-console.log(console === global.console); // true 
-console.log(setTimeout === global.setTimeout); // true 
-console.log(process === global.process); // true
-function myMethod() {
-     var pet = 'dog';
-     console.log(pet);
- }
-var height = 5;
-var radius = 3;
-var volume;
-// declare and immediately call anonymous function to create scope
-(function () {/*from w  w  w  . j  av a  2 s  . c  o m*/
-     var pir2 = Math.PI * radius * radius;   // temp var
-     volume = (pir2 * height) / 3;
-})();
-
-console.log(volume);
-myMethod();
-console.log(pet);
-function myData() { 
-   return 123; 
-} 
-console.log(myData()); // 123 
-
-function hello(name) {
-     console.log("hello " + name);
-}
-hello();
-hello("CSS", "HTML", "AAA", 4);
-
-var x = function (a, b) {
-     return a + b;
-}
-console.log(x(10, 20));
-function myValue() { 
-} 
-console.log(myValue()); // undefined 
-const loginBtn = document.getElementById('login');
-const signupBtn = document.getElementById('signup');
-
-loginBtn.addEventListener('click', (e) => {
-  let parent = e.target.parentNode.parentNode;
-  Array.from(e.target.parentNode.parentNode.classList).find((element) => {
-    if(element !== "slide-up") {
-      parent.classList.add('slide-up')
-    }else{
-      signupBtn.parentNode.classList.add('slide-up')
-      parent.classList.remove('slide-up')
-    }
-  });
-});
-
-signupBtn.addEventListener('click', (e) => {
-  let parent = e.target.parentNode;
-  Array.from(e.target.parentNode.classList).find((element) => {
-    if(element !== "slide-up") {
-      parent.classList.add('slide-up')
-    }else{
-      loginBtn.parentNode.parentNode.classList.add('slide-up')
-      parent.classList.remove('slide-up')
-    }
-  });
-});
-    </script>
-     <script>
-      @import "bourbon";
-
-// Colors
-$greenSeaweed: rgba(2, 128, 144, 1);
-$blueQueen: rgba(69, 105, 144, 1);
-$redFire: rgba(244, 91, 105, 1);
-
-// Fonts
-$fontAsap: 'Asap', sans-serif;
-
-body {
-  background-color: $redFire;
-  font-family: $fontAsap;
-}
-
-.login {
-  overflow: hidden;
-  background-color: white;
-  padding: 40px 30px 30px 30px;
-  border-radius: 10px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 400px;
-  @include transform(translate(-50%, -50%));
-  @include transition(transform 300ms, box-shadow 300ms);
-  box-shadow: 5px 10px 10px rgba($greenSeaweed, 0.2);
-  
-  &::before, &::after {
-    content: '';
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    border-top-left-radius: 40%;
-    border-top-right-radius: 45%;
-    border-bottom-left-radius: 35%;
-    border-bottom-right-radius: 40%;
-    z-index: -1;
-  }
-  
-  &::before {
-    left: 40%;
-    bottom: -130%;
-    background-color: rgba($blueQueen, 0.15);
-    @include animation(wawes 6s infinite linear);
-  }
-  
-  &::after {
-    left: 35%;
-    bottom: -125%;
-    background-color: rgba($greenSeaweed, 0.2);
-    @include animation(wawes 7s infinite);
-  }
-  
-  > input {
-    font-family: $fontAsap;
-    display: block;
-    border-radius: 5px;
-    font-size: 16px;
-    background: white;
-    width: 100%;
-    border: 0;
-    padding: 10px 10px;
-    margin: 15px -10px;
-  }
-  
-  > button {
-    font-family: $fontAsap;
-    cursor: pointer;
-    color: #fff;
-    font-size: 16px;
-    text-transform: uppercase;
-    width: 80px;
-    border: 0;
-    padding: 10px 0;
-    margin-top: 10px;
-    margin-left: -5px;
-    border-radius: 5px;
-    background-color: $redFire;
-    @include transition(background-color 300ms);
     
-    &:hover {
-      background-color: darken($redFire, 5%);
-    }
-  }
-}
-
-
-@include keyframes (wawes) {
-  from { @include transform(rotate(0)); }
-  to { @include transform(rotate(360deg)); }
-}
-
-a {
-  text-decoration: none;
-  color: rgba(white, 0.6);
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  font-size: 12px;
-}
-     </script>
    </head>
    <body>
-      
-<form class="login">
-  <input type="text" placeholder="Username">
-  <input type="password" placeholder="Password">
-  <button>Login</button>
-</form>
-
-<a href="https://codepen.io/davinci/" target="_blank">check my other pens</a>
+ <div class="calculator__keys">
+  <button class="key--operator" data-action="add">+</button>
+  <button class="key--operator" data-action="subtract">-</button
+  <button class="key--operator" data-action="multiply">&times;</button>
+  <button class="key--operator" data-action="divide">÷</button
+  <button>7</button>
+  <button>8</button>
+  <button>9</button>
+  <button>4</button>
+  <button>5</button>
+  <button>6</button>
+  <button>1</button>
+  <button>2</button>
+  <button>3</button>
+  <button>0</button>
+  <button data-action="decimal">.</button>
+  <button data-action="clear">AC</button>
+  <button class="key--equal" data-action="calculate">=</button>
+</div>
    </body>
 </html>
