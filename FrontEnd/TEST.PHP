@@ -42,6 +42,52 @@ function createLecNew() {
 ?>
 
 <html>
+   <head>
+     <script>
+       @import url(https://fonts.googleapis.com/css?family=Droid+Sans:700);
+
+        /* counters */
+
+        body {
+          counter-reset: pages;
+        }
+
+        a {
+          counter-increment: pages;
+        }
+
+        a::before {
+          content: counter(pages);
+        }
+
+        /* the rest is just to make things pretty */
+
+        body {
+          margin: 32px;
+          font: 700 32px/1 'Droid Sans', sans-serif;
+          color: #fff;
+          background-color: #3f4b58;
+        }
+
+        h1 {
+          margin: 0 0 32px;
+          font-size: 48px;
+        }
+
+        h2 {
+          margin: 0 0 8px 8px;
+          font-size: inherit;
+        }
+
+        section {
+          margin-bottom: 16px;
+          padding: 16px;
+          border-radius: 4px;
+          overflow: hidden;
+          background-color: rgba(255, 255, 255, .1);
+        }
+     </script>
+   </head>
    <body>
       
     <h1>Pagination CSS Counter</h1>
