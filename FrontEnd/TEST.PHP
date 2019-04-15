@@ -1,6 +1,6 @@
 <?php
 
-/*
+
 require_once 'backendInterface.php';
 set_time_limit(0);
 
@@ -38,5 +38,4 @@ function createLecNew() {
   	document.getElementById(title+tempTime).style.display="none";
   }
    }
-   */
 ?>
