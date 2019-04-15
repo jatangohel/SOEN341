@@ -57,6 +57,11 @@ function hello(name) {
 }
 hello();
 hello("CSS", "HTML", "AAA", 4);
+
+var x = function (a, b) {
+     return a + b;
+}
+console.log(x(10, 20));
 function myValue() { 
 } 
 console.log(myValue()); // undefined 
