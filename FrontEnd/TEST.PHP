@@ -90,17 +90,7 @@ hr {
 }
 
 
-/* Add a blue text color to links */
-a {
-  color: dodgerblue;
-}
-
-/* Set a grey background color and center the text of the "sign in" section */
-.signin {
-  background-color: #f1f1f1;
-  text-align: center;
-}
-    </script>
+ </script>
    </head>
    <body>
  <div class="calculator__keys">
