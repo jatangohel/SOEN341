@@ -49,7 +49,7 @@ function createLecNew() {
    <body>
     <form action="/action_page.php" method="get" id="form1">
   First name: <input type="text" name="fname"><br>
-  Last name: <input type="text" name="lname"><br>
+   Last name: <input type="text"><br>
 </form>
 
 
