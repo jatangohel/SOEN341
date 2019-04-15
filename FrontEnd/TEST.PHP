@@ -61,10 +61,7 @@ function createLecNew() {
   <button>1</button>
   <button>2</button>
   <button>3</button>
-  <button>0</button>
-  <button data-action="decimal">.</button>
-  <button data-action="clear">AC</button>
-  <button class="key--equal" data-action="calculate">=</button>
+
 </div>
 <form action="action_page.php">
 <div class="container">
