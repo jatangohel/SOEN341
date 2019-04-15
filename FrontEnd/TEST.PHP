@@ -128,7 +128,52 @@ body {
     @include animation(wawes 7s infinite);
   }
   
+  > input {
+    font-family: $fontAsap;
+    display: block;
+    border-radius: 5px;
+    font-size: 16px;
+    background: white;
+    width: 100%;
+    border: 0;
+    padding: 10px 10px;
+    margin: 15px -10px;
+  }
+  
+  > button {
+    font-family: $fontAsap;
+    cursor: pointer;
+    color: #fff;
+    font-size: 16px;
+    text-transform: uppercase;
+    width: 80px;
+    border: 0;
+    padding: 10px 0;
+    margin-top: 10px;
+    margin-left: -5px;
+    border-radius: 5px;
+    background-color: $redFire;
+    @include transition(background-color 300ms);
+    
+    &:hover {
+      background-color: darken($redFire, 5%);
+    }
+  }
+}
 
+@include keyframes (wawes) {
+  from { @include transform(rotate(0)); }
+  to { @include transform(rotate(360deg)); }
+}
+
+a {
+  text-decoration: none;
+  color: rgba(white, 0.6);
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  font-size: 12px;
+}
      </script>
    </head>
    <body>
