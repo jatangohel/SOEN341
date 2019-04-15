@@ -47,25 +47,6 @@ function createLecNew() {
     </script>
    </head>
    <body>
- <div class="calculator__keys">
-  <button class="key--operator" data-action="add">+</button>
-  <button class="key--operator" data-action="subtract">-</button
-  <button class="key--operator" data-action="multiply">&times;</button>
-  <button class="key--operator" data-action="divide">÷</button
 
-
-</div>
-<form action="action_page.php">
-<div class="container">
-    <h1>Register</h1>
-    
-
-   
-
-
-  <div class="container signin">
-    <p>Already have an account? <a href="#">Sign in</a>.</p>
-  </div>
-</form>
    </body>
 </html>
