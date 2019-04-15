@@ -1,4 +1,9 @@
 <?php
+
+$originalDate = "2010-03-21";
+$newDate = date("d-m-Y", strtotime($originalDate));
+
+echo 'Today is '.$originalDate;
 if(isset($_FILES['image'])){
       $errors= array();
       $file_name = $_FILES['image']['name'];
