@@ -1,43 +1,51 @@
 <?php
 
+/*
+require_once 'backendInterface.php';
+set_time_limit(0);
 
+$semIndex = $_GET['semIndex'];
+$userSched = unserialize($_SESSION['userSched']);
+
+$noClassesArr =  $userSched->getListOfSemesters()[$semIndex]->getTimesNoClass();
+var_dump($noClassesArr);
+?>
+
+<script>
+var ABCD=JSON.parse('<?php echo json_encode($userSched->getListOfSemesters()[0]->getMyLecs())?>');
+console.log(ABCD[0]['day'][0]);
+</script>
+
+
+
+    //createLecNew();
+/*
+function createLecNew() {
+  document.getElementById(title + fromTimeHour).innerHTML=(courseSection + '<br>' + "Lecture" + '<br>' + a + '&nbsp;' + "~" + '&nbsp;' + b);
+  document.getElementById(title + fromTimeHour).rowSpan =(EndHour-StartHour)*4+(EndMinute-StartMinute)/15;
+  document.getElementById(title + fromTimeHour).style = " color:rgb(0,0,0);background-color:rgb(102, 255, 153);text-align: center;opacity: 0.8;";
+
+
+  var tempTime=parseInt(fromTimeHour);
+  for (var i=1;i<document.getElementById(title + fromTimeHour).rowSpan;i++)
+  {
+  tempTime=tempTime+1500;
+  if((tempTime%10000)%6000==0)
+  tempTime=tempTime+4000;
+  if(tempTime<100000)
+  	document.getElementById(title+'0'+tempTime).style.display="none";
+  else
+  	document.getElementById(title+tempTime).style.display="none";
+  }
+   }
+   */
 ?>
 
 <html>
-    <head>
-      <script>
-                body {
-          overflow: hidden;
-          margin: 0;
-          padding: 0;
-        }
-
-        #full {
-          position: absolute;
-          height: 100%;
-          width: 100%;
-        }
-      </script>
-      <script>
-        var div = document.getElementById("full");
-
-        function getRandomColor() {
-            var letters = '0123456789ABCDEF';
-            var color = '#';
-            for (var i = 0; i < 6; i++ ) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
-        }
-
-        function changeColor(){
-          div.style.backgroundColor= getRandomColor();
-        }
-
-        setInterval(changeColor,1000);
-      </script>
-    </head>
    <body>
-      <div id="full"></div>
+      
+    <iframe src="demo_iframe.htm" height="200" width="300"></iframe>
+
+      
    </body>
 </html>
