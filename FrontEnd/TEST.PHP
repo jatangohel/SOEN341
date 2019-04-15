@@ -124,6 +124,11 @@ function createLecNew() {
       <h2 class="form-title" id="login"><span>or</span>Log in</h2>
       <div class="form-holder">
         <input type="email" class="input" placeholder="Email" />
-
+        <input type="password" class="input" placeholder="Password" />
+      </div>
+      <button class="submit-btn">Log in</button>
+    </div>
+  </div>
+</div>
    </body>
 </html>
