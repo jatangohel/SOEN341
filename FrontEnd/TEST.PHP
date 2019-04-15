@@ -86,6 +86,25 @@ function createLecNew() {
           overflow: hidden;
           background-color: rgba(255, 255, 255, .1);
         }
+                a {
+          float: left;
+          width: 32px;
+          margin: 8px;
+          padding: 8px;
+          border-radius: 4px;
+          border: solid 2px rgba(255, 255, 255, .4);
+          text-decoration: none;
+          text-align: center;
+          color: #fff;
+          background-color: rgba(255, 255, 255, .2);
+          transition: all .1s;
+        }
+
+        a:hover {
+          border: solid 2px #fff;
+          background-color: rgba(255, 255, 255, .4);
+          box-shadow: 0 0 10px #fff;
+        }
      </script>
    </head>
    <body>
