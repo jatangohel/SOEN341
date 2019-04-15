@@ -44,67 +44,66 @@ function createLecNew() {
 <html>
    <head>
      <script>
-       @import url(https://fonts.googleapis.com/css?family=Droid+Sans:700);
+       @import url("https://fonts.googleapis.com/css?family=Fira+Sans");
 
-        /* counters */
+html,body {
+  position: relative;
+  min-height: 100vh;
+  background-color: #E1E8EE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-        body {
-          counter-reset: pages;
-        }
-
-        a {
-          counter-increment: pages;
-        }
-
-        a::before {
-          content: counter(pages);
-        }
-
-        /* the rest is just to make things pretty */
-
-        body {
-          margin: 32px;
-          font: 700 32px/1 'Droid Sans', sans-serif;
-          color: #fff;
-          background-color: #3f4b58;
-        }
-
-        h1 {
-          margin: 0 0 32px;
-          font-size: 48px;
-        }
-
-        h2 {
-          margin: 0 0 8px 8px;
-          font-size: inherit;
-        }
-
-        section {
-          margin-bottom: 16px;
-          padding: 16px;
-          border-radius: 4px;
-          overflow: hidden;
-          background-color: rgba(255, 255, 255, .1);
-        }
-                a {
-          float: left;
-          width: 32px;
-          margin: 8px;
-          padding: 8px;
-          border-radius: 4px;
-          border: solid 2px rgba(255, 255, 255, .4);
-          text-decoration: none;
-          text-align: center;
-          color: #fff;
-          background-color: rgba(255, 255, 255, .2);
-          transition: all .1s;
-        }
-
-        a:hover {
-          border: solid 2px #fff;
-          background-color: rgba(255, 255, 255, .4);
-          box-shadow: 0 0 10px #fff;
-        }
+.form-structor {
+  background-color: #222;
+  border-radius: 15px;
+  height: 550px;
+  width: 350px;
+  position: relative;
+  overflow: hidden;
+  
+  &::after {
+    content: '';
+    opacity: .8;
+    position: absolute;
+    top: 0;right:0;bottom:0;left:0;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: 500px;
+    background-image: url('https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bf884ad570b50659c5fa2dc2cfb20ecf&auto=format&fit=crop&w=1000&q=100');
+  }
+  
+  .signup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    width: 65%;
+    z-index: 5;
+    -webkit-transition: all .3s ease;
+    
+    
+    &.slide-up {
+      top: 5%;
+      -webkit-transform: translate(-50%, 0%);
+      -webkit-transition: all .3s ease;
+    }
+    
+    &.slide-up .form-holder,
+    &.slide-up .submit-btn {
+      opacity: 0;
+      visibility: hidden;
+    }
+    
+    &.slide-up .form-title {
+      font-size: 1em;
+      cursor: pointer;
+    }
+    
      </script>
    </head>
    <body>
