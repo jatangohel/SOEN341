@@ -44,83 +44,28 @@ function createLecNew() {
 <html>
    <head>
     <script>
-const calculator = document.querySelector('.calculator')
-// ...
-keys.addEventListener('click', e => {
-  if (e.target.matches('button')) {
-    // ...
-    if (
-      action === 'add' ||
-      action === 'subtract' ||
-      action === 'multiply' ||
-      action === 'divide'
-    ) {
-      key.classList.add('is-depressed')
-      // Add custom attribute
-      calculator.dataset.previousKeyType = 'operator'
-    }
-  }
-})
-const previousKeyType = calculator.dataset.previousKeyType
-if (!action) {
-  if (displayedNum === '0' || previousKeyType === 'operator') {
-    display.textContent = keyContent
-  } else {
-    display.textContent = displayedNum + keyContent
-  }
-}
+        * {box-sizing: border-box}
 
-Let’s Make A JavaScript Calculator
-Go to the profile of Ethan Ryan
-Ethan Ryan
-Dec 19, 2017
-
-google image result for search term: “calculator funny”
-I know what you’re thinking: how come Ethan Ryan hasn’t blogged about making a JavaScript calculator yet?
-
-Well here you go, you unbelievably specific hypothetical internet reader.
-
-Getting Started
-First, let’s start with our HTML and CSS. Thanks to CSS grid, we can get a nice calculator shape on the page quickly. Calculator shape? Ooh la la! As the French nerds would say.
-
-I’m gonna model my calculator on the calculator on my iPhone:
-
-
-iPhone calculator, 8:14pm
-I’m gonna call that top row one row, so six rows total. Four columns across.
-
-Round One
-Here’s my HTML:
-
-<div class="container">
-  <div class="item item-header">header header header header</div>
-  <div class="item item-main-1">main main main main</div>
-  <div class="item item-main-2">main main main main</div>
-  <div class="item item-main-3">main main main main</div>
-  <div class="item item-main-4">main main main main</div>
-  <div class="item item-footer">footer footer footer footer</div>
-</div>
-And here’s my CSS:
-
+/* Add padding to containers */
 .container {
-  display: grid;
-  justify-content: center;
-  grid-template-columns: 50px 50px 50px 50px;
-  grid-template-rows: auto;
-  grid-template-areas: 
-  "header header header header" 
-  "main main main main" 
-  "main main main main" 
-  "main main main main" 
-  "main main main main" 
-  "footer footer footer footer";
+  padding: 16px;
 }
-.item-header {
-  grid-area: header;
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
 }
-.item-footer {
-  grid-area: footer;
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
 }
+
     </script>
    </head>
    <body>
