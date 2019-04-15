@@ -104,6 +104,186 @@ html,body {
       cursor: pointer;
     }
     
+    
+    &.slide-up .form-title span {
+      margin-right: 5px;
+      opacity: 1;
+      visibility: visible;
+      -webkit-transition: all .3s ease;
+    }
+    
+    .form-title {
+      color: #fff;
+      font-size: 1.7em;
+      text-align: center;
+      
+      span {
+        color: rgba(0,0,0,0.4);
+        opacity: 0;
+        visibility: hidden;
+        -webkit-transition: all .3s ease;
+      }
+    }
+    
+    .form-holder {
+      border-radius: 15px;
+      background-color: #fff;
+      overflow: hidden;
+      margin-top: 50px;
+      opacity: 1;
+      visibility: visible;
+      -webkit-transition: all .3s ease;
+      
+      .input {
+        border: 0;
+        outline: none;
+        box-shadow: none;
+        display: block;
+        height: 30px;
+        line-height: 30px;
+        padding: 8px 15px;
+        border-bottom: 1px solid #eee;
+        width: 100%;
+        font-size: 12px;
+        
+        &:last-child {
+          border-bottom: 0;
+        }
+        &::-webkit-input-placeholder {
+          color: rgba(0,0,0,0.4);
+        }
+      }
+    }
+    
+    .submit-btn {
+      background-color: rgba(0,0,0,0.4);
+      color: rgba(256,256,256,0.7);
+      border:0;
+      border-radius: 15px;
+      display: block;
+      margin: 15px auto; 
+      padding: 15px 45px;
+      width: 100%;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      opacity: 1;
+      visibility: visible;
+      -webkit-transition: all .3s ease;
+      
+      &:hover {
+        transition: all .3s ease;
+        background-color: rgba(0,0,0,0.8);
+      }
+    }
+  }
+  
+  .login {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    z-index: 5;
+    -webkit-transition: all .3s ease;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: -20px;
+      -webkit-transform: translate(-50%, 0);
+      background-color: #fff;
+      width: 200%;
+      height: 250px;
+      border-radius: 50%;
+      z-index: 4;
+      -webkit-transition: all .3s ease;
+    }
+    
+    .center {
+      position: absolute;
+      top: calc(50% - 10%);
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      width: 65%;
+      z-index: 5;
+      -webkit-transition: all .3s ease;
+      
+      .form-title {
+        color: #000;
+        font-size: 1.7em;
+        text-align: center;
+
+        span {
+          color: rgba(0,0,0,0.4);
+          opacity: 0;
+          visibility: hidden;
+          -webkit-transition: all .3s ease;
+        }
+      }
+
+      .form-holder {
+        border-radius: 15px;
+        background-color: #fff;
+        border: 1px solid #eee;
+        overflow: hidden;
+        margin-top: 50px;
+        opacity: 1;
+        visibility: visible;
+        -webkit-transition: all .3s ease;
+
+        .input {
+          border: 0;
+          outline: none;
+          box-shadow: none;
+          display: block;
+          height: 30px;
+          line-height: 30px;
+          padding: 8px 15px;
+          border-bottom: 1px solid #eee;
+          width: 100%;
+          font-size: 12px;
+
+          &:last-child {
+            border-bottom: 0;
+          }
+          &::-webkit-input-placeholder {
+            color: rgba(0,0,0,0.4);
+          }
+        }
+      }
+
+      .submit-btn {
+        background-color: #6B92A4;
+        color: rgba(256,256,256,0.7);
+        border:0;
+        border-radius: 15px;
+        display: block;
+        margin: 15px auto; 
+        padding: 15px 45px;
+        width: 100%;
+        font-size: 13px;
+        font-weight: bold;
+        cursor: pointer;
+        opacity: 1;
+        visibility: visible;
+        -webkit-transition: all .3s ease;
+
+        &:hover {
+          transition: all .3s ease;
+          background-color: rgba(0,0,0,0.8);
+        }
+      }
+    }
+    
+    &.slide-up {
+      top: 90%;
+      -webkit-transition: all .3s ease;
+    }
+    
+ 
      </script>
    </head>
    <body>
