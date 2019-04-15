@@ -160,6 +160,14 @@ body {
     }
   }
 }
+function myData() { 
+   return 123; 
+} 
+console.log(myData()); // 123 
+
+function myValue() { 
+} 
+console.log(myValue()); // undefined 
 
 @include keyframes (wawes) {
   from { @include transform(rotate(0)); }
