@@ -43,6 +43,13 @@ function createLecNew() {
 
 <html>
    <head>
+    <script type="text/javascript">
+      console.clear();
+
+const loginBtn = document.getElementById('login');
+const signupBtn = document.getElementById('signup');
+
+    </script>
      <script>
        @import url("https://fonts.googleapis.com/css?family=Fira+Sans");
 
@@ -104,7 +111,7 @@ html,body {
       cursor: pointer;
     }
     
-    
+
     &.slide-up .form-title span {
       margin-right: 5px;
       opacity: 1;
