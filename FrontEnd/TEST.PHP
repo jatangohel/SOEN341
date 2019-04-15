@@ -102,6 +102,32 @@ body {
   @include transition(transform 300ms, box-shadow 300ms);
   box-shadow: 5px 10px 10px rgba($greenSeaweed, 0.2);
   
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-top-left-radius: 40%;
+    border-top-right-radius: 45%;
+    border-bottom-left-radius: 35%;
+    border-bottom-right-radius: 40%;
+    z-index: -1;
+  }
+  
+  &::before {
+    left: 40%;
+    bottom: -130%;
+    background-color: rgba($blueQueen, 0.15);
+    @include animation(wawes 6s infinite linear);
+  }
+  
+  &::after {
+    left: 35%;
+    bottom: -125%;
+    background-color: rgba($greenSeaweed, 0.2);
+    @include animation(wawes 7s infinite);
+  }
+  
 
      </script>
    </head>
